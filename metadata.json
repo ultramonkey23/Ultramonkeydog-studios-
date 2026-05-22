@@ -1,0 +1,6 @@
+{
+  "name": "Ultramonkeydog Studios",
+  "description": "An independent AI-assisted game studio building creature RPGs, roguelites, tactical systems, and experimental worlds with teeth.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
