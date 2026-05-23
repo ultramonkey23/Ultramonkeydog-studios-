@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
+import { Analytics } from "@vercel/analytics/react";
+
 import { PROJECTS_DATA, FUNDING_NEEDS } from "./data";
 import ProjectCard from "./components/ProjectCard";
 import MethodGrid from "./components/MethodGrid";
@@ -662,6 +664,7 @@ export default function App() {
         </div>
       </footer>
 
+      <Analytics />
     </div>
   );
 }
