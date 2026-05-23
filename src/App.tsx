@@ -20,6 +20,7 @@ import {
   Info
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { PROJECTS_DATA, FUNDING_NEEDS } from "./data";
 import ProjectCard from "./components/ProjectCard";
@@ -662,6 +663,7 @@ export default function App() {
         </div>
       </footer>
 
+      <SpeedInsights />
     </div>
   );
 }
