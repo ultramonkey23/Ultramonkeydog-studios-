@@ -300,6 +300,21 @@ export default function App() {
                   <p>
                     Rather than relying solely on high-level architecture designs or prose summaries, we commit to immediate compilation pipelines. Our early, unguided playtester was able to jump directly into the active viewport modules and explore the systems without direct instructions—validating the UX onboarding foundations.
                   </p>
+                  
+                  {/* Feedback CTA */}
+                  <div className="pt-4 border-t border-zinc-900 mt-6">
+                    <p className="text-zinc-400 text-xs sm:text-sm mb-4">
+                      Played one of the demos? Share first-session feedback on loading, save persistence, clarity, bugs, and fun.
+                    </p>
+                    <a 
+                      href="https://forms.gle/ZHcmhicFxrvuY1hQ9"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-white font-mono text-xs font-bold px-5 py-2.5 rounded transition-colors uppercase tracking-wider"
+                    >
+                      Give Demo Feedback
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -566,6 +581,18 @@ export default function App() {
             <p className="text-zinc-500 text-xs sm:text-sm leading-relaxed max-w-md mx-auto mb-10">
               For funding, collaboration, partnership, or project inquiries:
             </p>
+            
+            <div className="mb-10 p-4 bg-zinc-950/40 border border-zinc-900 rounded inline-flex flex-col items-center gap-3">
+              <p className="text-zinc-400 text-xs">Public demo feedback is currently being collected through a short Google Form.</p>
+              <a 
+                href="https://forms.gle/ZHcmhicFxrvuY1hQ9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-amber-600 hover:bg-amber-500 text-white font-mono text-xs font-bold px-4 py-2 rounded transition-colors uppercase tracking-wider"
+              >
+                Demo Feedback Form
+              </a>
+            </div>
 
             {/* Minimalist interactive email display card */}
             <div className="bg-zinc-950/60 rounded p-6 border-2 border-zinc-900 max-w-sm mx-auto mb-10 flex flex-col items-center justify-center gap-3.5 relative overflow-hidden">

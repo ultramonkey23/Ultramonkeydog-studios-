@@ -506,14 +506,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
         
         {project.demoUrl && (
-          <div className="mt-5">
+          <div className="mt-5 flex gap-3">
             <a 
               href={project.demoUrl} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="group-hover:scale-[1.01] inline-flex items-center gap-2 w-full justify-center bg-zinc-100 hover:bg-white text-zinc-950 hover:text-black font-semibold px-4 py-3 rounded text-xs tracking-wider font-mono uppercase transition-all shadow border border-zinc-300"
+              className="group-hover:scale-[1.01] flex-grow inline-flex items-center gap-2 justify-center bg-zinc-100 hover:bg-white text-zinc-950 hover:text-black font-semibold px-4 py-3 rounded text-xs tracking-wider font-mono uppercase transition-all shadow border border-zinc-300"
             >
               Launch Demo <ExternalLink size={13} className="text-zinc-950 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+            <a 
+              href="https://forms.gle/ZHcmhicFxrvuY1hQ9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group-hover:scale-[1.01] flex-grow inline-flex items-center gap-2 justify-center bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white font-semibold px-4 py-3 rounded text-xs tracking-wider font-mono uppercase transition-all shadow"
+            >
+              Leave Feedback
             </a>
           </div>
         )}
