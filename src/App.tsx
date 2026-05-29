@@ -114,7 +114,7 @@ export default function App() {
             className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-950 border border-zinc-850 text-amber-500 text-[10px] font-mono rounded mb-8 tracking-widest uppercase font-semibold relative overflow-hidden"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-            INDEPENDENT PRODUCTION SLATE 2026
+            FORGE & SYSTEMS LABORATORY 2026
           </motion.div>
 
           {/* Main Title Typography with epic game poster size & contrast */}
@@ -144,7 +144,7 @@ export default function App() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="text-zinc-400 text-xs sm:text-base leading-relaxed max-w-3xl mb-12 px-4 shadow-black"
           >
-            Ultramonkeydog Studios is an independent AI-assisted game studio building creature RPGs, roguelites, tactical systems, simulations, and experimental worlds with teeth. The studio uses modern AI tools to bridge training, technical, resource, and production gaps — but the creative direction stays human, weird, and uncompromised.
+            Ultramonkeydog Studios is a systems-obsessed, independent forge building experimental RPGs, deep roguelites, creature mutations, and tactical simulations. We use AI to bridge production gaps—but the soul, the horror, the math, and the weirdness all come from a human director.
           </motion.p>
 
           {/* Call to Actions (CTAs) with heavy-border gaming arcade feels */}
@@ -189,7 +189,7 @@ export default function App() {
 
               <div className="lg:col-span-8 space-y-6">
                 <p className="font-display text-lg sm:text-xl text-zinc-250 leading-relaxed font-normal">
-                  Ultramonkeydog Studios is creator-driven first. These games are not designed by committee, trend charts, or safe genre templates. They come from Cody Haring’s instincts, influences, taste, experiments, music, horror, anime, RPG obsession, creature systems, and love of games that refuse to feel normal.
+                  Ultramonkeydog Studios is creator-driven first. These games are not designed by committee or safe genre templates. They bleed from Cody Haring’s instincts, death-metal underground taste, horror/dark fantasy influences, RPG obsession, and a love for deep, atmospheric systems that refuse to feel normal.
                 </p>
                 <div className="text-zinc-400 text-xs sm:text-sm space-y-4 leading-relaxed">
                   <p>

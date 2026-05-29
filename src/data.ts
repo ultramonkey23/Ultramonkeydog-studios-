@@ -10,7 +10,7 @@ export const PROJECTS_DATA: Project[] = [
     id: "what-we-fed",
     title: "WHAT WE FED",
     tone: "Dark mythic creature RPG",
-    description: "A dark creature-driven RPG roguelite about DNA, hunger, bonding, transformation, timing-based combat, music-driven escalation, and becoming feared.",
+    description: "A dark creature-driven RPG roguelite about genetic mutation, hunger, timing-based combat, music-driven escalation, and unforgiving mechanics where you must become feared.",
     tags: ["Creature RPG", "Roguelite", "DNA Systems", "Bond vs Eat", "Dark Fantasy"],
     status: "In Development",
     accentColor: "neon-green",
@@ -43,7 +43,7 @@ export const PROJECTS_DATA: Project[] = [
     id: "saga-anxious-fluff",
     title: "Saga of an Anxious Fluff",
     tone: "Colorful creature-growth RPG",
-    description: "A colorful all-ages RPG/roguelite dedicated to Cody’s son, built around creature growth, emotional readability, adaptation, passives, evolution, and satisfying progression.",
+    description: "A colorful, sensory-aware RPG/roguelite dedicated to Cody’s son, proving family-friendly games can still hold deep mechanical scaling, stat passives, and deeply satisfying mathematical progression.",
     tags: ["All-Ages RPG", "Creature Growth", "Family-Friendly", "Progression", "Sensory-Aware"],
     status: "In Design / Early Development",
     accentColor: "warm-amber",
@@ -77,14 +77,14 @@ export const PRODUCTION_ROLES: ProductionRole[] = [
     title: "Code & Debugging",
     roleDescription: "Writing robust gameplay logic, visual rendering blocks, input listeners, state modules, and cross-platform builds.",
     iconName: "Terminal",
-    howAiHelps: "Acts as a rapid co-pilot to check syntax, generate boilerplate modules, debug pointer offsets, and perform quick audits.",
+    howAiHelps: "Acts as a rapid co-pilot to check syntax, generate boilerplate, and perform raw audits while the human director strictly dictates the architectural flow.",
     exampleOutput: "Zero-friction code blocks"
   },
   {
     title: "Art Direction",
     roleDescription: "Drafting mood panels, creature blueprints, high-identity color palettes, UI textures, and dark retro-arcade guides.",
     iconName: "Layers",
-    howAiHelps: "Assists in conceptualizing ideas instantly, producing detailed style directions that Cody's visual taste can direct.",
+    howAiHelps: "Generates rapid conceptual bridges, producing detailed aesthetic options that are heavily filtered through Cody's specific horror and underground taste.",
     exampleOutput: "Visual asset coordinates"
   },
   {
