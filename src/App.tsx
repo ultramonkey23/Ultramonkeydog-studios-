@@ -114,7 +114,7 @@ export default function App() {
             className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-950 border border-zinc-850 text-amber-500 text-[10px] font-mono rounded mb-8 tracking-widest uppercase font-semibold relative overflow-hidden"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-            FORGE & SYSTEMS LABORATORY 2026
+            CREATOR-OWNED MULTIMEDIA FORGE 2026
           </motion.div>
 
           {/* Main Title Typography with epic game poster size & contrast */}
@@ -144,7 +144,7 @@ export default function App() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="text-zinc-400 text-xs sm:text-base leading-relaxed max-w-3xl mb-12 px-4 shadow-black"
           >
-            Ultramonkeydog Studios is a systems-obsessed, independent forge building experimental RPGs, deep roguelites, creature mutations, and tactical simulations. We use AI to bridge production gaps—but the soul, the horror, the math, and the weirdness all come from a human director.
+            Ultramonkeydog Studios is a creator-owned multimedia forge. Interactive games and deep systems are our current proof engine, but our long-term ambition scales into broader weird media, horror, writing, and strange digital universes. We use AI to bridge production gaps—but the soul, the horror, the math, and the weirdness are entirely human.
           </motion.p>
 
           {/* Call to Actions (CTAs) with heavy-border gaming arcade feels */}
@@ -205,6 +205,47 @@ export default function App() {
           </div>
         </section>
 
+        {/* THE MULTIMEDIA FORGE */}
+        <section id="multimedia-forge" className="py-18 sm:py-24 border-b border-zinc-900/60 relative font-sans bg-[#08080a]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+              <div className="lg:col-span-7 space-y-6">
+                <span className="text-[10px] font-mono tracking-widest text-zinc-500 uppercase block font-bold">
+                  BEYOND THE GAME ENGINE
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                  The Multimedia Forge
+                </h3>
+                <div className="text-zinc-400 text-xs sm:text-sm space-y-4 leading-relaxed">
+                  <p>
+                    Interactive software is the foundation, but the vision is broader. Ultramonkeydog Studios is building toward multimedia expression across music-driven worlds, dark/anime/manga-influenced comics, horror/sci-fi writing, and interconnected digital universes.
+                  </p>
+                  <p>
+                    Games are the current proof engine. They force us to synthesize systems, writing, art direction, and audio into aggressive, coherent packages. As our production forge matures, we are expanding our creative footprint.
+                  </p>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 relative p-6 bg-zinc-950 border-2 border-zinc-900 rounded-lg overflow-hidden flex flex-col justify-between hover:border-zinc-850 transition-colors">
+                <div className="absolute top-0 right-0 p-1 font-mono text-[9px] text-zinc-700 tracking-wider">ARSENAL_NODE</div>
+                <div className="space-y-4">
+                  <span className="inline-flex py-0.5 px-2 bg-zinc-900 text-zinc-405 border border-zinc-850 font-mono text-[9px] tracking-wider uppercase font-semibold rounded">CREATIVE SKILL STACK</span>
+                  <div className="grid grid-cols-2 gap-3 text-zinc-400">
+                    <div className="flex gap-2 items-start text-xs font-sans leading-relaxed"><span className="text-amber-550 font-mono">/</span><p className="text-zinc-200 font-bold tracking-wide uppercase text-[10px] mt-0.5">Game Systems</p></div>
+                    <div className="flex gap-2 items-start text-xs font-sans leading-relaxed"><span className="text-amber-550 font-mono">/</span><p className="text-zinc-200 font-bold tracking-wide uppercase text-[10px] mt-0.5">Horror Tone</p></div>
+                    <div className="flex gap-2 items-start text-xs font-sans leading-relaxed"><span className="text-amber-550 font-mono">/</span><p className="text-zinc-200 font-bold tracking-wide uppercase text-[10px] mt-0.5">Creature Design</p></div>
+                    <div className="flex gap-2 items-start text-xs font-sans leading-relaxed"><span className="text-amber-550 font-mono">/</span><p className="text-zinc-200 font-bold tracking-wide uppercase text-[10px] mt-0.5">Music & Audio</p></div>
+                    <div className="flex gap-2 items-start text-xs font-sans leading-relaxed"><span className="text-amber-550 font-mono">/</span><p className="text-zinc-200 font-bold tracking-wide uppercase text-[10px] mt-0.5">RPG Progression</p></div>
+                    <div className="flex gap-2 items-start text-xs font-sans leading-relaxed"><span className="text-amber-550 font-mono">/</span><p className="text-zinc-200 font-bold tracking-wide uppercase text-[10px] mt-0.5">Worldbuilding</p></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
         {/* 3. "AI MAKES THE IMPOSSIBLE BUILDABLE" */}
         <section className="py-18 sm:py-24 border-b border-zinc-900/60 relative font-sans">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -215,14 +256,14 @@ export default function App() {
                   SKILL GAP LIBERATION
                 </span>
                 <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                  AI Makes the Impossible Buildable
+                  AI is the Engine Lift, Not the Soul
                 </h3>
                 <div className="text-zinc-400 text-xs sm:text-sm space-y-4 leading-relaxed">
                   <p>
-                    Traditional game development usually demands money, teams, training, art pipelines, technical access, and industry connections. Ultramonkeydog Studios is built around a different bet: with enough taste, discipline, AI support, and obsession, one under-resourced creator can build serious interactive worlds.
+                    Traditional game development demands money, teams, training, and industry connections. Ultramonkeydog Studios operates differently. AI is the engine lift that handles boilerplate, technical debugging, and asset drafting.
                   </p>
                   <p>
-                    This is not about replacing artists or designers. It is about proving that modern tools can help people outside the traditional pipeline create work with teeth, identity, and commercial potential.
+                    But AI is not the brand's soul. Cody is the director, taste filter, systems architect, and final authority. Every pixel, mechanic, and sentence is aggressively controlled by human intent. We use AI to bridge the gaps, but the weirdness and the grit are 100% human.
                   </p>
                 </div>
               </div>
@@ -259,14 +300,14 @@ export default function App() {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
               <div className="space-y-2">
                 <span className="text-[10px] font-mono tracking-widest text-amber-500 uppercase block font-bold">
-                  STUDIO COMPILATIONS & RELEASES
+                  PLAYABLE UNIVERSES & PROTOTYPES
                 </span>
                 <h3 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
-                  Studio Game Lineup
+                  Interactive Proof Engines
                 </h3>
               </div>
               <p className="text-zinc-500 text-xs sm:text-sm max-w-md font-sans leading-relaxed">
-                We design with deliberate intent, transitioning crazy game ideas from technical test branches to fully fledged, strategic vertical slices.
+                Games are our current arena. We design with deliberate intent, transitioning strange, aggressive game ideas from technical test branches into fully fledged, strategic vertical slices.
               </p>
             </div>
 
