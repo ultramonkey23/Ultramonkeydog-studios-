@@ -294,11 +294,11 @@ function ProjectGraphic({ id }: { id: string }) {
         {/* CRT Scanline overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.01))] bg-[size:100%_4px,6px_100%] pointer-events-none z-10" />
 
-        <div className="w-full h-full flex flex-col justify-between relative bg-[radial-gradient(ellipse_at_center,rgba(185,28,28,0.18)_0%,rgba(9,9,11,0)_85%)]">
+        <div className="w-full h-full flex flex-col justify-between relative bg-[radial-gradient(ellipse_at_center,rgba(153,27,27,0.15)_0%,rgba(9,9,11,0)_85%)]">
           {/* HUD Header */}
           <div className="flex justify-between items-center border-b border-red-950 pb-1.5 text-[8px] font-mono tracking-wider text-red-400">
             <span>MUTATION_DRAFT // CROWNBEAST_ENGINE</span>
-            <span className="flex items-center gap-1 uppercase">
+            <span className="flex items-center gap-1 text-red-400/80 uppercase">
               <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
               BUILD_ACTIVE
             </span>
@@ -306,29 +306,43 @@ function ProjectGraphic({ id }: { id: string }) {
 
           <div className="flex-grow flex items-center justify-between gap-2 my-2 h-full py-1 relative">
 
-            {/* Crown / Kaiju entity */}
+            {/* Crown / Kaiju entity with mutation energy radiating out */}
             <div className="w-2/5 flex flex-col items-center justify-center relative">
-              <div className="relative w-14 h-14 rounded-full border-2 border-red-500/40 flex items-center justify-center bg-red-950/20 shadow-[0_0_15px_rgba(239,68,68,0.15)]">
-                <svg className="w-10 h-10 text-red-400/90" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4">
-                  {/* Crown silhouette */}
-                  <path d="M 15,75 L 15,48 L 32,64 L 50,28 L 68,64 L 85,48 L 85,75 Z" strokeWidth="3.5" fill="#7f1d1d" fillOpacity="0.45" />
-                  {/* Crown tip glow nodes */}
-                  <circle cx="15" cy="48" r="4" fill="#ef4444" fillOpacity="0.85" className="animate-pulse" />
-                  <circle cx="50" cy="28" r="5.5" fill="#ef4444" fillOpacity="0.95" />
-                  <circle cx="85" cy="48" r="4" fill="#ef4444" fillOpacity="0.85" />
+              <div className="relative w-14 h-14 rounded-full border-2 border-red-500/40 flex items-center justify-center bg-red-950/20 shadow-[0_0_16px_rgba(239,68,68,0.12)]">
+                {/* Mutation energy: dashed orbit ring + radiating vectors */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 56 56" fill="none">
+                  <circle cx="28" cy="28" r="25" stroke="#ef4444" strokeOpacity="0.12" strokeWidth="1" strokeDasharray="4 3" />
+                  {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => {
+                    const rad = (deg * Math.PI) / 180;
+                    const x1 = 28 + 17 * Math.cos(rad);
+                    const y1 = 28 + 17 * Math.sin(rad);
+                    const x2 = 28 + 25 * Math.cos(rad);
+                    const y2 = 28 + 25 * Math.sin(rad);
+                    return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#ef4444" strokeOpacity={i % 2 === 0 ? "0.35" : "0.15"} strokeWidth="1" />;
+                  })}
+                </svg>
+                {/* Crown silhouette */}
+                <svg className="w-9 h-9 text-red-400/90 relative z-10" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4">
+                  <path d="M 15,74 L 15,48 L 32,63 L 50,28 L 68,63 L 85,48 L 85,74 Z" strokeWidth="3.5" fill="#7f1d1d" fillOpacity="0.5" />
+                  <circle cx="15" cy="48" r="3.5" fill="#ef4444" fillOpacity="0.8" className="animate-pulse" />
+                  <circle cx="50" cy="28" r="5" fill="#ef4444" fillOpacity="0.95" />
+                  <circle cx="85" cy="48" r="3.5" fill="#ef4444" fillOpacity="0.8" />
                 </svg>
               </div>
               <span className="text-[7px] font-mono text-red-400 mt-1.5 uppercase tracking-widest bg-red-950/30 border border-red-900/60 px-1 py-0.5 rounded leading-none">KAIJU_CORE</span>
             </div>
 
             {/* Mutation draft slot panel */}
-            <div className="w-3/5 h-full flex flex-col justify-center space-y-1.5">
-              <span className="text-[6px] text-red-400 uppercase tracking-widest block border-b border-red-950 pb-0.5 mb-0.5">MUTATION_DRAFT_SLOTS</span>
+            <div className="w-3/5 h-full flex flex-col justify-center space-y-1">
+              <div className="flex justify-between items-center text-[6px] font-mono border-b border-red-950 pb-0.5 mb-0.5">
+                <span className="text-red-400 uppercase tracking-widest">MUTATION_DRAFT_SLOTS</span>
+                <span className="text-red-300/70 font-semibold tracking-wider">SYN×4.6</span>
+              </div>
               {[
-                { label: "PROJECTILE_MOD", value: "VOID_SPIKE",  fill: 100 },
-                { label: "PASSIVE_TRAIT",  value: "REGEN_BURST", fill: 75  },
-                { label: "STAT_GROWTH",    value: "DMG x2.4",    fill: 88  },
-                { label: "CREATURE_LINK",  value: "APEX_KAIJU",  fill: 60  },
+                { label: "PROJECTILE_MOD", value: "VOID_SPIKE",  fill: 100, color: "bg-red-600" },
+                { label: "PASSIVE_TRAIT",  value: "REGEN_BURST", fill: 75,  color: "bg-red-700" },
+                { label: "STAT_GROWTH",    value: "DMG ×2.4",    fill: 88,  color: "bg-red-600" },
+                { label: "CREATURE_LINK",  value: "APEX_KAIJU",  fill: 60,  color: "bg-red-800" },
               ].map((slot, i) => (
                 <div key={i} className="space-y-0.5">
                   <div className="flex justify-between text-[6.5px] font-mono">
@@ -336,7 +350,7 @@ function ProjectGraphic({ id }: { id: string }) {
                     <span className="text-red-400 font-semibold">{slot.value}</span>
                   </div>
                   <div className="w-full h-1 bg-zinc-900 border border-red-950/60 rounded overflow-hidden">
-                    <div className="h-full bg-red-700 rounded" style={{ width: `${slot.fill}%` }} />
+                    <div className={`h-full ${slot.color} rounded`} style={{ width: `${slot.fill}%` }} />
                   </div>
                 </div>
               ))}
@@ -354,11 +368,11 @@ function ProjectGraphic({ id }: { id: string }) {
           <div className="grid grid-cols-3 gap-2 border-t border-red-950 pt-1.5 text-[8px] font-mono text-zinc-500">
             <div>
               <span className="block text-[6px] text-zinc-650 uppercase">SIM_CORE</span>
-              <span className="text-red-400">C++ / JNI</span>
+              <span className="text-red-400">C++/JNI</span>
             </div>
             <div>
-              <span className="block text-[6px] text-zinc-650 uppercase">BUILD_SPACE</span>
-              <span className="text-red-400">PROCEDURAL</span>
+              <span className="block text-[6px] text-zinc-650 uppercase">INGREDIENTS</span>
+              <span className="text-red-400">MULTIPLY</span>
             </div>
             <div className="text-right">
               <span className="block text-[6px] text-zinc-650 uppercase">PLATFORM</span>
