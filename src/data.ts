@@ -40,10 +40,22 @@ export const PROJECTS_DATA: Project[] = [
     ]
   },
   {
+    id: "savage-crown",
+    title: "Savage Crown",
+    tone: "Mobile-native mutation roguelite",
+    description: "A mobile-first action/roguelite systems project where mutations, creatures, passives, projectiles, and stat growth fuse into a living Crownbeast identity. Every new ingredient multiplies the build space instead of acting like isolated content.",
+    tags: ["Android Native", "C++ Core", "Kotlin/JNI", "Mutation Draft", "Crownbeast System", "Procedural Synergy", "Mobile-First"],
+    status: "In Development",
+    accentColor: "crimson",
+    glowClass: "glow-crimson",
+    conceptPrompt: "A fractured kaiju crown radiating mutation energy across a dark mobile canvas",
+    expandedDetails: "Savage Crown is being built as a technically aggressive mobile game experiment: deterministic C++ systems, Android/JNI integration, and a mutation-driven design spine where complexity becomes power. The long-term goal is a game where creature DNA, weapons, projectiles, passives, stats, and visual identity all feed a mathematical build engine instead of static upgrade lists."
+  },
+  {
     id: "saga-anxious-fluff",
     title: "Saga of an Anxious Fluff",
     tone: "Colorful creature-growth RPG",
-    description: "A colorful, sensory-aware RPG/roguelite dedicated to Cody’s son, proving family-friendly games can still hold deep mechanical scaling, stat passives, and deeply satisfying mathematical progression.",
+    description: "A colorful, sensory-aware RPG/roguelite dedicated to Cody's son, proving family-friendly games can still hold deep mechanical scaling, stat passives, and deeply satisfying mathematical progression.",
     tags: ["All-Ages RPG", "Creature Growth", "Family-Friendly", "Progression", "Sensory-Aware"],
     status: "In Design / Early Development",
     accentColor: "warm-amber",

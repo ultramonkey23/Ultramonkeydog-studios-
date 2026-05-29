@@ -9,7 +9,7 @@ export interface Project {
   description: string;
   tags: string[];
   status: string;
-  accentColor: "neon-green" | "electric-blue" | "violet" | "warm-amber";
+  accentColor: "neon-green" | "electric-blue" | "violet" | "warm-amber" | "crimson";
   glowClass: string;
   imagePath?: string;
   conceptPrompt?: string;
