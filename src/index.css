@@ -10,6 +10,18 @@
   --color-electric-blue: #0ea5e9;
   --color-violet-accent: #8b5cf6;
   --color-warm-amber: #f59e0b;
+
+  --color-zinc-250: #d4d4d8;
+  --color-zinc-350: #a1a1aa;
+  --color-zinc-405: #8f8f99;
+  --color-zinc-450: #7d7d86;
+  --color-zinc-650: #4d4d55;
+  --color-zinc-850: #232329;
+  --color-zinc-905: #16161a;
+  --color-amber-450: #fbbf24;
+  --color-amber-550: #d97706;
+  --color-sky-450: #38bdf8;
+  --color-violet-450: #a78bfa;
 }
 
 /* Custom Scrollbar */

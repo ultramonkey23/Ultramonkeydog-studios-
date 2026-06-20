@@ -3,180 +3,196 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Project, FundingNeed, ProductionRole } from "./types";
+import { FundingNeed, ProductionRole, Project } from "./types";
 
 export const PROJECTS_DATA: Project[] = [
   {
     id: "what-we-fed",
     title: "WHAT WE FED",
     tone: "Dark mythic creature RPG",
-    description: "A dark creature-driven RPG roguelite about genetic mutation, hunger, timing-based combat, music-driven escalation, and unforgiving mechanics where you must become feared.",
-    tags: ["Creature RPG", "Roguelite", "DNA Systems", "Bond vs Eat", "Dark Fantasy"],
-    status: "In Development",
+    description:
+      "A Godot creature RPG roguelite about hunger, bonding, mutation pressure, music-driven escalation, tactical lane/sector combat, and becoming the thing other creatures fear.",
+    tags: ["Creature RPG", "Godot", "Mutation", "Bond vs Eat", "Combat Audio", "Dark Fantasy"],
+    status: "Active Systems Pass",
     accentColor: "neon-green",
     glowClass: "glow-green",
-    conceptPrompt: "A bioluminescent organic helix mutating in dark waters"
+    conceptPrompt: "A bioluminescent organic helix mutating in dark waters",
+    expandedDetails:
+      "Recent Lab-tracked work focused on pruning stale debug systems, repairing sector targeting behavior, and retiring false LaneManager doctrine in favor of the real ZoneManager combat authority.",
+    systemsUnderTheHood: [
+      "Deterministic sector targeting now resolves enemies by stable identity instead of brittle lane scans.",
+      "Zone occupancy accounts for strikers and orbiters, reducing weird spawn and marker behavior.",
+      "Combat presentation and HUD refreshes read live enemy identity directly where possible.",
+      "First-party songs, combat backgrounds, impact VFX, sprites, UI panels, shell sigils, and shaders are candidate source material for future studio reuse.",
+    ],
   },
   {
     id: "bone-league",
     title: "Bone League: Black Bracket",
     tone: "Sports horror management sim",
-    description: "A dark football roguelite management sim where doomed athletes are drafted into an 8-week Circle, matches resolve through layered simulation math, and every injury, upgrade, and roster decision can shape the season.",
+    description:
+      "A dark football roguelite management sim where doomed athletes are drafted into an 8-week Circle, matches resolve through layered simulation math, and every injury, upgrade, and roster decision can shape the season.",
     tags: ["Management Sim", "Roguelite", "Sports Horror", "Auto-Sim", "Strategy", "Procedural Seasons"],
-    status: "Public Demo / In Development",
+    status: "Public Demo Live",
     accentColor: "electric-blue",
     glowClass: "glow-blue",
     conceptPrompt: "A digital tactical football hologram overlaying stadium blueprints",
     demoUrl: "https://bone-league-black-bracket-604506170438.us-east1.run.app",
-    expandedDetails: "Bone League: Black Bracket is a dark dystopian football roguelite management simulator about drafting doomed athletes, surviving an 8-week Circle, resolving matches through layered simulation math, managing injury/death, and turning every season into a brutal tactical campaign.",
+    expandedDetails:
+      "Bone League proves the studio can ship direct browser-accessible systems: draft pressure, roster management, strategic upgrades, persistent run state, procedural weeks, and readable simulation output.",
     systemsUnderTheHood: [
       "Single source-of-truth Zustand store orchestrating run state, roster, map nodes, meta progression, currency, histories, and routing.",
       "8-week procedural Circle Map structure with branching nodes, lane criteria, forward limits, and final championship endpoints.",
       "Math play simulator calculating Strength, Polish, Brutality, Awareness, Cunning, Precision, Speed, Agility, Grit, and Potential.",
-      "Tactical playbook mechanisms matching player formations directly to dynamic synergy thresholds.",
-      "Draft pressure engines notifying players of under-staff risk and state-linked limits shielding growth scaling caps.",
-      "Episodic prose match reports translating real mathematical simulation logs to immersive game narratives.",
-      "Integrated asset catalogs and fallback interface structures guaranteeing layout alignment stability."
-    ]
+      "Episodic prose match reports translate mathematical simulation logs into readable game narrative.",
+    ],
   },
   {
     id: "savage-crown",
     title: "Savage Crown",
     tone: "Mobile-native mutation roguelite",
-    description: "A mobile-first action/roguelite systems project where mutations, creatures, passives, projectiles, and stat growth fuse into a living Crownbeast identity. Every new ingredient multiplies the build space instead of acting like isolated content.",
-    tags: ["Android Native", "C++ Core", "Kotlin/JNI", "Mutation Draft", "Crownbeast System", "Procedural Synergy", "Mobile-First"],
-    status: "In Development",
+    description:
+      "A native Android action roguelite systems project where mutations, creatures, passives, projectiles, and stat growth fuse into a living Crownbeast identity.",
+    tags: ["Android Native", "C++ Core", "Kotlin/JNI", "Mutation Draft", "Crownbeast", "Offline-First"],
+    status: "JNI / Leveling Proof",
     accentColor: "crimson",
     glowClass: "glow-crimson",
     conceptPrompt: "A fractured kaiju crown radiating mutation energy across a dark mobile canvas",
-    expandedDetails: "Savage Crown is being built as a technically aggressive mobile game experiment: deterministic C++ systems, Android/JNI integration, and a mutation-driven design spine where complexity becomes power. The long-term goal is a game where creature DNA, weapons, projectiles, passives, stats, and visual identity all feed a mathematical build engine instead of static upgrade lists."
+    expandedDetails:
+      "Savage Crown is the studio's native technical proof track: deterministic C++ gameplay systems, Kotlin/JNI bridging, Android device validation, and Lab-routed gameplay/style intake.",
+    systemsUnderTheHood: [
+      "Unbounded leveling physics replaced shallow linear hardcaps with a dynamic resistance curve.",
+      "JNI hot paths were flattened through Android CriticalNative bridge work for lower-overhead simulation calls.",
+      "Offline-first runtime law keeps gameplay independent from network services, API keys, quotas, or cloud calls.",
+      "Style intake now routes influences into mechanics, feel, math, and readability without copying protected assets.",
+    ],
   },
   {
     id: "saga-anxious-fluff",
     title: "Saga of an Anxious Fluff",
-    tone: "Colorful creature-growth RPG",
-    description: "A colorful, sensory-aware RPG/roguelite dedicated to Cody's son, proving family-friendly games can still hold deep mechanical scaling, stat passives, and deeply satisfying mathematical progression.",
+    tone: "Colorful sensory-aware RPG",
+    description:
+      "A family-facing creature-growth RPG dedicated to Cody's son, proving accessible and sensory-aware games can still carry deep progression and satisfying system math.",
     tags: ["All-Ages RPG", "Creature Growth", "Family-Friendly", "Progression", "Sensory-Aware"],
-    status: "In Design / Early Development",
+    status: "Design / Early Build",
     accentColor: "warm-amber",
     glowClass: "glow-amber",
-    conceptPrompt: "A glowing fuzzy golden organism radiating safety in deep woods"
+    conceptPrompt: "A glowing fuzzy golden organism radiating safety in deep woods",
+    expandedDetails:
+      "This branch concentrates the studio's accessibility work: predictable loops, gentle audio control, readable emotion, steady visuals, and mechanical depth without harsh sensory pressure.",
   },
   {
     id: "feral-formation",
     title: "Feral Formation",
     tone: "Tactical creature-party roguelite",
-    description: "A tactical creature-party roguelite where squad management, tempo control, clash windows, adaptive rewards, and formation strategy decide the run.",
+    description:
+      "A tactical creature-party roguelite where squad management, tempo control, clash windows, adaptive rewards, and formation strategy decide the run.",
     tags: ["Tactical RPG", "Creature Party", "Roguelite", "Formation Systems", "Deterministic Combat"],
-    status: "Public Demo / In Development",
+    status: "Public Demo Live",
     accentColor: "violet",
     glowClass: "glow-violet",
     conceptPrompt: "A tactical cybernetic grid displaying formation-driven matchup vectors",
     demoUrl: "https://feral-formation-604506170438.us-east1.run.app",
-    expandedDetails: "Feral Formation is a high-tactical, mobile-first, creature-party RPG roguelite with deterministic combat, clash windows, adaptive rewards, persistent creature mastery, matchup forecasting, and formation-driven strategy."
-  }
+    expandedDetails:
+      "Feral Formation is a high-tactical, mobile-first creature-party RPG roguelite with deterministic combat, clash windows, adaptive rewards, persistent creature mastery, matchup forecasting, and formation-driven strategy.",
+  },
 ];
 
 export const PRODUCTION_ROLES: ProductionRole[] = [
   {
     title: "Systems Design",
-    roleDescription: "Architecting complex game economies, creature mutant trees, modular stat scaling structures, and roguelite progression loops.",
+    roleDescription: "Architecting game economies, creature mutation trees, stat scaling structures, and roguelite progression loops.",
     iconName: "Palette",
-    howAiHelps: "Simulates variable curves, monitors balance outliers across extreme runs, and crafts mathematical models for systems mechanics.",
-    exampleOutput: "Perfect mathematical scaling"
+    howAiHelps: "Models curves, flags balance outliers, and turns rough systems intent into testable structures.",
+    exampleOutput: "Scaling maps",
   },
   {
     title: "Code & Debugging",
-    roleDescription: "Writing robust gameplay logic, visual rendering blocks, input listeners, state modules, and cross-platform builds.",
+    roleDescription: "Building gameplay logic, rendering blocks, input listeners, state modules, and platform-specific bridges.",
     iconName: "Terminal",
-    howAiHelps: "Acts as a rapid co-pilot to check syntax, generate boilerplate, and perform raw audits while the human director strictly dictates the architectural flow.",
-    exampleOutput: "Zero-friction code blocks"
+    howAiHelps: "Accelerates implementation and audits while Cody keeps architecture and final behavior under human control.",
+    exampleOutput: "Validated patches",
   },
   {
     title: "Art Direction",
-    roleDescription: "Drafting mood panels, creature blueprints, high-identity color palettes, UI textures, and dark retro-arcade guides.",
+    roleDescription: "Drafting mood targets, creature silhouettes, color systems, interface texture, and visual identity references.",
     iconName: "Layers",
-    howAiHelps: "Generates rapid conceptual bridges, producing detailed aesthetic options that are heavily filtered through Cody's specific horror and underground taste.",
-    exampleOutput: "Visual asset coordinates"
+    howAiHelps: "Generates candidate visual directions that are filtered through the studio's specific horror and underground taste.",
+    exampleOutput: "Mood targets",
   },
   {
     title: "Combat Logic",
-    roleDescription: "Designing real-time battlefield clocks, clash-counter checks, deterministic action steps, and active creature combat moves.",
+    roleDescription: "Designing combat clocks, clash windows, targeting rules, deterministic action steps, and active creature moves.",
     iconName: "Cpu",
-    howAiHelps: "Tests discrete collision edge-cases and designs complex multi-agent flow simulations to keep fighting readable and tight.",
-    exampleOutput: "Deterministic execution maps"
+    howAiHelps: "Stress-tests edge cases and maps multi-agent flow so combat stays readable under pressure.",
+    exampleOutput: "Combat maps",
   },
   {
     title: "UI / UX Planning",
-    roleDescription: "Creating ergonomic touch maps, adaptive tactical dashboard layouts, high-contrast menus, and screen scales.",
+    roleDescription: "Creating touch maps, tactical dashboards, high-contrast menus, and responsive viewport structures.",
     iconName: "Eye",
-    howAiHelps: "Performs layout stress audits, screens safety ratios against high light levels, and verifies viewport structural bounds.",
-    exampleOutput: "Oculosafe visual wireframes"
+    howAiHelps: "Runs layout stress checks and catches text, viewport, and state problems before they become public friction.",
+    exampleOutput: "Screen audits",
   },
   {
     title: "Documentation",
-    roleDescription: "Synthesizing creative journals, systems specifications, math sheets, and code documentation into unified wikis.",
+    roleDescription: "Turning design notes, code decisions, receipts, and build proof into durable project memory.",
     iconName: "FileText",
-    howAiHelps: "Collects sporadic design comments and drafts beautifully formatted specifications and game design blueprints.",
-    exampleOutput: "Structured technical wikis"
+    howAiHelps: "Collects scattered direction into readable specs, handoffs, and validation records.",
+    exampleOutput: "Living docs",
   },
   {
     title: "Grant Materials",
-    roleDescription: "Constructing formal grant submissions, public program pitches, budget models, and compliance papers for sponsors.",
+    roleDescription: "Preparing public program pitches, support requests, budget reasoning, and compliance-friendly materials.",
     iconName: "Megaphone",
-    howAiHelps: "Ensures structural layout compliance, reviews clarity of intent, and tracks required vocabulary constraints.",
-    exampleOutput: "Funder-compliant structures"
+    howAiHelps: "Improves structure, vocabulary, clarity, and evidence trails for funders and incubators.",
+    exampleOutput: "Pitch packs",
   },
   {
     title: "Playtest Analysis",
-    roleDescription: "Parsing player logs, control clicks, session durations, failure thresholds, and game balance diagnostics.",
+    roleDescription: "Parsing player logs, session reports, control friction, failure thresholds, and balance diagnostics.",
     iconName: "FlaskConical",
-    howAiHelps: "Processes thousands of lines of raw telemetry logs, highlighting combat hot-spots and interface friction points.",
-    exampleOutput: "Targeted playtest bug logs"
+    howAiHelps: "Finds patterns in raw feedback and points iteration toward the highest-impact fixes.",
+    exampleOutput: "Bug targets",
   },
   {
     title: "Trailer / Marketing Prep",
-    roleDescription: "Compiling strategic story hooks, teaser layouts, gameplay clips, video transcripts, and sound track timings.",
+    roleDescription: "Compiling hooks, teaser language, gameplay capture plans, transcripts, and sound timing notes.",
     iconName: "Megaphone",
-    howAiHelps: "Acts as a dialogue sounding board and writes concise textual teasers tailored to high-identity indie communities.",
-    exampleOutput: "Visual audio sync sheets"
-  }
+    howAiHelps: "Drafts sharp public copy and campaign structures for high-identity indie communities.",
+    exampleOutput: "Launch notes",
+  },
 ];
 
 export const FUNDING_NEEDS: FundingNeed[] = [
   {
     title: "Dedicated Game-Development Workstation",
-    description: "High-performance processing hardware to run modern game engines, compile local builds rapidly, bake ambient occlusion, and handle real-time simulation logic without hardware limits.",
-    urgency: "High Priority"
+    description: "Hardware for local builds, engine work, asset prep, simulation testing, and faster iteration without phone-only bottlenecks.",
+    urgency: "High Priority",
   },
   {
     title: "Drawing & Visual Production Tools",
-    description: "Professional active displays, tablets, and vector-design suites to craft distinctive pixel assets, character profiles, and aesthetic user interface grids.",
-    urgency: "High Priority"
+    description: "Active display/tablet support and visual software for creature sheets, UI textures, pixel work, and original asset direction.",
+    urgency: "High Priority",
   },
   {
     title: "Premium AI Production Tools",
-    description: "Licenses for AI-driven development agents, automated regression testing runners, state-of-the-art coding interfaces, and visual pipelines.",
-    urgency: "Strategic Pillar"
+    description: "Coding agents, analysis tools, regression helpers, image pipelines, and documentation systems for disciplined solo production.",
+    urgency: "Strategic Pillar",
   },
   {
     title: "Original Asset Creation Support",
-    description: "Securing bespoke sound effects, custom chiptunes, professional voice synthesis assets, and tactile audio feedback systems, ensuring high-identity audio design.",
-    urgency: "Strategic Pillar"
+    description: "Custom sound effects, music support, creature art, animation help, voice/audio experiments, and tactile feedback polish.",
+    urgency: "Strategic Pillar",
   },
   {
     title: "Playable Demo Development",
-    description: "Porting current web/concept modules into highly optimized downloadable builds, preparing them for release on major indie platform storefronts.",
-    urgency: "High Priority"
+    description: "Polishing browser prototypes and native builds into clearer vertical slices for public testing, funders, and storefront preparation.",
+    urgency: "High Priority",
   },
   {
     title: "Public-Facing Materials",
-    description: "Creating highly detailed game manuals, structural maps, production vlogs, and pitch files to capture community and sponsor attention.",
-    urgency: "Mid Priority"
+    description: "Pitch decks, manuals, short-form videos, technical summaries, screenshots, capture passes, and community-ready project pages.",
+    urgency: "Mid Priority",
   },
-  {
-    title: "Future Commercial Release Preparation",
-    description: "Establishing indie developer certificates, setting up digital distribution hubs, mapping legal frameworks, and doing direct storefront compliance audits.",
-    urgency: "Strategic Pillar"
-  }
 ];
