@@ -59,7 +59,7 @@ const labMethod = [
   },
   {
     title: "Project arenas",
-    copy: "Each game stays in its own repo while the Lab tracks direction, memory, and validation pressure.",
+    copy: "Six connected arenas — each game stays in its own repo while the Lab tracks direction, memory, and validation pressure across all active projects.",
     icon: Layers,
   },
   {

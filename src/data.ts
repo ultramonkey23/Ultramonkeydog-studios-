@@ -18,7 +18,7 @@ export const PROJECTS_DATA: Project[] = [
     glowClass: "glow-green",
     conceptPrompt: "A bioluminescent organic helix mutating in dark waters",
     expandedDetails:
-      "Recent Lab-tracked work focused on pruning stale debug systems, repairing sector targeting behavior, and retiring false LaneManager doctrine in favor of the real ZoneManager combat authority.",
+      "What We Fed is now a registered Lab arena. Recent Lab-tracked work focused on pruning stale debug systems, repairing sector targeting behavior, and retiring false LaneManager doctrine in favor of the real ZoneManager combat authority.",
     systemsUnderTheHood: [
       "Deterministic sector targeting now resolves enemies by stable identity instead of brittle lane scans.",
       "Zone occupancy accounts for strikers and orbiters, reducing weird spawn and marker behavior.",
