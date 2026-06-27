@@ -101,8 +101,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#060607] text-zinc-300 antialiased selection:bg-amber-400 selection:text-zinc-950">
-      <header className="sticky top-0 z-50 border-b border-zinc-900/90 bg-[#060607]/88 backdrop-blur-xl">
+    <div className="min-h-screen bg-[#030304] text-zinc-300 antialiased selection:bg-amber-400 selection:text-zinc-950">
+      <header className="sticky top-0 z-50 border-b border-white/5 glass">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <button
             type="button"
@@ -142,14 +142,18 @@ export default function App() {
       </header>
 
       <main>
-        <section className="relative isolate overflow-hidden border-b border-zinc-900">
+        <section className="relative isolate overflow-hidden border-b border-white/5 bg-[#030304]">
+          {/* Subtle Glow Blobs */}
+          <div className="glow-blob bg-amber-500/20 top-0 left-0 w-96 h-96 -translate-x-1/2 -translate-y-1/2" />
+          <div className="glow-blob bg-sky-500/10 bottom-0 right-0 w-[500px] h-[500px] translate-x-1/3 translate-y-1/3" />
+          
           <img
             src="/assets/studio-forge-hero.png"
             alt="Dark game production workstation with creature diagrams, tactical screens, and studio tools"
-            className="absolute inset-0 h-full w-full object-cover opacity-58"
+            className="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,6,7,0.96)_0%,rgba(6,6,7,0.76)_42%,rgba(6,6,7,0.38)_74%,rgba(6,6,7,0.78)_100%)]" />
-          <div className="absolute inset-0 bg-grid-ambient opacity-25" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,3,4,0.98)_0%,rgba(3,3,4,0.85)_42%,rgba(3,3,4,0.4)_74%,rgba(3,3,4,0.8)_100%)]" />
+          <div className="absolute inset-0 bg-grid-ambient opacity-30" />
 
           <div className="relative mx-auto grid min-h-[78svh] max-w-7xl items-center px-4 py-20 sm:px-6 lg:grid-cols-12 lg:px-8">
             <motion.div
@@ -163,7 +167,7 @@ export default function App() {
                 Updated public studio signal - June 2026
               </div>
 
-              <h1 className="font-display text-5xl font-black leading-[0.92] tracking-tight text-white sm:text-7xl lg:text-8xl">
+              <h1 className="font-display text-5xl font-black leading-[0.92] tracking-tight text-white sm:text-7xl lg:text-8xl text-gradient-silver pb-2">
                 Ultramonkeydog Studios
               </h1>
 
@@ -179,7 +183,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => scrollToSection("slate")}
-                  className="inline-flex items-center justify-center gap-2 rounded bg-zinc-100 px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-950 transition-colors hover:bg-white"
+                  className="inline-flex items-center justify-center gap-2 rounded bg-gradient-to-br from-zinc-100 to-zinc-300 px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-950 transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                 >
                   Enter the slate
                   <ChevronRight size={15} />
@@ -187,7 +191,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => scrollToSection("proof")}
-                  className="inline-flex items-center justify-center gap-2 rounded border border-zinc-700 bg-zinc-950/70 px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition-colors hover:border-amber-400 hover:text-white"
+                  className="glass inline-flex items-center justify-center gap-2 rounded px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition-all hover:border-amber-400 hover:text-white hover:bg-white/5"
                 >
                   See current proof
                   <ArrowUpRight size={15} />
@@ -205,8 +209,9 @@ export default function App() {
           </div>
         </section>
 
-        <section id="proof" className="border-b border-zinc-900 bg-[#09090b] py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section id="proof" className="relative border-b border-white/5 bg-[#030304] py-16 sm:py-20 overflow-hidden">
+          <div className="glow-blob bg-violet-500/10 top-20 left-20 w-80 h-80" />
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="mb-10 max-w-3xl">
               <SectionKicker>Current proof</SectionKicker>
               <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">
@@ -218,12 +223,19 @@ export default function App() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
-              {proofStats.map((item) => (
-                <div key={item.label} className="rounded border border-zinc-900 bg-zinc-950 p-5">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">{item.label}</p>
-                  <p className="mt-3 font-display text-3xl font-black text-white">{item.value}</p>
-                  <p className="mt-3 text-xs leading-6 text-zinc-450">{item.detail}</p>
-                </div>
+              {proofStats.map((item, i) => (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  key={item.label} 
+                  className="glass-card rounded-xl p-6 group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(245,158,11,0.05)] hover:border-amber-500/20"
+                >
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-500/80">{item.label}</p>
+                  <p className="mt-3 font-display text-3xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all">{item.value}</p>
+                  <p className="mt-3 text-xs leading-6 text-zinc-400">{item.detail}</p>
+                </motion.div>
               ))}
             </div>
 
@@ -232,7 +244,7 @@ export default function App() {
                 href="https://bone-league-black-bracket-604506170438.us-east1.run.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group rounded border border-sky-900/50 bg-sky-950/10 p-5 transition-colors hover:border-sky-400/70"
+                className="glass-card group rounded-xl p-6 transition-all duration-300 hover:border-sky-400/50 hover:shadow-[0_0_40px_rgba(14,165,233,0.15)] hover:bg-sky-950/10"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
@@ -248,7 +260,7 @@ export default function App() {
                 href="https://feral-formation-604506170438.us-east1.run.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group rounded border border-violet-900/50 bg-violet-950/10 p-5 transition-colors hover:border-violet-400/70"
+                className="glass-card group rounded-xl p-6 transition-all duration-300 hover:border-violet-400/50 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)] hover:bg-violet-950/10"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
@@ -263,8 +275,10 @@ export default function App() {
           </div>
         </section>
 
-        <section id="slate" className="bg-[#070708] py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section id="slate" className="relative bg-[#030304] py-16 sm:py-24 overflow-hidden">
+          <div className="absolute inset-0 bg-grid-ambient opacity-20 pointer-events-none" />
+          <div className="glow-blob bg-red-500/10 top-1/4 right-0 w-[600px] h-[600px]" />
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div className="max-w-3xl">
                 <SectionKicker>Project slate</SectionKicker>
@@ -285,8 +299,9 @@ export default function App() {
           </div>
         </section>
 
-        <section id="method" className="border-y border-zinc-900 bg-[#0a0a0c] py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section id="method" className="relative border-y border-white/5 bg-zinc-950 py-16 sm:py-24 overflow-hidden">
+          <div className="glow-blob bg-amber-500/10 top-0 right-1/4 w-[800px] h-[800px]" />
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid gap-12 lg:grid-cols-12">
               <div className="lg:col-span-5">
                 <SectionKicker>Lab-assisted production</SectionKicker>
@@ -299,14 +314,23 @@ export default function App() {
               </div>
 
               <div className="grid gap-4 md:grid-cols-2 lg:col-span-7">
-                {labMethod.map((item) => {
+                {labMethod.map((item, i) => {
                   const Icon = item.icon;
                   return (
-                    <div key={item.title} className="rounded border border-zinc-900 bg-zinc-950 p-5">
-                      <Icon size={18} className="text-amber-400" />
-                      <h3 className="mt-4 font-display text-lg font-bold text-white">{item.title}</h3>
-                      <p className="mt-2 text-xs leading-6 text-zinc-450">{item.copy}</p>
-                    </div>
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      key={item.title} 
+                      className="glass-card rounded-xl p-6 group hover:border-amber-500/30 transition-all duration-300"
+                    >
+                      <div className="p-2.5 rounded-lg bg-zinc-900/50 border border-white/5 inline-block group-hover:scale-110 transition-transform duration-300 group-hover:bg-amber-500/10">
+                        <Icon size={20} className="text-amber-400" />
+                      </div>
+                      <h3 className="mt-5 font-display text-lg font-bold text-white">{item.title}</h3>
+                      <p className="mt-2 text-xs leading-6 text-zinc-400">{item.copy}</p>
+                    </motion.div>
                   );
                 })}
               </div>
@@ -324,15 +348,17 @@ export default function App() {
           </div>
         </section>
 
-        <section className="border-b border-zinc-900 bg-[#080809] py-16 sm:py-24">
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+        <section className="relative border-b border-white/5 bg-[#030304] py-16 sm:py-24 overflow-hidden">
+          <div className="glow-blob bg-sky-500/10 bottom-0 left-0 w-96 h-96 translate-y-1/2" />
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8 relative z-10">
             <div className="lg:col-span-4">
-              <div className="rounded border border-amber-900/40 bg-amber-950/10 p-6">
-                <Heart size={22} className="text-amber-300" />
-                <h2 className="mt-5 font-display text-2xl font-black tracking-tight text-white">
+              <div className="glass-card rounded-2xl border-amber-500/20 bg-amber-500/5 p-8 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 group-hover:bg-amber-500/30 transition-colors" />
+                <Heart size={26} className="text-amber-400 animate-float" />
+                <h2 className="mt-6 font-display text-2xl font-black tracking-tight text-white">
                   Built by Cody Haring
                 </h2>
-                <p className="mt-4 text-sm leading-7 text-zinc-400">
+                <p className="mt-4 text-sm leading-7 text-zinc-400 relative z-10">
                   Self-taught creator, studio director, systems designer, and final authority for the worlds, mechanics, tone, and public identity of Ultramonkeydog Studios.
                 </p>
               </div>
@@ -366,16 +392,23 @@ export default function App() {
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {FUNDING_NEEDS.map((need, index) => (
-                <div key={need.title} className="rounded border border-zinc-900 bg-zinc-950 p-5">
+                <motion.div 
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  key={need.title} 
+                  className="glass-card rounded-xl p-6 group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(255,255,255,0.03)]"
+                >
                   <div className="flex items-center justify-between gap-3">
-                    <span className="rounded border border-zinc-800 bg-zinc-900 px-2 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-zinc-400">
+                    <span className="rounded bg-zinc-800/80 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-zinc-300 border border-white/10 group-hover:border-white/20 transition-colors">
                       {need.urgency}
                     </span>
-                    <span className="font-mono text-[9px] text-zinc-700">REQ_{String(index + 1).padStart(2, "0")}</span>
+                    <span className="font-mono text-[9px] text-zinc-600 group-hover:text-amber-500/70 transition-colors">REQ_{String(index + 1).padStart(2, "0")}</span>
                   </div>
-                  <h3 className="mt-4 font-display text-base font-bold text-white">{need.title}</h3>
-                  <p className="mt-2 text-xs leading-6 text-zinc-450">{need.description}</p>
-                </div>
+                  <h3 className="mt-5 font-display text-base font-bold text-white">{need.title}</h3>
+                  <p className="mt-2 text-xs leading-6 text-zinc-400">{need.description}</p>
+                </motion.div>
               ))}
             </div>
           </div>

@@ -527,7 +527,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div 
       id={`project-card-${project.id}`}
-      className={`group flex flex-col justify-between bg-zinc-950 p-5 sm:p-6 border border-zinc-900 ${accentBorderClass} ${activeTagGlow} transition-all duration-300 font-sans shadow-lg select-text relative`}
+      className={`group flex flex-col justify-between glass-card p-5 sm:p-8 rounded-2xl border-white/5 ${accentBorderClass} hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 font-sans shadow-lg select-text relative`}
     >
       {/* Decorative mechanical pixel in top right */}
       <div className="absolute top-0 right-0 w-1.5 h-1.5 bg-zinc-800 group-hover:bg-amber-500 transition-colors pointer-events-none" />
