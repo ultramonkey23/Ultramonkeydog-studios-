@@ -219,7 +219,7 @@ export default function App() {
                 Not just a pitch deck.
               </h2>
               <p className="mt-4 text-sm leading-7 text-zinc-400">
-                The studio now has playable browser demos, a native Android engine track, and a private Lab workflow that records receipts instead of relying on chat memory.
+                The studio now has playable browser demos, a native Android engine track, and a private Lab workflow that autonomously schedules code bursts, records durable receipts, and actively heals itself.
               </p>
             </div>
 

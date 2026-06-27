@@ -10,17 +10,18 @@ export const PROJECTS_DATA: Project[] = [
     id: "ultramonkeydog-lab",
     title: "Ultramonkeydog Lab (Creator OS)",
     tone: "Symbiotic AI architecture",
-    description: "The autonomous, self-evolving organism that routes projects, synthesizes code, detects drift, and canonizes truth across all studio arenas.",
-    tags: ["Agentic OS", "Four-Mind OS", "Proust Memory", "True Scholar", "Mycelial Symbiosis", "Python", "Self-Evolving"],
+    description: "The autonomous, self-evolving organism that routes projects, synthesizes code, detects drift, actively heals itself, and canonizes truth across all studio arenas.",
+    tags: ["Agentic OS", "Four-Mind OS", "Autonomous Burst", "Active Healing", "Mycelial Symbiosis", "Python", "Self-Evolving"],
     status: "Live / Autonomous Mode",
     accentColor: "warm-amber",
     glowClass: "glow-amber",
     conceptPrompt: "A crystalline bio-mechanical brain pulsing with routed data streams across a dark grid",
-    expandedDetails: "The Lab is Cody's living operating system. It orchestrates cross-repo builds, runs validation physics, flags 'poisoned doctrine,' and prevents agents from acting as generic disconnected bots. It acts as the ultimate truth ladder.",
+    expandedDetails: "The Lab is Cody's living operating system. It orchestrates cross-repo builds, runs validation physics, flags 'poisoned doctrine,' and prevents agents from acting as generic disconnected bots. Recent evolutions enable autonomous bursts and active healing based on real-time friction.",
     systemsUnderTheHood: [
       "FOUR-MIND OS: Metacognitive advisory loop calculating coherence across Brain, Cyborg, Alfred, Symbiote, and Scholar.",
-      "TRUE SCHOLAR: Biological research digestion, PDF/HTML packetization, and deep lore assimilation.",
+      "AUTONOMOUS BURST ENGINE: Calculates Power over Resistance to schedule surgical, zero-permission code patches.",
       "PROUST PATTERN MEMORY DAEMON: Autonomous scent tracking, temporal context retrieval, and spatial nerve signaling.",
+      "RUNTIME WATCHDOG: Nervous system active healing that auto-finishes drift and auto-syncs durability gaps.",
       "ZERO-POINT SPINE: Deep runtime bedrock powering the passive mutation scheduler and organism clones.",
       "MYCELIAL SYMBIOSIS: Autonomous pattern fusion bridging parallel systems into one coherent root.",
       "Strict Source-Truth Ladder ensuring repo state outranks stale AI memory."
@@ -81,6 +82,7 @@ export const PROJECTS_DATA: Project[] = [
     expandedDetails:
       "Savage Crown is the studio's native technical proof track: deterministic C++ gameplay systems, Kotlin/JNI bridging, Android device validation, and Lab-routed autonomous cross-language integration passes.",
     systemsUnderTheHood: [
+      "Biological UI wiring mapping C++ Feral, Cohesive, Elastic, and Entropic engine stats to the Kotlin UI layer.",
       "Unbounded leveling physics replaced shallow linear hardcaps with a dynamic resistance curve.",
       "JNI hot paths were flattened through Android CriticalNative bridge work for lower-overhead simulation calls.",
       "Offline-first runtime law keeps gameplay independent from network services, API keys, quotas, or cloud calls.",
