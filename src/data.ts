@@ -7,23 +7,41 @@ import { FundingNeed, ProductionRole, Project } from "./types";
 
 export const PROJECTS_DATA: Project[] = [
   {
+    id: "ultramonkeydog-lab",
+    title: "Ultramonkeydog Lab (Creator OS)",
+    tone: "Symbiotic AI architecture",
+    description: "The autonomous, self-evolving organism that routes projects, synthesizes code, detects drift, and canonizes truth across all studio arenas.",
+    tags: ["Agentic OS", "Python", "Metacognitive", "Self-Evolving", "Creator Tooling"],
+    status: "Live / Autonomous Mode",
+    accentColor: "warm-amber",
+    glowClass: "glow-amber",
+    conceptPrompt: "A crystalline bio-mechanical brain pulsing with routed data streams across a dark grid",
+    expandedDetails: "The Lab is Cody's living operating system. It orchestrates cross-repo builds, runs validation physics, flags 'poisoned doctrine,' and prevents agents from acting as generic disconnected bots. It acts as the ultimate truth ladder.",
+    systemsUnderTheHood: [
+      "Five-Mind Metacognitive Loop for contextual alignment (Brain, Cyborg, Alfred, Symbiote, Scholar).",
+      "Strict Source-Truth Ladder ensuring repo state outranks stale AI memory.",
+      "Trace Receipt registry that permanently canonizes outer-repo mutations.",
+      "Growth physics and drift reconciliation that detects unsanctioned repo modifications."
+    ],
+  },
+  {
     id: "what-we-fed",
     title: "WHAT WE FED",
     tone: "Dark mythic creature RPG",
     description:
       "A Godot creature RPG roguelite about hunger, bonding, mutation pressure, music-driven escalation, tactical lane/sector combat, and becoming the thing other creatures fear.",
     tags: ["Creature RPG", "Godot", "Mutation", "Bond vs Eat", "Combat Audio", "Dark Fantasy"],
-    status: "Active Systems Pass",
+    status: "Active Systems Pass / AI Tuned",
     accentColor: "neon-green",
     glowClass: "glow-green",
     conceptPrompt: "A bioluminescent organic helix mutating in dark waters",
     expandedDetails:
-      "What We Fed is now a registered Lab arena. Recent Lab-tracked work focused on pruning stale debug systems, repairing sector targeting behavior, and retiring false LaneManager doctrine in favor of the real ZoneManager combat authority.",
+      "What We Fed is a primary Lab arena. Recent autonomous Lab work focused on pruning stale debug systems, repairing sector targeting behavior, retiring false LaneManager doctrine, and generating AI-assisted mutation pipelines.",
     systemsUnderTheHood: [
       "Deterministic sector targeting now resolves enemies by stable identity instead of brittle lane scans.",
       "Zone occupancy accounts for strikers and orbiters, reducing weird spawn and marker behavior.",
-      "Combat presentation and HUD refreshes read live enemy identity directly where possible.",
-      "First-party songs, combat backgrounds, impact VFX, sprites, UI panels, shell sigils, and shaders are candidate source material for future studio reuse.",
+      "Autonomous Lab-driven aesthetic tuning for particle effects and shaders.",
+      "First-party songs, combat backgrounds, impact VFX, sprites, UI panels, shell sigils, and shaders.",
     ],
   },
   {
@@ -54,17 +72,17 @@ export const PROJECTS_DATA: Project[] = [
     description:
       "A native Android action roguelite systems project where mutations, creatures, passives, projectiles, and stat growth fuse into a living Crownbeast identity.",
     tags: ["Android Native", "C++ Core", "Kotlin/JNI", "Mutation Draft", "Crownbeast", "Offline-First"],
-    status: "JNI / Leveling Proof",
+    status: "Native C++ Core & AI Mode Active",
     accentColor: "crimson",
     glowClass: "glow-crimson",
     conceptPrompt: "A fractured kaiju crown radiating mutation energy across a dark mobile canvas",
     expandedDetails:
-      "Savage Crown is the studio's native technical proof track: deterministic C++ gameplay systems, Kotlin/JNI bridging, Android device validation, and Lab-routed gameplay/style intake.",
+      "Savage Crown is the studio's native technical proof track: deterministic C++ gameplay systems, Kotlin/JNI bridging, Android device validation, and Lab-routed autonomous cross-language integration passes.",
     systemsUnderTheHood: [
       "Unbounded leveling physics replaced shallow linear hardcaps with a dynamic resistance curve.",
       "JNI hot paths were flattened through Android CriticalNative bridge work for lower-overhead simulation calls.",
       "Offline-first runtime law keeps gameplay independent from network services, API keys, quotas, or cloud calls.",
-      "Style intake now routes influences into mechanics, feel, math, and readability without copying protected assets.",
+      "Python-driven autonomous lab integrations directly injecting C++ and Kotlin structure into the game engine.",
     ],
   },
   {
