@@ -74,7 +74,7 @@ export const PROJECTS_DATA: Project[] = [
     description:
       "A native Android action roguelite systems project where mutations, creatures, passives, projectiles, and stat growth fuse into a living Crownbeast identity.",
     tags: ["Android Native", "C++ Core", "Kotlin/JNI", "Mutation Draft", "Crownbeast", "Offline-First"],
-    status: "Native C++ Core & AI Mode Active",
+    status: "CI_APK_BUILT / Device Proof Pending",
     accentColor: "crimson",
     glowClass: "glow-crimson",
     conceptPrompt: "A fractured kaiju crown radiating mutation energy across a dark mobile canvas",
@@ -86,6 +86,18 @@ export const PROJECTS_DATA: Project[] = [
       "Offline-first runtime law keeps gameplay independent from network services, API keys, quotas, or cloud calls.",
       "Python-driven autonomous lab integrations directly injecting C++ and Kotlin structure into the game engine.",
     ],
+  },
+  {
+    id: "lab-cockpit",
+    title: "Lab Cockpit",
+    tone: "Stateless command glass",
+    description: "The native Android frontend for the Creator OS, transforming Terminal/CLI work into a touch-friendly, on-the-go interface without storing durable truth.",
+    tags: ["Android Native", "Kotlin", "Lab Interface", "Creator Tooling"],
+    status: "LOCAL_APK_BUILT / Termux Active",
+    accentColor: "violet",
+    glowClass: "glow-violet",
+    conceptPrompt: "A sleek, dark dashboard interface controlling a massive off-screen engine",
+    expandedDetails: "Cockpit is the mobile command center for Cody. It triggers boots, routes projects, and fires AI sweeps directly from the phone. It is stateless—pure command glass—leaving the heavy lifting to the Lab's local Termux engine."
   },
   {
     id: "saga-anxious-fluff",

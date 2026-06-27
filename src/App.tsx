@@ -23,6 +23,7 @@ import { motion } from "motion/react";
 import { FUNDING_NEEDS, PROJECTS_DATA } from "./data";
 import MethodGrid from "./components/MethodGrid";
 import ProjectCard from "./components/ProjectCard";
+import QuigHelper from "./components/QuigHelper";
 
 const emailAddress = "haringcody@gmail.com";
 
@@ -451,6 +452,8 @@ export default function App() {
           <span>Creator-owned. AI-assisted. Human-directed.</span>
         </div>
       </footer>
+      
+      <QuigHelper />
     </div>
   );
 }
