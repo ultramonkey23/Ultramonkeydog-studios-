@@ -11,17 +11,19 @@ export const PROJECTS_DATA: Project[] = [
     title: "Ultramonkeydog Lab (Creator OS)",
     tone: "Symbiotic AI architecture",
     description: "The autonomous, self-evolving organism that routes projects, synthesizes code, detects drift, and canonizes truth across all studio arenas.",
-    tags: ["Agentic OS", "Python", "Metacognitive", "Self-Evolving", "Creator Tooling"],
+    tags: ["Agentic OS", "Four-Mind OS", "Proust Memory", "True Scholar", "Mycelial Symbiosis", "Python", "Self-Evolving"],
     status: "Live / Autonomous Mode",
     accentColor: "warm-amber",
     glowClass: "glow-amber",
     conceptPrompt: "A crystalline bio-mechanical brain pulsing with routed data streams across a dark grid",
     expandedDetails: "The Lab is Cody's living operating system. It orchestrates cross-repo builds, runs validation physics, flags 'poisoned doctrine,' and prevents agents from acting as generic disconnected bots. It acts as the ultimate truth ladder.",
     systemsUnderTheHood: [
-      "Five-Mind Metacognitive Loop for contextual alignment (Brain, Cyborg, Alfred, Symbiote, Scholar).",
-      "Strict Source-Truth Ladder ensuring repo state outranks stale AI memory.",
-      "Trace Receipt registry that permanently canonizes outer-repo mutations.",
-      "Growth physics and drift reconciliation that detects unsanctioned repo modifications."
+      "FOUR-MIND OS: Metacognitive advisory loop calculating coherence across Brain, Cyborg, Alfred, Symbiote, and Scholar.",
+      "TRUE SCHOLAR: Biological research digestion, PDF/HTML packetization, and deep lore assimilation.",
+      "PROUST PATTERN MEMORY DAEMON: Autonomous scent tracking, temporal context retrieval, and spatial nerve signaling.",
+      "ZERO-POINT SPINE: Deep runtime bedrock powering the passive mutation scheduler and organism clones.",
+      "MYCELIAL SYMBIOSIS: Autonomous pattern fusion bridging parallel systems into one coherent root.",
+      "Strict Source-Truth Ladder ensuring repo state outranks stale AI memory."
     ],
   },
   {
