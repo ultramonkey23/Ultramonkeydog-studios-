@@ -56,7 +56,7 @@ export default function MethodGrid() {
         {PRODUCTION_ROLES.map((role, idx) => (
           <div
             key={role.title}
-            className="group relative flex flex-col justify-between glass-card p-6 rounded-xl border-white/5 hover:border-amber-500/30 transition-all duration-300 select-none overflow-hidden hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(245,158,11,0.06)]"
+            className="group relative flex flex-col justify-between glass-card p-6 rounded-lg border-white/5 hover:border-amber-500/30 transition-all duration-300 select-none overflow-hidden hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(245,158,11,0.06)]"
           >
             {/* Subtle grid HUD accents */}
             <div className="absolute top-0 right-0 p-1.5 font-mono text-[9px] text-zinc-700 select-none tracking-widest group-hover:text-amber-500/60 transition-colors">

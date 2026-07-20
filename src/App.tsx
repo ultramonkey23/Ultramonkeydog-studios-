@@ -23,7 +23,6 @@ import { motion } from "motion/react";
 import { FUNDING_NEEDS, PROJECTS_DATA } from "./data";
 import MethodGrid from "./components/MethodGrid";
 import ProjectCard from "./components/ProjectCard";
-import QuigHelper from "./components/QuigHelper";
 
 const emailAddress = "haringcody@gmail.com";
 
@@ -144,11 +143,8 @@ export default function App() {
 
       <main>
         <section className="relative isolate overflow-hidden border-b border-white/5 bg-[#030304]">
-          {/* Subtle Glow Blobs */}
-          <div className="glow-blob bg-amber-500/20 top-0 left-0 w-96 h-96 -translate-x-1/2 -translate-y-1/2" />
-          <div className="glow-blob bg-sky-500/10 bottom-0 right-0 w-[500px] h-[500px] translate-x-1/3 translate-y-1/3" />
-          
           <img
+            data-spatial-ignore="true"
             src="/assets/studio-forge-hero.png"
             alt="Dark game production workstation with creature diagrams, tactical screens, and studio tools"
             className="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
@@ -211,7 +207,6 @@ export default function App() {
         </section>
 
         <section id="proof" className="relative border-b border-white/5 bg-[#030304] py-16 sm:py-20 overflow-hidden">
-          <div className="glow-blob bg-violet-500/10 top-20 left-20 w-80 h-80" />
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="mb-10 max-w-3xl">
               <SectionKicker>Current proof</SectionKicker>
@@ -231,7 +226,7 @@ export default function App() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                   key={item.label} 
-                  className="glass-card rounded-xl p-6 group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(245,158,11,0.05)] hover:border-amber-500/20"
+                  className="glass-card rounded-lg p-6 group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(245,158,11,0.05)] hover:border-amber-500/20"
                 >
                   <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-500/80">{item.label}</p>
                   <p className="mt-3 font-display text-3xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all">{item.value}</p>
@@ -245,7 +240,7 @@ export default function App() {
                 href="https://bone-league-black-bracket-604506170438.us-east1.run.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card group rounded-xl p-6 transition-all duration-300 hover:border-sky-400/50 hover:shadow-[0_0_40px_rgba(14,165,233,0.15)] hover:bg-sky-950/10"
+                className="glass-card group rounded-lg p-6 transition-all duration-300 hover:border-sky-400/50 hover:shadow-[0_0_40px_rgba(14,165,233,0.15)] hover:bg-sky-950/10"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
@@ -261,7 +256,7 @@ export default function App() {
                 href="https://feral-formation-604506170438.us-east1.run.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card group rounded-xl p-6 transition-all duration-300 hover:border-violet-400/50 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)] hover:bg-violet-950/10"
+                className="glass-card group rounded-lg p-6 transition-all duration-300 hover:border-violet-400/50 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)] hover:bg-violet-950/10"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
@@ -278,7 +273,6 @@ export default function App() {
 
         <section id="slate" className="relative bg-[#030304] py-16 sm:py-24 overflow-hidden">
           <div className="absolute inset-0 bg-grid-ambient opacity-20 pointer-events-none" />
-          <div className="glow-blob bg-red-500/10 top-1/4 right-0 w-[600px] h-[600px]" />
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div className="max-w-3xl">
@@ -301,7 +295,6 @@ export default function App() {
         </section>
 
         <section id="method" className="relative border-y border-white/5 bg-zinc-950 py-16 sm:py-24 overflow-hidden">
-          <div className="glow-blob bg-amber-500/10 top-0 right-1/4 w-[800px] h-[800px]" />
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid gap-12 lg:grid-cols-12">
               <div className="lg:col-span-5">
@@ -324,7 +317,7 @@ export default function App() {
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
                       key={item.title} 
-                      className="glass-card rounded-xl p-6 group hover:border-amber-500/30 transition-all duration-300"
+                      className="glass-card rounded-lg p-6 group hover:border-amber-500/30 transition-all duration-300"
                     >
                       <div className="p-2.5 rounded-lg bg-zinc-900/50 border border-white/5 inline-block group-hover:scale-110 transition-transform duration-300 group-hover:bg-amber-500/10">
                         <Icon size={20} className="text-amber-400" />
@@ -350,11 +343,9 @@ export default function App() {
         </section>
 
         <section className="relative border-b border-white/5 bg-[#030304] py-16 sm:py-24 overflow-hidden">
-          <div className="glow-blob bg-sky-500/10 bottom-0 left-0 w-96 h-96 translate-y-1/2" />
           <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8 relative z-10">
             <div className="lg:col-span-4">
-              <div className="glass-card rounded-2xl border-amber-500/20 bg-amber-500/5 p-8 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 group-hover:bg-amber-500/30 transition-colors" />
+              <div className="glass-card rounded-lg border-amber-500/20 bg-amber-500/5 p-8 relative overflow-hidden group">
                 <Heart size={26} className="text-amber-400 animate-float" />
                 <h2 className="mt-6 font-display text-2xl font-black tracking-tight text-white">
                   Built by Cody Haring
@@ -399,7 +390,7 @@ export default function App() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   key={need.title} 
-                  className="glass-card rounded-xl p-6 group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(255,255,255,0.03)]"
+                  className="glass-card rounded-lg p-6 group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(255,255,255,0.03)]"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span className="rounded bg-zinc-800/80 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-zinc-300 border border-white/10 group-hover:border-white/20 transition-colors">
@@ -452,8 +443,6 @@ export default function App() {
           <span>Creator-owned. AI-assisted. Human-directed.</span>
         </div>
       </footer>
-      
-      <QuigHelper />
     </div>
   );
 }
