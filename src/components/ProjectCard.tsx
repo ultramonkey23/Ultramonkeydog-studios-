@@ -4,7 +4,7 @@
  */
 
 import { Project } from "../types";
-import { Gamepad2, Dna, Trophy, Sparkles, FolderCode, ExternalLink, Activity, Heart, ShieldAlert, Cpu } from "lucide-react";
+import { Gamepad2, Dna, Trophy, Sparkles, FolderCode, ExternalLink, Activity, ShieldAlert, Cpu } from "lucide-react";
 
 interface ProjectCardProps {
   project: Project;
@@ -606,7 +606,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.tags.map((tag) => (
             <span 
               key={tag}
-              className="text-[9px] font-mono text-zinc-500 bg-zinc-900/40 hover:bg-zinc-900 hover:text-zinc-3 w-content px-2 py-0.5 rounded border border-zinc-900 transition-colors uppercase font-medium"
+              className="text-[9px] font-mono text-zinc-500 bg-zinc-900/40 hover:bg-zinc-900 hover:text-zinc-300 w-content px-2 py-0.5 rounded border border-zinc-900 transition-colors uppercase font-medium"
             >
               #{tag.toLowerCase().replace(/\s+/g, '-')}
             </span>

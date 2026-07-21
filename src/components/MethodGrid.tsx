@@ -13,8 +13,7 @@ import {
   Eye, 
   Megaphone, 
   FlaskConical,
-  Wrench,
-  Dna
+  Wrench
 } from "lucide-react";
 
 export default function MethodGrid() {
@@ -85,8 +84,8 @@ export default function MethodGrid() {
                   <span className="w-1 h-1 rounded-full bg-amber-500 opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
                   AI ENGINE CO-PILOT
                 </span>
-                <span className="text-[9px] font-mono text-zinc-600 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-905 group-hover:text-amber-500/80 group-hover:border-amber-900/30 transition-colors">
-                  PASSIVE
+                <span className="text-[9px] font-mono text-zinc-500 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-905 group-hover:text-amber-500/80 group-hover:border-amber-900/30 transition-colors whitespace-nowrap">
+                  {role.exampleOutput}
                 </span>
               </div>
               <p className="text-[11px] text-zinc-450 group-hover:text-zinc-400 leading-relaxed font-sans transition-colors">
