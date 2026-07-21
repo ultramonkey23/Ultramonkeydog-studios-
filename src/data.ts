@@ -14,8 +14,6 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["Agentic OS", "Four-Mind OS", "Autonomous Burst", "Active Healing", "Mycelial Symbiosis", "Python", "Self-Evolving"],
     status: "Live / Autonomous Mode",
     accentColor: "warm-amber",
-    glowClass: "glow-amber",
-    conceptPrompt: "A crystalline bio-mechanical brain pulsing with routed data streams across a dark grid",
     expandedDetails: "The Lab is Cody's living operating system. It orchestrates cross-repo builds, runs validation physics, flags 'poisoned doctrine,' and prevents agents from acting as generic disconnected bots. Recent evolutions enable autonomous bursts and active healing based on real-time friction.",
     systemsUnderTheHood: [
       "FOUR-MIND OS: Metacognitive advisory loop calculating coherence across Brain, Cyborg, Alfred, Symbiote, and Scholar.",
@@ -36,8 +34,6 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["Creature RPG", "Godot", "Mutation", "Bond vs Eat", "Combat Audio", "Dark Fantasy"],
     status: "Active Systems Pass / AI Tuned",
     accentColor: "neon-green",
-    glowClass: "glow-green",
-    conceptPrompt: "A bioluminescent organic helix mutating in dark waters",
     expandedDetails:
       "What We Fed is a primary Lab arena. Recent autonomous Lab work focused on pruning stale debug systems, repairing sector targeting behavior, retiring false LaneManager doctrine, and generating AI-assisted mutation pipelines.",
     systemsUnderTheHood: [
@@ -56,8 +52,6 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["Management Sim", "Roguelite", "Sports Horror", "Auto-Sim", "Strategy", "Procedural Seasons"],
     status: "Public Demo Live",
     accentColor: "electric-blue",
-    glowClass: "glow-blue",
-    conceptPrompt: "A digital tactical football hologram overlaying stadium blueprints",
     demoUrl: "https://bone-league-black-bracket-604506170438.us-east1.run.app",
     expandedDetails:
       "Bone League proves the studio can ship direct browser-accessible systems: draft pressure, roster management, strategic upgrades, persistent run state, procedural weeks, and readable simulation output.",
@@ -77,8 +71,6 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["Android Native", "C++ Core", "Kotlin/JNI", "Mutation Draft", "Crownbeast", "Offline-First"],
     status: "CI_APK_BUILT / Device Proof Pending",
     accentColor: "crimson",
-    glowClass: "glow-crimson",
-    conceptPrompt: "A fractured kaiju crown radiating mutation energy across a dark mobile canvas",
     expandedDetails:
       "Savage Crown is the studio's native technical proof track: deterministic C++ gameplay systems, Kotlin/JNI bridging, Android device validation, and Lab-routed autonomous cross-language integration passes.",
     systemsUnderTheHood: [
@@ -97,8 +89,6 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["Android Native", "Kotlin", "Lab Interface", "Creator Tooling"],
     status: "LOCAL_APK_BUILT / Termux Active",
     accentColor: "violet",
-    glowClass: "glow-violet",
-    conceptPrompt: "A sleek, dark dashboard interface controlling a massive off-screen engine",
     expandedDetails: "Cockpit is the mobile command center for Cody. It triggers boots, routes projects, and fires AI sweeps directly from the phone. It is stateless—pure command glass—leaving the heavy lifting to the Lab's local Termux engine."
   },
   {
@@ -110,8 +100,6 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["All-Ages RPG", "Creature Growth", "Family-Friendly", "Progression", "Sensory-Aware"],
     status: "Design / Early Build",
     accentColor: "warm-amber",
-    glowClass: "glow-amber",
-    conceptPrompt: "A glowing fuzzy golden organism radiating safety in deep woods",
     expandedDetails:
       "This branch concentrates the studio's accessibility work: predictable loops, gentle audio control, readable emotion, steady visuals, and mechanical depth without harsh sensory pressure.",
   },
@@ -124,8 +112,6 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["Tactical RPG", "Creature Party", "Roguelite", "Formation Systems", "Deterministic Combat"],
     status: "Public Demo Live",
     accentColor: "violet",
-    glowClass: "glow-violet",
-    conceptPrompt: "A tactical cybernetic grid displaying formation-driven matchup vectors",
     demoUrl: "https://feral-formation-604506170438.us-east1.run.app",
     expandedDetails:
       "Feral Formation is a high-tactical, mobile-first creature-party RPG roguelite with deterministic combat, clash windows, adaptive rewards, persistent creature mastery, matchup forecasting, and formation-driven strategy.",

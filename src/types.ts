@@ -10,9 +10,6 @@ export interface Project {
   tags: string[];
   status: string;
   accentColor: "neon-green" | "electric-blue" | "violet" | "warm-amber" | "crimson";
-  glowClass: string;
-  imagePath?: string;
-  conceptPrompt?: string;
   demoUrl?: string;
   expandedDetails?: string;
   tone?: string;

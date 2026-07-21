@@ -492,26 +492,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   let statusColor = "text-emerald-400 border-emerald-900/60 bg-emerald-950/20";
   let Icon = Gamepad2;
   let accentBorderClass = "hover:border-emerald-500/30";
-  let activeTagGlow = "hover:shadow-[0_0_12px_-2px_rgba(16,185,129,0.15)]";
   let themeTextColor = "text-emerald-400";
 
   if (project.accentColor === "electric-blue") {
     statusColor = "text-sky-450 border-sky-900/60 bg-sky-950/20";
     Icon = Trophy;
     accentBorderClass = "hover:border-sky-500/30";
-    activeTagGlow = "hover:shadow-[0_0_12px_-2px_rgba(14,165,233,0.15)]";
     themeTextColor = "text-sky-400";
   } else if (project.accentColor === "violet") {
     statusColor = "text-violet-450 border-violet-900/60 bg-violet-950/20";
     Icon = FolderCode;
     accentBorderClass = "hover:border-violet-500/30";
-    activeTagGlow = "hover:shadow-[0_0_12px_-2px_rgba(139,92,246,0.15)]";
     themeTextColor = "text-violet-400";
   } else if (project.accentColor === "warm-amber") {
     statusColor = "text-amber-450 border-amber-900/60 bg-amber-950/20";
     Icon = Sparkles;
     accentBorderClass = "hover:border-amber-500/30";
-    activeTagGlow = "hover:shadow-[0_0_12px_-2px_rgba(245,158,11,0.15)]";
     themeTextColor = "text-amber-450";
   } else if (project.accentColor === "neon-green") {
     Icon = Dna;
@@ -520,7 +516,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     statusColor = "text-red-400 border-red-900/60 bg-red-950/20";
     Icon = ShieldAlert;
     accentBorderClass = "hover:border-red-500/30";
-    activeTagGlow = "hover:shadow-[0_0_12px_-2px_rgba(239,68,68,0.15)]";
     themeTextColor = "text-red-400";
   }
 
