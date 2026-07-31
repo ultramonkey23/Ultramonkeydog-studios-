@@ -206,6 +206,23 @@ export default function App() {
           </div>
         </section>
 
+        {/* STUDIO DOCTRINE - leading identity signal */}
+        <section id="doctrine" className="relative border-b border-white/5 bg-[#040405] py-16 sm:py-20 overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl border-l-2 border-amber-500/70 pl-5 sm:pl-8">
+              <SectionKicker>The studio doctrine</SectionKicker>
+              <h2 className="mt-3 font-display text-4xl font-black leading-[0.95] tracking-tight text-white sm:text-6xl">
+                Deterministic Systems.<br />
+                <span className="text-amber-300">Living Results.</span>
+              </h2>
+              <p className="mt-5 max-w-3xl font-display text-lg leading-relaxed text-zinc-200 sm:text-xl">
+                Every outcome is math you could audit - yet the results feel alive, feral, and never the same run twice.
+                <span className="font-semibold text-white"> Deep systems. Strange life.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section id="proof" className="relative border-b border-white/5 bg-[#030304] py-16 sm:py-20 overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="mb-10 max-w-3xl">
