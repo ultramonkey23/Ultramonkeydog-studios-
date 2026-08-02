@@ -1,0 +1,76 @@
+name: Visual Proof
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "public/**"
+      - "scripts/spatial-scan.mjs"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/visual-proof.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  spatial-and-raster-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build and type-check
+        run: |
+          npm run lint
+          npm run build
+
+      - name: Capture desktop, tablet, and mobile proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$BROWSER" ]; then
+            echo "No supported Chrome/Chromium binary found on runner" >&2
+            exit 1
+          fi
+
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/umd-preview.log 2>&1 &
+          PREVIEW_PID=$!
+          trap 'kill "$PREVIEW_PID" 2>/dev/null || true' EXIT
+
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              break
+            fi
+            if [ "$attempt" -eq 60 ]; then
+              cat /tmp/umd-preview.log
+              exit 1
+            fi
+            sleep 0.25
+          done
+
+          SPATIAL_BROWSER="$BROWSER" \
+          SPATIAL_TARGET="http://127.0.0.1:4173/" \
+          npm run spatial:scan
+
+      - name: Upload visual proof packet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: studios-visual-proof-${{ github.sha }}
+          path: _spatial_proofs/
+          if-no-files-found: error
+          retention-days: 14
