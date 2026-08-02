@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import {
   ArrowUpRight,
   CheckCircle2,
@@ -56,39 +56,74 @@ function formatDate(date: string) {
   }).format(new Date(`${date}T00:00:00Z`));
 }
 
-function SignalAction({ signal }: { signal: StudioSignal }) {
+function preferredScrollBehavior(): ScrollBehavior {
+  return window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+    ? "auto"
+    : "smooth";
+}
+
+function signalActionNodes(signal: StudioSignal): ReactNode[] {
+  const nodes: ReactNode[] = [];
+
   if (signal.sourceUrl) {
-    return (
+    nodes.push(
       <a
+        key="source"
         href={signal.sourceUrl}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="studio-signal__source"
       >
         {signal.sourceLabel}
         <ExternalLink size={12} />
-      </a>
+      </a>,
     );
   }
 
   if (signal.action?.kind === "section") {
-    return (
+    nodes.push(
       <button
+        key="section-action"
         type="button"
         onClick={() =>
-          document
-            .getElementById(signal.action!.target)
-            ?.scrollIntoView({ behavior: "smooth", block: "center" })
+          document.getElementById(signal.action!.target)?.scrollIntoView({
+            behavior: preferredScrollBehavior(),
+            block: "center",
+          })
         }
         className="studio-signal__source"
       >
         {signal.action.label}
         <ArrowUpRight size={12} />
-      </button>
+      </button>,
     );
   }
 
-  return <span className="studio-signal__source">{signal.sourceLabel}</span>;
+  if (signal.action?.kind === "external") {
+    nodes.push(
+      <a
+        key="external-action"
+        href={signal.action.target}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="studio-signal__source"
+      >
+        {signal.action.label}
+        <ArrowUpRight size={12} />
+      </a>,
+    );
+  }
+
+  return nodes;
+}
+
+function SignalActions({ signal }: { signal: StudioSignal }) {
+  const nodes = signalActionNodes(signal);
+  if (nodes.length === 0) {
+    return <span className="studio-signal__source">{signal.sourceLabel}</span>;
+  }
+
+  return <div className="studio-signal__actions">{nodes}</div>;
 }
 
 export default function StudioSignals() {
@@ -154,7 +189,7 @@ export default function StudioSignals() {
                   <p className="mt-1.5 text-[11px] leading-5 text-[var(--umd-ash)]">
                     {signal.proofCeiling}
                   </p>
-                  <SignalAction signal={signal} />
+                  <SignalActions signal={signal} />
                 </div>
               </div>
             </article>
