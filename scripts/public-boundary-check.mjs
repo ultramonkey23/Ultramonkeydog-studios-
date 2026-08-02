@@ -30,6 +30,8 @@ const forbidden = [
   { label: "retired interactive evaluator presentation", pattern: /INTERACTIVE_DEMO|ARBITER_MATCHUP_ENGINE|Arbiter v1\.0/i },
   { label: "retired fixed-confidence presentation", pattern: /85% Confidence/i },
   { label: "stale fake-screenshot badge", pattern: /REAL GAME IMAGES COMING SOON/i },
+  { label: "retired inline BOB preview", pattern: /BOB_0003_PREVIEW|interface\s+PublicBattlePreview/i },
+  { label: "invented Box o' Battles heading", pattern: /Verdict Card, Not Power Meter/i },
 ];
 
 function collectFiles(entry) {
@@ -37,15 +39,11 @@ function collectFiles(entry) {
   if (!fs.existsSync(absolute)) return [];
   const stat = fs.statSync(absolute);
   if (stat.isFile()) return [absolute];
-
   const files = [];
   for (const child of fs.readdirSync(absolute, { withFileTypes: true })) {
     const relative = path.join(entry, child.name);
-    if (child.isDirectory()) {
-      files.push(...collectFiles(relative));
-    } else if (textExtensions.has(path.extname(child.name))) {
-      files.push(path.join(ROOT, relative));
-    }
+    if (child.isDirectory()) files.push(...collectFiles(relative));
+    else if (textExtensions.has(path.extname(child.name))) files.push(path.join(ROOT, relative));
   }
   return files;
 }
@@ -53,16 +51,23 @@ function collectFiles(entry) {
 const failures = [];
 for (const file of scanRoots.flatMap(collectFiles)) {
   const content = fs.readFileSync(file, "utf8");
-  for (const rule of forbidden) {
-    if (rule.pattern.test(content)) {
-      failures.push(`${path.relative(ROOT, file)}: ${rule.label}`);
-    }
-  }
+  for (const rule of forbidden) if (rule.pattern.test(content)) failures.push(`${path.relative(ROOT, file)}: ${rule.label}`);
 }
+
+const cardPath = path.join(ROOT, "src/data/box-o-battles/bob-0003-arbiter-card-comic-hud-v0.3.json");
+const componentPath = path.join(ROOT, "src/components/BoxOBattlesApp.tsx");
+if (!fs.existsSync(cardPath)) failures.push("missing owner-vendored BOB #003 Arbiter Card packet");
+else {
+  const card = JSON.parse(fs.readFileSync(cardPath, "utf8"));
+  if (card.packet_role !== "READ_ONLY_PUBLIC_CARD") failures.push("BOB #003 packet lost READ_ONLY_PUBLIC_CARD role");
+  if (card.card?.source_math_fingerprint !== "2539b24aeba078a584b2169494fe586966aa5d518ec0994957d64822b2c1c5e5") failures.push("BOB #003 source fingerprint drifted");
+  if (card.verdict_stage?.balance_blade?.label !== "ROUTE SHARE — NOT WIN PROBABILITY") failures.push("Balance Blade truth label drifted");
+}
+if (!fs.existsSync(componentPath) || !/bob-0003-arbiter-card-comic-hud-v0\.3\.json/.test(fs.readFileSync(componentPath, "utf8"))) failures.push("BoxOBattlesApp must import the owner-vendored BOB #003 packet");
 
 if (failures.length > 0) {
   console.error("Public boundary check failed:\n" + failures.map((failure) => `- ${failure}`).join("\n"));
   process.exit(1);
 }
 
-console.log("Public boundary check passed: no private infrastructure details, duplicate Arbiter evaluator, or retired fake project telemetry detected.");
+console.log("Public boundary check passed: public truth, owner packet identity, and retired-content exclusions are intact.");
