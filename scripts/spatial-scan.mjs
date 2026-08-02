@@ -118,9 +118,10 @@ const snapshotExpression = String.raw`
 
   const ids = new Map();
   visible.forEach((element, index) => {
-    const label = element.id || element.getAttribute("aria-label") || element.textContent.trim().slice(0, 28) || element.tagName.toLowerCase();
+    const label = element.id || element.getAttribute("aria-label") || (element.textContent || "").trim().slice(0, 28) || element.tagName.toLowerCase();
     const clean = String(label).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 36);
-    ids.set(element, clean ? \`\${element.tagName.toLowerCase()}-\${index}-\${clean}\` : \`\${element.tagName.toLowerCase()}-\${index}\`);
+    const prefix = element.tagName.toLowerCase() + "-" + index;
+    ids.set(element, clean ? prefix + "-" + clean : prefix);
   });
 
   const nodes = visible.map((element) => {
@@ -130,7 +131,7 @@ const snapshotExpression = String.raw`
     while (parent && !ids.has(parent)) parent = parent.parentElement;
     const zRaw = Number.parseInt(style.zIndex, 10);
     const tag = element.tagName.toLowerCase();
-    const text = element.textContent.trim();
+    const text = (element.textContent || "").trim();
     const role = element.getAttribute("role");
     const interactive = tag === "a" || tag === "button" || role === "button";
 
@@ -273,12 +274,21 @@ async function captureViewport(cdp, sessionId, viewport) {
   }, sessionId);
   await sleep(900);
 
-  const result = await cdp.send("Runtime.evaluate", {
+  const evaluation = await cdp.send("Runtime.evaluate", {
     expression: snapshotExpression,
     returnByValue: true,
     awaitPromise: true,
   }, sessionId);
-  const snapshot = result.result.value;
+
+  if (evaluation.exceptionDetails) {
+    const description = evaluation.exceptionDetails.exception?.description || evaluation.exceptionDetails.text || "unknown browser evaluation error";
+    throw new Error(`Snapshot expression failed: ${description}`);
+  }
+  const snapshot = evaluation.result?.value;
+  if (!snapshot?.page || !Array.isArray(snapshot.nodes)) {
+    throw new Error(`Snapshot expression returned invalid data: ${JSON.stringify(evaluation)}`);
+  }
+
   const metrics = await cdp.send("Page.getLayoutMetrics", {}, sessionId);
   const contentSize = metrics.cssContentSize || metrics.contentSize;
   const captureWidth = Math.max(viewport.w, Math.ceil(contentSize.width));
