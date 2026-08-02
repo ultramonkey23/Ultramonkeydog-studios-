@@ -7,13 +7,11 @@ import { useState } from "react";
 import {
   Activity,
   ArrowUpRight,
-  Check,
   ChevronRight,
   Copy,
   ExternalLink,
   FileCheck,
   Heart,
-  Layers,
   Mail,
   Shield,
   Sparkles,
@@ -30,19 +28,19 @@ const emailAddress = "haringcody@gmail.com";
 
 const proofStats = [
   {
-    label: "Public demos",
-    value: "3 live",
-    detail: "Bone League, Feral Formation, and Box o' Battles Arbiter are live for direct browser play & evaluation.",
+    label: "Public releases",
+    value: "2 live + 1 preview",
+    detail: "Bone League and Feral Formation are browser demos. Box o' Battles is exposed here as a read-only corpus preview.",
   },
   {
     label: "Native game proof",
     value: "Android + C++",
-    detail: "Savage Crown is advancing through JNI, device, and CI-backed checks.",
+    detail: "Savage Crown advances through project-owned native tests, Android builds, and separately scoped device validation.",
   },
   {
-    label: "Production memory",
-    value: "Receipt-backed",
-    detail: "Local Lab records track validation, direction, gates, and project drift.",
+    label: "Public evidence",
+    value: "Claim-scoped",
+    detail: "Published claims stay tied to the owning project's demos, tests, release notes, or approved public packets.",
   },
 ];
 
@@ -50,28 +48,28 @@ const studioSignals = [
   "Creator-owned multimedia studio",
   "Systems-heavy games first",
   "AI-assisted production, human direction",
-  "Private Lab workflow, public proof only",
+  "Public outcomes, private infrastructure",
 ];
 
-const labMethod = [
+const publicMethod = [
   {
-    title: "Receipts over vibes",
-    copy: "Completed gates leave durable proof: what changed, where it changed, and how it was validated.",
+    title: "Evidence before claims",
+    copy: "A public claim should point to a project-owned demo, test, release note, or approved output packet.",
     icon: FileCheck,
   },
   {
-    title: "Project arenas",
-    copy: "Six connected arenas — each game stays in its own repo while the Lab tracks direction, memory, and validation pressure across all active projects.",
-    icon: Layers,
-  },
-  {
-    title: "No secret leakage",
-    copy: "The Lab is private operating infrastructure. The public site shows outcomes, not internal keys or raw machinery.",
+    title: "Clean project boundaries",
+    copy: "Each game and tool owns its runtime, data, and decision logic. The studio site presents approved outputs instead of copying engines.",
     icon: Shield,
   },
   {
-    title: "Buildable weirdness",
-    copy: "AI handles leverage work like code, audits, docs, and iteration speed. Taste and final calls stay human.",
+    title: "Private means private",
+    copy: "Credentials, logs, internal routing, orchestration details, and production machinery do not belong in this public repository.",
+    icon: Shield,
+  },
+  {
+    title: "Human release authority",
+    copy: "AI accelerates implementation and review. Cody owns taste, interpretation, scope, and the final decision to publish.",
     icon: Sparkles,
   },
 ];
@@ -120,12 +118,8 @@ export default function App() {
               <span className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-emerald-400" />
             </span>
             <span>
-              <span className="block font-display text-sm font-bold uppercase tracking-[0.18em] text-white">
-                Ultramonkeydog
-              </span>
-              <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-500">
-                Studios
-              </span>
+              <span className="block font-display text-sm font-bold uppercase tracking-[0.18em] text-white">Ultramonkeydog</span>
+              <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-500">Studios</span>
             </span>
           </button>
 
@@ -134,9 +128,9 @@ export default function App() {
             <button onClick={() => { setShowBoxOBattles(false); scrollToSection("slate"); }} className="transition-colors hover:text-white">Slate</button>
             <button onClick={() => { setShowBoxOBattles(false); scrollToSection("method"); }} className="transition-colors hover:text-white">Method</button>
             <button onClick={() => { setShowBoxOBattles(false); scrollToSection("support"); }} className="transition-colors hover:text-white">Support</button>
-            <button 
-              onClick={() => { setShowBoxOBattles(true); window.scrollTo({ top: 0, behavior: "smooth" }); }} 
-              className="flex items-center gap-1.5 rounded border border-amber-500/40 bg-amber-500/10 px-2.5 py-1 text-amber-300 transition-colors hover:border-amber-400 hover:text-white font-bold"
+            <button
+              onClick={() => { setShowBoxOBattles(true); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              className="flex items-center gap-1.5 rounded border border-amber-500/40 bg-amber-500/10 px-2.5 py-1 font-bold text-amber-300 transition-colors hover:border-amber-400 hover:text-white"
             >
               <Swords size={12} />
               Box o' Battles
@@ -158,23 +152,6 @@ export default function App() {
         {showBoxOBattles && (
           <section id="box-o-battles-section" className="relative border-b border-amber-500/20 bg-[#050507] py-12">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="mb-6 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400">
-                    Public Interactive Program
-                  </span>
-                  <h2 className="mt-1 font-display text-2xl font-black text-white sm:text-3xl">
-                    Box o' Battles — Evidence-Aware Arbiter Engine
-                  </h2>
-                </div>
-                <button
-                  onClick={() => setShowBoxOBattles(false)}
-                  className="rounded border border-zinc-800 bg-zinc-950 px-3 py-1.5 font-mono text-xs text-zinc-400 hover:border-amber-400 hover:text-white"
-                >
-                  Close Program
-                </button>
-              </div>
-
               <BoxOBattlesApp onClose={() => setShowBoxOBattles(false)} />
             </div>
           </section>
@@ -199,10 +176,10 @@ export default function App() {
             >
               <div className="mb-6 inline-flex items-center gap-2 rounded border border-amber-500/30 bg-zinc-950/75 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-amber-300">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                Updated public studio signal - June 2026
+                Public studio signal — August 2026
               </div>
 
-              <h1 className="font-display text-5xl font-black leading-[0.92] tracking-tight text-white sm:text-7xl lg:text-8xl text-gradient-silver pb-2">
+              <h1 className="pb-2 font-display text-5xl font-black leading-[0.92] tracking-tight text-white text-gradient-silver sm:text-7xl lg:text-8xl">
                 Ultramonkeydog Studios
               </h1>
 
@@ -210,8 +187,8 @@ export default function App() {
                 Strange games. Deep systems. AI-assisted production. Human taste at the wheel.
               </p>
 
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-zinc-350 sm:text-base">
-                A creator-owned multimedia forge building creature RPGs, tactical roguelites, native mobile systems, and dark digital worlds. The private Ultramonkeydog Lab powers the workflow; this site shows the public proof.
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-zinc-300 sm:text-base">
+                A creator-owned multimedia forge building creature RPGs, tactical roguelites, native mobile systems, and dark digital worlds. This public site shows released work and approved project evidence—not private production infrastructure.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -226,7 +203,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => scrollToSection("proof")}
-                  className="glass inline-flex items-center justify-center gap-2 rounded px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition-all hover:border-amber-400 hover:text-white hover:bg-white/5"
+                  className="glass inline-flex items-center justify-center gap-2 rounded px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition-all hover:border-amber-400 hover:bg-white/5 hover:text-white"
                 >
                   See current proof
                   <ArrowUpRight size={15} />
@@ -244,8 +221,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* STUDIO DOCTRINE - leading identity signal */}
-        <section id="doctrine" className="relative border-b border-white/5 bg-[#040405] py-16 sm:py-20 overflow-hidden">
+        <section id="doctrine" className="relative overflow-hidden border-b border-white/5 bg-[#040405] py-16 sm:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl border-l-2 border-amber-500/70 pl-5 sm:pl-8">
               <SectionKicker>The studio doctrine</SectionKicker>
@@ -254,37 +230,35 @@ export default function App() {
                 <span className="text-amber-300">Living Results.</span>
               </h2>
               <p className="mt-5 max-w-3xl font-display text-lg leading-relaxed text-zinc-200 sm:text-xl">
-                Every outcome is math you could audit - yet the results feel alive, feral, and never the same run twice.
+                Every outcome is math you could audit—yet the results should feel alive, feral, and never the same run twice.
                 <span className="font-semibold text-white"> Deep systems. Strange life.</span>
               </p>
             </div>
           </div>
         </section>
 
-        <section id="proof" className="relative border-b border-white/5 bg-[#030304] py-16 sm:py-20 overflow-hidden">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <section id="proof" className="relative overflow-hidden border-b border-white/5 bg-[#030304] py-16 sm:py-20">
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-10 max-w-3xl">
               <SectionKicker>Current proof</SectionKicker>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">
-                Not just a pitch deck.
-              </h2>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Not just a pitch deck.</h2>
               <p className="mt-4 text-sm leading-7 text-zinc-400">
-                The studio now has playable browser demos, a native Android engine track, and a private Lab workflow that autonomously schedules code bursts, records durable receipts, and actively heals itself.
+                The studio publishes playable browser demos, a native Android technical track, and a read-only Box o' Battles preview. The public layer presents outcomes while decision logic stays with the project that owns it.
               </p>
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
-              {proofStats.map((item, i) => (
-                <motion.div 
+              {proofStats.map((item, index) => (
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  key={item.label} 
-                  className="glass-card rounded-lg p-6 group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(245,158,11,0.05)] hover:border-amber-500/20"
+                  transition={{ delay: index * 0.1 }}
+                  key={item.label}
+                  className="glass-card rounded-lg p-6 transition-all duration-300 hover:scale-[1.02] hover:border-amber-500/20 hover:shadow-[0_0_30px_rgba(245,158,11,0.05)]"
                 >
                   <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-500/80">{item.label}</p>
-                  <p className="mt-3 font-display text-3xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all">{item.value}</p>
+                  <p className="mt-3 font-display text-3xl font-black text-white">{item.value}</p>
                   <p className="mt-3 text-xs leading-6 text-zinc-400">{item.detail}</p>
                 </motion.div>
               ))}
@@ -295,7 +269,7 @@ export default function App() {
                 href="https://bone-league-black-bracket-604506170438.us-east1.run.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card group rounded-lg p-6 transition-all duration-300 hover:border-sky-400/50 hover:shadow-[0_0_40px_rgba(14,165,233,0.15)] hover:bg-sky-950/10"
+                className="glass-card group rounded-lg p-6 transition-all duration-300 hover:border-sky-400/50 hover:bg-sky-950/10 hover:shadow-[0_0_40px_rgba(14,165,233,0.15)]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
@@ -304,14 +278,14 @@ export default function App() {
                   </div>
                   <ExternalLink className="text-sky-300 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" size={18} />
                 </div>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">Sports horror management roguelite with draft pressure, procedural seasons, simulation math, and match reports.</p>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">Sports-horror management roguelite with draft pressure, procedural seasons, simulation math, and match reports.</p>
               </a>
 
               <a
                 href="https://feral-formation-604506170438.us-east1.run.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card group rounded-lg p-6 transition-all duration-300 hover:border-violet-400/50 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)] hover:bg-violet-950/10"
+                className="glass-card group rounded-lg p-6 transition-all duration-300 hover:border-violet-400/50 hover:bg-violet-950/10 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
@@ -325,37 +299,32 @@ export default function App() {
 
               <button
                 type="button"
-                onClick={() => {
-                  setShowBoxOBattles(true);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
-                className="glass-card group rounded-lg p-6 text-left transition-all duration-300 hover:border-amber-400/50 hover:shadow-[0_0_40px_rgba(245,158,11,0.15)] hover:bg-amber-950/10"
+                onClick={() => { setShowBoxOBattles(true); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                className="glass-card group rounded-lg p-6 text-left transition-all duration-300 hover:border-amber-400/50 hover:bg-amber-950/10 hover:shadow-[0_0_40px_rgba(245,158,11,0.15)]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">Interactive Program</p>
-                    <h3 className="mt-2 font-display text-xl font-bold text-white">Box o' Battles Arbiter</h3>
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">Read-only preview</p>
+                    <h3 className="mt-2 font-display text-xl font-bold text-white">Box o' Battles</h3>
                   </div>
                   <Swords className="text-amber-400 transition-transform group-hover:scale-110" size={18} />
                 </div>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">Evidence-gated matchup analysis program. Calculate schema-backed verdicts live in browser.</p>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">A Studios presentation surface for approved, project-owned Arbiter packets. No verdict logic runs in this site.</p>
               </button>
             </div>
           </div>
         </section>
 
-        <section id="slate" className="relative bg-[#030304] py-16 sm:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-ambient opacity-20 pointer-events-none" />
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <section id="slate" className="relative overflow-hidden bg-[#030304] py-16 sm:py-24">
+          <div className="pointer-events-none absolute inset-0 bg-grid-ambient opacity-20" />
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div className="max-w-3xl">
                 <SectionKicker>Project slate</SectionKicker>
-                <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">
-                  Games are the current proof engine.
-                </h2>
+                <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Games are the current proof engine.</h2>
               </div>
               <p className="max-w-md text-sm leading-7 text-zinc-400">
-                Each project explores a different edge of the studio identity: creature growth, tactical pressure, native mobile mutation systems, and sensory-aware family design.
+                Each public project explores a different edge of the studio identity: creature growth, tactical pressure, native mobile systems, evidence-aware analysis, and sensory-aware family design.
               </p>
             </div>
 
@@ -367,32 +336,30 @@ export default function App() {
           </div>
         </section>
 
-        <section id="method" className="relative border-y border-white/5 bg-zinc-950 py-16 sm:py-24 overflow-hidden">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <section id="method" className="relative overflow-hidden border-y border-white/5 bg-zinc-950 py-16 sm:py-24">
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-12">
               <div className="lg:col-span-5">
-                <SectionKicker>Lab-assisted production</SectionKicker>
-                <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">
-                  The Lab is the private operating system.
-                </h2>
+                <SectionKicker>Evidence-led production</SectionKicker>
+                <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Public proof. Private machinery.</h2>
                 <p className="mt-5 text-sm leading-7 text-zinc-400">
-                  Ultramonkeydog Lab is the local command organism used to route projects, preserve memory, validate builds, and turn scattered creative direction into executable work. It is not shipped inside the public games or this website.
+                  Public consumers receive approved project outputs. Internal tooling, credentials, logs, orchestration, and unfinished operating details stay outside the website repository and runtime.
                 </p>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2 lg:col-span-7">
-                {labMethod.map((item, i) => {
+                {publicMethod.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, scale: 0.95 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      key={item.title} 
-                      className="glass-card rounded-lg p-6 group hover:border-amber-500/30 transition-all duration-300"
+                      transition={{ delay: index * 0.1 }}
+                      key={item.title}
+                      className="glass-card rounded-lg p-6 transition-all duration-300 hover:border-amber-500/30"
                     >
-                      <div className="p-2.5 rounded-lg bg-zinc-900/50 border border-white/5 inline-block group-hover:scale-110 transition-transform duration-300 group-hover:bg-amber-500/10">
+                      <div className="inline-block rounded-lg border border-white/5 bg-zinc-900/50 p-2.5">
                         <Icon size={20} className="text-amber-400" />
                       </div>
                       <h3 className="mt-5 font-display text-lg font-bold text-white">{item.title}</h3>
@@ -406,35 +373,29 @@ export default function App() {
             <div className="mt-16">
               <div className="mb-8 max-w-3xl">
                 <SectionKicker>Production roles</SectionKicker>
-                <h3 className="mt-3 font-display text-2xl font-black tracking-tight text-white sm:text-4xl">
-                  AI is leverage. Cody is the taste filter.
-                </h3>
+                <h3 className="mt-3 font-display text-2xl font-black tracking-tight text-white sm:text-4xl">AI is leverage. Cody is the taste filter.</h3>
               </div>
               <MethodGrid />
             </div>
           </div>
         </section>
 
-        <section className="relative border-b border-white/5 bg-[#030304] py-16 sm:py-24 overflow-hidden">
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8 relative z-10">
+        <section className="relative overflow-hidden border-b border-white/5 bg-[#030304] py-16 sm:py-24">
+          <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
             <div className="lg:col-span-4">
-              <div className="glass-card rounded-lg border-amber-500/20 bg-amber-500/5 p-8 relative overflow-hidden group">
+              <div className="glass-card rounded-lg border-amber-500/20 bg-amber-500/5 p-8">
                 <Heart size={26} className="text-amber-400 animate-float" />
-                <h2 className="mt-6 font-display text-2xl font-black tracking-tight text-white">
-                  Built by Cody Haring
-                </h2>
-                <p className="mt-4 text-sm leading-7 text-zinc-400 relative z-10">
+                <h2 className="mt-6 font-display text-2xl font-black tracking-tight text-white">Built by Cody Haring</h2>
+                <p className="mt-4 text-sm leading-7 text-zinc-400">
                   Self-taught creator, studio director, systems designer, and final authority for the worlds, mechanics, tone, and public identity of Ultramonkeydog Studios.
                 </p>
               </div>
             </div>
             <div className="space-y-5 text-sm leading-7 text-zinc-400 lg:col-span-8">
               <SectionKicker>Founder signal</SectionKicker>
-              <p className="font-display text-2xl font-semibold leading-snug text-zinc-100">
-                The goal is to make original games that feel like they came from a person, not a template.
-              </p>
+              <p className="font-display text-2xl font-semibold leading-snug text-zinc-100">The goal is to make original games that feel like they came from a person, not a template.</p>
               <p>
-                The studio pulls from creature obsession, RPG progression, horror energy, anime and manga influence, metal and underground music taste, mobile-first design constraints, and a stubborn preference for systems that have math under the surface.
+                The studio pulls from creature obsession, RPG progression, horror energy, anime and manga influence, metal and underground music taste, mobile-first design constraints, and a stubborn preference for systems with math under the surface.
               </p>
               <p>
                 Saga of an Anxious Fluff carries a dedicated family-facing branch of that work: colorful, sensory-aware, and accessible without becoming shallow.
@@ -447,9 +408,7 @@ export default function App() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-10 max-w-3xl">
               <SectionKicker>Partnership readiness</SectionKicker>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">
-                Support turns proof into production capacity.
-              </h2>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Support turns proof into production capacity.</h2>
               <p className="mt-4 text-sm leading-7 text-zinc-400">
                 Ultramonkeydog Studios is seeking practical support for hardware, tools, original assets, demo polish, and public-facing materials.
               </p>
@@ -457,19 +416,17 @@ export default function App() {
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {FUNDING_NEEDS.map((need, index) => (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  key={need.title} 
-                  className="glass-card rounded-lg p-6 group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(255,255,255,0.03)]"
+                  key={need.title}
+                  className="glass-card rounded-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(255,255,255,0.03)]"
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <span className="rounded bg-zinc-800/80 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-zinc-300 border border-white/10 group-hover:border-white/20 transition-colors">
-                      {need.urgency}
-                    </span>
-                    <span className="font-mono text-[9px] text-zinc-600 group-hover:text-amber-500/70 transition-colors">REQ_{String(index + 1).padStart(2, "0")}</span>
+                    <span className="rounded border border-white/10 bg-zinc-800/80 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-zinc-300">{need.urgency}</span>
+                    <span className="font-mono text-[9px] text-zinc-600">REQ_{String(index + 1).padStart(2, "0")}</span>
                   </div>
                   <h3 className="mt-5 font-display text-base font-bold text-white">{need.title}</h3>
                   <p className="mt-2 text-xs leading-6 text-zinc-400">{need.description}</p>
@@ -480,19 +437,16 @@ export default function App() {
         </section>
 
         <section id="contact" className="border-t border-zinc-900 bg-[#040405] py-16 sm:py-24">
-          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
             <SectionKicker>Contact</SectionKicker>
-            <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">
-              Talk to Ultramonkeydog Studios
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-zinc-400">
-              For funding, collaboration, incubator, grant, playtest, or project inquiries, contact Cody directly.
+            <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Build something strange with us.</h2>
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-zinc-400">
+              Reach out about publishing, grants, collaboration, testing, art, audio, hardware support, or project evaluation.
             </p>
-
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href={`mailto:${emailAddress}`}
-                className="inline-flex w-full items-center justify-center gap-2 rounded bg-zinc-100 px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-950 transition-colors hover:bg-white sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 rounded bg-amber-400 px-5 py-3 font-mono text-xs font-black uppercase tracking-[0.14em] text-zinc-950 transition-transform hover:scale-105"
               >
                 <Mail size={15} />
                 Email Cody
@@ -500,9 +454,9 @@ export default function App() {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="inline-flex w-full items-center justify-center gap-2 rounded border border-zinc-800 bg-zinc-950 px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition-colors hover:border-amber-400 sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 rounded border border-zinc-800 bg-zinc-950 px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-zinc-200 transition-colors hover:border-amber-400 hover:text-white"
               >
-                {copied ? <Check size={15} className="text-emerald-400" /> : <Copy size={15} />}
+                <Copy size={15} />
                 {copied ? "Copied" : "Copy email"}
               </button>
             </div>
@@ -510,11 +464,8 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="border-t border-zinc-900 bg-[#030304] py-6">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-2 px-4 font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-600 sm:flex-row sm:px-6 lg:px-8">
-          <span>© {currentYear} Ultramonkeydog Studios</span>
-          <span>Creator-owned. AI-assisted. Human-directed.</span>
-        </div>
+      <footer className="border-t border-white/5 bg-black px-4 py-8 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-600">
+        © {currentYear} Ultramonkeydog Studios. Public outcomes only.
       </footer>
     </div>
   );
