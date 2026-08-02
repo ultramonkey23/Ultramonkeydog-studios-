@@ -13,6 +13,18 @@ function read(relativePath) {
   return fs.readFileSync(absolute, "utf8");
 }
 
+function requirePattern(source, label, pattern) {
+  if (!pattern.test(source)) {
+    failures.push(`Box card lost packet-driven support/depth truth: ${label}`);
+  }
+}
+
+function forbidPattern(source, label, pattern) {
+  if (pattern.test(source)) {
+    failures.push(`Box card reintroduced hard-coded packet state: ${label}`);
+  }
+}
+
 const truthCheck = read("scripts/public-truth-order-check.mjs");
 const signals = read("src/components/StudioSignals.tsx");
 const signalsCss = read("src/studio-signals.css");
@@ -66,26 +78,72 @@ if ((projectCard.match(/rel="noopener noreferrer"/g) ?? []).length < 3) {
   failures.push("ProjectCard external links are not consistently hardened");
 }
 
-for (const marker of [
-  "comicSupportTone",
-  'Unsupported: "border-red-900 bg-red-200 text-red-950"',
-  'Unknown: "border-zinc-800 bg-zinc-300 text-zinc-950"',
-  "route.highest_depth",
-  "route.anchor_status",
-  "route.essence_status",
-  "highestDepthIndex",
-]) {
-  if (!boxCard.includes(marker)) {
-    failures.push(`Box card lost packet-driven support/depth truth: ${marker}`);
+const boxRequiredPatterns = [
+  {
+    label: "comicSupportTone mapping",
+    pattern: /const\s+comicSupportTone\s*:\s*Record<\s*SupportState\s*,\s*string\s*>\s*=\s*\{/,
+    probe: "const comicSupportTone : Record< SupportState, string > = {",
+  },
+  {
+    label: "Unsupported comic support tone",
+    pattern: /Unsupported\s*:\s*["'][^"']*\bborder-red-900\b[^"']*\bbg-red-200\b[^"']*\btext-red-950\b[^"']*["']/,
+    probe: "Unsupported : 'border-red-900   bg-red-200 text-red-950'",
+  },
+  {
+    label: "Unknown comic support tone",
+    pattern: /Unknown\s*:\s*["'][^"']*\bborder-zinc-800\b[^"']*\bbg-zinc-300\b[^"']*\btext-zinc-950\b[^"']*["']/,
+    probe: "Unknown: 'border-zinc-800 bg-zinc-300   text-zinc-950'",
+  },
+  {
+    label: "route.highest_depth",
+    pattern: /route\s*\.\s*highest_depth/,
+    probe: "route . highest_depth",
+  },
+  {
+    label: "route.anchor_status",
+    pattern: /route\s*\.\s*anchor_status/,
+    probe: "route\n  . anchor_status",
+  },
+  {
+    label: "route.essence_status",
+    pattern: /route\s*\.\s*essence_status/,
+    probe: "route\t. essence_status",
+  },
+  {
+    label: "highestDepthIndex",
+    pattern: /\bhighestDepthIndex\b/,
+    probe: "highestDepthIndex",
+  },
+];
+
+const boxForbiddenPatterns = [
+  {
+    label: "fixed Victory Depth index",
+    pattern: /const\s+reached\s*=\s*index\s*<=\s*3\b/,
+    probe: "const reached = index\n  <=\t3;",
+  },
+  {
+    label: "BOB #003-specific Victory Depth sentence",
+    pattern: /D3\s+Agency\s+reached\.\s*D4\s+Anchor\s+remains\s+separated\s+but\s+not\s+destroyed\.\s*D5\s+Essence\s+remains\s+unresolved\./,
+    probe: "D3 Agency reached.  D4 Anchor remains separated but not destroyed.\nD5 Essence remains unresolved.",
+  },
+  {
+    label: "Confirmed-only comic support ternary",
+    pattern: /beat\s*\.\s*support_state\s*===\s*["']Confirmed["']\s*\?/,
+    probe: "beat . support_state === 'Confirmed'\n  ?",
+  },
+];
+
+for (const { label, pattern, probe } of boxRequiredPatterns) {
+  requirePattern(boxCard, label, pattern);
+  if (!pattern.test(probe)) {
+    failures.push(`Box required-pattern self-test no longer tolerates formatting: ${label}`);
   }
 }
-for (const forbidden of [
-  "const reached = index <= 3",
-  "D3 Agency reached. D4 Anchor remains separated but not destroyed. D5 Essence remains unresolved.",
-  'beat.support_state === "Confirmed" ?',
-]) {
-  if (boxCard.includes(forbidden)) {
-    failures.push(`Box card reintroduced hard-coded packet state: ${forbidden}`);
+for (const { label, pattern, probe } of boxForbiddenPatterns) {
+  forbidPattern(boxCard, label, pattern);
+  if (!pattern.test(probe)) {
+    failures.push(`Box forbidden-pattern self-test no longer detects reformatted regression: ${label}`);
   }
 }
 
@@ -126,5 +184,5 @@ if (failures.length > 0) {
 }
 
 console.log(
-  "Copilot review check passed: live truth scoping, signal actions, Box packet rendering, external-link safety, reduced motion, and pixel scaling remain repaired.",
+  "Copilot review check passed: live truth scoping, signal actions, regex-hardened Box packet rendering, external-link safety, reduced motion, and pixel scaling remain repaired.",
 );
