@@ -1,0 +1,8 @@
+/*
+ * Browser rendering contract for low-resolution procedural fields.
+ * Keep pixelated last so it wins where both crisp-edges and pixelated exist.
+ */
+.procedural-field canvas {
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
