@@ -184,7 +184,7 @@ export default function App() {
         <section id="doorways" className="front-door__section front-door__section--doors">
           <div className="front-door__section-heading">
             <SectionLabel>Pick a door. Something is growling behind each one.</SectionLabel>
-            <h2>This is a whole studio organism—not one game wearing six hats.</h2>
+            <h2>This is a whole multimedia studio—not one game wearing six hats.</h2>
             <p>
               Every property keeps its own identity. The shared signature is Cody’s taste: creatures, pressure, transformation, dark humor, emotional stakes, and systems with real guts.
             </p>
@@ -194,16 +194,12 @@ export default function App() {
             {doorways.map((door, index) => {
               const Icon = door.icon;
               return (
-                <motion.button
+                <button
                   key={door.id}
                   type="button"
                   onClick={() => scrollToSection(door.id)}
                   className="front-door__door"
                   data-tone={door.tone}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.04 }}
                 >
                   <span className="front-door__door-number">0{index + 1}</span>
                   <Icon size={24} />
@@ -211,7 +207,7 @@ export default function App() {
                   <strong>{door.title}</strong>
                   <p>{door.copy}</p>
                   <span className="front-door__door-enter">Enter <ArrowUpRight size={14} /></span>
-                </motion.button>
+                </button>
               );
             })}
           </div>
@@ -227,18 +223,14 @@ export default function App() {
           </div>
 
           <div className="front-door__live-grid">
-            {liveGames.map((project, index) => (
-              <motion.a
+            {liveGames.map((project) => (
+              <a
                 key={project.id}
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="front-door__live-card"
                 data-project={project.id}
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
               >
                 <span className="front-door__live-status">PLAYABLE NOW</span>
                 <h3>{project.title}</h3>
@@ -247,7 +239,7 @@ export default function App() {
                   {project.demoLabel ?? "Play now"}
                   <ExternalLink size={16} />
                 </span>
-              </motion.a>
+              </a>
             ))}
           </div>
         </section>
