@@ -324,6 +324,26 @@
   color: var(--umd-ground);
 }
 
+/* Variable-length evidence cards flow independently instead of stretching into paired rows. */
+#slate .grid.grid-cols-1.gap-8 {
+  display: block;
+  columns: 1;
+  column-gap: 2.5rem;
+}
+
+#slate .grid.grid-cols-1.gap-8 > .project-card {
+  width: 100%;
+  height: auto;
+  margin: 0 0 2.5rem;
+  break-inside: avoid;
+}
+
+@media (min-width: 1024px) {
+  #slate .grid.grid-cols-1.gap-8 {
+    columns: 2;
+  }
+}
+
 @media (max-width: 640px) {
   .project-card {
     box-shadow: 5px 5px 0 color-mix(in srgb, var(--project-pop) 18%, var(--umd-shadow));
