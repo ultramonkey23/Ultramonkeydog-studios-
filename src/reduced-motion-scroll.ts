@@ -21,14 +21,16 @@ export function installReducedMotionScrollGuard() {
   };
 
   const originalScrollTo = window.scrollTo.bind(window);
-  window.scrollTo = ((...args: Parameters<typeof window.scrollTo>) => {
-    if (
-      prefersReducedMotion() &&
-      args.length === 1 &&
-      typeof args[0] === "object"
-    ) {
-      return originalScrollTo({ ...args[0], behavior: "auto" });
+  window.scrollTo = ((
+    leftOrOptions: number | ScrollToOptions,
+    top?: number,
+  ) => {
+    if (typeof leftOrOptions === "object") {
+      return originalScrollTo({
+        ...leftOrOptions,
+        behavior: prefersReducedMotion() ? "auto" : leftOrOptions.behavior,
+      });
     }
-    return originalScrollTo(...args);
+    return originalScrollTo(leftOrOptions, top ?? 0);
   }) as typeof window.scrollTo;
 }
