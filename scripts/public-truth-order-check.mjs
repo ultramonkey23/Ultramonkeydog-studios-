@@ -20,23 +20,123 @@ const contract = fs.existsSync(contractPath)
   ? fs.readFileSync(contractPath, "utf8")
   : "";
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function findMatchingDelimiter(source, openIndex, openChar, closeChar) {
+  let depth = 0;
+  let quote = "";
+  let escaped = false;
+  let lineComment = false;
+  let blockComment = false;
+
+  for (let index = openIndex; index < source.length; index += 1) {
+    const char = source[index];
+    const next = source[index + 1];
+
+    if (lineComment) {
+      if (char === "\n") lineComment = false;
+      continue;
+    }
+    if (blockComment) {
+      if (char === "*" && next === "/") {
+        blockComment = false;
+        index += 1;
+      }
+      continue;
+    }
+    if (quote) {
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (char === "\\") {
+        escaped = true;
+        continue;
+      }
+      if (char === quote) quote = "";
+      continue;
+    }
+
+    if (char === "/" && next === "/") {
+      lineComment = true;
+      index += 1;
+      continue;
+    }
+    if (char === "/" && next === "*") {
+      blockComment = true;
+      index += 1;
+      continue;
+    }
+    if (char === '"' || char === "'" || char === "`") {
+      quote = char;
+      continue;
+    }
+    if (char === openChar) {
+      depth += 1;
+      continue;
+    }
+    if (char === closeChar) {
+      depth -= 1;
+      if (depth === 0) return index;
+    }
+  }
+
+  return -1;
+}
+
 function extractSignalsBlock(source) {
-  const marker = "export const STUDIO_SIGNALS: StudioSignal[] = [";
-  const start = source.indexOf(marker);
-  if (start < 0) return "";
-  const contentStart = start + marker.length;
-  const end = source.indexOf("\n];", contentStart);
-  return end < 0 ? "" : source.slice(contentStart, end);
+  const declaration = /export\s+const\s+STUDIO_SIGNALS\s*:\s*StudioSignal\s*\[\s*\]\s*=\s*\[/m.exec(
+    source,
+  );
+  if (!declaration) return "";
+  const openIndex = declaration.index + declaration[0].lastIndexOf("[");
+  const closeIndex = findMatchingDelimiter(source, openIndex, "[", "]");
+  return closeIndex < 0 ? "" : source.slice(openIndex + 1, closeIndex);
 }
 
 function extractSignalObject(block, id) {
-  const idMarker = `id: "${id}"`;
-  const idIndex = block.indexOf(idMarker);
-  if (idIndex < 0) return "";
-  const objectStart = block.lastIndexOf("  {", idIndex);
-  const objectEnd = block.indexOf("\n  },", idIndex);
-  if (objectStart < 0 || objectEnd < 0) return "";
-  return block.slice(objectStart, objectEnd + 5);
+  const idPattern = new RegExp(
+    `\\bid\\s*:\\s*(["'])${escapeRegExp(id)}\\1`,
+  );
+  const idMatch = idPattern.exec(block);
+  if (!idMatch) return "";
+
+  for (
+    let objectStart = block.lastIndexOf("{", idMatch.index);
+    objectStart >= 0;
+    objectStart = block.lastIndexOf("{", objectStart - 1)
+  ) {
+    const objectEnd = findMatchingDelimiter(block, objectStart, "{", "}");
+    if (objectEnd >= idMatch.index) {
+      return block.slice(objectStart, objectEnd + 1);
+    }
+  }
+
+  return "";
+}
+
+const parserProbe = `
+export const STUDIO_SIGNALS : StudioSignal[] =
+  [
+    {
+      id : 'probe-signal',
+      summary: "delimiter text { stays inside strings }",
+      action: { kind: "section", target: "proof" },
+    },
+    {
+      id: "other-signal",
+      summary: "safe",
+    },
+  ];
+`;
+const parserProbeBlock = extractSignalsBlock(parserProbe);
+const parserProbeObject = extractSignalObject(parserProbeBlock, "probe-signal");
+if (!parserProbeBlock || !parserProbeObject.includes("probe-signal")) {
+  failures.push(
+    "truth-order parser self-test failed for indented arrays or nested signal objects",
+  );
 }
 
 const signalsBlock = extractSignalsBlock(signalsSource);
@@ -98,5 +198,5 @@ if (failures.length > 0) {
 }
 
 console.log(
-  "Public truth order passed: live tested-engine and immutable-card signal objects remain distinct from comments and dead text.",
+  "Public truth order passed: delimiter-aware live signal extraction keeps tested-engine and immutable-card objects distinct from comments and dead text.",
 );
