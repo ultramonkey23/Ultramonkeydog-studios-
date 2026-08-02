@@ -35,9 +35,9 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
     proofCeiling:
       "Generic engine, replay, persistence, HTTP behavior, and remote CI are proven. BOB #003 has not been recomputed through this engine; franchise dogfood, sensitivity analysis, calibration, and independent validation remain open.",
     action: {
-      label: "View Box o' Battles",
+      label: "Open the Box",
       kind: "section",
-      target: "project-card-box-o-battles",
+      target: "box-o-battles",
     },
   },
   {
@@ -59,14 +59,14 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
     project: "Savage Crown",
     date: "2026-08-02",
     state: "TESTED",
-    title: "The player body now responds to the build",
+    title: "Player strain now reads live build stats",
     summary:
-      "Player VisualStrain is derived from live elasticity, entropy, and discordance instead of being pinned to one fixed strain, preserving deterministic body-plan selection.",
+      "The player path derives VisualStrain from live elasticity, entropy, and discordance instead of pinning every run to one fixed strain.",
     sourceLabel: "Savage Crown commit 2f3801b",
     sourceUrl:
       "https://github.com/ultramonkey23/savage-crown/commit/2f3801bdb61650fb8c410e835fba41c7d69d0bdb",
     proofCeiling:
-      "Host tests passed. Same-version device capture and Cody's visual judgment are still required.",
+      "Host tests passed for the current path. Category-dispatched anatomy is a recognized owner-law contradiction under repair; same-version device capture and Cody's visual judgment are also still required.",
     action: {
       label: "View Savage Crown",
       kind: "section",
@@ -85,9 +85,9 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
     proofCeiling:
       "Packet validation and Studios integration are proven. Generation by the current Math Spine, statistical calibration, and independent matchup validation are not.",
     action: {
-      label: "View Box o' Battles",
+      label: "Open the Box",
       kind: "section",
-      target: "project-card-box-o-battles",
+      target: "box-o-battles",
     },
   },
   {
