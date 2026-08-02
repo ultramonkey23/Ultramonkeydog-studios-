@@ -32,6 +32,7 @@ const forbidden = [
   { label: "stale fake-screenshot badge", pattern: /REAL GAME IMAGES COMING SOON/i },
   { label: "retired inline BOB preview", pattern: /BOB_0003_PREVIEW|interface\s+PublicBattlePreview/i },
   { label: "invented Box o' Battles heading", pattern: /Verdict Card, Not Power Meter/i },
+  { label: "retired generic agent dashboard label", pattern: /AI ENGINE CO-PILOT|NODE_0[1-9]/i },
 ];
 
 function collectFiles(entry) {
@@ -112,9 +113,36 @@ if (!contract.includes("File existence is not showcase fitness")) {
   failures.push("docs/VISUAL_TRUTH_CONTRACT.md: asset-promotion correction is missing");
 }
 
+const signalsPath = path.join(ROOT, "src", "data", "studioSignals.ts");
+const signalsComponentPath = path.join(ROOT, "src", "components", "StudioSignals.tsx");
+const methodGridPath = path.join(ROOT, "src", "components", "MethodGrid.tsx");
+const signals = fs.existsSync(signalsPath) ? fs.readFileSync(signalsPath, "utf8") : "";
+const signalsComponent = fs.existsSync(signalsComponentPath) ? fs.readFileSync(signalsComponentPath, "utf8") : "";
+const methodGrid = fs.existsSync(methodGridPath) ? fs.readFileSync(methodGridPath, "utf8") : "";
+
+for (const required of [
+  "WITNESSED_OPERATIONALLY",
+  "TESTED",
+  "INTEGRATED",
+  "CAPTURE_REQUIRED",
+  "proofCeiling",
+  "sourceLabel",
+]) {
+  if (!signals.includes(required)) failures.push(`src/data/studioSignals.ts: missing signal contract marker: ${required}`);
+}
+if (!signalsComponent.includes("Current studio signals") || !signalsComponent.includes("Proof ceiling")) {
+  failures.push("src/components/StudioSignals.tsx: owned-web evidence presentation is missing");
+}
+if (!methodGrid.includes("<StudioSignals />")) {
+  failures.push("src/components/MethodGrid.tsx: studio signals are not rendered");
+}
+if (!signalsComponent.includes("dry-run and human-approved")) {
+  failures.push("src/components/StudioSignals.tsx: Quig publication boundary is missing");
+}
+
 if (failures.length > 0) {
   console.error("Public boundary check failed:\n" + failures.map((failure) => `- ${failure}`).join("\n"));
   process.exit(1);
 }
 
-console.log("Public boundary check passed: owner packet identity, public/private separation, retired-content exclusions, and evidence-ranked visual promotion are intact.");
+console.log("Public boundary check passed: owner packet identity, public/private separation, retired-content exclusions, evidence-ranked visuals, and owned-web studio signals are intact.");
