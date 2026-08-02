@@ -1,194 +1,82 @@
-import {
-  AlertTriangle,
-  CheckCircle2,
-  Database,
-  FileCheck2,
-  GitBranch,
-  Scale,
-  ShieldCheck,
-  Swords,
-  X,
-} from "lucide-react";
+import { useMemo, useState } from "react";
+import { AlertTriangle, Database, GitBranch, ShieldCheck, Swords, X } from "lucide-react";
 
-interface PublicBattlePreview {
-  battleId: string;
-  combatantA: string;
-  combatantB: string;
-  winner: string;
-  margin: string;
-  routeShareA: number;
-  routeShareB: number;
-  confidence: number;
-  victoryClass: string;
-  victoryDepth: string;
-  anchorState: string;
-  hinge: string;
-  sourceState: string;
-  calibrationState: string;
+import packetJson from "../data/box-o-battles/bob-0003-arbiter-card-comic-hud-v0.3.json";
+
+type CardView = "front" | "comic" | "back";
+type SupportState = "Confirmed" | "Plausibly Supported" | "Unsupported" | "Unknown";
+
+interface PublicCardPacket {
+  schema_version: string;
+  packet_role: string;
+  status: string;
+  card: { card_id: string; battle_id: string; issue_number: string; title: string; collector_number: string; source_math_fingerprint: string; source_array_hash: string; source_item_count: number; dimension_count: number; proof_density: number; lineage_parent: string; affine_compile_key: string };
+  identity_bar: { combatant_a: { name: string; version_id: string; version_lock: string }; combatant_b: { name: string; version_id: string; version_lock: string }; scenario_lock: string; calibration: string; math_spine: string; workflow: string };
+  verdict_stage: { recommended_winner: string; margin: string; victory_banner: string; route_scores: { combatant_a: number; combatant_b_network: number }; balance_blade: { label: string; combatant_a_percent: number; combatant_b_percent: number }; proof_seal: { verdict_confidence_percent: number; evidence_confidence_percent: number; calibration: string }; human_ruling: string };
+  hinge_gate: { question: string; support_state: SupportState; impact: string; evidence_ids: string[] };
+  victory_depth: { dimension_order: string[]; routes: Array<{ combatant: string; route_id: string; target: string; requirement_mask: number[]; coverage_vector: number[]; highest_depth: string; victory_class: string; anchor_status: string; essence_status: string; math_fingerprint: string }> };
+  conversion_spines: Array<{ combatant: string; route_id: string; dependency_group: string; label: string; defeat_condition: string; gate_state: string; conversion_score: number; evidence_confidence: number; steps: Array<{ sequence: number; step: string; likelihood: number; support_state: SupportState; effective_strength: number; evidence_ids: string[]; basis: string }> }>;
+  comic_panel_flow: Array<{ beat_id: string; sequence: number; phase: string; actor: string; source_step: string; support_state: SupportState; action_summary: string; evidence_note: string; branch: string }>;
+  issue_variants: Array<{ variant_id: string; winner: string; margin: string; route_share_a_percent: number; route_share_b_percent: number; verdict_confidence_percent: number; starting_distance_m: number }>;
+  card_back: { warning_panel: string; victory_trap: string; anchor_status: string; essence_status: string; ring_status: string };
+  replay_seal: { schema_version: string; math_spine: string; workflow: string; input_fingerprint: string; source_array_hash: string; affine_compile_key: string; shape_rule: string };
+  proof_ceiling: string;
 }
 
-const BOB_0003_PREVIEW: PublicBattlePreview = {
-  battleId: "BOB-0003",
-  combatantA: "Darth Vader",
-  combatantB: "Movie Sauron",
-  winner: "Darth Vader",
-  margin: "Narrow field win",
-  routeShareA: 59.27,
-  routeShareB: 40.73,
-  confidence: 64.53,
-  victoryClass: "FIELD WIN",
-  victoryDepth: "D3 — Agency",
-  anchorState: "Unresolved",
-  hinge: "Sever the Ring hand before the mace converts.",
-  sourceState: "Stored corpus report",
-  calibrationState: "Uncalibrated",
+const packet = packetJson as PublicCardPacket;
+const supportTone: Record<SupportState, string> = {
+  Confirmed: "border-teal-400/35 bg-teal-400/10 text-teal-200",
+  "Plausibly Supported": "border-amber-400/35 bg-amber-400/10 text-amber-200",
+  Unsupported: "border-red-500/35 bg-red-500/10 text-red-200",
+  Unknown: "border-zinc-600 bg-zinc-800/60 text-zinc-300",
 };
+const viewLabels: Record<CardView, string> = { front: "Card Front", comic: "Comic Panel Flow", back: "Card Back" };
+const oneDecimal = (value: number) => value.toFixed(1);
+const shortPhase = (phase: string) => phase.replaceAll("_", " ");
+
+function BalanceBlade({ shareA, shareB }: { shareA: number; shareB: number }) {
+  return <div><div className="mb-2 flex flex-wrap items-center justify-between gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.12em]"><span className="text-red-300">Vader {oneDecimal(shareA)}</span><span className="text-zinc-500">Route share — not win probability</span><span className="text-amber-300">{oneDecimal(shareB)} Sauron</span></div><div className="relative h-4 overflow-hidden border-y border-white/10 bg-black"><div className="absolute inset-y-0 left-0 bg-[linear-gradient(90deg,#450a0a,#dc2626)]" style={{ width: `${shareA}%` }} /><div className="absolute inset-y-0 right-0 bg-[linear-gradient(270deg,#422006,#d97706)]" style={{ width: `${shareB}%` }} /><div className="absolute left-1/2 top-1/2 h-7 w-px -translate-x-1/2 -translate-y-1/2 bg-white/70" /><div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-white/70 bg-black" /></div></div>;
+}
+
+function VictoryDepth() {
+  const route = packet.victory_depth.routes[0];
+  return <div className="rounded-lg border border-white/10 bg-black/35 p-4"><div className="flex flex-wrap items-center justify-between gap-2"><h3 className="font-display text-lg font-black text-white">Victory Depth</h3><span className="font-mono text-[9px] uppercase tracking-[0.14em] text-zinc-500">Target-relative coverage</span></div><div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">{packet.victory_depth.dimension_order.map((dimension, index) => { const value = route.coverage_vector[index]; const required = route.requirement_mask[index] === 1; const reached = index <= 3; return <div key={dimension} className={`relative overflow-hidden rounded border p-3 ${reached ? "border-amber-400/35 bg-amber-400/10" : "border-zinc-800 bg-zinc-950/80"}`}><div className="absolute inset-x-0 bottom-0 bg-amber-400/10" style={{ height: `${Math.min(value, 100)}%` }} /><p className="relative font-mono text-[8px] font-bold uppercase tracking-[0.1em] text-zinc-500">{dimension.replace("_", " — ")}</p><p className={`relative mt-2 font-mono text-lg font-black ${reached ? "text-amber-200" : "text-zinc-500"}`}>{value}</p><p className="relative mt-1 text-[9px] text-zinc-600">{required ? "Required" : "N/A"}</p></div>; })}</div><p className="mt-3 text-xs leading-5 text-zinc-500">D3 Agency reached. D4 Anchor remains separated but not destroyed. D5 Essence remains unresolved.</p></div>;
+}
+
+function CardFront({ variantIndex, setVariantIndex }: { variantIndex: number; setVariantIndex: (index: number) => void }) {
+  const variant = packet.issue_variants[variantIndex];
+  const baseline = variantIndex === 0;
+  return <div className="space-y-5">
+    <section className="overflow-hidden rounded-xl border-2 border-amber-500/35 bg-[#0a0908] shadow-[0_0_80px_rgba(245,158,11,0.09)]">
+      <div className="relative border-b-4 border-black bg-[radial-gradient(circle_at_25%_10%,rgba(220,38,38,0.20),transparent_36%),radial-gradient(circle_at_80%_70%,rgba(217,119,6,0.18),transparent_38%),linear-gradient(135deg,#100d0c,#050505)] p-5 sm:p-7">
+        <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle,#f5deb3_0.6px,transparent_0.8px)] [background-size:6px_6px]" />
+        <div className="relative flex flex-wrap items-start justify-between gap-4"><div><p className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-amber-300">{packet.card.issue_number} · Arbiter Card / Comic HUD v0.3</p><h2 className="mt-2 font-display text-3xl font-black uppercase tracking-tight text-white sm:text-5xl">{packet.identity_bar.combatant_a.name}</h2><p className="font-display text-xl font-black uppercase text-zinc-600 sm:text-2xl">vs {packet.identity_bar.combatant_b.name}</p></div><div className="rounded border border-amber-500/30 bg-black/70 px-3 py-2 text-right"><p className="font-mono text-[8px] uppercase tracking-[0.14em] text-zinc-500">Collector number</p><p className="font-mono text-sm font-black text-amber-200">{packet.card.collector_number}</p></div></div>
+        <div className="relative mt-6 grid min-h-40 grid-cols-[1fr_auto_1fr] items-center gap-3 overflow-hidden border-y-4 border-black bg-black/55 p-4 sm:min-h-52 sm:p-7"><div className="justify-self-start"><div className="h-24 w-20 -skew-x-6 border-l-8 border-red-600 bg-[linear-gradient(135deg,transparent_15%,rgba(220,38,38,0.35)_16%,rgba(0,0,0,0.95)_70%)] shadow-[18px_0_30px_rgba(220,38,38,0.16)] sm:h-36 sm:w-28" /><p className="mt-2 font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-red-300">Red blade · Force control</p></div><div className="font-display text-4xl font-black italic text-white/20 sm:text-7xl">VS</div><div className="justify-self-end text-right"><div className="ml-auto h-24 w-20 skew-x-6 border-r-8 border-amber-600 bg-[linear-gradient(225deg,transparent_15%,rgba(217,119,6,0.34)_16%,rgba(0,0,0,0.95)_70%)] shadow-[-18px_0_30px_rgba(217,119,6,0.16)] sm:h-36 sm:w-28" /><p className="mt-2 font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-amber-300">Black mace · One Ring</p></div></div>
+        <div className="relative mt-6 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-500">{baseline ? "Baseline ruling" : "Issue Variant"}</p><h3 className="mt-1 font-display text-3xl font-black uppercase text-white sm:text-4xl">{variant.winner}</h3><p className="mt-1 font-display text-xl font-black uppercase text-amber-300">{variant.margin} {baseline ? packet.verdict_stage.victory_banner : "stored branch"}</p></div><div className="rounded-full border-4 border-double border-teal-400/40 bg-teal-950/30 px-5 py-4 text-center"><p className="font-mono text-[8px] font-black uppercase tracking-[0.15em] text-teal-300">Proof Seal</p><p className="font-mono text-2xl font-black text-white">{oneDecimal(variant.verdict_confidence_percent)}%</p><p className="font-mono text-[8px] uppercase text-zinc-500">Uncalibrated</p></div></div>
+        <div className="relative mt-5"><BalanceBlade shareA={variant.route_share_a_percent} shareB={variant.route_share_b_percent} /></div>
+      </div>
+    </section>
+    <section className="rounded-xl border border-white/10 bg-[#0a0a0c] p-4 sm:p-5"><div className="flex items-center justify-between gap-3"><div><p className="font-mono text-[9px] font-black uppercase tracking-[0.16em] text-zinc-500">Issue Variants</p><p className="mt-1 text-xs text-zinc-400">Stored outputs only. Selecting a tab does not recompute the fight.</p></div><GitBranch size={18} className="text-amber-300" /></div><div className="mt-4 flex snap-x gap-2 overflow-x-auto pb-2">{packet.issue_variants.map((issue, index) => <button key={issue.variant_id} type="button" onClick={() => setVariantIndex(index)} className={`min-w-48 snap-start rounded border px-3 py-3 text-left transition-colors ${index === variantIndex ? "border-amber-400/50 bg-amber-400/10" : "border-zinc-800 bg-zinc-950 hover:border-zinc-700"}`}><p className={`font-mono text-[8px] font-black uppercase tracking-[0.08em] ${index === variantIndex ? "text-amber-200" : "text-zinc-500"}`}>{issue.variant_id}</p><p className="mt-2 text-xs font-bold text-white">{issue.winner} · {issue.margin}</p></button>)}</div></section>
+    <VictoryDepth />
+    <section className="rounded-xl border-2 border-amber-400/30 bg-[linear-gradient(135deg,rgba(120,53,15,0.18),rgba(0,0,0,0.76))] p-5"><div className="flex flex-wrap items-center justify-between gap-3"><h3 className="font-display text-xl font-black uppercase text-white">Hinge Gate</h3><span className={`rounded border px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.12em] ${supportTone[packet.hinge_gate.support_state]}`}>{packet.hinge_gate.support_state}</span></div><p className="mt-4 font-display text-xl font-semibold leading-snug text-zinc-100 sm:text-2xl">{packet.hinge_gate.question}</p><div className="mt-4 flex flex-wrap gap-2">{packet.hinge_gate.evidence_ids.map((id) => <span key={id} className="rounded bg-black/60 px-2 py-1 font-mono text-[9px] text-zinc-400">{id}</span>)}</div></section>
+  </div>;
+}
+
+function ComicPanelFlow() {
+  return <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3" aria-label="Comic Panel Flow in causal order">{packet.comic_panel_flow.map((beat, index) => <article key={beat.beat_id} className={`relative overflow-hidden border-4 border-black bg-[#ece2ca] p-4 text-black shadow-[7px_7px_0_#000] ${index === 0 || index === 6 ? "md:col-span-2 xl:col-span-1" : ""}`}><div className="absolute inset-0 opacity-[0.16] [background-image:radial-gradient(circle,#000_0.7px,transparent_0.8px)] [background-size:5px_5px]" /><div className="relative"><div className="flex items-center justify-between gap-3"><span className="font-mono text-[9px] font-black uppercase tracking-[0.12em]">Panel {beat.sequence}</span><span className={`rounded border px-2 py-0.5 font-mono text-[8px] font-black uppercase ${beat.support_state === "Confirmed" ? "border-teal-800 bg-teal-100 text-teal-950" : "border-amber-800 bg-amber-100 text-amber-950"}`}>{beat.support_state}</span></div><h3 className="mt-5 font-display text-2xl font-black uppercase leading-none">{shortPhase(beat.phase)}</h3><p className="mt-3 text-sm font-semibold leading-6">{beat.action_summary}</p><div className="mt-5 border-t-4 border-black pt-3"><p className="font-mono text-[9px] font-bold uppercase">{beat.actor} · {beat.source_step}</p><p className="mt-2 text-xs leading-5 text-zinc-700">{beat.evidence_note}</p>{beat.branch !== "none" && <p className="mt-3 border-l-4 border-amber-700 pl-3 text-xs font-bold italic">{beat.branch}</p>}</div></div></article>)}</div>;
+}
+
+function ConversionSpine({ spine }: { spine: PublicCardPacket["conversion_spines"][number] }) {
+  const weakest = useMemo(() => Math.min(...spine.steps.map((step) => step.effective_strength)), [spine]);
+  return <section className="rounded-xl border border-white/10 bg-black/35 p-4 sm:p-5"><div className="flex flex-wrap items-start justify-between gap-3"><div><p className="font-mono text-[9px] font-black uppercase tracking-[0.14em] text-zinc-500">{spine.route_id} · {spine.dependency_group}</p><h3 className="mt-1 font-display text-xl font-black text-white">{spine.combatant}</h3><p className="mt-1 text-sm font-semibold text-zinc-300">{spine.label}</p></div><div className="text-right"><p className="font-mono text-[8px] uppercase text-zinc-500">Route conversion</p><p className="font-mono text-xl font-black text-amber-200">{oneDecimal(spine.conversion_score * 100)}</p></div></div><p className="mt-3 text-xs leading-5 text-zinc-500">{spine.defeat_condition}</p><ol className="mt-5 space-y-2">{spine.steps.map((step) => { const bottleneck = step.effective_strength === weakest; return <li key={`${spine.route_id}-${step.step}`} className={`rounded border p-3 ${bottleneck ? "border-red-500/35 bg-red-500/8" : "border-zinc-800 bg-zinc-950/70"}`}><div className="flex flex-wrap items-center justify-between gap-2"><div className="flex items-center gap-2"><span className="flex h-5 w-5 items-center justify-center rounded-full border border-zinc-700 font-mono text-[8px] text-zinc-400">{step.sequence}</span><span className="font-mono text-[9px] font-black uppercase tracking-[0.12em] text-white">{step.step}</span>{bottleneck && <span className="font-mono text-[8px] font-black uppercase text-red-300">Bottleneck</span>}</div><span className={`rounded border px-2 py-0.5 font-mono text-[8px] font-bold uppercase ${supportTone[step.support_state]}`}>{step.support_state}</span></div><div className="mt-3 h-1.5 overflow-hidden rounded bg-zinc-900"><div className="h-full bg-amber-400" style={{ width: `${step.effective_strength * 100}%` }} /></div><p className="mt-3 text-xs leading-5 text-zinc-400">{step.basis}</p></li>; })}</ol></section>;
+}
+
+function CardBack() {
+  return <div className="space-y-5"><section className="rounded-xl border-4 border-black bg-[#d9cfb8] p-5 text-black shadow-[8px_8px_0_#000]"><div className="grid gap-4 sm:grid-cols-3"><div><p className="font-mono text-[9px] font-black uppercase">Warning panel</p><p className="mt-2 font-display text-xl font-black uppercase">{packet.card_back.warning_panel}</p></div><div><p className="font-mono text-[9px] font-black uppercase">Anchor</p><p className="mt-2 text-sm font-bold">{packet.card_back.anchor_status}</p></div><div><p className="font-mono text-[9px] font-black uppercase">Essence</p><p className="mt-2 text-sm font-bold">{packet.card_back.essence_status}</p></div></div><div className="mt-4 border-t-4 border-black pt-4"><p className="font-display text-lg font-black uppercase text-amber-950">Victory Trap: {packet.card_back.victory_trap}</p></div></section><div className="grid gap-5 xl:grid-cols-2"><ConversionSpine spine={packet.conversion_spines[0]} /><div className="space-y-5"><ConversionSpine spine={packet.conversion_spines[1]} /><ConversionSpine spine={packet.conversion_spines[2]} /></div></div><section className="rounded-xl border border-white/10 bg-zinc-950/80 p-5"><div className="flex items-center gap-2"><Database size={17} className="text-amber-300" /><h3 className="font-display text-lg font-black text-white">Replay Seal</h3></div><dl className="mt-4 grid gap-3 text-xs sm:grid-cols-2"><div className="rounded border border-zinc-800 p-3"><dt className="font-mono text-[8px] uppercase text-zinc-600">Schema</dt><dd className="mt-1 font-mono text-zinc-300">{packet.replay_seal.schema_version}</dd></div><div className="rounded border border-zinc-800 p-3"><dt className="font-mono text-[8px] uppercase text-zinc-600">Math Spine</dt><dd className="mt-1 font-mono text-zinc-300">{packet.replay_seal.math_spine}</dd></div><div className="rounded border border-zinc-800 p-3 sm:col-span-2"><dt className="font-mono text-[8px] uppercase text-zinc-600">Input fingerprint</dt><dd className="mt-1 break-all font-mono text-zinc-300">{packet.replay_seal.input_fingerprint}</dd></div><div className="rounded border border-zinc-800 p-3 sm:col-span-2"><dt className="font-mono text-[8px] uppercase text-zinc-600">Shape rule</dt><dd className="mt-1 leading-5 text-zinc-400">{packet.replay_seal.shape_rule}</dd></div></dl></section><section className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4"><div className="flex items-start gap-3"><AlertTriangle className="mt-0.5 shrink-0 text-amber-300" size={17} /><p className="text-xs leading-6 text-zinc-400">{packet.proof_ceiling}</p></div></section></div>;
+}
 
 export default function BoxOBattlesApp({ onClose }: { onClose?: () => void }) {
-  const packet = BOB_0003_PREVIEW;
-
-  return (
-    <div className="relative mx-auto max-w-6xl rounded-xl border border-amber-500/30 bg-[#070709] p-6 shadow-[0_0_50px_rgba(245,158,11,0.08)] backdrop-blur-xl">
-      <div className="flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-amber-500/50 bg-amber-500/10 text-amber-400">
-            <Swords size={22} />
-          </div>
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-display text-xl font-bold tracking-tight text-white">Box o' Battles</span>
-              <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-emerald-300">
-                Read-only Studios consumer
-              </span>
-            </div>
-            <p className="font-mono text-xs text-zinc-400">Corpus-backed Arbiter packet preview</p>
-          </div>
-        </div>
-
-        {onClose && (
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close Box o' Battles preview"
-            className="flex h-8 w-8 items-center justify-center self-end rounded border border-zinc-800 bg-zinc-900 text-zinc-400 hover:border-zinc-700 hover:text-white sm:self-auto"
-          >
-            <X size={16} />
-          </button>
-        )}
-      </div>
-
-      <div className="mt-5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4">
-        <div className="flex items-start gap-3">
-          <ShieldCheck className="mt-0.5 shrink-0 text-emerald-400" size={18} />
-          <div>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-300">Consumer boundary enforced</p>
-            <p className="mt-1 text-xs leading-6 text-zinc-300">
-              This website does not accept evidence, calculate winners, validate verdict schemas, or import private production infrastructure. The owning Box o' Battles project produces the packet; Studios presents approved output read-only.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-6 grid gap-5 lg:grid-cols-12">
-        <section className="glass-card rounded-lg p-5 lg:col-span-7">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
-            <div>
-              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">{packet.battleId}</p>
-              <h2 className="mt-1 font-display text-2xl font-black text-white">{packet.combatantA} vs {packet.combatantB}</h2>
-            </div>
-            <span className="rounded border border-zinc-700 bg-zinc-900 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-zinc-300">
-              {packet.sourceState}
-            </span>
-          </div>
-
-          <div className="mt-5 rounded-lg border border-amber-500/30 bg-amber-500/10 p-5">
-            <p className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-amber-300">Recommended result</p>
-            <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h3 className="font-display text-3xl font-black text-white">{packet.winner}</h3>
-                <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-amber-200">{packet.margin}</p>
-              </div>
-              <div className="sm:text-right">
-                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-zinc-500">Confidence</p>
-                <p className="font-mono text-2xl font-black text-emerald-400">{packet.confidence.toFixed(2)}%</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-5">
-            <div className="mb-2 flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-[0.12em]">
-              <span className="text-amber-300">{packet.combatantA} {packet.routeShareA.toFixed(2)}</span>
-              <span className="text-zinc-500">Route share — not probability</span>
-              <span className="text-sky-300">{packet.routeShareB.toFixed(2)} {packet.combatantB}</span>
-            </div>
-            <div className="flex h-3 overflow-hidden rounded-full border border-white/10 bg-zinc-950">
-              <div className="bg-amber-500" style={{ width: `${packet.routeShareA}%` }} />
-              <div className="bg-sky-500" style={{ width: `${packet.routeShareB}%` }} />
-            </div>
-          </div>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <div className="rounded border border-zinc-800 bg-zinc-950/70 p-3">
-              <Scale size={16} className="text-amber-400" />
-              <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.14em] text-zinc-500">Victory class</p>
-              <p className="mt-1 text-sm font-bold text-white">{packet.victoryClass}</p>
-            </div>
-            <div className="rounded border border-zinc-800 bg-zinc-950/70 p-3">
-              <GitBranch size={16} className="text-violet-400" />
-              <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.14em] text-zinc-500">Victory depth</p>
-              <p className="mt-1 text-sm font-bold text-white">{packet.victoryDepth}</p>
-            </div>
-            <div className="rounded border border-zinc-800 bg-zinc-950/70 p-3">
-              <Database size={16} className="text-sky-400" />
-              <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.14em] text-zinc-500">Anchor state</p>
-              <p className="mt-1 text-sm font-bold text-white">{packet.anchorState}</p>
-            </div>
-          </div>
-        </section>
-
-        <aside className="space-y-4 lg:col-span-5">
-          <div className="glass-card rounded-lg p-5">
-            <div className="flex items-center gap-2">
-              <FileCheck2 size={17} className="text-amber-400" />
-              <h3 className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-white">Decisive hinge</h3>
-            </div>
-            <p className="mt-4 font-display text-xl font-semibold leading-snug text-zinc-100">{packet.hinge}</p>
-            <p className="mt-3 text-xs leading-6 text-zinc-500">
-              A field win does not claim absolute erasure. The unresolved anchor remains visible instead of being flattened into a bigger winner banner.
-            </p>
-          </div>
-
-          <div className="glass-card rounded-lg p-5">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 size={17} className="text-emerald-400" />
-              <h3 className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-white">Truth state</h3>
-            </div>
-            <dl className="mt-4 space-y-3 text-xs">
-              <div className="flex items-center justify-between gap-4 border-b border-white/5 pb-3">
-                <dt className="text-zinc-500">Packet role</dt>
-                <dd className="text-right font-semibold text-zinc-200">Read-only preview</dd>
-              </div>
-              <div className="flex items-center justify-between gap-4 border-b border-white/5 pb-3">
-                <dt className="text-zinc-500">Calibration</dt>
-                <dd className="text-right font-semibold text-amber-300">{packet.calibrationState}</dd>
-              </div>
-              <div className="flex items-center justify-between gap-4">
-                <dt className="text-zinc-500">Live recomputation</dt>
-                <dd className="text-right font-semibold text-emerald-300">Disabled</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-4">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 shrink-0 text-amber-400" size={17} />
-              <p className="text-xs leading-6 text-zinc-400">
-                This is a corpus preview, not proof that the full Verdict Chamber, Theatre, Forge, replay seal, or public packet pipeline has shipped.
-              </p>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  );
+  const [view, setView] = useState<CardView>("front");
+  const [variantIndex, setVariantIndex] = useState(0);
+  return <div className="relative mx-auto max-w-7xl overflow-hidden rounded-2xl border border-amber-500/30 bg-[#060607] p-4 shadow-[0_0_80px_rgba(245,158,11,0.08)] sm:p-6"><div className="flex flex-col gap-4 border-b border-white/10 pb-5 lg:flex-row lg:items-center lg:justify-between"><div className="flex items-center gap-3"><div className="flex h-11 w-11 items-center justify-center rounded border border-amber-500/45 bg-amber-500/10 text-amber-300"><Swords size={23} /></div><div><div className="flex flex-wrap items-center gap-2"><span className="font-display text-xl font-black text-white">Box o' Battles</span><span className="rounded border border-teal-400/30 bg-teal-400/10 px-2 py-0.5 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-teal-200">{packet.packet_role}</span></div><p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-500">Owner packet: {packet.card.card_id}</p></div></div><div className="flex flex-wrap items-center gap-2">{(Object.keys(viewLabels) as CardView[]).map((key) => <button key={key} type="button" onClick={() => setView(key)} className={`rounded border px-3 py-2 font-mono text-[9px] font-bold uppercase tracking-[0.12em] transition-colors ${view === key ? "border-amber-400/50 bg-amber-400/10 text-amber-200" : "border-zinc-800 bg-zinc-950 text-zinc-500 hover:text-zinc-200"}`}>{viewLabels[key]}</button>)}{onClose && <button type="button" onClick={onClose} aria-label="Close Box o' Battles preview" className="ml-auto flex h-9 w-9 items-center justify-center rounded border border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-white"><X size={16} /></button>}</div></div><div className="mt-5 grid gap-3 rounded-lg border border-teal-400/20 bg-teal-400/5 p-4 sm:grid-cols-[auto_1fr]"><ShieldCheck className="text-teal-300" size={18} /><div><p className="font-mono text-[9px] font-black uppercase tracking-[0.14em] text-teal-200">Consumer boundary enforced</p><p className="mt-1 text-xs leading-5 text-zinc-400">This component imports the immutable BOB #003 packet produced by Box o' Battles. It does not accept evidence, calculate a winner, tune constants, or overwrite Issue Variants.</p></div></div><div className="mt-6">{view === "front" && <CardFront variantIndex={variantIndex} setVariantIndex={setVariantIndex} />}{view === "comic" && <ComicPanelFlow />}{view === "back" && <CardBack />}</div><footer className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.12em] text-zinc-600"><span>{packet.status}</span><span>{packet.schema_version} · {packet.card.collector_number}</span></footer></div>;
 }
