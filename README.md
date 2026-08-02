@@ -1,33 +1,38 @@
 # Ultramonkeydog Studios Website
 
 Public studio website for **Ultramonkeydog Studios**.
+
 *“Strange games. Deep systems. AI-assisted production. Human taste at the wheel.”*
 
-> **Warning:** This is the public studio site codebase, not the private Monkeydog Lab. Do not expose private Lab details here.
+## Public boundary
 
-## Tech Stack
+This repository is a public presentation consumer—not the owner of private studio infrastructure or project decision engines.
+
+- Do not publish credentials, logs, internal routing, orchestration details, private operating architecture, or generated snapshots containing them.
+- Each project owns its runtime and decision logic.
+- Box o' Battles verdicts are produced by the Box o' Battles project and may be presented here only as approved read-only packets.
+- Run `npm run boundary:check` before publishing.
+
+## Tech stack
+
 - Vite
 - React
 - TypeScript
 - Tailwind CSS
 
-## Local Setup
+## Local setup
 
-1. **Install Dependencies:**
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+npm run dev
+```
 
-2. **Environment Variables:**
-   *(Only if local AI integrations are active, though mostly static at present)*
-   Copy `.env.example` to `.env.local` and add any necessary keys.
+## Validation and build
 
-3. **Run Development Server:**
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run boundary:check
+npm run lint
+npm run build
+```
 
-## Validation & Build
-
-- **Lint:** `npm run lint` (uses `tsc --noEmit` to type-check)
-- **Build:** `npm run build` (outputs to `/dist`)
+Generated spatial snapshots are intentionally ignored because they can preserve stale or private page copy. Regenerate them locally for review instead of committing them.
