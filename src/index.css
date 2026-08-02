@@ -5,38 +5,41 @@
   --font-display: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   --font-mono: "Courier New", Courier, ui-monospace, monospace;
 
-  --color-neon-green: #9ba845;
-  --color-electric-blue: #65786b;
-  --color-violet-accent: #72546c;
-  --color-warm-amber: #c1973e;
+  --color-neon-green: #a9d84f;
+  --color-electric-blue: #4bc9d5;
+  --color-violet-accent: #a56fff;
+  --color-warm-amber: #ffc94a;
 
-  --color-zinc-250: #d6c9aa;
-  --color-zinc-350: #aaa087;
-  --color-zinc-405: #8c826f;
-  --color-zinc-450: #746b5c;
-  --color-zinc-650: #4c463d;
-  --color-zinc-850: #211e19;
-  --color-zinc-905: #15120f;
-  --color-amber-450: #d3ad54;
-  --color-amber-550: #9b6d29;
-  --color-sky-450: #72887b;
-  --color-violet-450: #82627b;
+  --color-zinc-250: #f2e0b8;
+  --color-zinc-350: #c5b7ca;
+  --color-zinc-405: #a597ad;
+  --color-zinc-450: #877b91;
+  --color-zinc-650: #55495d;
+  --color-zinc-850: #21192b;
+  --color-zinc-905: #130e19;
+  --color-amber-450: #ffd45d;
+  --color-amber-550: #d8982e;
+  --color-sky-450: #65d6df;
+  --color-violet-450: #bd8cff;
 }
 
 :root {
   color-scheme: dark;
-  --umd-ground: #070604;
-  --umd-deep: #0e0c09;
-  --umd-panel: #15120f;
-  --umd-panel-2: #1d1914;
-  --umd-line: #5d5444;
-  --umd-line-soft: #302a22;
-  --umd-bone: #d2c49f;
-  --umd-ash: #8d826c;
-  --umd-rust: #a63d25;
-  --umd-bile: #a1aa49;
-  --umd-gold: #c49a3d;
-  --umd-shadow: #020201;
+  --umd-ground: #090611;
+  --umd-deep: #100b17;
+  --umd-panel: #17101f;
+  --umd-panel-2: #21162b;
+  --umd-line: #65516f;
+  --umd-line-soft: #34263d;
+  --umd-bone: #f3dfb1;
+  --umd-ash: #b8a8bf;
+  --umd-rust: #ff5b45;
+  --umd-bile: #a9d84f;
+  --umd-gold: #ffc94a;
+  --umd-cyan: #4bc9d5;
+  --umd-violet: #a56fff;
+  --umd-pink: #ff75b5;
+  --umd-shadow: #020103;
 }
 
 * {
@@ -56,15 +59,15 @@ body {
   background-image:
     repeating-linear-gradient(
       0deg,
-      rgba(210, 196, 159, 0.018) 0,
-      rgba(210, 196, 159, 0.018) 1px,
+      rgba(243, 223, 177, 0.025) 0,
+      rgba(243, 223, 177, 0.025) 1px,
       transparent 1px,
       transparent 4px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(166, 61, 37, 0.012) 0,
-      rgba(166, 61, 37, 0.012) 1px,
+      rgba(165, 111, 255, 0.018) 0,
+      rgba(165, 111, 255, 0.018) 1px,
       transparent 1px,
       transparent 7px
     );
@@ -75,7 +78,7 @@ body {
 }
 
 ::selection {
-  background: var(--umd-bone);
+  background: var(--umd-pink);
   color: var(--umd-ground);
 }
 
@@ -90,7 +93,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--umd-line);
+  background: var(--umd-violet);
   border: 2px solid var(--umd-ground);
   border-radius: 0;
 }
@@ -114,7 +117,7 @@ a:focus-visible {
 .glass-card {
   position: relative;
   border: 1px solid var(--umd-line-soft);
-  background: rgba(14, 12, 9, 0.96);
+  background: rgba(16, 11, 23, 0.95);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.72);
@@ -135,18 +138,24 @@ a:focus-visible {
   position: absolute;
   right: 8px;
   bottom: 8px;
-  width: 11px;
-  height: 2px;
-  background: var(--umd-rust);
+  width: 32px;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--umd-rust) 0 8px,
+    var(--umd-gold) 8px 16px,
+    var(--umd-cyan) 16px 24px,
+    var(--umd-violet) 24px 32px
+  );
   content: "";
-  opacity: 0.72;
+  opacity: 0.82;
   pointer-events: none;
 }
 
 .bg-grid-ambient {
   background-image:
-    linear-gradient(90deg, transparent 0 47%, rgba(210, 196, 159, 0.055) 47% 53%, transparent 53%),
-    linear-gradient(0deg, transparent 0 47%, rgba(210, 196, 159, 0.035) 47% 53%, transparent 53%);
+    linear-gradient(90deg, transparent 0 47%, rgba(75, 201, 213, 0.065) 47% 53%, transparent 53%),
+    linear-gradient(0deg, transparent 0 47%, rgba(255, 117, 181, 0.045) 47% 53%, transparent 53%);
   background-size: 31px 31px;
   image-rendering: pixelated;
 }
@@ -161,7 +170,7 @@ a:focus-visible {
   background: none;
   color: var(--umd-bone);
   -webkit-text-fill-color: currentColor;
-  text-shadow: 3px 3px 0 var(--umd-shadow);
+  text-shadow: 3px 3px 0 var(--umd-violet);
 }
 
 .procedural-field {
@@ -198,22 +207,30 @@ a:focus-visible {
 .material-panel::before {
   position: absolute;
   inset: 4px;
-  border-top: 1px solid rgba(210, 196, 159, 0.12);
-  border-left: 1px solid rgba(210, 196, 159, 0.07);
+  border-top: 1px solid rgba(255, 201, 74, 0.18);
+  border-left: 1px solid rgba(75, 201, 213, 0.12);
   content: "";
   pointer-events: none;
 }
 
 .signal-rule {
-  height: 3px;
+  height: 4px;
   background: repeating-linear-gradient(
     90deg,
     var(--umd-rust) 0 12px,
-    transparent 12px 18px,
-    var(--umd-bone) 18px 20px,
-    transparent 20px 31px
+    transparent 12px 16px,
+    var(--umd-gold) 16px 28px,
+    transparent 28px 32px,
+    var(--umd-cyan) 32px 44px,
+    transparent 44px 48px,
+    var(--umd-violet) 48px 60px,
+    transparent 60px 64px,
+    var(--umd-pink) 64px 76px,
+    transparent 76px 80px,
+    var(--umd-bile) 80px 92px,
+    transparent 92px 96px
   );
-  opacity: 0.78;
+  opacity: 0.9;
 }
 
 /* Flatten generic pill and app-dashboard geometry into a shared material language. */
@@ -248,7 +265,7 @@ a:focus-visible {
 @media (hover: hover) {
   .glass-card:hover {
     transform: translate(-2px, -2px) !important;
-    border-color: var(--umd-line);
+    border-color: var(--umd-violet);
     box-shadow: 8px 8px 0 var(--umd-shadow);
   }
 }
