@@ -36,44 +36,58 @@ const styleTheme: Record<
   {
     accent: string;
     signal: string;
+    secondary: string;
+    pop: string;
     structure: string;
     icon: typeof Gamepad2;
   }
 > = {
   "what-we-fed": {
-    accent: "#8f3826",
-    signal: "#b2b94e",
-    structure: "#d1c69f",
+    accent: "#72c85d",
+    signal: "#f16b3b",
+    secondary: "#7d6ad8",
+    pop: "#b6d74d",
+    structure: "#f0dfae",
     icon: Layers3,
   },
   "bone-league": {
-    accent: "#8f2f24",
-    signal: "#a68d4d",
-    structure: "#d5c9ac",
+    accent: "#eb4a3f",
+    signal: "#4dd0d6",
+    secondary: "#8f63d7",
+    pop: "#b7d94a",
+    structure: "#f1deb6",
     icon: Trophy,
   },
   "savage-crown": {
-    accent: "#b6341f",
-    signal: "#d2a43b",
-    structure: "#d1b97e",
+    accent: "#e74d2f",
+    signal: "#ffc94c",
+    secondary: "#3bc7c6",
+    pop: "#c66cff",
+    structure: "#f2d79d",
     icon: Crown,
   },
   "saga-anxious-fluff": {
-    accent: "#c46354",
-    signal: "#7ca77f",
-    structure: "#e1cfac",
+    accent: "#ff7167",
+    signal: "#5cc8ff",
+    secondary: "#b995ff",
+    pop: "#ffd84a",
+    structure: "#fff0c9",
     icon: Sparkles,
   },
   "feral-formation": {
-    accent: "#76526f",
-    signal: "#a4a94b",
-    structure: "#c6c3a1",
+    accent: "#ff9c45",
+    signal: "#48bda0",
+    secondary: "#776bd8",
+    pop: "#d978aa",
+    structure: "#e8e1c2",
     icon: Layers3,
   },
   "box-o-battles": {
-    accent: "#a32f24",
-    signal: "#c09a42",
-    structure: "#d8caa7",
+    accent: "#e94b39",
+    signal: "#ffc447",
+    secondary: "#3f7cff",
+    pop: "#b66ee8",
+    structure: "#f6e4b6",
     icon: Scale,
   },
 };
@@ -126,12 +140,12 @@ function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
         <span className={`project-card__evidence-state ${evidenceTone[item.state]}`}>
           {item.state.replaceAll("_", " ")}
         </span>
-        <h5 className="mt-3 font-display text-base uppercase tracking-[0.02em] text-[var(--umd-bone)]">
+        <h5 className="mt-3 font-display text-base uppercase tracking-[0.02em] text-[var(--project-structure)]">
           {item.title}
         </h5>
         <p className="mt-2 text-xs leading-5 text-[var(--umd-ash)]">{item.note}</p>
         {item.limitation && (
-          <p className="mt-3 border-l-2 border-[var(--project-accent)] pl-3 text-[11px] leading-5 text-[var(--umd-bone)]/70">
+          <p className="mt-3 border-l-2 border-[var(--project-accent)] pl-3 text-[11px] leading-5 text-[var(--umd-bone)]/78">
             {item.limitation}
           </p>
         )}
@@ -139,7 +153,7 @@ function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
           href={item.sourceUrl}
           target="_blank"
           rel="noreferrer"
-          className="mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--umd-ash)] transition-colors hover:text-[var(--project-structure)]"
+          className="mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--umd-ash)] transition-colors hover:text-[var(--project-pop)]"
         >
           <ExternalLink size={12} />
           {item.sourceLabel}
@@ -163,6 +177,12 @@ function ProjectVisualPlate({ project }: { project: Project }) {
           variant={visual.style}
         />
         <div className="project-card__visual-shade" />
+        <div className="project-card__color-tabs" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
 
         <div className="project-card__visual-content">
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -185,12 +205,12 @@ function ProjectVisualPlate({ project }: { project: Project }) {
               {visual.heading}
             </h4>
             <div className="project-card__title-line" />
-            <p className="mt-4 max-w-xl text-xs leading-6 text-[var(--umd-bone)]/72">
+            <p className="mt-4 max-w-xl text-xs leading-6 text-[var(--umd-bone)]/82">
               {visual.note}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {visual.facets.map((facet) => (
-                <span key={facet} className="project-card__facet">
+              {visual.facets.map((facet, index) => (
+                <span key={facet} className="project-card__facet" data-facet-index={index}>
                   {facet}
                 </span>
               ))}
@@ -215,6 +235,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const customProperties = {
     "--project-accent": theme.accent,
     "--project-signal": theme.signal,
+    "--project-secondary": theme.secondary,
+    "--project-pop": theme.pop,
     "--project-structure": theme.structure,
   } as CSSProperties;
 
@@ -233,7 +255,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.title}
             </h3>
             {project.tone && (
-              <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.15em] text-[var(--umd-ash)]">
+              <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.15em] text-[var(--project-signal)]">
                 {project.tone}
               </p>
             )}
@@ -243,13 +265,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </span>
         </div>
 
-        <p className="mt-4 text-sm leading-7 text-[var(--umd-bone)]/78">
+        <p className="mt-4 text-sm leading-7 text-[var(--umd-bone)]/84">
           {project.description}
         </p>
 
         {project.expandedDetails && (
           <div className="project-card__truth mt-5">
-            <div className="flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-[var(--project-signal)]">
+            <div className="flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-[var(--project-pop)]">
               <Activity size={12} />
               Current public truth
             </div>
@@ -265,9 +287,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               Selected systems
             </p>
             <ul className="mt-3 grid gap-2 text-xs leading-5 text-[var(--umd-ash)] sm:grid-cols-2">
-              {project.systemsUnderTheHood.map((system) => (
+              {project.systemsUnderTheHood.map((system, index) => (
                 <li key={system} className="flex gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-[var(--project-accent)]" />
+                  <span
+                    className="mt-2 h-1.5 w-1.5 shrink-0"
+                    style={{
+                      background: index % 3 === 0
+                        ? theme.accent
+                        : index % 3 === 1
+                          ? theme.secondary
+                          : theme.pop,
+                    }}
+                  />
                   <span>{system}</span>
                 </li>
               ))}
@@ -277,8 +308,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         <div className="mt-auto pt-6">
           <div className="flex flex-wrap gap-1.5 border-t border-[var(--umd-line-soft)] pt-4">
-            {project.tags.map((tag) => (
-              <span key={tag} className="project-card__tag">
+            {project.tags.map((tag, index) => (
+              <span key={tag} className="project-card__tag" data-tag-index={index}>
                 {tag}
               </span>
             ))}
