@@ -24,6 +24,23 @@ export interface StudioSignal {
 
 export const STUDIO_SIGNALS: StudioSignal[] = [
   {
+    id: "box-o-battles-math-spine-v0-1",
+    project: "Box o' Battles",
+    date: "2026-08-02",
+    state: "TESTED",
+    title: "The Arbiter no longer guesses",
+    summary:
+      "The legacy evidence-string stub now fails closed. The owner repository evaluates six-step permanent-defeat routes, collapses correlated routes, combines independent groups, separates reliability from route advantage, fingerprints replay inputs, and rejects manipulated outputs.",
+    sourceLabel: "Private owner merge 02b9b84",
+    proofCeiling:
+      "Generic engine, replay, persistence, HTTP behavior, and remote CI are proven. BOB #003 has not been recomputed through this engine; franchise dogfood, sensitivity analysis, calibration, and independent validation remain open.",
+    action: {
+      label: "View Box o' Battles",
+      kind: "section",
+      target: "project-card-box-o-battles",
+    },
+  },
+  {
     id: "studios-visual-evidence-rank",
     project: "Ultramonkeydog Studios",
     date: "2026-08-02",
@@ -61,12 +78,12 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
     project: "Box o' Battles",
     date: "2026-08-02",
     state: "INTEGRATED",
-    title: "BOB #003 has one owner and one public consumer",
+    title: "BOB #003 remains an owner-held immutable card",
     summary:
-      "The validated Arbiter Card packet is owned by Box o' Battles and rendered read-only by Studios with Card Front, Comic Panel Flow, Card Back, Issue Variants, and Replay Seal.",
+      "Box o' Battles owns the validated BOB #003 packet and Studios renders it read-only through Card Front, Comic Panel Flow, Card Back, Issue Variants, and Replay Seal. The packet predates the merged Math Spine core and is not presented as a fresh recomputation.",
     sourceLabel: "BOB #003 public card packet",
     proofCeiling:
-      "Packet validation and Studios integration are proven. Statistical calibration and independent matchup validation are not.",
+      "Packet validation and Studios integration are proven. Generation by the current Math Spine, statistical calibration, and independent matchup validation are not.",
     action: {
       label: "View Box o' Battles",
       kind: "section",
