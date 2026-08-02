@@ -42,54 +42,12 @@ const styleTheme: Record<
     icon: typeof Gamepad2;
   }
 > = {
-  "what-we-fed": {
-    accent: "#72c85d",
-    signal: "#f16b3b",
-    secondary: "#7d6ad8",
-    pop: "#b6d74d",
-    structure: "#f0dfae",
-    icon: Layers3,
-  },
-  "bone-league": {
-    accent: "#eb4a3f",
-    signal: "#4dd0d6",
-    secondary: "#8f63d7",
-    pop: "#b7d94a",
-    structure: "#f1deb6",
-    icon: Trophy,
-  },
-  "savage-crown": {
-    accent: "#e74d2f",
-    signal: "#ffc94c",
-    secondary: "#3bc7c6",
-    pop: "#c66cff",
-    structure: "#f2d79d",
-    icon: Crown,
-  },
-  "saga-anxious-fluff": {
-    accent: "#ff7167",
-    signal: "#5cc8ff",
-    secondary: "#b995ff",
-    pop: "#ffd84a",
-    structure: "#fff0c9",
-    icon: Sparkles,
-  },
-  "feral-formation": {
-    accent: "#ff9c45",
-    signal: "#48bda0",
-    secondary: "#776bd8",
-    pop: "#d978aa",
-    structure: "#e8e1c2",
-    icon: Layers3,
-  },
-  "box-o-battles": {
-    accent: "#e94b39",
-    signal: "#ffc447",
-    secondary: "#3f7cff",
-    pop: "#b66ee8",
-    structure: "#f6e4b6",
-    icon: Scale,
-  },
+  "what-we-fed": { accent: "#72c85d", signal: "#f16b3b", secondary: "#7d6ad8", pop: "#b6d74d", structure: "#f0dfae", icon: Layers3 },
+  "bone-league": { accent: "#eb4a3f", signal: "#4dd0d6", secondary: "#8f63d7", pop: "#b7d94a", structure: "#f1deb6", icon: Trophy },
+  "savage-crown": { accent: "#e74d2f", signal: "#ffc94c", secondary: "#3bc7c6", pop: "#c66cff", structure: "#f2d79d", icon: Crown },
+  "saga-anxious-fluff": { accent: "#ff7167", signal: "#5cc8ff", secondary: "#b995ff", pop: "#ffd84a", structure: "#fff0c9", icon: Sparkles },
+  "feral-formation": { accent: "#ff9c45", signal: "#48bda0", secondary: "#776bd8", pop: "#d978aa", structure: "#e8e1c2", icon: Layers3 },
+  "box-o-battles": { accent: "#e94b39", signal: "#ffc447", secondary: "#3f7cff", pop: "#b66ee8", structure: "#f6e4b6", icon: Scale },
 };
 
 const mediaTone: Record<PublicMediaState, string> = {
@@ -167,71 +125,46 @@ function ProjectVisualPlate({ project }: { project: Project }) {
   const visual = project.publicVisual;
   const theme = styleTheme[visual.style];
   const Icon = theme.icon;
-  const evidence = visual.evidence ?? [];
 
   return (
-    <>
-      <div className="project-card__visual">
-        <ProceduralField
-          seed={`${project.id}:${visual.heading}`}
-          variant={visual.style}
-        />
-        <div className="project-card__visual-shade" />
-        <div className="project-card__color-tabs" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
+    <div className="project-card__visual">
+      <ProceduralField seed={`${project.id}:${visual.heading}`} variant={visual.style} />
+      <div className="project-card__visual-shade" />
+      <div className="project-card__color-tabs" aria-hidden="true"><span /><span /><span /><span /></div>
+
+      <div className="project-card__visual-content">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <span className="project-card__framing-label">
+            <Icon size={13} />
+            Studio-generated framing
+          </span>
+          <span className={`project-card__status ${mediaTone[visual.mediaState]}`}>
+            {visual.mediaLabel}
+          </span>
         </div>
 
-        <div className="project-card__visual-content">
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div>
-              <span className="project-card__framing-label">
-                <Icon size={13} />
-                Studio-generated framing · not project evidence
-              </span>
-              <p className="mt-3 font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-[var(--project-structure)]">
-                {project.title}
-              </p>
-            </div>
-            <span className={`project-card__status ${mediaTone[visual.mediaState]}`}>
-              {visual.mediaLabel}
-            </span>
-          </div>
-
-          <div className="max-w-2xl">
-            <h4 className="font-display text-3xl uppercase leading-[0.92] tracking-[0.01em] text-[var(--project-structure)] sm:text-4xl">
-              {visual.heading}
-            </h4>
-            <div className="project-card__title-line" />
-            <p className="mt-4 max-w-xl text-xs leading-6 text-[var(--umd-bone)]/82">
-              {visual.note}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {visual.facets.map((facet, index) => (
-                <span key={facet} className="project-card__facet" data-facet-index={index}>
-                  {facet}
-                </span>
-              ))}
-            </div>
+        <div className="max-w-2xl">
+          <p className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-[var(--project-signal)]">
+            {project.title}
+          </p>
+          <h4 className="mt-2 font-display text-3xl uppercase leading-[0.92] tracking-[0.01em] text-[var(--project-structure)] sm:text-4xl">
+            {visual.heading}
+          </h4>
+          <div className="project-card__title-line" />
+          <div className="mt-4 flex flex-wrap gap-2">
+            {visual.facets.map((facet, index) => (
+              <span key={facet} className="project-card__facet" data-facet-index={index}>{facet}</span>
+            ))}
           </div>
         </div>
       </div>
-
-      {evidence.length > 0 && (
-        <div className={`mt-4 grid gap-3 ${evidence.length > 1 ? "md:grid-cols-2" : ""}`}>
-          {evidence.map((item) => (
-            <EvidenceCard key={item.id} item={item} />
-          ))}
-        </div>
-      )}
-    </>
+    </div>
   );
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const theme = styleTheme[project.publicVisual.style];
+  const evidence = project.publicVisual.evidence ?? [];
   const customProperties = {
     "--project-accent": theme.accent,
     "--project-signal": theme.signal,
@@ -241,17 +174,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   } as CSSProperties;
 
   return (
-    <article
-      id={`project-card-${project.id}`}
-      className="project-card p-4 sm:p-5"
-      style={customProperties}
-    >
+    <article id={`project-card-${project.id}`} className="project-card p-4 sm:p-5" style={customProperties}>
       <ProjectVisualPlate project={project} />
 
       <div className="project-card__body">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h3 className="font-display text-2xl uppercase leading-none tracking-[0.02em] text-[var(--project-structure)]">
+            <h3 className="font-display text-3xl uppercase leading-none tracking-[0.02em] text-[var(--project-structure)]">
               {project.title}
             </h3>
             {project.tone && (
@@ -260,74 +189,72 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </p>
             )}
           </div>
-          <span className="project-card__status project-card__status--capture w-fit">
-            {project.status}
-          </span>
+          <span className="project-card__status project-card__status--capture w-fit">{project.status}</span>
         </div>
 
-        <p className="mt-4 text-sm leading-7 text-[var(--umd-bone)]/84">
-          {project.description}
-        </p>
+        <p className="mt-4 text-sm leading-7 text-[var(--umd-bone)]/84">{project.description}</p>
 
-        {project.expandedDetails && (
-          <div className="project-card__truth mt-5">
-            <div className="flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-[var(--project-pop)]">
-              <Activity size={12} />
-              Current public truth
+        <div className="mt-5 flex flex-wrap gap-1.5">
+          {project.tags.slice(0, 4).map((tag, index) => (
+            <span key={tag} className="project-card__tag" data-tag-index={index}>{tag}</span>
+          ))}
+        </div>
+
+        {project.demoUrl && (
+          <a
+            href={project.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card__action mt-5"
+          >
+            <Gamepad2 size={15} />
+            {project.demoLabel ?? "Open project"}
+            <ArrowUpRight size={14} />
+          </a>
+        )}
+
+        <details className="project-card__drawer">
+          <summary>
+            <span><Activity size={13} /> Open the creature file</span>
+            <small>Receipts, limitations & guts</small>
+          </summary>
+
+          <div className="project-card__drawer-body">
+            <div className="project-card__truth">
+              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-[var(--project-pop)]">
+                Current public truth
+              </p>
+              <p className="mt-2 text-xs leading-6 text-[var(--umd-ash)]">
+                {project.expandedDetails ?? project.publicVisual.note}
+              </p>
             </div>
-            <p className="mt-2 text-xs leading-6 text-[var(--umd-ash)]">
-              {project.expandedDetails}
-            </p>
-          </div>
-        )}
 
-        {project.systemsUnderTheHood && project.systemsUnderTheHood.length > 0 && (
-          <div className="mt-5 border-t border-[var(--umd-line-soft)] pt-5">
-            <p className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-[var(--project-signal)]">
-              Selected systems
-            </p>
-            <ul className="mt-3 grid gap-2 text-xs leading-5 text-[var(--umd-ash)] sm:grid-cols-2">
-              {project.systemsUnderTheHood.map((system, index) => (
-                <li key={system} className="flex gap-2">
-                  <span
-                    className="mt-2 h-1.5 w-1.5 shrink-0"
-                    style={{
-                      background: index % 3 === 0
-                        ? theme.accent
-                        : index % 3 === 1
-                          ? theme.secondary
-                          : theme.pop,
-                    }}
-                  />
-                  <span>{system}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+            {evidence.length > 0 && (
+              <div className={`mt-4 grid gap-3 ${evidence.length > 1 ? "md:grid-cols-2" : ""}`}>
+                {evidence.map((item) => <EvidenceCard key={item.id} item={item} />)}
+              </div>
+            )}
 
-        <div className="mt-auto pt-6">
-          <div className="flex flex-wrap gap-1.5 border-t border-[var(--umd-line-soft)] pt-4">
-            {project.tags.map((tag, index) => (
-              <span key={tag} className="project-card__tag" data-tag-index={index}>
-                {tag}
-              </span>
-            ))}
+            {project.systemsUnderTheHood && project.systemsUnderTheHood.length > 0 && (
+              <div className="mt-5 border-t border-[var(--umd-line-soft)] pt-5">
+                <p className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-[var(--project-signal)]">
+                  Open the guts
+                </p>
+                <ul className="mt-3 grid gap-2 text-xs leading-5 text-[var(--umd-ash)] sm:grid-cols-2">
+                  {project.systemsUnderTheHood.map((system, index) => (
+                    <li key={system} className="flex gap-2">
+                      <span
+                        className="mt-2 h-1.5 w-1.5 shrink-0"
+                        style={{ background: index % 3 === 0 ? theme.accent : index % 3 === 1 ? theme.secondary : theme.pop }}
+                      />
+                      <span>{system}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
-
-          {project.demoUrl && (
-            <a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-card__action mt-5"
-            >
-              <Gamepad2 size={15} />
-              {project.demoLabel ?? "Open project"}
-              <ArrowUpRight size={14} />
-            </a>
-          )}
-        </div>
+        </details>
       </div>
     </article>
   );

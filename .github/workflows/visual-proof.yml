@@ -6,6 +6,7 @@ on:
       - "src/**"
       - "public/**"
       - "scripts/copilot-review-check.mjs"
+      - "scripts/private-production-boundary-check.mjs"
       - "scripts/public-boundary-check.mjs"
       - "scripts/public-truth-order-check.mjs"
       - "scripts/spatial-scan.mjs"

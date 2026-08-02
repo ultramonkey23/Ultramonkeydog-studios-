@@ -5,91 +5,98 @@
 
 import { useState } from "react";
 import {
-  Activity,
+  ArrowDown,
   ArrowUpRight,
-  ChevronRight,
+  BookOpen,
+  Brush,
   Copy,
   ExternalLink,
-  FileCheck,
+  FlaskConical,
+  Gamepad2,
+  Headphones,
   Heart,
   Mail,
-  Shield,
+  Radio,
+  Skull,
   Sparkles,
   Swords,
+  WandSparkles,
 } from "lucide-react";
 import { motion } from "motion/react";
-import { SpeedInsights } from '@vercel/speed-insights/react';
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import { FUNDING_NEEDS, PROJECTS_DATA } from "./data";
+import BoxOBattlesApp from "./components/BoxOBattlesApp";
 import MethodGrid from "./components/MethodGrid";
 import ProjectCard from "./components/ProjectCard";
-import BoxOBattlesApp from "./components/BoxOBattlesApp";
+import "./studio-front-door.css";
 
 const emailAddress = "haringcody@gmail.com";
 
-const proofStats = [
+const doorways = [
   {
-    label: "Public releases",
-    value: "2 live + 1 preview",
-    detail: "Bone League and Feral Formation are browser demos. Box o' Battles is exposed here as a read-only corpus preview.",
+    id: "play",
+    eyebrow: "Grab the controller",
+    title: "Games that grow teeth",
+    copy: "Creature RPGs, tactical roguelites, sports horror, native mobile experiments, and systems that keep mutating after the first run.",
+    icon: Gamepad2,
+    tone: "rust",
   },
   {
-    label: "Native game proof",
-    value: "Android + C++",
-    detail: "Savage Crown advances through project-owned native tests, Android builds, and separately scoped device validation.",
+    id: "worlds",
+    eyebrow: "Follow the spoor",
+    title: "Worlds, creatures & stories",
+    copy: "Lore, characters, strange ecologies, family-facing adventures, horror energy, anime influence, and story systems built to survive more than one medium.",
+    icon: BookOpen,
+    tone: "violet",
   },
   {
-    label: "Public evidence",
-    value: "Claim-scoped",
-    detail: "Published claims stay tied to the owning project's demos, tests, release notes, or approved public packets.",
+    id: "sights-sounds",
+    eyebrow: "Turn it up",
+    title: "Art, sound & motion",
+    copy: "Creature silhouettes, visual identities, music direction, trailers, performance, animation, and media built around the emotional life of each property.",
+    icon: Headphones,
+    tone: "cyan",
   },
-];
+  {
+    id: "box-o-battles",
+    eyebrow: "Settle it properly",
+    title: "Box o’ Battles",
+    copy: "A comic-book matchup arena where versions are locked, evidence matters, and permanent victory beats loud power-scaling nonsense.",
+    icon: Swords,
+    tone: "gold",
+  },
+  {
+    id: "experiments",
+    eyebrow: "Pull the weird lever",
+    title: "Tools, research & experiments",
+    copy: "Public-facing creative tools, evidence-aware systems, prototypes, and unusual production experiments—shown through what they make, not private machinery.",
+    icon: FlaskConical,
+    tone: "bile",
+  },
+  {
+    id: "contact",
+    eyebrow: "Join the trouble",
+    title: "Collaboration & support",
+    copy: "Publishing, grants, art, audio, testing, hardware, partnerships, and collaborators who want to help strange work become real.",
+    icon: Heart,
+    tone: "pink",
+  },
+] as const;
 
-const studioSignals = [
-  "Creator-owned multimedia studio",
-  "Systems-heavy games first",
-  "AI-assisted production, human direction",
-  "Public outcomes, private infrastructure",
-];
-
-const publicMethod = [
-  {
-    title: "Evidence before claims",
-    copy: "A public claim should point to a project-owned demo, test, release note, or approved output packet.",
-    icon: FileCheck,
-  },
-  {
-    title: "Clean project boundaries",
-    copy: "Each game and tool owns its runtime, data, and decision logic. The studio site presents approved outputs instead of copying engines.",
-    icon: Shield,
-  },
-  {
-    title: "Private means private",
-    copy: "Credentials, logs, internal routing, orchestration details, and production machinery do not belong in this public repository.",
-    icon: Shield,
-  },
-  {
-    title: "Human release authority",
-    copy: "AI accelerates implementation and review. Cody owns taste, interpretation, scope, and the final decision to publish.",
-    icon: Sparkles,
-  },
-];
+const liveGames = PROJECTS_DATA.filter((project) => project.demoUrl);
+const studioProjects = PROJECTS_DATA.filter((project) => project.id !== "box-o-battles");
 
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function SectionKicker({ children }: { children: string }) {
-  return (
-    <span className="text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400">
-      {children}
-    </span>
-  );
+function SectionLabel({ children }: { children: string }) {
+  return <p className="front-door__label">{children}</p>;
 }
 
 export default function App() {
   const [copied, setCopied] = useState(false);
-  const [showBoxOBattles, setShowBoxOBattles] = useState(false);
   const currentYear = new Date().getFullYear();
 
   const handleCopyEmail = async () => {
@@ -103,370 +110,264 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030304] text-zinc-300 antialiased selection:bg-amber-400 selection:text-zinc-950">
-      <header className="sticky top-0 z-50 border-b border-white/5 glass">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            onClick={() => {
-              setShowBoxOBattles(false);
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="group flex items-center gap-3 text-left"
-          >
-            <span className="relative flex h-9 w-9 items-center justify-center rounded border border-zinc-800 bg-zinc-950 text-amber-400 transition-colors group-hover:border-amber-500/70">
-              <Activity size={18} strokeWidth={2.5} />
-              <span className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            </span>
-            <span>
-              <span className="block font-display text-sm font-bold uppercase tracking-[0.18em] text-white">Ultramonkeydog</span>
-              <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-500">Studios</span>
-            </span>
-          </button>
+    <div className="front-door min-h-screen text-[var(--umd-bone)] antialiased">
+      <header className="front-door__nav">
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="front-door__brand"
+          aria-label="Back to the top"
+        >
+          <span className="front-door__brand-mark" aria-hidden="true">
+            <Skull size={20} />
+            <Sparkles size={10} />
+          </span>
+          <span>
+            <strong>Ultramonkeydog</strong>
+            <small>Studios</small>
+          </span>
+        </button>
 
-          <nav className="hidden items-center gap-5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500 md:flex">
-            <button onClick={() => { setShowBoxOBattles(false); scrollToSection("proof"); }} className="transition-colors hover:text-white">Proof</button>
-            <button onClick={() => { setShowBoxOBattles(false); scrollToSection("slate"); }} className="transition-colors hover:text-white">Slate</button>
-            <button onClick={() => { setShowBoxOBattles(false); scrollToSection("method"); }} className="transition-colors hover:text-white">Method</button>
-            <button onClick={() => { setShowBoxOBattles(false); scrollToSection("support"); }} className="transition-colors hover:text-white">Support</button>
-            <button
-              onClick={() => { setShowBoxOBattles(true); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className="flex items-center gap-1.5 rounded border border-amber-500/40 bg-amber-500/10 px-2.5 py-1 font-bold text-amber-300 transition-colors hover:border-amber-400 hover:text-white"
-            >
-              <Swords size={12} />
-              Box o' Battles
-            </button>
-          </nav>
-
-          <button
-            type="button"
-            onClick={() => scrollToSection("contact")}
-            className="inline-flex items-center gap-2 rounded border border-zinc-800 bg-zinc-950 px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-200 transition-colors hover:border-amber-400 hover:text-white"
-          >
-            <Mail size={12} />
-            Contact
-          </button>
-        </div>
+        <nav aria-label="Primary navigation" className="front-door__nav-links">
+          <button type="button" onClick={() => scrollToSection("play")}>Play</button>
+          <button type="button" onClick={() => scrollToSection("worlds")}>Worlds</button>
+          <button type="button" onClick={() => scrollToSection("box-o-battles")}>The Box</button>
+          <button type="button" onClick={() => scrollToSection("contact")}>Contact</button>
+        </nav>
       </header>
 
       <main>
-        {showBoxOBattles && (
-          <section id="box-o-battles-section" className="relative border-b border-amber-500/20 bg-[#050507] py-12">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <BoxOBattlesApp onClose={() => setShowBoxOBattles(false)} />
-            </div>
-          </section>
-        )}
+        <section className="front-door__hero" aria-labelledby="studio-title">
+          <div className="front-door__hero-art" aria-hidden="true">
+            <div className="front-door__moon" />
+            <div className="front-door__beast front-door__beast--one" />
+            <div className="front-door__beast front-door__beast--two" />
+            <div className="front-door__hero-sparks" />
+          </div>
 
-        <section className="relative isolate overflow-hidden border-b border-white/5 bg-[#030304]">
-          <img
-            data-spatial-ignore="true"
-            src="/assets/studio-forge-hero.png"
-            alt="Dark game production workstation with creature diagrams, tactical screens, and studio tools"
-            className="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,3,4,0.98)_0%,rgba(3,3,4,0.85)_42%,rgba(3,3,4,0.4)_74%,rgba(3,3,4,0.8)_100%)]" />
-          <div className="absolute inset-0 bg-grid-ambient opacity-30" />
-
-          <div className="relative mx-auto grid min-h-[78svh] max-w-7xl items-center px-4 py-20 sm:px-6 lg:grid-cols-12 lg:px-8">
+          <div className="front-door__hero-copy">
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="max-w-4xl lg:col-span-8"
+              transition={{ duration: 0.5 }}
             >
-              <div className="mb-6 inline-flex items-center gap-2 rounded border border-amber-500/30 bg-zinc-950/75 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-amber-300">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                Public studio signal — August 2026
-              </div>
-
-              <h1 className="pb-2 font-display text-5xl font-black leading-[0.92] tracking-tight text-white text-gradient-silver sm:text-7xl lg:text-8xl">
-                Ultramonkeydog Studios
+              <p className="front-door__hero-kicker">
+                Creator-owned multimedia weirdness from Cody Haring
+              </p>
+              <h1 id="studio-title">
+                WE MAKE
+                <span>WEIRD THINGS</span>
+                THAT BITE BACK.
               </h1>
-
-              <p className="mt-6 max-w-3xl font-display text-xl font-medium leading-snug text-zinc-100 sm:text-2xl">
-                Strange games. Deep systems. AI-assisted production. Human taste at the wheel.
+              <p className="front-door__hero-lede">
+                Games, creatures, stories, art, sound, strange tools, and matchup chaos—built with deep systems and a very human sense of taste.
               </p>
 
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-zinc-300 sm:text-base">
-                A creator-owned multimedia forge building creature RPGs, tactical roguelites, native mobile systems, and dark digital worlds. This public site shows released work and approved project evidence—not private production infrastructure.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <button
-                  type="button"
-                  onClick={() => scrollToSection("slate")}
-                  className="inline-flex items-center justify-center gap-2 rounded bg-gradient-to-br from-zinc-100 to-zinc-300 px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-950 transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
-                >
-                  Enter the slate
-                  <ChevronRight size={15} />
+              <div className="front-door__hero-actions">
+                <button type="button" onClick={() => scrollToSection("play")} className="front-door__button front-door__button--primary">
+                  Play something
+                  <Gamepad2 size={17} />
                 </button>
-                <button
-                  type="button"
-                  onClick={() => scrollToSection("proof")}
-                  className="glass inline-flex items-center justify-center gap-2 rounded px-6 py-3 font-mono text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition-all hover:border-amber-400 hover:bg-white/5 hover:text-white"
-                >
-                  See current proof
-                  <ArrowUpRight size={15} />
+                <button type="button" onClick={() => scrollToSection("doorways")} className="front-door__button front-door__button--ghost">
+                  Explore the studio
+                  <ArrowDown size={17} />
                 </button>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-2">
-                {studioSignals.map((signal) => (
-                  <span key={signal} className="rounded border border-zinc-800 bg-zinc-950/70 px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-400">
-                    {signal}
-                  </span>
-                ))}
               </div>
             </motion.div>
           </div>
-        </section>
 
-        <section id="doctrine" className="relative overflow-hidden border-b border-white/5 bg-[#040405] py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl border-l-2 border-amber-500/70 pl-5 sm:pl-8">
-              <SectionKicker>The studio doctrine</SectionKicker>
-              <h2 className="mt-3 font-display text-4xl font-black leading-[0.95] tracking-tight text-white sm:text-6xl">
-                Deterministic Systems.<br />
-                <span className="text-amber-300">Living Results.</span>
-              </h2>
-              <p className="mt-5 max-w-3xl font-display text-lg leading-relaxed text-zinc-200 sm:text-xl">
-                Every outcome is math you could audit—yet the results should feel alive, feral, and never the same run twice.
-                <span className="font-semibold text-white"> Deep systems. Strange life.</span>
-              </p>
-            </div>
+          <div className="front-door__ticker" aria-label="Studio creative lanes">
+            <span>CREATURES</span><i>◆</i><span>ROGUELITES</span><i>◆</i><span>HORROR</span><i>◆</i><span>STORIES</span><i>◆</i><span>ART</span><i>◆</i><span>SOUND</span><i>◆</i><span>WEIRD TOOLS</span><i>◆</i><span>BIG FIGHTS</span>
           </div>
         </section>
 
-        <section id="proof" className="relative overflow-hidden border-b border-white/5 bg-[#030304] py-16 sm:py-20">
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-10 max-w-3xl">
-              <SectionKicker>Current proof</SectionKicker>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Not just a pitch deck.</h2>
-              <p className="mt-4 text-sm leading-7 text-zinc-400">
-                The studio publishes playable browser demos, a native Android technical track, and a read-only Box o' Battles preview. The public layer presents outcomes while decision logic stays with the project that owns it.
-              </p>
-            </div>
+        <section id="doorways" className="front-door__section front-door__section--doors">
+          <div className="front-door__section-heading">
+            <SectionLabel>Pick a door. Something is growling behind each one.</SectionLabel>
+            <h2>This is a whole multimedia studio—not one game wearing six hats.</h2>
+            <p>
+              Every property keeps its own identity. The shared signature is Cody’s taste: creatures, pressure, transformation, dark humor, emotional stakes, and systems with real guts.
+            </p>
+          </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
-              {proofStats.map((item, index) => (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  key={item.label}
-                  className="glass-card rounded-lg p-6 transition-all duration-300 hover:scale-[1.02] hover:border-amber-500/20 hover:shadow-[0_0_30px_rgba(245,158,11,0.05)]"
+          <div className="front-door__door-grid">
+            {doorways.map((door, index) => {
+              const Icon = door.icon;
+              return (
+                <button
+                  key={door.id}
+                  type="button"
+                  onClick={() => scrollToSection(door.id)}
+                  className="front-door__door"
+                  data-tone={door.tone}
                 >
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-500/80">{item.label}</p>
-                  <p className="mt-3 font-display text-3xl font-black text-white">{item.value}</p>
-                  <p className="mt-3 text-xs leading-6 text-zinc-400">{item.detail}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-6 grid gap-4 lg:grid-cols-3">
-              <a
-                href="https://bone-league-black-bracket-604506170438.us-east1.run.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass-card group rounded-lg p-6 transition-all duration-300 hover:border-sky-400/50 hover:bg-sky-950/10 hover:shadow-[0_0_40px_rgba(14,165,233,0.15)]"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-sky-300">Playable now</p>
-                    <h3 className="mt-2 font-display text-xl font-bold text-white">Bone League</h3>
-                  </div>
-                  <ExternalLink className="text-sky-300 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" size={18} />
-                </div>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">Sports-horror management roguelite with draft pressure, procedural seasons, simulation math, and match reports.</p>
-              </a>
-
-              <a
-                href="https://feral-formation-604506170438.us-east1.run.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass-card group rounded-lg p-6 transition-all duration-300 hover:border-violet-400/50 hover:bg-violet-950/10 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-violet-300">Playable now</p>
-                    <h3 className="mt-2 font-display text-xl font-bold text-white">Feral Formation</h3>
-                  </div>
-                  <ExternalLink className="text-violet-300 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" size={18} />
-                </div>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">Tactical creature-party roguelite with clash windows, adaptive rewards, and matchup forecasting.</p>
-              </a>
-
-              <button
-                type="button"
-                onClick={() => { setShowBoxOBattles(true); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                className="glass-card group rounded-lg p-6 text-left transition-all duration-300 hover:border-amber-400/50 hover:bg-amber-950/10 hover:shadow-[0_0_40px_rgba(245,158,11,0.15)]"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">Read-only preview</p>
-                    <h3 className="mt-2 font-display text-xl font-bold text-white">Box o' Battles</h3>
-                  </div>
-                  <Swords className="text-amber-400 transition-transform group-hover:scale-110" size={18} />
-                </div>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">A Studios presentation surface for approved, project-owned Arbiter packets. No verdict logic runs in this site.</p>
-              </button>
-            </div>
+                  <span className="front-door__door-number">0{index + 1}</span>
+                  <Icon size={24} />
+                  <small>{door.eyebrow}</small>
+                  <strong>{door.title}</strong>
+                  <p>{door.copy}</p>
+                  <span className="front-door__door-enter">Enter <ArrowUpRight size={14} /></span>
+                </button>
+              );
+            })}
           </div>
         </section>
 
-        <section id="slate" className="relative overflow-hidden bg-[#030304] py-16 sm:py-24">
-          <div className="pointer-events-none absolute inset-0 bg-grid-ambient opacity-20" />
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-              <div className="max-w-3xl">
-                <SectionKicker>Project slate</SectionKicker>
-                <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Games are the current proof engine.</h2>
-              </div>
-              <p className="max-w-md text-sm leading-7 text-zinc-400">
-                Each public project explores a different edge of the studio identity: creature growth, tactical pressure, native mobile systems, evidence-aware analysis, and sensory-aware family design.
-              </p>
+        <section id="play" className="front-door__section front-door__section--play">
+          <div className="front-door__section-heading front-door__section-heading--split">
+            <div>
+              <SectionLabel>Playable right now</SectionLabel>
+              <h2>Stop reading. Go make a bad decision.</h2>
             </div>
+            <p>Two browser games are live. They are not trailers, mockups, or “coming soon” buttons.</p>
+          </div>
 
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
-              {PROJECTS_DATA.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
+          <div className="front-door__live-grid">
+            {liveGames.map((project) => (
+              <a
+                key={project.id}
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="front-door__live-card"
+                data-project={project.id}
+              >
+                <span className="front-door__live-status">PLAYABLE NOW</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <span className="front-door__play-link">
+                  {project.demoLabel ?? "Play now"}
+                  <ExternalLink size={16} />
+                </span>
+              </a>
+            ))}
           </div>
         </section>
 
-        <section id="method" className="relative overflow-hidden border-y border-white/5 bg-zinc-950 py-16 sm:py-24">
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-12">
-              <div className="lg:col-span-5">
-                <SectionKicker>Evidence-led production</SectionKicker>
-                <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Public proof. Private machinery.</h2>
-                <p className="mt-5 text-sm leading-7 text-zinc-400">
-                  Public consumers receive approved project outputs. Internal tooling, credentials, logs, orchestration, and unfinished operating details stay outside the website repository and runtime.
-                </p>
-              </div>
-
-              <div className="grid gap-4 md:grid-cols-2 lg:col-span-7">
-                {publicMethod.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      key={item.title}
-                      className="glass-card rounded-lg p-6 transition-all duration-300 hover:border-amber-500/30"
-                    >
-                      <div className="inline-block rounded-lg border border-white/5 bg-zinc-900/50 p-2.5">
-                        <Icon size={20} className="text-amber-400" />
-                      </div>
-                      <h3 className="mt-5 font-display text-lg font-bold text-white">{item.title}</h3>
-                      <p className="mt-2 text-xs leading-6 text-zinc-400">{item.copy}</p>
-                    </motion.div>
-                  );
-                })}
-              </div>
+        <section id="worlds" className="front-door__section front-door__section--worlds">
+          <div className="front-door__section-heading front-door__section-heading--split">
+            <div>
+              <SectionLabel>Games, worlds & creatures in motion</SectionLabel>
+              <h2>The current menagerie.</h2>
             </div>
+            <p>
+              Open a card for the deeper receipts. The front stays focused on the hook, the mood, and why the thing exists.
+            </p>
+          </div>
 
-            <div className="mt-16">
-              <div className="mb-8 max-w-3xl">
-                <SectionKicker>Production roles</SectionKicker>
-                <h3 className="mt-3 font-display text-2xl font-black tracking-tight text-white sm:text-4xl">AI is leverage. Cody is the taste filter.</h3>
-              </div>
+          <div className="front-door__project-grid">
+            {studioProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <section id="sights-sounds" className="front-door__section front-door__section--media">
+          <div className="front-door__media-copy">
+            <SectionLabel>Beyond the controller</SectionLabel>
+            <h2>Worlds should have a voice, a pulse, a silhouette, and something nasty lurking off-screen.</h2>
+            <p>
+              Ultramonkeydog Studios is built to stretch across writing, creature design, visual art, music and sound direction, trailers, performance, comics, and interactive experiments—without forcing every property into the same costume.
+            </p>
+            <div className="front-door__media-tags" aria-label="Studio media lanes">
+              <span><BookOpen size={15} /> Storyworlds</span>
+              <span><Brush size={15} /> Visual art</span>
+              <span><Headphones size={15} /> Music & sound</span>
+              <span><Radio size={15} /> Video & performance</span>
+              <span><WandSparkles size={15} /> Cross-media experiments</span>
+            </div>
+          </div>
+          <div className="front-door__media-poster" aria-hidden="true">
+            <span>MAKE IT</span>
+            <strong>STRANGER</strong>
+            <i>THEN MAKE IT WORK</i>
+          </div>
+        </section>
+
+        <section id="box-o-battles" className="front-door__section front-door__section--box">
+          <div className="front-door__box-intro">
+            <div>
+              <SectionLabel>Featured studio attraction</SectionLabel>
+              <h2>PUT ’EM IN THE BOX.</h2>
+            </div>
+            <p>
+              Box o’ Battles is part comic issue, part evidence hearing, part “who actually stays dead?” machine. This website displays the owner-held card packet without pretending to recalculate it.
+            </p>
+          </div>
+          <BoxOBattlesApp />
+        </section>
+
+        <section id="experiments" className="front-door__section front-door__section--experiments">
+          <div className="front-door__section-heading front-door__section-heading--split">
+            <div>
+              <SectionLabel>Fresh mutations & honest receipts</SectionLabel>
+              <h2>The cool stuff stays up front. The proof room is still here.</h2>
+            </div>
+            <p>
+              Open this only when you want current evidence, production capabilities, ownership boundaries, and the exact limits of what has been proven.
+            </p>
+          </div>
+
+          <details className="front-door__guts">
+            <summary>
+              <span><FlaskConical size={18} /> Open the studio guts</span>
+              <small>Signals, receipts, production lanes, and proof ceilings</small>
+            </summary>
+            <div className="front-door__guts-body">
               <MethodGrid />
             </div>
-          </div>
+          </details>
         </section>
 
-        <section className="relative overflow-hidden border-b border-white/5 bg-[#030304] py-16 sm:py-24">
-          <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
-            <div className="lg:col-span-4">
-              <div className="glass-card rounded-lg border-amber-500/20 bg-amber-500/5 p-8">
-                <Heart size={26} className="text-amber-400 animate-float" />
-                <h2 className="mt-6 font-display text-2xl font-black tracking-tight text-white">Built by Cody Haring</h2>
-                <p className="mt-4 text-sm leading-7 text-zinc-400">
-                  Self-taught creator, studio director, systems designer, and final authority for the worlds, mechanics, tone, and public identity of Ultramonkeydog Studios.
-                </p>
-              </div>
-            </div>
-            <div className="space-y-5 text-sm leading-7 text-zinc-400 lg:col-span-8">
-              <SectionKicker>Founder signal</SectionKicker>
-              <p className="font-display text-2xl font-semibold leading-snug text-zinc-100">The goal is to make original games that feel like they came from a person, not a template.</p>
+        <section className="front-door__section front-door__section--cody">
+          <div className="front-door__cody-card">
+            <div>
+              <SectionLabel>Built by Cody Haring</SectionLabel>
+              <h2>One human director. A lot of monsters.</h2>
               <p>
-                The studio pulls from creature obsession, RPG progression, horror energy, anime and manga influence, metal and underground music taste, mobile-first design constraints, and a stubborn preference for systems with math under the surface.
+                Cody creates the concepts, chooses the systems, pushes the weirdness, rejects the generic parts, judges the feel, and decides what earns release. The studio pulls from death metal, underground hip hop, RPGs, roguelites, anime, manga, horror, creature obsession, and family life.
               </p>
-              <p>
-                Saga of an Anxious Fluff carries a dedicated family-facing branch of that work: colorful, sensory-aware, and accessible without becoming shallow.
-              </p>
+            </div>
+            <div className="front-door__cody-stamp" aria-hidden="true">
+              <span>HUMAN</span>
+              <strong>TASTE</strong>
+              <span>FINAL BOSS</span>
             </div>
           </div>
         </section>
 
-        <section id="support" className="bg-[#070708] py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-10 max-w-3xl">
-              <SectionKicker>Partnership readiness</SectionKicker>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Support turns proof into production capacity.</h2>
-              <p className="mt-4 text-sm leading-7 text-zinc-400">
-                Ultramonkeydog Studios is seeking practical support for hardware, tools, original assets, demo polish, and public-facing materials.
-              </p>
-            </div>
-
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {FUNDING_NEEDS.map((need, index) => (
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  key={need.title}
-                  className="glass-card rounded-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(255,255,255,0.03)]"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="rounded border border-white/10 bg-zinc-800/80 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-zinc-300">{need.urgency}</span>
-                    <span className="font-mono text-[9px] text-zinc-600">REQ_{String(index + 1).padStart(2, "0")}</span>
-                  </div>
-                  <h3 className="mt-5 font-display text-base font-bold text-white">{need.title}</h3>
-                  <p className="mt-2 text-xs leading-6 text-zinc-400">{need.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="border-t border-zinc-900 bg-[#040405] py-16 sm:py-24">
-          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-            <SectionKicker>Contact</SectionKicker>
-            <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-white sm:text-5xl">Build something strange with us.</h2>
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-zinc-400">
-              Reach out about publishing, grants, collaboration, testing, art, audio, hardware support, or project evaluation.
+        <section id="contact" className="front-door__section front-door__section--contact">
+          <div className="front-door__contact-copy">
+            <SectionLabel>Collaboration, publishing & support</SectionLabel>
+            <h2>Help strange work become dangerous.</h2>
+            <p>
+              Reach out about publishing, grants, art, audio, testing, hardware, original assets, partnerships, or helping one of these worlds grow a sharper set of teeth.
             </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a
-                href={`mailto:${emailAddress}`}
-                className="inline-flex items-center justify-center gap-2 rounded bg-amber-400 px-5 py-3 font-mono text-xs font-black uppercase tracking-[0.14em] text-zinc-950 transition-transform hover:scale-105"
-              >
-                <Mail size={15} />
-                Email Cody
+            <div className="front-door__contact-actions">
+              <a href={`mailto:${emailAddress}`} className="front-door__button front-door__button--primary">
+                <Mail size={16} /> Email Cody
               </a>
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                className="inline-flex items-center justify-center gap-2 rounded border border-zinc-800 bg-zinc-950 px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-zinc-200 transition-colors hover:border-amber-400 hover:text-white"
-              >
-                <Copy size={15} />
-                {copied ? "Copied" : "Copy email"}
+              <button type="button" onClick={handleCopyEmail} className="front-door__button front-door__button--ghost">
+                <Copy size={16} /> {copied ? "Copied" : "Copy email"}
               </button>
             </div>
+          </div>
+
+          <div className="front-door__support-grid">
+            {FUNDING_NEEDS.slice(0, 6).map((need) => (
+              <article key={need.title}>
+                <small>{need.urgency}</small>
+                <strong>{need.title}</strong>
+                <p>{need.description}</p>
+              </article>
+            ))}
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-white/5 bg-black px-4 py-8 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-600">
-        © {currentYear} Ultramonkeydog Studios. Public outcomes only.
+      <footer className="front-door__footer">
+        <span>© {currentYear} Ultramonkeydog Studios</span>
+        <span>Games · Worlds · Art · Sound · Strange Experiments</span>
       </footer>
 
       <SpeedInsights />

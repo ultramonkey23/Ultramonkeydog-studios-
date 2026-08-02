@@ -1,0 +1,861 @@
+.front-door {
+  background: var(--umd-ground);
+  color: var(--umd-bone);
+}
+
+.front-door button,
+.front-door a {
+  font: inherit;
+}
+
+.front-door__nav {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 4px solid var(--umd-rust);
+  background: rgba(9, 6, 17, 0.96);
+  padding: 0.65rem clamp(1rem, 4vw, 3rem);
+}
+
+.front-door__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 0;
+  background: transparent;
+  color: var(--umd-bone);
+  text-align: left;
+  cursor: pointer;
+}
+
+.front-door__brand-mark {
+  position: relative;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 2px solid var(--umd-gold);
+  background: var(--umd-rust);
+  color: var(--umd-ground);
+  box-shadow: 4px 4px 0 var(--umd-violet);
+  transform: rotate(-3deg);
+}
+
+.front-door__brand-mark svg:last-child {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
+.front-door__brand strong,
+.front-door__brand small {
+  display: block;
+  text-transform: uppercase;
+}
+
+.front-door__brand strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+}
+
+.front-door__brand small {
+  color: var(--umd-gold);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+}
+
+.front-door__nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.front-door__nav-links button {
+  min-height: 40px;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 0.55rem 0.8rem;
+  color: var(--umd-ash);
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.front-door__nav-links button:hover {
+  border-color: var(--umd-line);
+  color: var(--umd-bone);
+}
+
+.front-door__hero {
+  position: relative;
+  min-height: calc(100svh - 64px);
+  overflow: hidden;
+  border-bottom: 8px solid var(--umd-gold);
+  background:
+    linear-gradient(100deg, #090611 0 46%, rgba(9, 6, 17, 0.72) 62%, rgba(9, 6, 17, 0.08) 100%),
+    linear-gradient(160deg, #31121e, #100b17 54%, #172c35);
+}
+
+.front-door__hero::before {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 7px, rgba(243, 223, 177, 0.035) 7px 8px),
+    repeating-linear-gradient(90deg, transparent 0 23px, rgba(75, 201, 213, 0.025) 23px 24px);
+  content: "";
+  pointer-events: none;
+}
+
+.front-door__hero-art {
+  position: absolute;
+  inset: 0 0 0 44%;
+  overflow: hidden;
+}
+
+.front-door__moon {
+  position: absolute;
+  top: 12%;
+  right: 13%;
+  width: min(34vw, 430px);
+  aspect-ratio: 1;
+  border: 8px solid var(--umd-ground);
+  border-radius: 50% !important;
+  background:
+    radial-gradient(circle at 35% 32%, #fff0b8 0 4%, transparent 5%),
+    radial-gradient(circle at 68% 58%, rgba(60, 23, 29, 0.48) 0 12%, transparent 13%),
+    var(--umd-gold);
+  box-shadow: 20px 20px 0 rgba(165, 111, 255, 0.45);
+}
+
+.front-door__beast {
+  position: absolute;
+  bottom: -5%;
+  background: var(--umd-ground);
+  filter: drop-shadow(10px 0 0 rgba(255, 91, 69, 0.46));
+}
+
+.front-door__beast--one {
+  right: 9%;
+  width: min(30vw, 360px);
+  height: min(56vw, 560px);
+  clip-path: polygon(44% 0, 58% 14%, 73% 8%, 70% 28%, 88% 40%, 75% 51%, 91% 70%, 66% 67%, 73% 100%, 35% 100%, 42% 72%, 16% 77%, 29% 55%, 7% 42%, 34% 31%, 27% 11%);
+  transform: rotate(2deg);
+}
+
+.front-door__beast--two {
+  right: 39%;
+  width: min(17vw, 210px);
+  height: min(32vw, 340px);
+  opacity: 0.82;
+  clip-path: polygon(42% 0, 58% 19%, 79% 11%, 68% 38%, 95% 48%, 70% 59%, 79% 100%, 24% 100%, 33% 63%, 0 52%, 30% 39%, 18% 14%);
+  transform: rotate(-5deg);
+}
+
+.front-door__hero-sparks {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, var(--umd-pink) 0 2px, transparent 3px),
+    radial-gradient(circle, var(--umd-cyan) 0 2px, transparent 3px),
+    radial-gradient(circle, var(--umd-bile) 0 1px, transparent 2px);
+  background-position: 12% 26%, 77% 20%, 52% 72%;
+  background-size: 83px 91px, 119px 107px, 67px 73px;
+  opacity: 0.5;
+}
+
+.front-door__hero-copy {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  width: min(100%, 1320px);
+  min-height: calc(100svh - 110px);
+  align-items: center;
+  margin: 0 auto;
+  padding: clamp(4rem, 9vw, 8rem) clamp(1rem, 4vw, 3rem) 7rem;
+}
+
+.front-door__hero-copy > div {
+  max-width: 760px;
+}
+
+.front-door__hero-kicker,
+.front-door__label {
+  width: fit-content;
+  border-left: 6px solid var(--umd-rust);
+  background: var(--umd-panel);
+  padding: 0.48rem 0.68rem;
+  color: var(--umd-gold);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.front-door__hero h1 {
+  margin: 1.15rem 0 0;
+  max-width: 780px;
+  font-family: var(--font-display);
+  font-size: clamp(4.2rem, 9vw, 9rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.77;
+  text-transform: uppercase;
+}
+
+.front-door__hero h1 span {
+  display: block;
+  width: fit-content;
+  margin: 0.12em 0;
+  background: var(--umd-rust);
+  padding: 0.08em 0.09em 0.02em;
+  color: var(--umd-ground);
+  box-shadow: 8px 8px 0 var(--umd-gold);
+  transform: rotate(-1deg);
+}
+
+.front-door__hero-lede {
+  max-width: 640px;
+  margin-top: 2rem;
+  color: var(--umd-bone);
+  font-size: clamp(1rem, 1.7vw, 1.32rem);
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.front-door__hero-actions,
+.front-door__contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.front-door__button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 2px solid var(--umd-bone);
+  padding: 0.8rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.front-door__button--primary {
+  background: var(--umd-gold);
+  color: var(--umd-ground);
+  box-shadow: 5px 5px 0 var(--umd-rust);
+}
+
+.front-door__button--ghost {
+  background: var(--umd-ground);
+  color: var(--umd-bone);
+  box-shadow: 5px 5px 0 var(--umd-violet);
+}
+
+.front-door__button:hover {
+  transform: translate(2px, -2px);
+}
+
+.front-door__ticker {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  overflow: hidden;
+  border-top: 4px solid var(--umd-ground);
+  background: var(--umd-bile);
+  padding: 0.75rem 1rem;
+  color: var(--umd-ground);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  white-space: nowrap;
+}
+
+.front-door__ticker i {
+  color: var(--umd-rust);
+  font-style: normal;
+}
+
+.front-door__section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem);
+}
+
+.front-door__section > * {
+  width: min(100%, 1320px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.front-door__section-heading {
+  max-width: 860px;
+  margin-bottom: 2.5rem;
+}
+
+.front-door__section-heading--split,
+.front-door__box-intro {
+  display: grid;
+  max-width: 1320px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  gap: 2rem;
+  align-items: end;
+}
+
+.front-door__section-heading h2,
+.front-door__box-intro h2,
+.front-door__media-copy h2,
+.front-door__cody-card h2,
+.front-door__contact-copy h2 {
+  margin: 0.8rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 5.5vw, 5.8rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.front-door__section-heading > p,
+.front-door__section-heading--split > p,
+.front-door__box-intro > p,
+.front-door__media-copy > p,
+.front-door__cody-card p,
+.front-door__contact-copy > p {
+  color: var(--umd-ash);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.front-door__section--doors {
+  background: linear-gradient(135deg, rgba(255, 91, 69, 0.08), transparent 36%), var(--umd-deep);
+}
+
+.front-door__door-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 2px solid var(--umd-line);
+  border-left: 2px solid var(--umd-line);
+}
+
+.front-door__door {
+  --door-color: var(--umd-rust);
+  position: relative;
+  min-height: 300px;
+  border: 0;
+  border-right: 2px solid var(--umd-line);
+  border-bottom: 2px solid var(--umd-line);
+  background: var(--umd-panel);
+  padding: 1.5rem;
+  color: var(--umd-bone);
+  text-align: left;
+  cursor: pointer;
+}
+
+.front-door__door[data-tone="violet"] { --door-color: var(--umd-violet); }
+.front-door__door[data-tone="cyan"] { --door-color: var(--umd-cyan); }
+.front-door__door[data-tone="gold"] { --door-color: var(--umd-gold); }
+.front-door__door[data-tone="bile"] { --door-color: var(--umd-bile); }
+.front-door__door[data-tone="pink"] { --door-color: var(--umd-pink); }
+
+.front-door__door::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44%;
+  height: 10px;
+  background: var(--door-color);
+  content: "";
+}
+
+.front-door__door:hover {
+  z-index: 2;
+  background: color-mix(in srgb, var(--door-color) 13%, var(--umd-panel));
+  box-shadow: 9px 9px 0 var(--door-color);
+  transform: translate(-3px, -3px);
+}
+
+.front-door__door-number {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--door-color);
+  font-family: var(--font-display);
+  font-size: 2rem;
+}
+
+.front-door__door > svg {
+  color: var(--door-color);
+}
+
+.front-door__door small,
+.front-door__door strong,
+.front-door__door p {
+  display: block;
+}
+
+.front-door__door small {
+  margin-top: 2.6rem;
+  color: var(--door-color);
+  font-family: var(--font-mono);
+  font-size: 0.57rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.front-door__door strong {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.front-door__door p {
+  margin-top: 0.85rem;
+  color: var(--umd-ash);
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+
+.front-door__door-enter {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--door-color);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.front-door__section--play {
+  border-top: 7px solid var(--umd-cyan);
+  border-bottom: 7px solid var(--umd-pink);
+  background: #0d1118;
+}
+
+.front-door__live-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.front-door__live-card {
+  position: relative;
+  display: flex;
+  min-height: 0;
+  height: auto;
+  flex-direction: column;
+  overflow: visible;
+  border: 4px solid var(--umd-ground);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 22px, rgba(243, 223, 177, 0.04) 22px 24px),
+    linear-gradient(145deg, #183b43, #100b17 57%, #4a183d);
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem) 2rem;
+  color: var(--umd-bone);
+  text-decoration: none;
+  box-shadow: 12px 12px 0 var(--umd-cyan);
+}
+
+.front-door__live-card[data-project="feral-formation"] {
+  background:
+    repeating-linear-gradient(45deg, transparent 0 25px, rgba(243, 223, 177, 0.04) 25px 27px),
+    linear-gradient(145deg, #40214c, #100b17 58%, #64401c);
+  box-shadow: 12px 12px 0 var(--umd-violet);
+}
+
+.front-door__live-card:hover {
+  transform: translate(4px, -4px) rotate(-0.4deg);
+}
+
+.front-door__live-status {
+  display: inline-block;
+  width: fit-content;
+  border: 2px solid var(--umd-bile);
+  background: var(--umd-ground);
+  padding: 0.4rem 0.55rem;
+  color: var(--umd-bile);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+
+.front-door__live-card h3 {
+  max-width: 620px;
+  margin-top: 2.8rem;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 0.84;
+  text-transform: uppercase;
+}
+
+.front-door__live-card p {
+  max-width: 580px;
+  margin-top: 1.2rem;
+  color: var(--umd-bone);
+  line-height: 1.7;
+}
+
+.front-door__play-link {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  border-bottom: 4px solid var(--umd-gold);
+  padding-top: 2rem;
+  padding-bottom: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.front-door__section--worlds {
+  background: linear-gradient(165deg, transparent 0 72%, rgba(165, 111, 255, 0.08) 72%), var(--umd-ground);
+}
+
+.front-door__project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.front-door__section--media {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: 3rem;
+  align-items: center;
+  border-top: 8px solid var(--umd-violet);
+  border-bottom: 8px solid var(--umd-cyan);
+  background: repeating-linear-gradient(90deg, transparent 0 31px, rgba(255, 201, 74, 0.045) 31px 33px), #1a1023;
+}
+
+.front-door__media-copy,
+.front-door__media-poster,
+.front-door__contact-copy,
+.front-door__support-grid {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+}
+
+.front-door__media-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.front-door__media-tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--umd-line);
+  background: var(--umd-ground);
+  padding: 0.62rem 0.75rem;
+  color: var(--umd-bone);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.front-door__media-poster {
+  display: flex;
+  min-height: 440px;
+  flex-direction: column;
+  justify-content: center;
+  border: 8px solid var(--umd-ground);
+  background:
+    radial-gradient(circle at 65% 30%, var(--umd-gold) 0 14%, transparent 15%),
+    linear-gradient(135deg, var(--umd-rust) 0 38%, var(--umd-pink) 38% 62%, var(--umd-cyan) 62% 100%);
+  padding: 2rem;
+  color: var(--umd-ground);
+  box-shadow: 14px 14px 0 var(--umd-bile);
+  transform: rotate(1.5deg);
+}
+
+.front-door__media-poster span,
+.front-door__media-poster strong,
+.front-door__media-poster i {
+  display: block;
+  font-family: var(--font-display);
+  line-height: 0.84;
+  text-transform: uppercase;
+}
+
+.front-door__media-poster span { font-size: clamp(2rem, 5vw, 4rem); }
+.front-door__media-poster strong { font-size: clamp(4rem, 8vw, 8rem); }
+.front-door__media-poster i { margin-top: 1rem; font-size: clamp(1.5rem, 3vw, 3rem); font-style: normal; }
+
+.front-door__section--box {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255, 91, 69, 0.14), transparent 26%),
+    radial-gradient(circle at 88% 12%, rgba(255, 201, 74, 0.13), transparent 25%),
+    #080708;
+}
+
+.front-door__box-intro {
+  margin-bottom: 2.4rem;
+}
+
+.front-door__box-intro h2 {
+  color: var(--umd-gold);
+  text-shadow: 5px 5px 0 var(--umd-rust);
+}
+
+.front-door__section--box .snap-x {
+  flex-wrap: wrap;
+  overflow-x: visible;
+  scroll-snap-type: none;
+}
+
+.front-door__section--box .snap-start {
+  flex: 1 1 12rem;
+  min-width: min(100%, 12rem);
+  scroll-snap-align: none;
+}
+
+.front-door__section--experiments {
+  border-top: 7px solid var(--umd-bile);
+  background: var(--umd-deep);
+}
+
+.front-door__guts {
+  border: 2px solid var(--umd-line);
+  background: var(--umd-ground);
+  box-shadow: 9px 9px 0 var(--umd-bile);
+}
+
+.front-door__guts summary {
+  display: flex;
+  min-height: 86px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.front-door__guts summary::-webkit-details-marker { display: none; }
+
+.front-door__guts summary > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+.front-door__guts summary small {
+  color: var(--umd-ash);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.front-door__guts[open] summary {
+  border-bottom: 4px solid var(--umd-bile);
+  background: color-mix(in srgb, var(--umd-bile) 9%, var(--umd-ground));
+}
+
+.front-door__guts-body {
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.front-door__section--cody {
+  background: linear-gradient(90deg, rgba(255, 91, 69, 0.1), transparent 48%), #140d18;
+}
+
+.front-door__cody-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3rem;
+  align-items: center;
+  border-left: 12px solid var(--umd-rust);
+  padding: 2rem;
+  background: var(--umd-panel);
+  box-shadow: 12px 12px 0 var(--umd-violet);
+}
+
+.front-door__cody-card > div:first-child {
+  max-width: 850px;
+}
+
+.front-door__cody-stamp {
+  display: grid;
+  width: 220px;
+  aspect-ratio: 1;
+  place-content: center;
+  border: 8px double var(--umd-gold);
+  border-radius: 50% !important;
+  color: var(--umd-gold);
+  text-align: center;
+  transform: rotate(-7deg);
+}
+
+.front-door__cody-stamp span,
+.front-door__cody-stamp strong {
+  display: block;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.front-door__cody-stamp strong { font-size: 2.5rem; line-height: 0.9; }
+.front-door__cody-stamp span { font-size: 1.1rem; }
+
+.front-door__section--contact {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 3rem;
+  align-items: start;
+  border-top: 8px solid var(--umd-pink);
+  background: repeating-linear-gradient(135deg, transparent 0 34px, rgba(75, 201, 213, 0.04) 34px 36px), #08060d;
+}
+
+.front-door__support-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.front-door__support-grid article {
+  border: 1px solid var(--umd-line);
+  border-top: 6px solid var(--umd-cyan);
+  background: var(--umd-panel);
+  padding: 1rem;
+}
+
+.front-door__support-grid article:nth-child(2n) { border-top-color: var(--umd-violet); }
+.front-door__support-grid article:nth-child(3n) { border-top-color: var(--umd-rust); }
+
+.front-door__support-grid small,
+.front-door__support-grid strong {
+  display: block;
+}
+
+.front-door__support-grid small {
+  color: var(--umd-gold);
+  font-family: var(--font-mono);
+  font-size: 0.53rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.front-door__support-grid strong {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.front-door__support-grid p {
+  margin-top: 0.5rem;
+  color: var(--umd-ash);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.front-door__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 4px solid var(--umd-gold);
+  background: var(--umd-shadow);
+  padding: 1.4rem clamp(1rem, 4vw, 3rem);
+  color: var(--umd-ash);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 980px) {
+  .front-door__hero-art { left: 30%; }
+  .front-door__door-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .front-door__section--media,
+  .front-door__section--contact { grid-template-columns: 1fr; }
+  .front-door__project-grid { grid-template-columns: 1fr; }
+  .front-door__media-poster { max-width: 680px; }
+}
+
+@media (max-width: 720px) {
+  .front-door__nav-links button:nth-child(2) { display: none; }
+  .front-door__hero-art { inset: 30% -35% 0 30%; opacity: 0.58; }
+  .front-door__hero { background: linear-gradient(180deg, rgba(9, 6, 17, 0.93), rgba(9, 6, 17, 0.68)), var(--umd-deep); }
+  .front-door__hero h1 { font-size: clamp(3.7rem, 18vw, 6.4rem); }
+  .front-door__ticker { justify-content: flex-start; }
+  .front-door__ticker span:nth-of-type(n+6),
+  .front-door__ticker i:nth-of-type(n+6) { display: none; }
+  .front-door__section-heading--split,
+  .front-door__box-intro { grid-template-columns: 1fr; align-items: start; }
+  .front-door__live-grid,
+  .front-door__door-grid,
+  .front-door__support-grid { grid-template-columns: 1fr; }
+  .front-door__media-copy { overflow: hidden; }
+  .front-door__media-copy h2 { max-width: 100%; font-size: clamp(2.15rem, 10.5vw, 3.25rem); overflow-wrap: anywhere; }
+  .front-door__media-copy > p { max-width: 100%; overflow-wrap: anywhere; }
+  .front-door__section--box .snap-start { flex-basis: 100%; min-width: 100%; }
+  .front-door__cody-card { grid-template-columns: 1fr; }
+  .front-door__cody-stamp { width: 170px; }
+  .front-door__guts summary { align-items: flex-start; flex-direction: column; }
+  .front-door__guts summary small { text-align: left; }
+  .front-door__footer { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .front-door__nav { padding-right: 0.7rem; padding-left: 0.7rem; }
+  .front-door__brand strong { font-size: 0.9rem; }
+  .front-door__nav-links button { padding-right: 0.45rem; padding-left: 0.45rem; font-size: 0.55rem; }
+  .front-door__nav-links button:nth-child(3) { display: none; }
+  .front-door__hero-copy { padding-right: 1rem; padding-left: 1rem; }
+  .front-door__hero-actions,
+  .front-door__contact-actions { flex-direction: column; align-items: stretch; }
+  .front-door__button { width: 100%; }
+  .front-door__door { min-height: 320px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .front-door__button:hover,
+  .front-door__door:hover,
+  .front-door__live-card:hover { transform: none; }
+}

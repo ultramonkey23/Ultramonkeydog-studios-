@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node node_modules/vite/bin/vite.js --port=3000 --host=0.0.0.0",
     "review:check": "node scripts/copilot-review-check.mjs",
-    "boundary:check": "node scripts/public-boundary-check.mjs && node scripts/public-truth-order-check.mjs && npm run review:check",
+    "private-boundary:check": "node scripts/private-production-boundary-check.mjs",
+    "boundary:check": "npm run private-boundary:check && node scripts/public-boundary-check.mjs && node scripts/public-truth-order-check.mjs && npm run review:check",
     "build": "npm run boundary:check && node node_modules/vite/bin/vite.js build",
     "preview": "node node_modules/vite/bin/vite.js preview",
     "clean": "rm -rf dist server.js",
