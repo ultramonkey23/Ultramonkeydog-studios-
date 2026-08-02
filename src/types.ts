@@ -16,7 +16,17 @@ export type PublicMediaState =
   | "NATIVE_BUILD"
   | "READ_ONLY_PACKET"
   | "CONCEPT_TREATMENT"
-  | "EARLY_BUILD";
+  | "EARLY_BUILD"
+  | "RUNTIME_ASSET";
+
+export interface PublicVisualAsset {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  sourceLabel: string;
+  sourceUrl: string;
+}
 
 export interface PublicVisual {
   style: ProjectVisualStyle;
@@ -25,6 +35,7 @@ export interface PublicVisual {
   heading: string;
   note: string;
   facets: string[];
+  asset?: PublicVisualAsset;
 }
 
 export interface Project {
