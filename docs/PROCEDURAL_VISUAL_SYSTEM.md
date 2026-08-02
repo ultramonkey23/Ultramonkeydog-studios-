@@ -18,7 +18,7 @@ This system is presentation framing. It is not gameplay capture, concept art, or
 6. True Scholar UI-blindness research
 7. External references
 
-The Lab is the read-only living organism guiding this work. Ultramonkeydog Studios is the connected project tail that owns the website mutation and its proof artifacts.
+Ultramonkeydog Studios owns the public website mutation and its proof artifacts. Private production infrastructure remains outside this repository and outside public presentation.
 
 ## Shared studio signature
 
