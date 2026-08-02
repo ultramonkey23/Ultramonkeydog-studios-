@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = process.cwd();
-const scanRoots = ["src", "metadata.json", "README.md", "_spatial_proofs"];
+const scanRoots = ["src", "metadata.json", "README.md", "docs", "_spatial_proofs"];
 const textExtensions = new Set([".ts", ".tsx", ".js", ".mjs", ".json", ".md", ".html", ".css"]);
 
 const forbidden = [
@@ -26,6 +26,10 @@ const forbidden = [
   { label: "duplicated fixed-confidence stub", pattern: /confidence\s*:\s*0\.85/i },
   { label: "public-site verdict evaluator", pattern: /Calculate Arbiter Verdict/i },
   { label: "public-site verdict evaluator", pattern: /function\s+evaluateVerdict|evaluate_verdict/i },
+  { label: "retired fake battle", pattern: /Ashclaw Prime|Bone Sovereign/i },
+  { label: "retired interactive evaluator presentation", pattern: /INTERACTIVE_DEMO|ARBITER_MATCHUP_ENGINE|Arbiter v1\.0/i },
+  { label: "retired fixed-confidence presentation", pattern: /85% Confidence/i },
+  { label: "stale fake-screenshot badge", pattern: /REAL GAME IMAGES COMING SOON/i },
 ];
 
 function collectFiles(entry) {
@@ -61,4 +65,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("Public boundary check passed: no private infrastructure details or duplicate Arbiter evaluator detected.");
+console.log("Public boundary check passed: no private infrastructure details, duplicate Arbiter evaluator, or retired fake project telemetry detected.");
