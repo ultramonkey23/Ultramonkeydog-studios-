@@ -20,6 +20,38 @@
   background-color: transparent !important;
 }
 
+/* Harmonize surviving Tailwind semantic accents into the material palette. */
+.studio-field-shell [class*="text-amber-"] {
+  color: var(--umd-gold) !important;
+}
+
+.studio-field-shell [class*="text-emerald-"] {
+  color: var(--umd-bile) !important;
+}
+
+.studio-field-shell [class*="text-sky-"] {
+  color: #72887b !important;
+}
+
+.studio-field-shell [class*="text-violet-"] {
+  color: #82627b !important;
+}
+
+.studio-field-shell [class*="text-red-"] {
+  color: #b75538 !important;
+}
+
+.studio-field-shell nav button,
+.studio-field-shell header > div > button {
+  min-height: 36px;
+}
+
+.project-card__evidence a,
+.studio-signal__source {
+  min-height: 32px;
+  padding-block: 0.45rem;
+}
+
 /* The old workstation bitmap was a generic placeholder. The procedural field now owns hero atmosphere. */
 img[src="/assets/studio-forge-hero.png"] {
   display: none !important;
@@ -80,5 +112,13 @@ section:has(> img[src="/assets/studio-forge-hero.png"]) h1::after {
 
   section:has(> img[src="/assets/studio-forge-hero.png"]) > img + div {
     background: rgba(7, 6, 4, 0.7) !important;
+  }
+
+  section:has(> img[src="/assets/studio-forge-hero.png"]) h1 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(2.35rem, 10.4vw, 2.75rem) !important;
+    line-height: 0.92 !important;
+    letter-spacing: -0.035em;
   }
 }
