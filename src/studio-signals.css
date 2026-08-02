@@ -7,7 +7,7 @@
   display: grid;
   gap: 1rem;
   margin-bottom: 1.25rem;
-  border-top: 4px solid var(--umd-rust);
+  border-top: 5px solid var(--umd-rust);
   border-bottom: 1px solid var(--umd-line);
   padding: 1rem 0 1.2rem;
 }
@@ -26,7 +26,12 @@
   border-right: 1px solid var(--umd-line-soft);
   border-bottom: 1px solid var(--umd-line);
   border-left: 1px solid var(--umd-line-soft);
-  background: var(--umd-panel);
+  background:
+    linear-gradient(
+      105deg,
+      color-mix(in srgb, var(--signal-color, var(--umd-violet)) 10%, var(--umd-panel)) 0 20%,
+      var(--umd-panel) 20% 100%
+    );
   padding: 1.15rem;
 }
 
@@ -35,14 +40,28 @@
   top: 0;
   bottom: 0;
   left: 0;
-  width: 4px;
+  width: 5px;
   background: var(--signal-color, var(--umd-ash));
+  content: "";
+}
+
+.studio-signal::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--signal-color, var(--umd-ash)) 0 50%, var(--umd-pink) 50% 75%, var(--umd-cyan) 75% 100%);
   content: "";
 }
 
 .studio-signal__meta {
   border-right: 1px solid var(--umd-line-soft);
   padding-right: 1rem;
+}
+
+.studio-signal__meta > p:nth-child(2) {
+  color: #cbbbd0 !important;
 }
 
 .studio-signal__state {
@@ -61,8 +80,12 @@
 
 .studio-signal__proof {
   margin-top: 1rem;
-  border-left: 2px solid var(--umd-line);
+  border-left: 2px solid var(--signal-color, var(--umd-line));
   padding-left: 0.8rem;
+}
+
+.studio-signal__proof > p:first-child {
+  color: var(--umd-gold) !important;
 }
 
 .studio-signal__source {
