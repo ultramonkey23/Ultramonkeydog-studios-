@@ -18,68 +18,52 @@ interface ProceduralFieldProps {
 interface FieldPalette {
   ground: string;
   deep: string;
-  mid: string;
   structure: string;
-  accent: string;
-  signal: string;
+  accents: readonly [string, string, string, string, string, string];
 }
 
 const PALETTES: Record<ProceduralFieldVariant, FieldPalette> = {
   studio: {
-    ground: "#070604",
-    deep: "#15110d",
-    mid: "#5f5545",
-    structure: "#c9bb98",
-    accent: "#a83f25",
-    signal: "#a5ad48",
+    ground: "#090611",
+    deep: "#15101f",
+    structure: "#f3dfb1",
+    accents: ["#82d36b", "#45c8d3", "#ff5b45", "#ffd24a", "#b887ff", "#ff75b5"],
   },
   "what-we-fed": {
-    ground: "#080704",
-    deep: "#17140d",
-    mid: "#59623c",
-    structure: "#d1c69f",
-    accent: "#8f3826",
-    signal: "#b2b94e",
+    ground: "#090b08",
+    deep: "#162017",
+    structure: "#f0dfae",
+    accents: ["#72c85d", "#b6d74d", "#f16b3b", "#7d6ad8", "#61c5b2", "#d84d55"],
   },
   "bone-league": {
-    ground: "#080706",
-    deep: "#1b1716",
-    mid: "#5b4653",
-    structure: "#d5c9ac",
-    accent: "#8f2f24",
-    signal: "#a68d4d",
+    ground: "#0b0710",
+    deep: "#211126",
+    structure: "#f1deb6",
+    accents: ["#eb4a3f", "#4dd0d6", "#b7d94a", "#8f63d7", "#ff9c43", "#e474b8"],
   },
   "savage-crown": {
-    ground: "#070504",
-    deep: "#1a0e0b",
-    mid: "#5f241b",
-    structure: "#d1b97e",
-    accent: "#b6341f",
-    signal: "#d2a43b",
+    ground: "#0b0708",
+    deep: "#251016",
+    structure: "#f2d79d",
+    accents: ["#e74d2f", "#ffc94c", "#3bc7c6", "#8ecf58", "#c66cff", "#f07a95"],
   },
   "saga-anxious-fluff": {
-    ground: "#090705",
-    deep: "#201714",
-    mid: "#79564e",
-    structure: "#e1cfac",
-    accent: "#c46354",
-    signal: "#7ca77f",
+    ground: "#100914",
+    deep: "#25142d",
+    structure: "#fff0c9",
+    accents: ["#ff7167", "#5cc8ff", "#ffd84a", "#77daa0", "#b995ff", "#ff84c5"],
   },
   "feral-formation": {
-    ground: "#060706",
-    deep: "#121915",
-    mid: "#4c6155",
-    structure: "#c6c3a1",
-    accent: "#76526f",
-    signal: "#a4a94b",
+    ground: "#080a14",
+    deep: "#141a2e",
+    structure: "#e8e1c2",
+    accents: ["#ff9c45", "#48bda0", "#776bd8", "#d3c36b", "#62b4df", "#d978aa"],
   },
   "box-o-battles": {
-    ground: "#080705",
-    deep: "#181511",
-    mid: "#5e5546",
-    structure: "#d8caa7",
-    accent: "#a32f24",
-    signal: "#c09a42",
+    ground: "#0d0909",
+    deep: "#221315",
+    structure: "#f6e4b6",
+    accents: ["#e94b39", "#ffc447", "#3f7cff", "#72c95a", "#b66ee8", "#ff79a8"],
   },
 };
 
@@ -128,6 +112,73 @@ function drawSteppedLine(
   context.lineTo(Math.round(x1), Math.round(y1));
 }
 
+function drawPropertySpectrum(
+  context: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  palette: FieldPalette,
+  phase: number,
+) {
+  const bandHeight = Math.max(2, Math.floor(height * 0.018));
+  const segmentWidth = Math.ceil(width / palette.accents.length);
+
+  for (let index = 0; index < palette.accents.length; index += 1) {
+    context.globalAlpha = index === phase % palette.accents.length ? 0.96 : 0.68;
+    context.fillStyle = palette.accents[index];
+    context.fillRect(index * segmentWidth, 0, segmentWidth - 1, bandHeight);
+    context.fillRect(
+      width - ((index + 1) * segmentWidth),
+      height - bandHeight,
+      segmentWidth - 1,
+      bandHeight,
+    );
+  }
+}
+
+function drawPixelSpecimen(
+  context: CanvasRenderingContext2D,
+  centerX: number,
+  centerY: number,
+  scale: number,
+  bodyColor: string,
+  detailColor: string,
+  random: () => number,
+  flip: boolean,
+) {
+  const direction = flip ? -1 : 1;
+  const unit = Math.max(1, Math.floor(scale));
+  const bodyWidth = unit * (5 + Math.floor(random() * 4));
+  const bodyHeight = unit * (3 + Math.floor(random() * 3));
+  const x = Math.round(centerX - bodyWidth / 2);
+  const y = Math.round(centerY - bodyHeight / 2);
+
+  context.globalAlpha = 0.26 + random() * 0.18;
+  context.fillStyle = bodyColor;
+  context.fillRect(x, y, bodyWidth, bodyHeight);
+  context.fillRect(x + direction * bodyWidth * 0.28, y - unit * 2, unit * 3, unit * 2);
+  context.fillRect(x - direction * unit * 2, y + unit, unit * 3, unit * 2);
+  context.fillRect(x + unit, y + bodyHeight, unit * 2, unit * 2);
+  context.fillRect(x + bodyWidth - unit * 3, y + bodyHeight, unit * 2, unit * 2);
+
+  const tailLength = unit * (3 + Math.floor(random() * 5));
+  context.fillRect(
+    flip ? x + bodyWidth : x - tailLength,
+    y + unit,
+    tailLength,
+    unit,
+  );
+
+  context.globalAlpha = 0.82;
+  context.fillStyle = detailColor;
+  context.fillRect(
+    flip ? x + unit : x + bodyWidth - unit * 2,
+    y + unit,
+    unit,
+    unit,
+  );
+  context.fillRect(x + Math.floor(bodyWidth / 2), y - unit, unit, unit);
+}
+
 function drawField(
   context: CanvasRenderingContext2D,
   width: number,
@@ -135,6 +186,7 @@ function drawField(
   seedValue: number,
   palette: FieldPalette,
   phase: number,
+  variant: ProceduralFieldVariant,
 ) {
   const random = mulberry32(seedValue);
   context.imageSmoothingEnabled = false;
@@ -142,32 +194,56 @@ function drawField(
   context.fillStyle = palette.ground;
   context.fillRect(0, 0, width, height);
 
-  // Broad material planes. Quantized placement keeps them blocky and stable.
-  for (let index = 0; index < 11; index += 1) {
-    const blockWidth = Math.max(8, Math.floor((random() * width * 0.34) / 4) * 4);
-    const blockHeight = Math.max(5, Math.floor((random() * height * 0.22) / 3) * 3);
-    const x = Math.floor((random() * (width - blockWidth)) / 4) * 4;
-    const y = Math.floor((random() * (height - blockHeight)) / 3) * 3;
-    context.globalAlpha = 0.28 + random() * 0.22;
-    context.fillStyle = index % 3 === 0 ? palette.mid : palette.deep;
+  drawPropertySpectrum(context, width, height, palette, phase);
+
+  // Hard-edged color territories keep project color alive without a smooth AI wash.
+  const territoryCount = variant === "studio" ? 18 : 12;
+  for (let index = 0; index < territoryCount; index += 1) {
+    const blockWidth = Math.max(8, Math.floor((random() * width * 0.32) / 4) * 4);
+    const blockHeight = Math.max(5, Math.floor((random() * height * 0.24) / 3) * 3);
+    const x = Math.floor((random() * Math.max(1, width - blockWidth)) / 4) * 4;
+    const y = Math.floor((random() * Math.max(1, height - blockHeight)) / 3) * 3;
+    context.globalAlpha = index % 4 === 0 ? 0.26 : 0.12 + random() * 0.1;
+    context.fillStyle = index % 5 === 0
+      ? palette.accents[index % palette.accents.length]
+      : palette.deep;
     context.fillRect(x, y, blockWidth, blockHeight);
   }
 
-  // Ordered dither replaces smooth fog or bloom.
-  context.globalAlpha = 0.2;
+  // Small creature-like specimens make the field feel inhabited rather than clinical.
+  const specimenCount = variant === "studio" ? 8 : 4;
+  for (let index = 0; index < specimenCount; index += 1) {
+    const color = palette.accents[index % palette.accents.length];
+    const detail = palette.accents[(index + 2) % palette.accents.length];
+    const x = width * (0.1 + random() * 0.8);
+    const y = height * (0.14 + random() * 0.72);
+    drawPixelSpecimen(
+      context,
+      x,
+      y,
+      1 + random() * 1.7,
+      color,
+      detail,
+      random,
+      index % 2 === 0,
+    );
+  }
+
+  // Ordered dither replaces fog and carries alternating property color.
+  context.globalAlpha = 0.18;
   for (let y = 0; y < height; y += 2) {
     for (let x = 0; x < width; x += 2) {
       const matrixValue = BAYER_4X4[(x / 2) % 4 + (((y / 2) % 4) * 4)];
       const wave = ((x * 3 + y * 5 + phase * 7 + (seedValue & 31)) % 19) / 19;
-      if (matrixValue / 16 < wave * 0.42) {
-        context.fillStyle = palette.structure;
+      if (matrixValue / 16 < wave * 0.43) {
+        context.fillStyle = palette.accents[(x + y + phase) % palette.accents.length];
         context.fillRect(x, y, 1, 1);
       }
     }
   }
 
-  // Bounded Lorenz-derived paths. The trajectory is quantized into stepped segments.
-  const trajectories = 3;
+  // Bounded Lorenz-derived paths act as energetic tails, not the entire identity.
+  const trajectories = variant === "studio" ? 6 : 3;
   for (let trajectory = 0; trajectory < trajectories; trajectory += 1) {
     let x = (random() - 0.5) * 9;
     let y = (random() - 0.5) * 9;
@@ -180,7 +256,7 @@ function drawField(
     let previousY = height / 2;
 
     context.beginPath();
-    for (let step = 0; step < 760; step += 1) {
+    for (let step = 0; step < 720; step += 1) {
       const dx = sigma * (y - x);
       const dy = x * (rho - z) - y;
       const dz = x * y - beta * z;
@@ -188,27 +264,29 @@ function drawField(
       y += dy * dt;
       z += dz * dt;
 
-      if (step < 80 || step % 2 !== 0) continue;
-      const px = clamp(Math.round(width * 0.5 + x * width * 0.018), 0, width - 1);
-      const py = clamp(Math.round(height * 0.48 + (z - 25) * height * 0.027), 0, height - 1);
+      if (step < 80 || step % 3 !== 0) continue;
+      const px = clamp(Math.round(width * 0.5 + x * width * 0.019), 0, width - 1);
+      const py = clamp(Math.round(height * 0.48 + (z - 25) * height * 0.028), 0, height - 1);
       drawSteppedLine(context, previousX, previousY, px, py);
       previousX = px;
       previousY = py;
     }
-    context.globalAlpha = trajectory === 0 ? 0.82 : 0.38;
-    context.strokeStyle = trajectory === 0 ? palette.accent : palette.structure;
-    context.lineWidth = trajectory === 0 ? 1.35 : 0.8;
+    context.globalAlpha = trajectory === phase % trajectories ? 0.82 : 0.34;
+    context.strokeStyle = palette.accents[trajectory % palette.accents.length];
+    context.lineWidth = trajectory === phase % trajectories ? 1.35 : 0.75;
     context.stroke();
   }
 
-  // Scar cuts and sparse signal blocks create readable structure without fake telemetry.
-  context.globalAlpha = 0.72;
-  context.strokeStyle = palette.mid;
+  // Scar cuts and confetti-like signal blocks create authored asymmetry.
+  context.globalAlpha = 0.58;
   context.lineWidth = 1;
-  for (let index = 0; index < 14; index += 1) {
+  for (let index = 0; index < 16; index += 1) {
     const startX = Math.floor(random() * width);
     const startY = Math.floor(random() * height);
     const length = 8 + Math.floor(random() * 34);
+    context.strokeStyle = index % 3 === 0
+      ? palette.accents[index % palette.accents.length]
+      : palette.structure;
     context.beginPath();
     drawSteppedLine(
       context,
@@ -220,13 +298,15 @@ function drawField(
     context.stroke();
   }
 
-  context.globalAlpha = 0.9;
-  for (let index = 0; index < 9; index += 1) {
+  context.globalAlpha = 0.94;
+  for (let index = 0; index < 18; index += 1) {
     const x = Math.floor(random() * width);
     const y = Math.floor(random() * height);
-    const active = (index + phase) % 4 === 0;
-    context.fillStyle = active ? palette.signal : palette.structure;
-    context.fillRect(x, y, active ? 3 : 2, active ? 2 : 1);
+    const active = (index + phase) % 5 === 0;
+    context.fillStyle = active
+      ? palette.accents[(index + phase) % palette.accents.length]
+      : palette.structure;
+    context.fillRect(x, y, active ? 3 : 1, active ? 2 : 1);
   }
 
   context.globalAlpha = 1;
@@ -260,7 +340,7 @@ export default function ProceduralField({
       const height = clamp(Math.ceil(rect.height / 4), 56, 240);
       if (canvas.width !== width) canvas.width = width;
       if (canvas.height !== height) canvas.height = height;
-      drawField(context, width, height, seedValue, palette, phase);
+      drawField(context, width, height, seedValue, palette, phase, variant);
     };
 
     const configureMotion = () => {
@@ -270,9 +350,9 @@ export default function ProceduralField({
       render();
       if (!reducedMotion.matches) {
         intervalId = window.setInterval(() => {
-          phase = (phase + 1) % 4;
+          phase = (phase + 1) % 6;
           render();
-        }, 1100);
+        }, 1250);
       }
     };
 
@@ -293,6 +373,7 @@ export default function ProceduralField({
       ref={containerRef}
       className={`procedural-field ${className}`}
       data-visual-role="STUDIO_GENERATED_FRAMING"
+      data-palette-role="PROPERTY_SPECTRUM"
       aria-hidden="true"
     >
       <canvas ref={canvasRef} />
