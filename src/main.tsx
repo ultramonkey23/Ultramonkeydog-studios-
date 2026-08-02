@@ -8,7 +8,6 @@ import { installReducedMotionScrollGuard } from "./reduced-motion-scroll";
 import "./index.css";
 import "./procedural-shell.css";
 import "./procedural-rendering.css";
-import "./studio-front-door-responsive.css";
 
 installReducedMotionScrollGuard();
 
