@@ -1,20 +1,33 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Ultramonkeydog Studios Website
 
-# Run and deploy your AI Studio app
+Public studio website for **Ultramonkeydog Studios**.
+*“Strange games. Deep systems. AI-assisted production. Human taste at the wheel.”*
 
-This contains everything you need to run your app locally.
+> **Warning:** This is the public studio site codebase, not the private Monkeydog Lab. Do not expose private Lab details here.
 
-View your app in AI Studio: https://ai.studio/apps/4e001a74-c8e5-4cb7-a77e-f3a9e60a295c
+## Tech Stack
+- Vite
+- React
+- TypeScript
+- Tailwind CSS
 
-## Run Locally
+## Local Setup
 
-**Prerequisites:**  Node.js
+1. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
+2. **Environment Variables:**
+   *(Only if local AI integrations are active, though mostly static at present)*
+   Copy `.env.example` to `.env.local` and add any necessary keys.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+3. **Run Development Server:**
+   ```bash
+   npm run dev
+   ```
+
+## Validation & Build
+
+- **Lint:** `npm run lint` (uses `tsc --noEmit` to type-check)
+- **Build:** `npm run build` (outputs to `/dist`)
