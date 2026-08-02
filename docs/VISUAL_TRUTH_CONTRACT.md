@@ -7,59 +7,74 @@ Ultramonkeydog Studios presents project identity and public evidence. It must no
 ## Authority order
 
 1. Cody's newest explicit direction.
-2. Current project repository, build, and runtime proof.
-3. Approved public packets and validated receipts.
-4. Creator-memory style lineage from `ultramonkey23/Cyborg-evolver`.
-5. External visual research used only for functional comparison.
+2. Current project repository owners and canon.
+3. Runtime consumers, tests, receipts, captures, and device proof.
+4. Approved public packets and validated exports.
+5. Creator-memory and outside references used only to interpret—not replace—project truth.
 
-Creator Memory supplies historical identity and influence functions. It does not replace project implementation truth.
+## Asset-promotion gate
+
+File existence is not showcase fitness. Before a visual becomes public-facing media, verify:
+
+1. **Owner role** — what the current scene, renderer, or asset registry actually uses it for.
+2. **Evidence state** — runtime, device-partial candidate, accepted reference, capture-required, rejected, or quarantined.
+3. **Visual proof** — inspect the image or a current scene capture at its intended scale.
+4. **Composition role** — standalone hero, environment layer, UI support, modular grammar, effect, or reference.
+5. **Provenance** — source, transform, repository path, and public-use safety.
+6. **Showcase fitness** — whether the asset communicates the project accurately without missing the composition around it.
+
+A runtime asset may still be weak website media. A strong reference may still be unfit for runtime. Build proof is not visual acceptance.
 
 ## Public media states
 
-Every project visual declares one of these states:
-
 - `PLAYABLE_DEMO` — a public browser build is linked.
 - `NATIVE_BUILD` — native build proof exists, but the website is not the runtime.
-- `READ_ONLY_PACKET` — an approved project-owned packet is presented without local evaluation.
-- `CONCEPT_TREATMENT` — the visual communicates identity, not a gameplay capture.
+- `READ_ONLY_PACKET` — a project-owned packet is presented without local evaluation.
 - `EARLY_BUILD` — development exists, but no stronger public media claim is made.
+- `CAPTURE_REQUIRED` — no current reviewed showcase image has been promoted.
 
-Unknown or unavailable media is never disguised as fake telemetry.
+## Visual evidence states
 
-## Dominant style lineages
+- `PROMOTED_RUNTIME_ENVIRONMENT` — the asset is an active bounded runtime environment layer.
+- `WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL` — the asset is integrated but visual promotion remains partial.
+- `ACCEPTED_REFERENCE` — the asset informs direction but is not runtime truth.
+- `CAPTURE_REQUIRED` — the full composition must be captured and reviewed before promotion.
 
-- WHAT WE FED — Wild Fable Ink; corruption is an escalation layer.
-- Bone League — Mythic Necro-Sport Anime; menus are the battlefield.
-- Savage Crown — Crown Biology; mathematics must become readable anatomy.
-- Saga of an Anxious Fluff — All-Ages Mythic Color; deep but emotionally readable.
-- Feral Formation — Cosmic Slate; tactical field archive with strong mobile hierarchy.
-- Box o' Battles — Arbiter Card; verdict structure without a universal power meter.
+## Naming law
 
-Styles are not blended 50/50. One lineage governs each card; studio chrome remains secondary.
+Public labels use project-owned titles, canon terms, asset IDs, and document names. Internal interpretation labels are not automatically public branding. Do not invent a style name when the project already supplies an exact title or visual contract.
+
+## Corrective example
+
+WHAT WE FED's `title_sigil.png` is loaded by the active title scene at low opacity as atmospheric support behind a larger composition. Its existence and runtime use do not make it a representative standalone website image. The public card must wait for a reviewed capture of the title or gameplay composition instead of promoting the support bitmap.
 
 ## Rejected stale patterns
 
 - repeated fake CRT dashboards;
 - invented percentages, currencies, rosters, risk levels, or system states;
+- filenames promoted as art direction without visual inspection;
+- utility, mask, or atmospheric assets presented as finished key art;
+- reference-only images described as runtime implementation;
+- build proof described as visual acceptance;
+- internal style taxonomies promoted as public project names;
 - repeated placeholder screenshot overlays;
 - dead JSX that describes retired evaluators or demos;
 - generic neon as a substitute for project identity;
-- motion that ignores reduced-motion preferences;
-- project visuals that hide whether the artifact is playable, native, proposed, or read-only.
+- motion that ignores reduced-motion preferences.
 
 ## Review rubric
 
 Score each major visual change from 0–5 on:
 
-- silhouette;
-- identity;
+- owner relevance;
+- visual proof quality;
+- composition role;
+- silhouette and identity;
 - mechanical truth;
-- palette discipline;
-- composition;
-- texture and material;
-- animation potential;
+- palette and material discipline;
 - production feasibility;
 - mutation capacity;
-- tone control.
+- mobile readability;
+- proof-state clarity.
 
-A visually impressive change fails if mechanical truth or evidence state is weak.
+A visually impressive change fails if owner relevance, evidence state, or public-use truth is weak.
