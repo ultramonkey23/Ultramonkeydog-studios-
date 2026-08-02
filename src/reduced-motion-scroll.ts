@@ -14,7 +14,11 @@ export function installReducedMotionScrollGuard() {
   Element.prototype.scrollIntoView = function guardedScrollIntoView(
     options?: boolean | ScrollIntoViewOptions,
   ) {
-    if (prefersReducedMotion() && typeof options === "object") {
+    if (
+      prefersReducedMotion() &&
+      options !== null &&
+      typeof options === "object"
+    ) {
       return originalScrollIntoView.call(this, { ...options, behavior: "auto" });
     }
     return originalScrollIntoView.call(this, options);
@@ -25,7 +29,7 @@ export function installReducedMotionScrollGuard() {
     leftOrOptions: number | ScrollToOptions,
     top?: number,
   ) => {
-    if (typeof leftOrOptions === "object") {
+    if (leftOrOptions !== null && typeof leftOrOptions === "object") {
       return originalScrollTo({
         ...leftOrOptions,
         behavior: prefersReducedMotion() ? "auto" : leftOrOptions.behavior,
