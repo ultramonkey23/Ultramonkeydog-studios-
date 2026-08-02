@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import type { CSSProperties } from "react";
 import {
   Activity,
   ArrowUpRight,
@@ -23,6 +24,8 @@ import {
   PublicVisualEvidence,
   VisualEvidenceState,
 } from "../types";
+import ProceduralField from "./ProceduralField";
+import "../project-material.css";
 
 interface ProjectCardProps {
   project: Project;
@@ -30,78 +33,91 @@ interface ProjectCardProps {
 
 const styleTheme: Record<
   ProjectVisualStyle,
-  { border: string; text: string; glow: string; wash: string; icon: typeof Gamepad2 }
+  {
+    accent: string;
+    signal: string;
+    secondary: string;
+    pop: string;
+    structure: string;
+    icon: typeof Gamepad2;
+  }
 > = {
   "what-we-fed": {
-    border: "border-emerald-500/30",
-    text: "text-emerald-300",
-    glow: "shadow-[0_0_60px_rgba(16,185,129,0.10)]",
-    wash: "from-emerald-500/15 via-violet-950/10 to-transparent",
+    accent: "#72c85d",
+    signal: "#f16b3b",
+    secondary: "#7d6ad8",
+    pop: "#b6d74d",
+    structure: "#f0dfae",
     icon: Layers3,
   },
   "bone-league": {
-    border: "border-sky-400/30",
-    text: "text-sky-300",
-    glow: "shadow-[0_0_60px_rgba(14,165,233,0.10)]",
-    wash: "from-sky-500/15 via-red-950/10 to-transparent",
+    accent: "#eb4a3f",
+    signal: "#4dd0d6",
+    secondary: "#8f63d7",
+    pop: "#b7d94a",
+    structure: "#f1deb6",
     icon: Trophy,
   },
   "savage-crown": {
-    border: "border-red-500/30",
-    text: "text-red-300",
-    glow: "shadow-[0_0_60px_rgba(239,68,68,0.10)]",
-    wash: "from-red-500/15 via-amber-950/10 to-transparent",
+    accent: "#e74d2f",
+    signal: "#ffc94c",
+    secondary: "#3bc7c6",
+    pop: "#c66cff",
+    structure: "#f2d79d",
     icon: Crown,
   },
   "saga-anxious-fluff": {
-    border: "border-amber-400/30",
-    text: "text-amber-200",
-    glow: "shadow-[0_0_60px_rgba(251,191,36,0.10)]",
-    wash: "from-amber-400/15 via-orange-950/10 to-transparent",
+    accent: "#ff7167",
+    signal: "#5cc8ff",
+    secondary: "#b995ff",
+    pop: "#ffd84a",
+    structure: "#fff0c9",
     icon: Sparkles,
   },
   "feral-formation": {
-    border: "border-violet-400/30",
-    text: "text-violet-300",
-    glow: "shadow-[0_0_60px_rgba(139,92,246,0.10)]",
-    wash: "from-violet-500/15 via-indigo-950/10 to-transparent",
+    accent: "#ff9c45",
+    signal: "#48bda0",
+    secondary: "#776bd8",
+    pop: "#d978aa",
+    structure: "#e8e1c2",
     icon: Layers3,
   },
   "box-o-battles": {
-    border: "border-amber-500/30",
-    text: "text-amber-300",
-    glow: "shadow-[0_0_60px_rgba(245,158,11,0.10)]",
-    wash: "from-amber-500/15 via-zinc-950/10 to-transparent",
+    accent: "#e94b39",
+    signal: "#ffc447",
+    secondary: "#3f7cff",
+    pop: "#b66ee8",
+    structure: "#f6e4b6",
     icon: Scale,
   },
 };
 
 const mediaTone: Record<PublicMediaState, string> = {
-  PLAYABLE_DEMO: "border-emerald-500/30 bg-emerald-500/10 text-emerald-200",
-  NATIVE_BUILD: "border-red-500/30 bg-red-500/10 text-red-200",
-  READ_ONLY_PACKET: "border-amber-500/30 bg-amber-500/10 text-amber-200",
-  EARLY_BUILD: "border-violet-500/25 bg-violet-500/10 text-violet-200",
-  CAPTURE_REQUIRED: "border-zinc-700 bg-zinc-900/80 text-zinc-300",
+  PLAYABLE_DEMO: "project-card__status--playable",
+  NATIVE_BUILD: "project-card__status--native",
+  READ_ONLY_PACKET: "project-card__status--packet",
+  EARLY_BUILD: "project-card__status--early",
+  CAPTURE_REQUIRED: "project-card__status--capture",
 };
 
 const evidenceTone: Record<VisualEvidenceState, string> = {
-  PROMOTED_RUNTIME_ENVIRONMENT: "border-emerald-500/30 bg-emerald-500/10 text-emerald-200",
-  WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL: "border-amber-500/30 bg-amber-500/10 text-amber-200",
-  ACCEPTED_REFERENCE: "border-sky-500/30 bg-sky-500/10 text-sky-200",
-  CAPTURE_REQUIRED: "border-zinc-700 bg-zinc-900/80 text-zinc-300",
+  PROMOTED_RUNTIME_ENVIRONMENT: "project-card__evidence-state--promoted",
+  WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL: "project-card__evidence-state--partial",
+  ACCEPTED_REFERENCE: "project-card__evidence-state--reference",
+  CAPTURE_REQUIRED: "project-card__evidence-state--capture",
 };
 
 function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
   const hasImage = Boolean(item.src && item.alt);
 
   return (
-    <article className="overflow-hidden rounded-lg border border-white/8 bg-black/30">
+    <article className="project-card__evidence">
       {hasImage ? (
         <a
           href={item.sourceUrl}
           target="_blank"
           rel="noreferrer"
-          className="group/evidence block overflow-hidden border-b border-white/8 bg-black/40"
+          className="project-card__evidence-media group/evidence block overflow-hidden"
           aria-label={`Open source for ${item.title}`}
         >
           <img
@@ -111,23 +127,25 @@ function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
             height={item.height}
             loading="lazy"
             decoding="async"
-            className="aspect-[2/1] w-full object-cover transition-transform duration-300 group-hover/evidence:scale-[1.02]"
+            className="aspect-[2/1] w-full object-cover transition-transform duration-150 group-hover/evidence:translate-x-1"
           />
         </a>
       ) : (
-        <div className="flex min-h-28 items-center justify-center border-b border-white/8 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06),transparent_68%)] p-6 text-zinc-500">
-          <FileWarning size={30} aria-hidden="true" />
+        <div className="project-card__evidence-empty">
+          <FileWarning size={28} aria-hidden="true" />
         </div>
       )}
 
       <div className="p-4">
-        <span className={`inline-flex rounded border px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] ${evidenceTone[item.state]}`}>
+        <span className={`project-card__evidence-state ${evidenceTone[item.state]}`}>
           {item.state.replaceAll("_", " ")}
         </span>
-        <h5 className="mt-3 font-display text-base font-black text-white">{item.title}</h5>
-        <p className="mt-2 text-xs leading-5 text-zinc-400">{item.note}</p>
+        <h5 className="mt-3 font-display text-base uppercase tracking-[0.02em] text-[var(--project-structure)]">
+          {item.title}
+        </h5>
+        <p className="mt-2 text-xs leading-5 text-[var(--umd-ash)]">{item.note}</p>
         {item.limitation && (
-          <p className="mt-3 border-l border-amber-500/40 pl-3 text-[11px] leading-5 text-amber-100/70">
+          <p className="mt-3 border-l-2 border-[var(--project-accent)] pl-3 text-[11px] leading-5 text-[var(--umd-bone)]/78">
             {item.limitation}
           </p>
         )}
@@ -135,7 +153,7 @@ function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
           href={item.sourceUrl}
           target="_blank"
           rel="noreferrer"
-          className="mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-zinc-400 transition-colors hover:text-white"
+          className="mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--umd-ash)] transition-colors hover:text-[var(--project-pop)]"
         >
           <ExternalLink size={12} />
           {item.sourceLabel}
@@ -152,87 +170,135 @@ function ProjectVisualPlate({ project }: { project: Project }) {
   const evidence = visual.evidence ?? [];
 
   return (
-    <div className={`relative isolate overflow-hidden rounded-xl border bg-[#08080b] ${theme.border} ${theme.glow}`}>
-      <div className={`absolute inset-0 bg-gradient-to-br ${theme.wash}`} />
-      <div className="absolute inset-0 bg-grid-ambient opacity-20" />
-
-      <div className="relative z-10 p-5 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className={`inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.18em] ${theme.text}`}>
-            <Icon size={14} />
-            {project.title}
-          </div>
-          <span className={`rounded border px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.14em] ${mediaTone[visual.mediaState]}`}>
-            {visual.mediaLabel}
-          </span>
+    <>
+      <div className="project-card__visual">
+        <ProceduralField
+          seed={`${project.id}:${visual.heading}`}
+          variant={visual.style}
+        />
+        <div className="project-card__visual-shade" />
+        <div className="project-card__color-tabs" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
         </div>
 
-        <div className="mt-5">
-          <h4 className="font-display text-2xl font-black tracking-tight text-white">{visual.heading}</h4>
-          <p className="mt-2 max-w-3xl text-xs leading-6 text-zinc-400">{visual.note}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {visual.facets.map((facet) => (
-              <span key={facet} className="rounded-full border border-white/10 bg-black/30 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-300">
-                {facet}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {evidence.length > 0 ? (
-          <div className={`mt-5 grid gap-3 ${evidence.length > 1 ? "md:grid-cols-2" : ""}`}>
-            {evidence.map((item) => <EvidenceCard key={item.id} item={item} />)}
-          </div>
-        ) : (
-          <div className="mt-5 flex min-h-36 items-center justify-center rounded-lg border border-dashed border-white/10 bg-black/25 p-6 text-center">
+        <div className="project-card__visual-content">
+          <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
-              <Icon className={`mx-auto ${theme.text}`} size={32} aria-hidden="true" />
-              <p className="mt-3 font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-zinc-500">
-                No evidence-ranked showcase media attached
+              <span className="project-card__framing-label">
+                <Icon size={13} />
+                Studio-generated framing · not project evidence
+              </span>
+              <p className="mt-3 font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-[var(--project-structure)]">
+                {project.title}
               </p>
             </div>
+            <span className={`project-card__status ${mediaTone[visual.mediaState]}`}>
+              {visual.mediaLabel}
+            </span>
           </div>
-        )}
+
+          <div className="max-w-2xl">
+            <h4 className="font-display text-3xl uppercase leading-[0.92] tracking-[0.01em] text-[var(--project-structure)] sm:text-4xl">
+              {visual.heading}
+            </h4>
+            <div className="project-card__title-line" />
+            <p className="mt-4 max-w-xl text-xs leading-6 text-[var(--umd-bone)]/82">
+              {visual.note}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {visual.facets.map((facet, index) => (
+                <span key={facet} className="project-card__facet" data-facet-index={index}>
+                  {facet}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {evidence.length > 0 && (
+        <div className={`mt-4 grid gap-3 ${evidence.length > 1 ? "md:grid-cols-2" : ""}`}>
+          {evidence.map((item) => (
+            <EvidenceCard key={item.id} item={item} />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const theme = styleTheme[project.publicVisual.style];
+  const customProperties = {
+    "--project-accent": theme.accent,
+    "--project-signal": theme.signal,
+    "--project-secondary": theme.secondary,
+    "--project-pop": theme.pop,
+    "--project-structure": theme.structure,
+  } as CSSProperties;
+
   return (
-    <article id={`project-card-${project.id}`} className="group flex h-full flex-col rounded-2xl border border-white/8 bg-[linear-gradient(145deg,rgba(24,24,27,0.82),rgba(9,9,11,0.96))] p-4 shadow-2xl transition-transform duration-300 hover:-translate-y-1 sm:p-6">
+    <article
+      id={`project-card-${project.id}`}
+      className="project-card p-4 sm:p-5"
+      style={customProperties}
+    >
       <ProjectVisualPlate project={project} />
 
-      <div className="flex flex-1 flex-col pt-6">
+      <div className="project-card__body">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h3 className="font-display text-xl font-black tracking-tight text-white">{project.title}</h3>
-            {project.tone && <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.15em] text-zinc-500">{project.tone}</p>}
+            <h3 className="font-display text-2xl uppercase leading-none tracking-[0.02em] text-[var(--project-structure)]">
+              {project.title}
+            </h3>
+            {project.tone && (
+              <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.15em] text-[var(--project-signal)]">
+                {project.tone}
+              </p>
+            )}
           </div>
-          <span className="w-fit rounded border border-zinc-700 bg-zinc-950 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-zinc-300">
+          <span className="project-card__status project-card__status--capture w-fit">
             {project.status}
           </span>
         </div>
 
-        <p className="mt-4 text-sm leading-7 text-zinc-300">{project.description}</p>
+        <p className="mt-4 text-sm leading-7 text-[var(--umd-bone)]/84">
+          {project.description}
+        </p>
 
         {project.expandedDetails && (
-          <div className="mt-5 rounded-lg border border-white/6 bg-black/20 p-4">
-            <div className="flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-zinc-500">
+          <div className="project-card__truth mt-5">
+            <div className="flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-[var(--project-pop)]">
               <Activity size={12} />
               Current public truth
             </div>
-            <p className="mt-2 text-xs leading-6 text-zinc-400">{project.expandedDetails}</p>
+            <p className="mt-2 text-xs leading-6 text-[var(--umd-ash)]">
+              {project.expandedDetails}
+            </p>
           </div>
         )}
 
         {project.systemsUnderTheHood && project.systemsUnderTheHood.length > 0 && (
-          <div className="mt-5 border-t border-white/6 pt-5">
-            <p className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-zinc-500">Selected systems</p>
-            <ul className="mt-3 grid gap-2 text-xs leading-5 text-zinc-400 sm:grid-cols-2">
-              {project.systemsUnderTheHood.map((system) => (
+          <div className="mt-5 border-t border-[var(--umd-line-soft)] pt-5">
+            <p className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-[var(--project-signal)]">
+              Selected systems
+            </p>
+            <ul className="mt-3 grid gap-2 text-xs leading-5 text-[var(--umd-ash)] sm:grid-cols-2">
+              {project.systemsUnderTheHood.map((system, index) => (
                 <li key={system} className="flex gap-2">
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-zinc-600" />
+                  <span
+                    className="mt-2 h-1.5 w-1.5 shrink-0"
+                    style={{
+                      background: index % 3 === 0
+                        ? theme.accent
+                        : index % 3 === 1
+                          ? theme.secondary
+                          : theme.pop,
+                    }}
+                  />
                   <span>{system}</span>
                 </li>
               ))}
@@ -241,16 +307,21 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         )}
 
         <div className="mt-auto pt-6">
-          <div className="flex flex-wrap gap-1.5 border-t border-white/6 pt-4">
-            {project.tags.map((tag) => (
-              <span key={tag} className="rounded border border-zinc-800 bg-zinc-950/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-zinc-500">
+          <div className="flex flex-wrap gap-1.5 border-t border-[var(--umd-line-soft)] pt-4">
+            {project.tags.map((tag, index) => (
+              <span key={tag} className="project-card__tag" data-tag-index={index}>
                 {tag}
               </span>
             ))}
           </div>
 
           {project.demoUrl && (
-            <a href={project.demoUrl} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-2.5 text-xs font-bold text-amber-200 transition-colors hover:bg-amber-500/20">
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="project-card__action mt-5"
+            >
               <Gamepad2 size={15} />
               {project.demoLabel ?? "Open project"}
               <ArrowUpRight size={14} />

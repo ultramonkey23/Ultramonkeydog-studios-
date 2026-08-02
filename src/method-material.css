@@ -1,0 +1,85 @@
+.method-capabilities {
+  border-top: 1px solid var(--umd-line);
+}
+
+.method-capability {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(10rem, 0.55fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  border-right: 1px solid var(--umd-line-soft);
+  border-bottom: 1px solid var(--umd-line);
+  border-left: 1px solid var(--umd-line-soft);
+  background: var(--umd-panel);
+  padding: 1rem;
+}
+
+.method-capability::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 23px;
+  height: 3px;
+  background: var(--umd-rust);
+  content: "";
+  opacity: 0;
+  transition: opacity 120ms steps(1, end);
+}
+
+.method-capability:hover::after {
+  opacity: 1;
+}
+
+.method-capability__index {
+  color: var(--umd-line);
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.method-capability__identity {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.65rem;
+  align-items: start;
+}
+
+.method-capability__icon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid var(--umd-line);
+  color: var(--umd-gold);
+}
+
+.method-capability__ai {
+  margin-top: 0.75rem;
+  border-left: 2px solid var(--umd-bile);
+  padding-left: 0.75rem;
+}
+
+@media (max-width: 760px) {
+  .method-capability {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .method-capability > :last-child {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .method-capability {
+    grid-template-columns: 1fr;
+  }
+
+  .method-capability__index {
+    font-size: 1rem;
+  }
+
+  .method-capability > :last-child {
+    grid-column: 1;
+  }
+}

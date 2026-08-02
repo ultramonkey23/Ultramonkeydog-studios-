@@ -1,0 +1,251 @@
+.studio-field-shell {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  background: var(--umd-ground);
+}
+
+.studio-field-shell::before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    #72c85d 0 16.66%,
+    #eb4a3f 16.66% 33.33%,
+    #ffc94c 33.33% 50%,
+    #5cc8ff 50% 66.66%,
+    #776bd8 66.66% 83.33%,
+    #ff75b5 83.33% 100%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.studio-field-shell__field {
+  position: fixed;
+  z-index: 0;
+  opacity: 0.96;
+}
+
+.studio-field-shell__content {
+  position: relative;
+  z-index: 1;
+}
+
+.studio-field-shell__content > div {
+  background-color: transparent !important;
+}
+
+/* Harmonize surviving semantic accents into the studio property spectrum. */
+.studio-field-shell [class*="text-amber-"] {
+  color: var(--umd-gold) !important;
+}
+
+.studio-field-shell [class*="text-emerald-"] {
+  color: var(--umd-bile) !important;
+}
+
+.studio-field-shell [class*="text-sky-"] {
+  color: var(--umd-cyan) !important;
+}
+
+.studio-field-shell [class*="text-violet-"] {
+  color: var(--umd-violet) !important;
+}
+
+.studio-field-shell [class*="text-red-"] {
+  color: var(--umd-rust) !important;
+}
+
+.studio-field-shell nav button,
+.studio-field-shell header > div > button {
+  min-height: 38px;
+}
+
+.studio-field-shell header {
+  border-top: 5px solid transparent;
+}
+
+.studio-field-shell header .relative.flex.h-9.w-9 {
+  border-color: var(--umd-cyan) !important;
+  background:
+    linear-gradient(135deg, var(--umd-panel) 0 48%, var(--umd-violet) 48% 55%, var(--umd-panel) 55% 100%) !important;
+  box-shadow: 3px 3px 0 var(--umd-rust);
+}
+
+.project-card__evidence a,
+.studio-signal__source {
+  min-height: 36px;
+  padding-block: 0.55rem;
+}
+
+/* The old workstation bitmap was a generic placeholder. The procedural field now owns hero atmosphere. */
+img[src="/assets/studio-forge-hero.png"] {
+  display: none !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) {
+  background-color: transparent !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) > img + div {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(9, 6, 17, 0.94) 0 38%,
+      rgba(9, 6, 17, 0.7) 38% 62%,
+      rgba(75, 201, 213, 0.12) 62% 70%,
+      rgba(165, 111, 255, 0.1) 70% 82%,
+      rgba(255, 117, 181, 0.08) 82% 100%
+    ) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"])::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 31px,
+      rgba(75, 201, 213, 0.055) 31px 32px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 15px,
+      rgba(255, 117, 181, 0.05) 15px 16px
+    );
+  content: "";
+  pointer-events: none;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"])::after {
+  position: absolute;
+  right: clamp(1rem, 4vw, 4rem);
+  bottom: 9%;
+  z-index: 0;
+  width: min(22rem, 38vw);
+  height: min(13rem, 24vw);
+  background:
+    linear-gradient(90deg, #72c85d 0 13%, transparent 13% 18%, #eb4a3f 18% 34%, transparent 34% 41%, #ffc94c 41% 53%, transparent 53% 60%, #5cc8ff 60% 72%, transparent 72% 79%, #b887ff 79% 90%, transparent 90% 94%, #ff75b5 94% 100%),
+    repeating-linear-gradient(0deg, rgba(9, 6, 17, 0.4) 0 7px, transparent 7px 14px);
+  clip-path: polygon(0 18%, 15% 18%, 15% 0, 34% 0, 34% 31%, 53% 31%, 53% 10%, 72% 10%, 72% 45%, 90% 45%, 90% 24%, 100% 24%, 100% 100%, 0 100%);
+  content: "";
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) h1 {
+  max-width: 10ch;
+  color: var(--umd-bone) !important;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  text-shadow:
+    4px 0 0 rgba(255, 91, 69, 0.72),
+    -3px 3px 0 rgba(75, 201, 213, 0.56),
+    0 6px 0 rgba(165, 111, 255, 0.24) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) h1::after {
+  display: block;
+  width: min(23rem, 74vw);
+  height: 7px;
+  margin-top: 1rem;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--umd-rust) 0 34px,
+    transparent 34px 40px,
+    var(--umd-gold) 40px 68px,
+    transparent 68px 74px,
+    var(--umd-cyan) 74px 102px,
+    transparent 102px 108px,
+    var(--umd-violet) 108px 136px,
+    transparent 136px 142px,
+    var(--umd-pink) 142px 170px,
+    transparent 170px 176px,
+    var(--umd-bile) 176px 204px,
+    transparent 204px 214px
+  );
+  content: "";
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) button {
+  min-height: 44px;
+  border-radius: 0 !important;
+  box-shadow: 5px 5px 0 var(--umd-shadow) !important;
+  transition: transform 120ms steps(1, end), box-shadow 120ms steps(1, end) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) button:hover {
+  transform: translate(2px, -2px) !important;
+  box-shadow: 7px 7px 0 var(--umd-shadow) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) button:first-child {
+  border-left: 8px solid var(--umd-rust) !important;
+  background: var(--umd-gold) !important;
+  color: var(--umd-ground) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) button:last-child {
+  border: 1px solid var(--umd-cyan) !important;
+  border-left: 8px solid var(--umd-violet) !important;
+  background: color-mix(in srgb, var(--umd-violet) 16%, var(--umd-panel)) !important;
+  color: var(--umd-bone) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) [class*="flex-wrap"] > span {
+  border-color: var(--umd-line) !important;
+  background: rgba(16, 11, 23, 0.82) !important;
+  color: var(--umd-bone) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) [class*="flex-wrap"] > span:nth-child(4n + 1) {
+  border-left: 4px solid var(--umd-rust) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) [class*="flex-wrap"] > span:nth-child(4n + 2) {
+  border-left: 4px solid var(--umd-cyan) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) [class*="flex-wrap"] > span:nth-child(4n + 3) {
+  border-left: 4px solid var(--umd-violet) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) [class*="flex-wrap"] > span:nth-child(4n + 4) {
+  border-left: 4px solid var(--umd-bile) !important;
+}
+
+@media (max-width: 700px) {
+  .studio-field-shell__field {
+    opacity: 0.9;
+  }
+
+  section:has(> img[src="/assets/studio-forge-hero.png"]) > img + div {
+    background: rgba(9, 6, 17, 0.62) !important;
+  }
+
+  section:has(> img[src="/assets/studio-forge-hero.png"])::after {
+    right: -2rem;
+    bottom: 6%;
+    width: 15rem;
+    height: 10rem;
+    opacity: 0.16;
+  }
+
+  section:has(> img[src="/assets/studio-forge-hero.png"]) h1 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(2.2rem, 9.8vw, 2.65rem) !important;
+    line-height: 0.92 !important;
+    letter-spacing: -0.04em;
+    text-shadow:
+      2px 0 0 rgba(255, 91, 69, 0.65),
+      -2px 2px 0 rgba(75, 201, 213, 0.5),
+      0 4px 0 rgba(165, 111, 255, 0.2) !important;
+  }
+}

@@ -1,94 +1,273 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: Arial, Helvetica, ui-sans-serif, system-ui, sans-serif;
+  --font-display: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  --font-mono: "Courier New", Courier, ui-monospace, monospace;
 
-  --color-neon-green: #10b981;
-  --color-electric-blue: #0ea5e9;
-  --color-violet-accent: #8b5cf6;
-  --color-warm-amber: #f59e0b;
+  --color-neon-green: #a9d84f;
+  --color-electric-blue: #4bc9d5;
+  --color-violet-accent: #a56fff;
+  --color-warm-amber: #ffc94a;
 
-  --color-zinc-250: #d4d4d8;
-  --color-zinc-350: #a1a1aa;
-  --color-zinc-405: #8f8f99;
-  --color-zinc-450: #7d7d86;
-  --color-zinc-650: #4d4d55;
-  --color-zinc-850: #232329;
-  --color-zinc-905: #16161a;
-  --color-amber-450: #fbbf24;
-  --color-amber-550: #d97706;
-  --color-sky-450: #38bdf8;
-  --color-violet-450: #a78bfa;
+  --color-zinc-250: #f2e0b8;
+  --color-zinc-350: #c5b7ca;
+  --color-zinc-405: #a597ad;
+  --color-zinc-450: #877b91;
+  --color-zinc-650: #55495d;
+  --color-zinc-850: #21192b;
+  --color-zinc-905: #130e19;
+  --color-amber-450: #ffd45d;
+  --color-amber-550: #d8982e;
+  --color-sky-450: #65d6df;
+  --color-violet-450: #bd8cff;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+:root {
+  color-scheme: dark;
+  --umd-ground: #090611;
+  --umd-deep: #100b17;
+  --umd-panel: #17101f;
+  --umd-panel-2: #21162b;
+  --umd-line: #65516f;
+  --umd-line-soft: #34263d;
+  --umd-bone: #f3dfb1;
+  --umd-ash: #b8a8bf;
+  --umd-rust: #ff5b45;
+  --umd-bile: #a9d84f;
+  --umd-gold: #ffc94a;
+  --umd-cyan: #4bc9d5;
+  --umd-violet: #a56fff;
+  --umd-pink: #ff75b5;
+  --umd-shadow: #020103;
 }
-::-webkit-scrollbar-track {
-  background: #030304;
+
+* {
+  box-sizing: border-box;
 }
-::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 8px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #f59e0b;
+
+html {
+  background: var(--umd-ground);
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: #030304;
-  color: #f4f4f5;
+  min-width: 320px;
+  margin: 0;
   overflow-x: hidden;
+  background-color: var(--umd-ground);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(243, 223, 177, 0.025) 0,
+      rgba(243, 223, 177, 0.025) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(165, 111, 255, 0.018) 0,
+      rgba(165, 111, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  color: var(--umd-bone);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.glass {
-  background: rgba(9, 9, 11, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+::selection {
+  background: var(--umd-pink);
+  color: var(--umd-ground);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--umd-ground);
+  border-left: 1px solid var(--umd-line-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--umd-violet);
+  border: 2px solid var(--umd-ground);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--umd-rust);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--umd-bile);
+  outline-offset: 3px;
+}
+
+.glass,
+.glass-card {
+  position: relative;
+  border: 1px solid var(--umd-line-soft);
+  background: rgba(16, 11, 23, 0.95);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.72);
 }
 
 .glass-card {
-  background: linear-gradient(145deg, rgba(39, 39, 42, 0.3) 0%, rgba(24, 24, 27, 0.1) 100%);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.5);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 13px) 0,
+    100% 13px,
+    100% 100%,
+    13px 100%,
+    0 calc(100% - 13px)
+  );
+}
+
+.glass-card::after {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 32px;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--umd-rust) 0 8px,
+    var(--umd-gold) 8px 16px,
+    var(--umd-cyan) 16px 24px,
+    var(--umd-violet) 24px 32px
+  );
+  content: "";
+  opacity: 0.82;
+  pointer-events: none;
 }
 
 .bg-grid-ambient {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image:
+    linear-gradient(90deg, transparent 0 47%, rgba(75, 201, 213, 0.065) 47% 53%, transparent 53%),
+    linear-gradient(0deg, transparent 0 47%, rgba(255, 117, 181, 0.045) 47% 53%, transparent 53%);
+  background-size: 31px 31px;
+  image-rendering: pixelated;
 }
 
 .text-gradient-amber {
-  background: linear-gradient(to right, #fbbf24, #d97706);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: none;
+  color: var(--umd-gold);
+  -webkit-text-fill-color: currentColor;
 }
 
 .text-gradient-silver {
-  background: linear-gradient(to bottom right, #ffffff, #a1a1aa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: none;
+  color: var(--umd-bone);
+  -webkit-text-fill-color: currentColor;
+  text-shadow: 3px 3px 0 var(--umd-violet);
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+.procedural-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--umd-ground);
+  pointer-events: none;
+}
+
+.procedural-field canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.material-panel {
+  position: relative;
+  border: 1px solid var(--umd-line);
+  background: var(--umd-panel);
+  box-shadow: 6px 6px 0 var(--umd-shadow);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 16px) 0,
+    100% 16px,
+    100% 100%,
+    16px 100%,
+    0 calc(100% - 16px)
+  );
+}
+
+.material-panel::before {
+  position: absolute;
+  inset: 4px;
+  border-top: 1px solid rgba(255, 201, 74, 0.18);
+  border-left: 1px solid rgba(75, 201, 213, 0.12);
+  content: "";
+  pointer-events: none;
+}
+
+.signal-rule {
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--umd-rust) 0 12px,
+    transparent 12px 16px,
+    var(--umd-gold) 16px 28px,
+    transparent 28px 32px,
+    var(--umd-cyan) 32px 44px,
+    transparent 44px 48px,
+    var(--umd-violet) 48px 60px,
+    transparent 60px 64px,
+    var(--umd-pink) 64px 76px,
+    transparent 76px 80px,
+    var(--umd-bile) 80px 92px,
+    transparent 92px 96px
+  );
+  opacity: 0.9;
+}
+
+/* Flatten generic pill and app-dashboard geometry into a shared material language. */
+.rounded,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-full {
+  border-radius: 1px !important;
+}
+
+@keyframes signal-step {
+  0%,
+  42% {
+    transform: translateY(0);
+  }
+  43%,
+  84% {
+    transform: translateY(-3px);
+  }
+  85%,
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: signal-step 2.4s steps(1, end) infinite;
+}
+
+@media (hover: hover) {
+  .glass-card:hover {
+    transform: translate(-2px, -2px) !important;
+    border-color: var(--umd-violet);
+    box-shadow: 8px 8px 0 var(--umd-shadow);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
