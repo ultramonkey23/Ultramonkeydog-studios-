@@ -1,6 +1,6 @@
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
@@ -25,7 +25,7 @@ const viewports = [
 
 const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
 
-async function fetchJson(url, attempts = 80) {
+async function fetchJson(url, attempts = 120) {
   let lastError;
   for (let index = 0; index < attempts; index += 1) {
     try {
@@ -38,6 +38,37 @@ async function fetchJson(url, attempts = 80) {
     await sleep(100);
   }
   throw lastError;
+}
+
+async function discoverDevTools(userData, browser, stderrBuffer) {
+  const activePortPath = join(userData, "DevToolsActivePort");
+  for (let attempt = 0; attempt < 200; attempt += 1) {
+    if (browser.exitCode !== null) {
+      throw new Error(
+        `Browser exited before DevTools was ready (code ${browser.exitCode}).\n${stderrBuffer()}`,
+      );
+    }
+
+    if (existsSync(activePortPath)) {
+      const [portLine, browserPathLine] = (await readFile(activePortPath, "utf8"))
+        .trim()
+        .split(/\r?\n/);
+      const port = Number(portLine);
+      if (Number.isInteger(port) && port > 0) {
+        const version = await fetchJson(`http://127.0.0.1:${port}/json/version`, 40);
+        return {
+          port,
+          wsUrl: version.webSocketDebuggerUrl
+            || (browserPathLine ? `ws://127.0.0.1:${port}${browserPathLine}` : null),
+        };
+      }
+    }
+    await sleep(100);
+  }
+
+  throw new Error(
+    `Browser did not publish DevToolsActivePort within 20 seconds.\n${stderrBuffer()}`,
+  );
 }
 
 class Cdp {
@@ -98,7 +129,7 @@ const snapshotExpression = String.raw`
       if (background) return background;
       current = current.parentElement;
     }
-    return "#070604";
+    return "#090611";
   };
 
   const selector = [
@@ -134,6 +165,22 @@ const snapshotExpression = String.raw`
     const text = (element.textContent || "").trim();
     const role = element.getAttribute("role");
     const interactive = tag === "a" || tag === "button" || role === "button";
+    const isText = ["h1", "h2", "h3", "h4", "h5", "p", "a", "button"].includes(tag) && text.length > 0;
+    let paintRect = null;
+    if (isText) {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      const measured = range.getBoundingClientRect();
+      if (measured.width > 0 && measured.height > 0) {
+        paintRect = {
+          x: Number(measured.x.toFixed(2)),
+          y: Number(measured.y.toFixed(2)),
+          right: Number(measured.right.toFixed(2)),
+          bottom: Number(measured.bottom.toFixed(2)),
+        };
+      }
+      range.detach();
+    }
 
     return {
       id: ids.get(element),
@@ -155,12 +202,14 @@ const snapshotExpression = String.raw`
       parent: parent ? ids.get(parent) : null,
       visible: true,
       interactive,
-      is_text: ["h1", "h2", "h3", "h4", "h5", "p", "a", "button"].includes(tag) && text.length > 0,
+      is_text: isText,
+      paint: paintRect,
       fg: rgbToHex(style.color),
       bg: backgroundFor(element),
       font_px: Number.parseFloat(style.fontSize) || 16,
       font_weight: Number.parseInt(style.fontWeight, 10) || 400,
       visual_role: element.getAttribute("data-visual-role"),
+      palette_role: element.getAttribute("data-palette-role"),
     };
   });
 
@@ -172,6 +221,7 @@ const snapshotExpression = String.raw`
       client_height: document.documentElement.clientHeight,
       title: document.title,
       procedural_fields: document.querySelectorAll("[data-visual-role='STUDIO_GENERATED_FRAMING'] canvas").length,
+      property_spectra: document.querySelectorAll("[data-palette-role='PROPERTY_SPECTRUM'] canvas").length,
     },
     nodes,
   };
@@ -207,12 +257,25 @@ function analyzeSnapshot(snapshot, viewport) {
   if (snapshot.page.procedural_fields < 1) {
     errors.push({ code: "PROCEDURAL_FIELD_MISSING" });
   }
+  if (snapshot.page.property_spectra < 1) {
+    errors.push({ code: "PROPERTY_SPECTRUM_MISSING" });
+  }
 
   for (const node of snapshot.nodes) {
     const right = node.x + node.w;
     const isViewportBound = node.position !== "fixed" && node.position !== "sticky";
     if (isViewportBound && (node.x < -2 || right > viewport.w + 2)) {
       errors.push({ code: "NODE_OUTSIDE_VIEWPORT", id: node.id, x: node.x, right });
+    }
+
+    if (isViewportBound && node.is_text && node.paint
+      && (node.paint.x < -2 || node.paint.right > viewport.w + 2)) {
+      errors.push({
+        code: "TEXT_PAINT_OUTSIDE_VIEWPORT",
+        id: node.id,
+        paint: node.paint,
+        viewport_width: viewport.w,
+      });
     }
 
     const clipsWidth = node.scroll_w > node.client_w + 1 && node.overflow_x !== "visible";
@@ -323,23 +386,32 @@ async function main() {
 
   await mkdir(outDir, { recursive: true });
   const userData = await mkdtemp(join(tmpdir(), "umd-spatial-"));
+  let browserStderr = "";
   const browser = spawn(browserPath, [
     "--headless=new",
     "--disable-gpu",
     "--no-sandbox",
     "--disable-dev-shm-usage",
+    "--disable-background-networking",
     "--hide-scrollbars",
     "--no-first-run",
     "--no-default-browser-check",
-    "--remote-debugging-port=9223",
+    "--remote-debugging-port=0",
     `--user-data-dir=${userData}`,
     "about:blank",
-  ], { stdio: "ignore" });
+  ], { stdio: ["ignore", "ignore", "pipe"] });
+  browser.stderr?.setEncoding("utf8");
+  browser.stderr?.on("data", (chunk) => {
+    browserStderr = (browserStderr + chunk).slice(-12000);
+  });
 
   let totalErrors = 0;
   try {
-    const version = await fetchJson("http://127.0.0.1:9223/json/version");
-    const cdp = new Cdp(version.webSocketDebuggerUrl);
+    const devTools = await discoverDevTools(userData, browser, () => browserStderr);
+    if (!devTools.wsUrl) {
+      throw new Error(`DevTools websocket URL was not published.\n${browserStderr}`);
+    }
+    const cdp = new Cdp(devTools.wsUrl);
     await cdp.open();
     const { targetId } = await cdp.send("Target.createTarget", { url: "about:blank" });
     const { sessionId } = await cdp.send("Target.attachToTarget", { targetId, flatten: true });
@@ -375,6 +447,7 @@ async function main() {
       result: totalErrors === 0 ? "PASS" : "FAIL",
       targetUrl,
       browserPath,
+      devToolsPort: devTools.port,
       outputs,
     }, null, 2));
   } finally {
