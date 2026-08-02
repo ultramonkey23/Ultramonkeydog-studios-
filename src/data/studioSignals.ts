@@ -68,9 +68,9 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
     proofCeiling:
       "Packet validation and Studios integration are proven. Statistical calibration and independent matchup validation are not.",
     action: {
-      label: "Open BOB #003",
+      label: "View Box o' Battles",
       kind: "section",
-      target: "box-o-battles-section",
+      target: "project-card-box-o-battles",
     },
   },
   {
