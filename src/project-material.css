@@ -1,0 +1,227 @@
+.project-card {
+  --project-accent: var(--umd-rust);
+  --project-signal: var(--umd-bile);
+  --project-structure: var(--umd-bone);
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  border: 1px solid var(--umd-line);
+  background: var(--umd-panel);
+  box-shadow: 8px 8px 0 var(--umd-shadow);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+}
+
+.project-card::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 52px;
+  height: 5px;
+  background: var(--project-accent);
+  content: "";
+}
+
+.project-card__visual {
+  position: relative;
+  min-height: 17rem;
+  overflow: hidden;
+  border: 1px solid var(--umd-line-soft);
+  background: var(--umd-ground);
+}
+
+.project-card__visual > .procedural-field {
+  opacity: 0.88;
+}
+
+.project-card__visual-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 6, 4, 0.96) 0 36%, rgba(7, 6, 4, 0.72) 63%, rgba(7, 6, 4, 0.28) 100%),
+    repeating-linear-gradient(0deg, transparent 0 13px, rgba(210, 196, 159, 0.04) 13px 14px);
+}
+
+.project-card__visual-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 17rem;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+}
+
+.project-card__framing-label {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.45rem;
+  border-left: 3px solid var(--project-accent);
+  padding-left: 0.55rem;
+  color: var(--umd-ash);
+  font-family: var(--font-mono);
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-card__title-line {
+  width: min(15rem, 78%);
+  height: 3px;
+  margin-top: 0.75rem;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--project-accent) 0 24px,
+    transparent 24px 31px,
+    var(--project-structure) 31px 34px,
+    transparent 34px 47px
+  );
+}
+
+.project-card__facet {
+  border: 1px solid color-mix(in srgb, var(--project-structure) 24%, transparent);
+  background: rgba(7, 6, 4, 0.76);
+  padding: 0.28rem 0.48rem;
+  color: color-mix(in srgb, var(--project-structure) 78%, var(--umd-ash));
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.35rem 0.35rem 0.35rem;
+}
+
+.project-card__truth,
+.project-card__evidence {
+  border-left: 3px solid var(--project-accent);
+  background: var(--umd-deep);
+}
+
+.project-card__truth {
+  padding: 0.9rem 1rem;
+}
+
+.project-card__evidence {
+  overflow: hidden;
+  border-top: 1px solid var(--umd-line-soft);
+  border-right: 1px solid var(--umd-line-soft);
+  border-bottom: 1px solid var(--umd-line-soft);
+}
+
+.project-card__evidence-media {
+  border-bottom: 1px solid var(--umd-line-soft);
+  background: var(--umd-ground);
+}
+
+.project-card__evidence-media img {
+  image-rendering: auto;
+}
+
+.project-card__evidence-empty {
+  display: grid;
+  min-height: 7rem;
+  place-items: center;
+  border-bottom: 1px solid var(--umd-line-soft);
+  background:
+    repeating-conic-gradient(
+      from 45deg,
+      rgba(210, 196, 159, 0.065) 0 25%,
+      transparent 0 50%
+    ) 0 0 / 8px 8px,
+    var(--umd-ground);
+  color: var(--umd-ash);
+}
+
+.project-card__status,
+.project-card__evidence-state {
+  display: inline-flex;
+  border: 1px solid currentColor;
+  padding: 0.24rem 0.44rem;
+  background: var(--umd-ground);
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-card__status--playable,
+.project-card__evidence-state--promoted {
+  color: var(--umd-bile);
+}
+
+.project-card__status--native,
+.project-card__evidence-state--partial {
+  color: #c15a3c;
+}
+
+.project-card__status--packet,
+.project-card__evidence-state--reference {
+  color: var(--umd-gold);
+}
+
+.project-card__status--early,
+.project-card__status--capture,
+.project-card__evidence-state--capture {
+  color: var(--umd-ash);
+}
+
+.project-card__tag {
+  border: 1px solid var(--umd-line-soft);
+  background: var(--umd-ground);
+  padding: 0.28rem 0.46rem;
+  color: var(--umd-ash);
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.project-card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--project-accent);
+  border-left-width: 5px;
+  background: var(--umd-ground);
+  padding: 0.68rem 0.9rem;
+  color: var(--project-structure);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: background 120ms steps(1, end), color 120ms steps(1, end);
+}
+
+.project-card__action:hover {
+  background: var(--project-accent);
+  color: var(--umd-ground);
+}
+
+@media (max-width: 640px) {
+  .project-card {
+    box-shadow: 5px 5px 0 var(--umd-shadow);
+  }
+
+  .project-card__visual,
+  .project-card__visual-content {
+    min-height: 15rem;
+  }
+
+  .project-card__visual-shade {
+    background: rgba(7, 6, 4, 0.66);
+  }
+}
