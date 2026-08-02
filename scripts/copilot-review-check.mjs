@@ -17,6 +17,7 @@ const truthCheck = read("scripts/public-truth-order-check.mjs");
 const signals = read("src/components/StudioSignals.tsx");
 const signalsCss = read("src/studio-signals.css");
 const projectCard = read("src/components/ProjectCard.tsx");
+const boxCard = read("src/components/BoxOBattlesApp.tsx");
 const main = read("src/main.tsx");
 const motionGuard = read("src/reduced-motion-scroll.ts");
 const proceduralRendering = read("src/procedural-rendering.css");
@@ -66,6 +67,29 @@ if ((projectCard.match(/rel="noopener noreferrer"/g) ?? []).length < 3) {
 }
 
 for (const marker of [
+  "comicSupportTone",
+  'Unsupported: "border-red-900 bg-red-200 text-red-950"',
+  'Unknown: "border-zinc-800 bg-zinc-300 text-zinc-950"',
+  "route.highest_depth",
+  "route.anchor_status",
+  "route.essence_status",
+  "highestDepthIndex",
+]) {
+  if (!boxCard.includes(marker)) {
+    failures.push(`Box card lost packet-driven support/depth truth: ${marker}`);
+  }
+}
+for (const forbidden of [
+  "const reached = index <= 3",
+  "D3 Agency reached. D4 Anchor remains separated but not destroyed. D5 Essence remains unresolved.",
+  'beat.support_state === "Confirmed" ?',
+]) {
+  if (boxCard.includes(forbidden)) {
+    failures.push(`Box card reintroduced hard-coded packet state: ${forbidden}`);
+  }
+}
+
+for (const marker of [
   'import { MotionConfig } from "motion/react"',
   'reducedMotion="user"',
   "installReducedMotionScrollGuard()",
@@ -102,5 +126,5 @@ if (failures.length > 0) {
 }
 
 console.log(
-  "Copilot review check passed: live truth scoping, signal actions, external-link safety, reduced motion, and pixel scaling remain repaired.",
+  "Copilot review check passed: live truth scoping, signal actions, Box packet rendering, external-link safety, reduced motion, and pixel scaling remain repaired.",
 );
