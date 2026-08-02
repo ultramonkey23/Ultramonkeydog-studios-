@@ -3,6 +3,30 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+export type ProjectVisualStyle =
+  | "wild-fable"
+  | "necro-sport"
+  | "crown-biology"
+  | "all-ages-mythic"
+  | "cosmic-slate"
+  | "arbiter-card";
+
+export type PublicMediaState =
+  | "PLAYABLE_DEMO"
+  | "NATIVE_BUILD"
+  | "READ_ONLY_PACKET"
+  | "CONCEPT_TREATMENT"
+  | "EARLY_BUILD";
+
+export interface PublicVisual {
+  style: ProjectVisualStyle;
+  mediaState: PublicMediaState;
+  mediaLabel: string;
+  heading: string;
+  note: string;
+  facets: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -10,10 +34,9 @@ export interface Project {
   tags: string[];
   status: string;
   accentColor: "neon-green" | "electric-blue" | "violet" | "warm-amber" | "crimson";
-  glowClass: string;
-  imagePath?: string;
-  conceptPrompt?: string;
+  publicVisual: PublicVisual;
   demoUrl?: string;
+  demoLabel?: string;
   expandedDetails?: string;
   tone?: string;
   systemsUnderTheHood?: string[];
@@ -24,7 +47,6 @@ export interface ProductionRole {
   roleDescription: string;
   iconName: string;
   howAiHelps: string;
-  exampleOutput: string;
 }
 
 export interface FundingNeed {
