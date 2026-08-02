@@ -116,7 +116,7 @@ function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
         <a
           href={item.sourceUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="project-card__evidence-media group/evidence block overflow-hidden"
           aria-label={`Open source for ${item.title}`}
         >
@@ -152,7 +152,7 @@ function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
         <a
           href={item.sourceUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--umd-ash)] transition-colors hover:text-[var(--project-pop)]"
         >
           <ExternalLink size={12} />
@@ -319,7 +319,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <a
               href={project.demoUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="project-card__action mt-5"
             >
               <Gamepad2 size={15} />
