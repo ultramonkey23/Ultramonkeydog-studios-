@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, History, Play, Swords, X } from "lucide-react";
 
-import BoxOBattlesApp from "./BoxOBattlesApp";
+import BoxOBattlesSimulator from "./BoxOBattlesSimulator";
 import "./box-o-battles-spotlight.css";
 
 type RecentBattle = {
@@ -103,7 +103,7 @@ export default function BoxOBattlesSpotlight() {
             </button>
           </div>
           <div className="bob-spotlight__overlay-scroll">
-            <BoxOBattlesApp />
+            <BoxOBattlesSimulator />
           </div>
         </div>
       )}
