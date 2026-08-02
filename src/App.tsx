@@ -18,6 +18,7 @@ import {
   Swords,
 } from "lucide-react";
 import { motion } from "motion/react";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { FUNDING_NEEDS, PROJECTS_DATA } from "./data";
 import MethodGrid from "./components/MethodGrid";
@@ -467,6 +468,8 @@ export default function App() {
       <footer className="border-t border-white/5 bg-black px-4 py-8 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-600">
         © {currentYear} Ultramonkeydog Studios. Public outcomes only.
       </footer>
+
+      <SpeedInsights />
     </div>
   );
 }
