@@ -109,6 +109,9 @@ for (const required of requiredVisualTruth) {
 if (!projectCard.includes("PublicVisualEvidence") || !projectCard.includes("EvidenceCard")) {
   failures.push("src/components/ProjectCard.tsx: evidence-ranked visual renderer is missing");
 }
+if (!projectCard.includes("STUDIO_GENERATED_FRAMING") && !projectCard.includes("Studio-generated framing")) {
+  failures.push("src/components/ProjectCard.tsx: procedural framing is not visibly separated from project evidence");
+}
 if (!contract.includes("File existence is not showcase fitness")) {
   failures.push("docs/VISUAL_TRUTH_CONTRACT.md: asset-promotion correction is missing");
 }
@@ -140,9 +143,62 @@ if (!signalsComponent.includes("dry-run and human-approved")) {
   failures.push("src/components/StudioSignals.tsx: Quig publication boundary is missing");
 }
 
+const proceduralPath = path.join(ROOT, "src", "components", "ProceduralField.tsx");
+const shellPath = path.join(ROOT, "src", "components", "StudioFieldShell.tsx");
+const indexCssPath = path.join(ROOT, "src", "index.css");
+const proceduralContractPath = path.join(ROOT, "docs", "PROCEDURAL_VISUAL_SYSTEM.md");
+const spatialScanPath = path.join(ROOT, "scripts", "spatial-scan.mjs");
+const workflowPath = path.join(ROOT, ".github", "workflows", "visual-proof.yml");
+const procedural = fs.existsSync(proceduralPath) ? fs.readFileSync(proceduralPath, "utf8") : "";
+const shell = fs.existsSync(shellPath) ? fs.readFileSync(shellPath, "utf8") : "";
+const indexCss = fs.existsSync(indexCssPath) ? fs.readFileSync(indexCssPath, "utf8") : "";
+const proceduralContract = fs.existsSync(proceduralContractPath) ? fs.readFileSync(proceduralContractPath, "utf8") : "";
+const spatialScan = fs.existsSync(spatialScanPath) ? fs.readFileSync(spatialScanPath, "utf8") : "";
+const visualWorkflow = fs.existsSync(workflowPath) ? fs.readFileSync(workflowPath, "utf8") : "";
+
+for (const required of [
+  "BAYER_4X4",
+  "drawSteppedLine",
+  "STUDIO_GENERATED_FRAMING",
+  "prefers-reduced-motion",
+  "imageSmoothingEnabled = false",
+]) {
+  if (!procedural.includes(required)) failures.push(`src/components/ProceduralField.tsx: missing procedural visual law marker: ${required}`);
+}
+if (!shell.includes("ProceduralField") || !shell.includes("ultramonkeydog-studios-public-field-2026")) {
+  failures.push("src/components/StudioFieldShell.tsx: deterministic studio field shell is missing");
+}
+for (const required of ["--umd-ground", "--umd-bone", "--umd-rust", "image-rendering: pixelated", "backdrop-filter: none"] ) {
+  if (!indexCss.includes(required)) failures.push(`src/index.css: missing material-system marker: ${required}`);
+}
+for (const rejected of [
+  "fonts.googleapis.com",
+  "blur(16px)",
+  "blur(12px)",
+  "#0ea5e9",
+  "#8b5cf6",
+  "linear-gradient(to bottom right, #ffffff, #a1a1aa)",
+]) {
+  if (indexCss.includes(rejected)) failures.push(`src/index.css: generic AI visual token returned: ${rejected}`);
+}
+for (const required of [
+  "Hard tone bands",
+  "Ordered dithering",
+  "STUDIO_GENERATED_FRAMING",
+  "The same seed and viewport class must reproduce the same composition",
+]) {
+  if (!proceduralContract.includes(required)) failures.push(`docs/PROCEDURAL_VISUAL_SYSTEM.md: missing contract marker: ${required}`);
+}
+for (const required of ["Page.captureScreenshot", "TEXT_CLIPPED", "PAGE_HORIZONTAL_OVERFLOW", "LOW_CONTRAST_SAMPLE"]) {
+  if (!spatialScan.includes(required)) failures.push(`scripts/spatial-scan.mjs: missing visual proof check: ${required}`);
+}
+if (!visualWorkflow.includes("npm run spatial:scan") || !visualWorkflow.includes("upload-artifact")) {
+  failures.push(".github/workflows/visual-proof.yml: visual proof execution or artifact upload is missing");
+}
+
 if (failures.length > 0) {
   console.error("Public boundary check failed:\n" + failures.map((failure) => `- ${failure}`).join("\n"));
   process.exit(1);
 }
 
-console.log("Public boundary check passed: owner packet identity, public/private separation, retired-content exclusions, evidence-ranked visuals, and owned-web studio signals are intact.");
+console.log("Public boundary check passed: owner packet identity, public/private separation, evidence-ranked visuals, deterministic procedural framing, and browser visual-proof gates are intact.");
