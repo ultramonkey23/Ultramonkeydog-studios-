@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "node node_modules/vite/bin/vite.js --port=3000 --host=0.0.0.0",
-    "build": "node node_modules/vite/bin/vite.js build",
+    "boundary:check": "node scripts/public-boundary-check.mjs",
+    "build": "npm run boundary:check && node node_modules/vite/bin/vite.js build",
     "preview": "node node_modules/vite/bin/vite.js preview",
     "clean": "rm -rf dist server.js",
-    "lint": "node node_modules/typescript/bin/tsc --noEmit",
+    "lint": "npm run boundary:check && node node_modules/typescript/bin/tsc --noEmit",
     "spatial:scan": "node scripts/spatial-scan.mjs"
   },
   "dependencies": {
