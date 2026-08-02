@@ -39,6 +39,7 @@ function collectFiles(entry) {
   if (!fs.existsSync(absolute)) return [];
   const stat = fs.statSync(absolute);
   if (stat.isFile()) return [absolute];
+
   const files = [];
   for (const child of fs.readdirSync(absolute, { withFileTypes: true })) {
     const relative = path.join(entry, child.name);
@@ -51,11 +52,13 @@ function collectFiles(entry) {
 const failures = [];
 for (const file of scanRoots.flatMap(collectFiles)) {
   const content = fs.readFileSync(file, "utf8");
-  for (const rule of forbidden) if (rule.pattern.test(content)) failures.push(`${path.relative(ROOT, file)}: ${rule.label}`);
+  for (const rule of forbidden) {
+    if (rule.pattern.test(content)) failures.push(`${path.relative(ROOT, file)}: ${rule.label}`);
+  }
 }
 
 const cardPath = path.join(ROOT, "src/data/box-o-battles/bob-0003-arbiter-card-comic-hud-v0.3.json");
-const componentPath = path.join(ROOT, "src/components/BoxOBattlesApp.tsx");
+const boxComponentPath = path.join(ROOT, "src/components/BoxOBattlesApp.tsx");
 if (!fs.existsSync(cardPath)) failures.push("missing owner-vendored BOB #003 Arbiter Card packet");
 else {
   const card = JSON.parse(fs.readFileSync(cardPath, "utf8"));
@@ -63,11 +66,55 @@ else {
   if (card.card?.source_math_fingerprint !== "2539b24aeba078a584b2169494fe586966aa5d518ec0994957d64822b2c1c5e5") failures.push("BOB #003 source fingerprint drifted");
   if (card.verdict_stage?.balance_blade?.label !== "ROUTE SHARE — NOT WIN PROBABILITY") failures.push("Balance Blade truth label drifted");
 }
-if (!fs.existsSync(componentPath) || !/bob-0003-arbiter-card-comic-hud-v0\.3\.json/.test(fs.readFileSync(componentPath, "utf8"))) failures.push("BoxOBattlesApp must import the owner-vendored BOB #003 packet");
+if (!fs.existsSync(boxComponentPath) || !/bob-0003-arbiter-card-comic-hud-v0\.3\.json/.test(fs.readFileSync(boxComponentPath, "utf8"))) {
+  failures.push("BoxOBattlesApp must import the owner-vendored BOB #003 packet");
+}
+
+const dataPath = path.join(ROOT, "src", "data.ts");
+const projectCardPath = path.join(ROOT, "src", "components", "ProjectCard.tsx");
+const contractPath = path.join(ROOT, "docs", "VISUAL_TRUTH_CONTRACT.md");
+const data = fs.existsSync(dataPath) ? fs.readFileSync(dataPath, "utf8") : "";
+const projectCard = fs.existsSync(projectCardPath) ? fs.readFileSync(projectCardPath, "utf8") : "";
+const contract = fs.existsSync(contractPath) ? fs.readFileSync(contractPath, "utf8") : "";
+
+const stalePublicLabels = [
+  "WHAT WE FED title sigil",
+  "Wild Fable Ink",
+  "Mythic Necro-Sport Anime",
+  "Crown Biology / Mathematical Mutation",
+  "All-Ages Mythic Color",
+  "Cosmic Slate / Dark Field Archive",
+];
+for (const label of stalePublicLabels) {
+  if (data.includes(label)) failures.push(`src/data.ts: retired or invented public label returned: ${label}`);
+}
+
+if (/src:\s*["'`]([^"'`]*\/)?title_sigil\.png/i.test(data)) {
+  failures.push("src/data.ts: atmospheric title_sigil.png must not be promoted as showcase media");
+}
+
+const requiredVisualTruth = [
+  "CAPTURE_REQUIRED",
+  "GL-WORLD-RUINED-DIVINE-MACHINE-001",
+  "PROMOTED_RUNTIME_ENVIRONMENT",
+  "GL-BODY-PLANS-001 + GL-ANATOMY-001",
+  "WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL",
+  "Body-First Visual Engine",
+];
+for (const required of requiredVisualTruth) {
+  if (!data.includes(required)) failures.push(`src/data.ts: missing visual evidence truth marker: ${required}`);
+}
+
+if (!projectCard.includes("PublicVisualEvidence") || !projectCard.includes("EvidenceCard")) {
+  failures.push("src/components/ProjectCard.tsx: evidence-ranked visual renderer is missing");
+}
+if (!contract.includes("File existence is not showcase fitness")) {
+  failures.push("docs/VISUAL_TRUTH_CONTRACT.md: asset-promotion correction is missing");
+}
 
 if (failures.length > 0) {
   console.error("Public boundary check failed:\n" + failures.map((failure) => `- ${failure}`).join("\n"));
   process.exit(1);
 }
 
-console.log("Public boundary check passed: public truth, owner packet identity, and retired-content exclusions are intact.");
+console.log("Public boundary check passed: owner packet identity, public/private separation, retired-content exclusions, and evidence-ranked visual promotion are intact.");
