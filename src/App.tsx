@@ -17,20 +17,22 @@ import {
   Mail,
   Shield,
   Sparkles,
+  Swords,
 } from "lucide-react";
 import { motion } from "motion/react";
 
 import { FUNDING_NEEDS, PROJECTS_DATA } from "./data";
 import MethodGrid from "./components/MethodGrid";
 import ProjectCard from "./components/ProjectCard";
+import BoxOBattlesApp from "./components/BoxOBattlesApp";
 
 const emailAddress = "haringcody@gmail.com";
 
 const proofStats = [
   {
     label: "Public demos",
-    value: "2 live",
-    detail: "Bone League and Feral Formation are linked for direct browser play.",
+    value: "3 live",
+    detail: "Bone League, Feral Formation, and Box o' Battles Arbiter are live for direct browser play & evaluation.",
   },
   {
     label: "Native game proof",
@@ -88,6 +90,7 @@ function SectionKicker({ children }: { children: string }) {
 
 export default function App() {
   const [copied, setCopied] = useState(false);
+  const [showBoxOBattles, setShowBoxOBattles] = useState(false);
   const currentYear = new Date().getFullYear();
 
   const handleCopyEmail = async () => {
@@ -106,7 +109,10 @@ export default function App() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <button
             type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => {
+              setShowBoxOBattles(false);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="group flex items-center gap-3 text-left"
           >
             <span className="relative flex h-9 w-9 items-center justify-center rounded border border-zinc-800 bg-zinc-950 text-amber-400 transition-colors group-hover:border-amber-500/70">
@@ -124,10 +130,17 @@ export default function App() {
           </button>
 
           <nav className="hidden items-center gap-5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-500 md:flex">
-            <button onClick={() => scrollToSection("proof")} className="transition-colors hover:text-white">Proof</button>
-            <button onClick={() => scrollToSection("slate")} className="transition-colors hover:text-white">Slate</button>
-            <button onClick={() => scrollToSection("method")} className="transition-colors hover:text-white">Method</button>
-            <button onClick={() => scrollToSection("support")} className="transition-colors hover:text-white">Support</button>
+            <button onClick={() => { setShowBoxOBattles(false); scrollToSection("proof"); }} className="transition-colors hover:text-white">Proof</button>
+            <button onClick={() => { setShowBoxOBattles(false); scrollToSection("slate"); }} className="transition-colors hover:text-white">Slate</button>
+            <button onClick={() => { setShowBoxOBattles(false); scrollToSection("method"); }} className="transition-colors hover:text-white">Method</button>
+            <button onClick={() => { setShowBoxOBattles(false); scrollToSection("support"); }} className="transition-colors hover:text-white">Support</button>
+            <button 
+              onClick={() => { setShowBoxOBattles(true); window.scrollTo({ top: 0, behavior: "smooth" }); }} 
+              className="flex items-center gap-1.5 rounded border border-amber-500/40 bg-amber-500/10 px-2.5 py-1 text-amber-300 transition-colors hover:border-amber-400 hover:text-white font-bold"
+            >
+              <Swords size={12} />
+              Box o' Battles
+            </button>
           </nav>
 
           <button
@@ -142,6 +155,31 @@ export default function App() {
       </header>
 
       <main>
+        {showBoxOBattles && (
+          <section id="box-o-battles-section" className="relative border-b border-amber-500/20 bg-[#050507] py-12">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400">
+                    Public Interactive Program
+                  </span>
+                  <h2 className="mt-1 font-display text-2xl font-black text-white sm:text-3xl">
+                    Box o' Battles — Evidence-Aware Arbiter Engine
+                  </h2>
+                </div>
+                <button
+                  onClick={() => setShowBoxOBattles(false)}
+                  className="rounded border border-zinc-800 bg-zinc-950 px-3 py-1.5 font-mono text-xs text-zinc-400 hover:border-amber-400 hover:text-white"
+                >
+                  Close Program
+                </button>
+              </div>
+
+              <BoxOBattlesApp onClose={() => setShowBoxOBattles(false)} />
+            </div>
+          </section>
+        )}
+
         <section className="relative isolate overflow-hidden border-b border-white/5 bg-[#030304]">
           <img
             data-spatial-ignore="true"
@@ -252,7 +290,7 @@ export default function App() {
               ))}
             </div>
 
-            <div className="mt-6 grid gap-4 lg:grid-cols-2">
+            <div className="mt-6 grid gap-4 lg:grid-cols-3">
               <a
                 href="https://bone-league-black-bracket-604506170438.us-east1.run.app"
                 target="_blank"
@@ -262,7 +300,7 @@ export default function App() {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-sky-300">Playable now</p>
-                    <h3 className="mt-2 font-display text-xl font-bold text-white">Bone League: Black Bracket</h3>
+                    <h3 className="mt-2 font-display text-xl font-bold text-white">Bone League</h3>
                   </div>
                   <ExternalLink className="text-sky-300 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" size={18} />
                 </div>
@@ -282,8 +320,26 @@ export default function App() {
                   </div>
                   <ExternalLink className="text-violet-300 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" size={18} />
                 </div>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">Tactical creature-party roguelite with deterministic combat, formation strategy, clash windows, and persistent mastery.</p>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">Tactical creature-party roguelite with clash windows, adaptive rewards, and matchup forecasting.</p>
               </a>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setShowBoxOBattles(true);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="glass-card group rounded-lg p-6 text-left transition-all duration-300 hover:border-amber-400/50 hover:shadow-[0_0_40px_rgba(245,158,11,0.15)] hover:bg-amber-950/10"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">Interactive Program</p>
+                    <h3 className="mt-2 font-display text-xl font-bold text-white">Box o' Battles Arbiter</h3>
+                  </div>
+                  <Swords className="text-amber-400 transition-transform group-hover:scale-110" size={18} />
+                </div>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">Evidence-gated matchup analysis program. Calculate schema-backed verdicts live in browser.</p>
+              </button>
             </div>
           </div>
         </section>

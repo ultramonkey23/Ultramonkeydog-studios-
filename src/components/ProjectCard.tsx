@@ -486,6 +486,38 @@ function ProjectGraphic({ id }: { id: string }) {
       <div className="absolute bottom-2 right-2 w-1.5 h-1.5 border-b border-r border-violet-500/40 pointer-events-none" />
     </div>
   );
+
+  if (id === "box-o-battles") {
+    return (
+      <div className="relative w-full aspect-video bg-zinc-950 border border-amber-950 rounded overflow-hidden p-3 group/screen select-none">
+        <div className="w-full h-full flex flex-col justify-between relative bg-[#070709] border border-amber-500/30 rounded p-2.5">
+          <div className="flex justify-between items-center border-b border-amber-950 pb-1 text-[8px] font-mono tracking-wider text-amber-400">
+            <span>ARBITER_MATCHUP_ENGINE</span>
+            <span className="text-emerald-400 font-bold uppercase font-mono">
+              ● INTERACTIVE_DEMO
+            </span>
+          </div>
+          <div className="my-1.5 flex justify-between items-center px-2">
+            <div>
+              <div className="text-[10px] font-display font-bold text-white">
+                Ashclaw Prime vs Bone Sovereign
+              </div>
+              <div className="text-[8px] font-mono text-emerald-400">
+                Winner: Ashclaw Prime (85% Confidence)
+              </div>
+            </div>
+            <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[8px] font-mono font-bold text-amber-300 border border-amber-500/40">
+              Arbiter v1.0
+            </span>
+          </div>
+          <div className="border-t border-amber-950/60 pt-1 flex justify-between text-[7px] font-mono text-zinc-500">
+            <span>SCHEMAS: arbiter-verdict-v1</span>
+            <span className="text-amber-400">EVIDENCE-GATED</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {

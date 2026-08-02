@@ -130,6 +130,27 @@ export const PROJECTS_DATA: Project[] = [
     expandedDetails:
       "Feral Formation is a high-tactical, mobile-first creature-party RPG roguelite with deterministic combat, clash windows, adaptive rewards, persistent creature mastery, matchup forecasting, and formation-driven strategy.",
   },
+  {
+    id: "box-o-battles",
+    title: "Box o' Battles",
+    tone: "Evidence-aware Arbiter matchup analysis engine",
+    description:
+      "An interactive matchup analysis program that evaluates combatants, scenarios, and verified evidence citations to generate schema-backed Arbiter verdicts.",
+    tags: ["Interactive Arbiter", "Evidence-Aware", "JSON Schema", "Matchup Engine", "TypeScript", "Public Demo"],
+    status: "Interactive Web Program Live",
+    accentColor: "warm-amber",
+    glowClass: "glow-amber",
+    conceptPrompt: "A glowing holographic battle arena displaying evidence vectors and Arbiter verdict metrics",
+    demoUrl: "#box-o-battles",
+    expandedDetails:
+      "Box o' Battles demonstrates Cody's evidence-gated analytical Arbiter system. Users can select combatants, environments, and evidence citations to run live verdict calculations validated against JSON Schema specifications.",
+    systemsUnderTheHood: [
+      "Evidence-gated Arbiter verdict evaluation engine with strict citation validation.",
+      "Full JSON Schema enforcement (schemas/arbiter-verdict-v1.schema.json).",
+      "Interactive combatant, environment, and feat citation matrix builder.",
+      "Decoupled Lab-tail project architecture with zero runtime Lab dependency.",
+    ],
+  },
 ];
 
 export const PRODUCTION_ROLES: ProductionRole[] = [
