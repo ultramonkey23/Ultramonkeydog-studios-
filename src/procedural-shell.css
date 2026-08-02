@@ -1,0 +1,84 @@
+.studio-field-shell {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  background: var(--umd-ground);
+}
+
+.studio-field-shell__field {
+  position: fixed;
+  z-index: 0;
+  opacity: 0.92;
+}
+
+.studio-field-shell__content {
+  position: relative;
+  z-index: 1;
+}
+
+.studio-field-shell__content > div {
+  background-color: transparent !important;
+}
+
+/* The old workstation bitmap was a generic placeholder. The procedural field now owns hero atmosphere. */
+img[src="/assets/studio-forge-hero.png"] {
+  display: none !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) {
+  background-color: transparent !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) > img + div {
+  background: rgba(7, 6, 4, 0.58) !important;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"])::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 31px,
+      rgba(210, 196, 159, 0.045) 31px 32px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 15px,
+      rgba(166, 61, 37, 0.04) 15px 16px
+    );
+  content: "";
+  pointer-events: none;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) h1 {
+  max-width: 10ch;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+
+section:has(> img[src="/assets/studio-forge-hero.png"]) h1::after {
+  display: block;
+  width: min(18rem, 66vw);
+  height: 5px;
+  margin-top: 1rem;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--umd-rust) 0 34px,
+    transparent 34px 43px,
+    var(--umd-bone) 43px 47px,
+    transparent 47px 61px
+  );
+  content: "";
+}
+
+@media (max-width: 700px) {
+  .studio-field-shell__field {
+    opacity: 0.78;
+  }
+
+  section:has(> img[src="/assets/studio-forge-hero.png"]) > img + div {
+    background: rgba(7, 6, 4, 0.7) !important;
+  }
+}
