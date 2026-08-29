@@ -29,6 +29,7 @@ const MATRIX_URL = "/box/matchup-matrix.v0.1.json";
 
 type Step = { step: string; support_state: string; effective_strength: number };
 type Route = {
+  route_id: string;
   combatant_id: string;
   dependency_group: string;
   defeat_condition: string;
@@ -356,7 +357,7 @@ export default function BoxArena() {
                 .slice()
                 .sort((left, right) => right.conversion_score - left.conversion_score)
                 .map((route) => (
-                  <RouteCard key={`${route.combatant_id}-${route.dependency_group}`} route={route} />
+                  <RouteCard key={route.route_id} route={route} />
                 ))}
             </div>
           </section>
