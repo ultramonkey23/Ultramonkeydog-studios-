@@ -59,7 +59,8 @@ for (const file of scanRoots.flatMap(collectFiles)) {
 }
 
 const cardPath = path.join(ROOT, "src/data/box-o-battles/bob-0003-arbiter-card-comic-hud-v0.3.json");
-const boxComponentPath = path.join(ROOT, "src/components/BoxOBattlesApp.tsx");
+const boxComponentPath = path.join(ROOT, "src/components/BoxArena.tsx");
+const matrixPath = path.join(ROOT, "public/box/matchup-matrix.v0.1.json");
 if (!fs.existsSync(cardPath)) failures.push("missing owner-vendored BOB #003 Arbiter Card packet");
 else {
   const card = JSON.parse(fs.readFileSync(cardPath, "utf8"));
@@ -67,8 +68,41 @@ else {
   if (card.card?.source_math_fingerprint !== "2539b24aeba078a584b2169494fe586966aa5d518ec0994957d64822b2c1c5e5") failures.push("BOB #003 source fingerprint drifted");
   if (card.verdict_stage?.balance_blade?.label !== "ROUTE SHARE — NOT WIN PROBABILITY") failures.push("Balance Blade truth label drifted");
 }
-if (!fs.existsSync(boxComponentPath) || !/bob-0003-arbiter-card-comic-hud-v0\.3\.json/.test(fs.readFileSync(boxComponentPath, "utf8"))) {
-  failures.push("BoxOBattlesApp must import the owner-vendored BOB #003 packet");
+// The BOB #003 card component was retired when the arena replaced it, so this
+// rule no longer has a component to point at. The invariant it protected is
+// unchanged and now lives on the arena: the site displays owner-computed
+// results and never calculates one itself.
+if (!fs.existsSync(boxComponentPath)) {
+  failures.push("missing src/components/BoxArena.tsx");
+} else {
+  const arena = fs.readFileSync(boxComponentPath, "utf8");
+  if (!/matchup-matrix\.v0\.1\.json/.test(arena)) {
+    failures.push("BoxArena must load the owner-generated matchup matrix");
+  }
+  // Precise rules only. A guard that fires on correct code — `const winner =
+  // arenaWinners[id]` is a lookup, not a decision — teaches people to weaken
+  // guards, which is worse than having none.
+  for (const [label, pattern] of [
+    ["a verdict evaluator", /function\s+(evaluate|resolve|compute)(Matchup|Verdict|Winner)/i],
+    ["route scoring math", /conversion_score\s*=\s*[^=]/],
+    ["nondeterminism", /Math\.random/],
+  ]) {
+    if (pattern.test(arena)) failures.push(`BoxArena reintroduced ${label}: it presents, it does not calculate`);
+  }
+}
+if (!fs.existsSync(matrixPath)) {
+  failures.push("missing public/box/matchup-matrix.v0.1.json — the arena has nothing to display");
+} else {
+  const matrix = JSON.parse(fs.readFileSync(matrixPath, "utf8"));
+  if (matrix.schema_version !== "arbiter.matchup-matrix.v0.1") failures.push("matchup matrix schema drifted");
+  if (!matrix.owner_commit || matrix.owner_commit === "UNKNOWN") failures.push("matchup matrix lost its owner commit");
+  if (!/not reviewed verdicts/.test(matrix.proof_ceiling ?? "")) failures.push("matchup matrix lost its proof ceiling");
+  for (const key of Object.keys(matrix.matchups ?? {})) {
+    if (key !== key.split("|").sort().join("|")) {
+      failures.push(`matchup matrix key ${key} is not in canonical order and cannot be looked up`);
+      break;
+    }
+  }
 }
 
 const dataPath = path.join(ROOT, "src", "data.ts");

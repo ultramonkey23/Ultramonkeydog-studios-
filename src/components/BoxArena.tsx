@@ -69,6 +69,8 @@ type Matrix = {
   how_this_was_made: string;
   proof_ceiling: string;
   matchups: Record<string, Record<string, Resolved>>;
+  /** Pairings an analyst actually ruled on, so a fresh result can be checked against one. */
+  reviewed: Record<string, { battle_id: string; winner: string; margin: string }>;
 };
 
 const MARGIN_TONE: Record<string, string> = {
@@ -224,6 +226,12 @@ export default function BoxArena() {
     return Object.fromEntries(Object.entries(entry).map(([id, value]) => [id, value.winner]));
   }, [matrix, a, b]);
 
+  const reviewed = matrix?.reviewed?.[pairKey(a, b)] ?? null;
+  const reviewedAgrees =
+    reviewed && resolved
+      ? resolved.winner.toLowerCase().startsWith(reviewed.winner.split(" ")[0].toLowerCase())
+      : null;
+
   const swap = useCallback(() => {
     setA(b);
     setB(a);
@@ -326,6 +334,40 @@ export default function BoxArena() {
               {resolved.margin.replaceAll("_", " ")} · {(resolved.confidence * 100).toFixed(1)}% confidence
             </p>
           </section>
+
+          {reviewed && (
+            /*
+              This pairing was also ruled on by an analyst who chose the scenario
+              and wrote the hinge. Showing the fresh number alone would be the
+              stronger story rather than the truer one: PUBLIC_TRUTH_ORDER says
+              narrow the claim when the owner's own outputs disagree.
+            */
+            <section
+              className={`rounded-xl border p-4 ${
+                reviewedAgrees
+                  ? "border-teal-400/25 bg-teal-400/5"
+                  : "border-red-400/30 bg-red-400/5"
+              }`}
+            >
+              <p
+                className={`font-mono text-[9px] font-black uppercase tracking-[0.14em] ${
+                  reviewedAgrees ? "text-teal-300" : "text-red-300"
+                }`}
+              >
+                {reviewedAgrees ? "Matches the reviewed verdict" : "Contradicts the reviewed verdict"}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-zinc-300">
+                {reviewed.battle_id} was ruled{" "}
+                <strong className="text-white">
+                  {reviewed.winner}, {reviewed.margin.replaceAll("_", " ")}
+                </strong>{" "}
+                by an analyst who chose the scenario and wrote the hinge.{" "}
+                {reviewedAgrees
+                  ? "The compiled candidate above lands the same way."
+                  : "The compiled candidate above lands differently. Neither is calibrated, and a generic arena is not the scenario that ruling was made in — read the winner as unsettled."}
+              </p>
+            </section>
+          )}
 
           {shares.length >= 2 && (
             <section className="rounded-xl border border-white/10 bg-black/30 p-4">

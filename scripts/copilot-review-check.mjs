@@ -29,7 +29,7 @@ const truthCheck = read("scripts/public-truth-order-check.mjs");
 const signals = read("src/components/StudioSignals.tsx");
 const signalsCss = read("src/studio-signals.css");
 const projectCard = read("src/components/ProjectCard.tsx");
-const boxCard = read("src/components/BoxOBattlesApp.tsx");
+const boxCard = read("src/components/BoxArena.tsx");
 const main = read("src/main.tsx");
 const motionGuard = read("src/reduced-motion-scroll.ts");
 const proceduralRendering = read("src/procedural-rendering.css");
@@ -82,64 +82,68 @@ if ((projectCard.match(/rel="noopener noreferrer"/g) ?? []).length < 3) {
 // deleted in ccd7720. The invariant did not move: the Box card must render
 // support state and Victory Depth FROM the owner packet, never hard-coded.
 // Each rule below is anchored on the identifier that carries that invariant today.
+// The BOB #003 card component was retired when the arena replaced it — Cody
+// called the two stacked Box widgets a duplicate and they were. The invariant
+// these rules protect did not retire with it: the Box surface must render
+// support state, gate state and the ordered conversion spine FROM owner output,
+// never from anything decided here. Re-anchored on the component that carries
+// that today. Rules whose subject genuinely no longer exists (Victory Depth
+// belonged to the card packet) are gone rather than kept as theatre.
 const boxRequiredPatterns = [
   {
-    label: "packet-driven support tone map",
-    pattern: /const\s+supportClasses\s*:\s*Record<\s*SupportState\s*,\s*string\s*>\s*=\s*\{/,
-    probe: "const supportClasses : Record< SupportState, string > = {",
+    label: "route support state read from owner data",
+    pattern: /step\s*\.\s*support_state/,
+    probe: "step . support_state",
   },
   {
-    label: "Unsupported support state is mapped",
-    pattern: /\bUnsupported\s*:\s*["'][^"']+["']/,
-    probe: "Unsupported : 'border-red-400/35 bg-red-400/10 text-red-200'",
+    label: "route gate state read from owner data",
+    pattern: /route\s*\.\s*gate_state/,
+    probe: "route\n  . gate_state",
   },
   {
-    label: "Unknown support state is mapped",
-    pattern: /\bUnknown\s*:\s*["'][^"']+["']/,
-    probe: "Unknown: 'border-zinc-600   bg-zinc-900 text-zinc-300'",
+    label: "a closed route says why it closed",
+    pattern: /route\s*\.\s*gate_reasons/,
+    probe: "route	. gate_reasons",
   },
   {
-    label: "hinge gate support state read from packet",
-    pattern: /supportClasses\s*\[\s*packet\s*\.\s*hinge_gate\s*\.\s*support_state\s*\]/,
-    probe: "supportClasses [ packet . hinge_gate . support_state ]",
+    label: "ordered conversion steps rendered",
+    pattern: /route\s*\.\s*steps\s*\.\s*map/,
+    probe: "route . steps . map",
   },
   {
-    label: "conversion-spine step support state read from packet",
-    pattern: /supportClasses\s*\[\s*step\s*\.\s*support_state\s*\]/,
-    probe: "supportClasses	[ step . support_state ]",
+    label: "owner matrix is the only source",
+    pattern: /matchup-matrix\.v0\.1\.json/,
+    probe: "matchup-matrix.v0.1.json",
   },
   {
-    label: "card_back.anchor_status rendered",
-    pattern: /packet\s*\.\s*card_back\s*\.\s*anchor_status/,
-    probe: "packet . card_back . anchor_status",
+    label: "owner provenance is displayed",
+    pattern: /matrix\s*\.\s*owner_commit/,
+    probe: "matrix . owner_commit",
   },
   {
-    label: "card_back.essence_status rendered",
-    pattern: /packet\s*\.\s*card_back\s*\.\s*essence_status/,
-    probe: "packet\n  . card_back\n  . essence_status",
+    label: "proof ceiling is displayed",
+    pattern: /matrix\s*\.\s*proof_ceiling/,
+    probe: "matrix\n  . proof_ceiling",
   },
   {
-    label: "card_back.ring_status rendered",
-    pattern: /packet\s*\.\s*card_back\s*\.\s*ring_status/,
-    probe: "packet . card_back	. ring_status",
+    label: "reviewed disagreement is surfaced",
+    // The arena reads this through optional chaining, so the rule has to
+    // tolerate `?.` or it fails on the exact code it exists to protect.
+    pattern: /matrix\s*\??\.\s*reviewed/,
+    probe: "matrix ?. reviewed",
   },
 ];
 
 const boxForbiddenPatterns = [
   {
-    label: "fixed Victory Depth index",
-    pattern: /const\s+reached\s*=\s*index\s*<=\s*3\b/,
-    probe: "const reached = index\n  <=\t3;",
+    label: "browser-side verdict math",
+    pattern: /function\s+(evaluate|resolve|compute)(Matchup|Verdict|Winner)/i,
+    probe: "function computeVerdict(",
   },
   {
-    label: "BOB #003-specific Victory Depth sentence",
-    pattern: /D3\s+Agency\s+reached\.\s*D4\s+Anchor\s+remains\s+separated\s+but\s+not\s+destroyed\.\s*D5\s+Essence\s+remains\s+unresolved\./,
-    probe: "D3 Agency reached.  D4 Anchor remains separated but not destroyed.\nD5 Essence remains unresolved.",
-  },
-  {
-    label: "Confirmed-only comic support ternary",
-    pattern: /beat\s*\.\s*support_state\s*===\s*["']Confirmed["']\s*\?/,
-    probe: "beat . support_state === 'Confirmed'\n  ?",
+    label: "nondeterminism in a displayed result",
+    pattern: /Math\.random/,
+    probe: "Math.random()",
   },
 ];
 

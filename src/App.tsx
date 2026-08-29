@@ -27,7 +27,6 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import { FUNDING_NEEDS, PROJECTS_DATA } from "./data";
 import BoxArena from "./components/BoxArena";
-import BoxOBattlesApp from "./components/BoxOBattlesApp";
 import MethodGrid from "./components/MethodGrid";
 import ProjectCard from "./components/ProjectCard";
 import "./studio-front-door.css";
@@ -296,11 +295,7 @@ export default function App() {
               Box o’ Battles is part comic issue, part evidence hearing, part “who actually stays dead?” machine. This website displays the owner-held card packet without pretending to recalculate it.
             </p>
           </div>
-          {/* The Arbiter you can operate, then the reviewed issue it grew out of. */}
           <BoxArena />
-          <div className="mt-8">
-            <BoxOBattlesApp />
-          </div>
         </section>
 
         <section id="experiments" className="front-door__section front-door__section--experiments">

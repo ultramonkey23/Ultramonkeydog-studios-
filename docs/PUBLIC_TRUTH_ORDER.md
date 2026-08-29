@@ -51,6 +51,15 @@ Resolved since, at owner merge `56b8c4d`:
 - the owner's full proof gate (`make all`) passes for the first time — 187 tests, with the
   legacy corpus damage held by a fingerprint baseline rather than left red.
 
+The BOB #003 card component was retired on 2026-08-29. The site had grown two
+stacked Box widgets — the operable arena and the frozen card — showing the same
+kinds of thing, which is a duplicate rather than depth. The card packet remains
+vendored and guarded in this repository; nothing renders it.
+
+The disclosure below did not retire with it. The arena carries every pairing
+that also has a reviewed verdict and states plainly when the compiled candidate
+contradicts it, which is where a reader is actually looking.
+
 Open contradiction, disclosed on the card rather than resolved:
 
 - the owner's dossier benchmark replays Vader vs Sauron through the current generic engine
@@ -60,8 +69,9 @@ Open contradiction, disclosed on the card rather than resolved:
   not a regeneration of the authored Arbiter card, and the owner labels the replay a candidate
   dual run, not authority. Neither is calibrated.
 - Under the owner-before-consumer laws below, the public claim is narrowed rather than
-  preserved: the card now carries a "contested by the current engine" disclosure naming the
-  reversal. The card is not withdrawn, and the replay is not promoted to a verdict.
+  preserved. Selecting Vader vs Sauron in the arena shows the current engine's Sauron beside
+  a "contradicts the reviewed verdict" panel naming BOB-0003's Darth Vader ruling. Neither is
+  promoted over the other, and neither is calibrated.
 
 ## Presentation gate
 
