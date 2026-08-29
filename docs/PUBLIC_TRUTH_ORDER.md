@@ -39,8 +39,29 @@ Current state after owner merge `02b9b842`:
 - providers cannot set winner, margin, reliability, route share, or replay identity;
 - correlation control, persistence, HTTP behavior, replay, and manipulation rejection are tested;
 - BOB #003 remains a validated immutable packet that predates this merge;
-- BOB #003 has not yet been recomputed through the new engine;
-- Knull vs. base Batman Who Laughs dogfood, sensitivity analysis, calibration, and independent validation remain open.
+- BOB #003 has not yet been recomputed through the new engine — and cannot be regenerated
+  from the owner repository, which holds no BOB-0003 request input, only a generic dossier
+  replay;
+- calibration and independent validation remain open.
+
+Resolved since, at owner merge `56b8c4d`:
+
+- the Knull vs. base Batman Who Laughs dogfood and its adversarial sensitivity cases are
+  merged and under test;
+- the owner's full proof gate (`make all`) passes for the first time — 187 tests, with the
+  legacy corpus damage held by a fingerprint baseline rather than left red.
+
+Open contradiction, disclosed on the card rather than resolved:
+
+- the owner's dossier benchmark replays Vader vs Sauron through the current generic engine
+  at 5000 trials and returns **Sauron at a coin-flip margin**. The card records **Darth Vader
+  at a narrow margin**. The winner reverses.
+- These are different computations — a generic dossier replay against a neutral courtyard is
+  not a regeneration of the authored Arbiter card, and the owner labels the replay a candidate
+  dual run, not authority. Neither is calibrated.
+- Under the owner-before-consumer laws below, the public claim is narrowed rather than
+  preserved: the card now carries a "contested by the current engine" disclosure naming the
+  reversal. The card is not withdrawn, and the replay is not promoted to a verdict.
 
 ## Presentation gate
 

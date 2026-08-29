@@ -117,6 +117,30 @@ function VerdictView() {
           <Scale className="text-amber-300" size={34} />
         </div>
         <p className="mt-5 max-w-4xl text-sm leading-7 text-zinc-300">{packet.verdict_stage.human_ruling}</p>
+
+        {/*
+          Consumer-side disclosure, not an edit to the owner packet. The owner's
+          current engine replays this matchup and returns the other combatant, so
+          presenting the recorded ruling alone would be the stronger story rather
+          than the truer one (docs/PUBLIC_TRUTH_ORDER.md).
+        */}
+        <div className="mt-5 rounded-lg border border-amber-400/30 bg-black/40 p-4">
+          <p className="font-mono text-[9px] font-black uppercase tracking-[0.14em] text-amber-300">
+            Contested by the current engine
+          </p>
+          <p className="mt-2 text-sm leading-6 text-zinc-300">
+            This card was generated before the Math Spine core landed. Replaying the same
+            fighters through the owner&rsquo;s current generic engine returns{" "}
+            <strong className="text-white">Sauron at a coin-flip margin</strong>, reversing the
+            recorded ruling above.
+          </p>
+          <p className="mt-2 text-xs leading-5 text-zinc-500">
+            The replay is a generic dossier run on a neutral 60&thinsp;m courtyard, not a
+            regeneration of this authored card, and its owner labels it a candidate run rather
+            than authority. Neither result is calibrated or independently adjudicated. Read the
+            winner here as unsettled, not confirmed.
+          </p>
+        </div>
       </section>
 
       <section className="rounded-xl border border-white/10 bg-black/30 p-4 sm:p-5">

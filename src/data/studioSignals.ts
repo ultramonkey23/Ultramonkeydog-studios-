@@ -89,6 +89,23 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
     },
   },
   {
+    id: "box-o-battles-0003-generic-replay-drift",
+    project: "Box o' Battles",
+    date: "2026-08-29",
+    state: "TESTED",
+    title: "Replayed on the current engine, BOB #003 flips",
+    summary:
+      "The owner's dossier benchmark replays Vader vs Sauron through the current generic engine at 5000 trials. It returns Sauron at a coin-flip margin, where the card recorded Darth Vader at a narrow one. The winner reverses. The replay is a generic dossier run against a neutral 60m courtyard, not a regeneration of the authored card, and the owner labels it a candidate dual run rather than authority — but it is the closest thing to a recomputation that exists, and it disagrees.",
+    sourceLabel: "Private owner merge 56b8c4d — make profile-sim-check",
+    proofCeiling:
+      "The replay is deterministic and reproducible. It does not overturn the card: a generic dossier replay and the authored Arbiter card are different computations, and neither is calibrated or independently adjudicated. Treat the card's winner as unsettled rather than confirmed.",
+    action: {
+      label: "Open the Box",
+      kind: "section",
+      target: "box-o-battles",
+    },
+  },
+  {
     id: "what-we-fed-title-capture",
     project: "WHAT WE FED",
     date: "2026-08-02",
