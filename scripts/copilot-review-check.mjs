@@ -78,41 +78,50 @@ if ((projectCard.match(/rel="noopener noreferrer"/g) ?? []).length < 3) {
   failures.push("ProjectCard external links are not consistently hardened");
 }
 
+// These names moved when the abandoned Box simulator/spotlight components were
+// deleted in ccd7720. The invariant did not move: the Box card must render
+// support state and Victory Depth FROM the owner packet, never hard-coded.
+// Each rule below is anchored on the identifier that carries that invariant today.
 const boxRequiredPatterns = [
   {
-    label: "comicSupportTone mapping",
-    pattern: /const\s+comicSupportTone\s*:\s*Record<\s*SupportState\s*,\s*string\s*>\s*=\s*\{/,
-    probe: "const comicSupportTone : Record< SupportState, string > = {",
+    label: "packet-driven support tone map",
+    pattern: /const\s+supportClasses\s*:\s*Record<\s*SupportState\s*,\s*string\s*>\s*=\s*\{/,
+    probe: "const supportClasses : Record< SupportState, string > = {",
   },
   {
-    label: "Unsupported comic support tone",
-    pattern: /Unsupported\s*:\s*["'][^"']*\bborder-red-900\b[^"']*\bbg-red-200\b[^"']*\btext-red-950\b[^"']*["']/,
-    probe: "Unsupported : 'border-red-900   bg-red-200 text-red-950'",
+    label: "Unsupported support state is mapped",
+    pattern: /\bUnsupported\s*:\s*["'][^"']+["']/,
+    probe: "Unsupported : 'border-red-400/35 bg-red-400/10 text-red-200'",
   },
   {
-    label: "Unknown comic support tone",
-    pattern: /Unknown\s*:\s*["'][^"']*\bborder-zinc-800\b[^"']*\bbg-zinc-300\b[^"']*\btext-zinc-950\b[^"']*["']/,
-    probe: "Unknown: 'border-zinc-800 bg-zinc-300   text-zinc-950'",
+    label: "Unknown support state is mapped",
+    pattern: /\bUnknown\s*:\s*["'][^"']+["']/,
+    probe: "Unknown: 'border-zinc-600   bg-zinc-900 text-zinc-300'",
   },
   {
-    label: "route.highest_depth",
-    pattern: /route\s*\.\s*highest_depth/,
-    probe: "route . highest_depth",
+    label: "hinge gate support state read from packet",
+    pattern: /supportClasses\s*\[\s*packet\s*\.\s*hinge_gate\s*\.\s*support_state\s*\]/,
+    probe: "supportClasses [ packet . hinge_gate . support_state ]",
   },
   {
-    label: "route.anchor_status",
-    pattern: /route\s*\.\s*anchor_status/,
-    probe: "route\n  . anchor_status",
+    label: "conversion-spine step support state read from packet",
+    pattern: /supportClasses\s*\[\s*step\s*\.\s*support_state\s*\]/,
+    probe: "supportClasses	[ step . support_state ]",
   },
   {
-    label: "route.essence_status",
-    pattern: /route\s*\.\s*essence_status/,
-    probe: "route\t. essence_status",
+    label: "card_back.anchor_status rendered",
+    pattern: /packet\s*\.\s*card_back\s*\.\s*anchor_status/,
+    probe: "packet . card_back . anchor_status",
   },
   {
-    label: "highestDepthIndex",
-    pattern: /\bhighestDepthIndex\b/,
-    probe: "highestDepthIndex",
+    label: "card_back.essence_status rendered",
+    pattern: /packet\s*\.\s*card_back\s*\.\s*essence_status/,
+    probe: "packet\n  . card_back\n  . essence_status",
+  },
+  {
+    label: "card_back.ring_status rendered",
+    pattern: /packet\s*\.\s*card_back\s*\.\s*ring_status/,
+    probe: "packet . card_back	. ring_status",
   },
 ];
 

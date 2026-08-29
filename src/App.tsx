@@ -129,7 +129,8 @@ export default function App() {
         </button>
 
         <nav aria-label="Primary navigation" className="front-door__nav-links">
-          <button type="button" onClick={() => scrollToSection("play")}>Play</button>
+          {/* A real href, not a scroll: /play is a durable page a crawler and a stranger can both reach. */}
+          <a href="/play">Play</a>
           <button type="button" onClick={() => scrollToSection("worlds")}>Worlds</button>
           <button type="button" onClick={() => scrollToSection("box-o-battles")}>The Box</button>
           <button type="button" onClick={() => scrollToSection("contact")}>Contact</button>
@@ -366,6 +367,19 @@ export default function App() {
       </main>
 
       <footer className="front-door__footer">
+        {/*
+          The front door is one scrolling page. These are the durable per-project
+          URLs — the only way a search engine, a shared link, or someone sending a
+          friend to ONE game can land anywhere but the top of this page.
+        */}
+        <nav aria-label="Project pages" className="front-door__sitelinks">
+          <a href="/play">Play now</a>
+          {PROJECTS_DATA.map((project) => (
+            <a key={project.id} href={`/${project.id}`}>
+              {project.title}
+            </a>
+          ))}
+        </nav>
         <span>© {currentYear} Ultramonkeydog Studios</span>
         <span>Games · Worlds · Art · Sound · Strange Experiments</span>
       </footer>

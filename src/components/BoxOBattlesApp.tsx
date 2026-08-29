@@ -74,6 +74,13 @@ const supportClasses: Record<SupportState, string> = {
   Unknown: "border-zinc-600 bg-zinc-900 text-zinc-300",
 };
 
+/** Read off the owner packet, never asserted here. */
+const victoryDepthStates = [
+  { label: "Anchor", value: packet.card_back.anchor_status },
+  { label: "Essence", value: packet.card_back.essence_status },
+  { label: "Ring", value: packet.card_back.ring_status },
+];
+
 const viewLabels: Record<View, string> = {
   verdict: "Verdict",
   routes: "Paths to Victory",
@@ -198,6 +205,20 @@ function EvidenceView() {
 
       <section className="rounded-xl border border-amber-400/20 bg-amber-400/5 p-5">
         <div className="flex items-start gap-3"><AlertTriangle size={18} className="mt-0.5 shrink-0 text-amber-300" /><div><h3 className="font-display text-lg font-black text-white">Victory is not always total destruction</h3><p className="mt-2 text-sm leading-6 text-zinc-300">{packet.card_back.warning_panel}</p><p className="mt-2 text-xs leading-5 text-zinc-500">{packet.card_back.victory_trap}</p></div></div>
+
+        {/*
+          Victory Depth keeps field victory, anchor state, and essence finality
+          separate (docs/PUBLIC_TRUTH_ORDER.md). These three come straight off the
+          owner packet — the warning above is not readable without them.
+        */}
+        <dl className="mt-4 grid gap-2 sm:grid-cols-3">
+          {victoryDepthStates.map(({ label, value }) => (
+            <div key={label} className="rounded-lg border border-white/10 bg-black/40 p-3">
+              <dt className="font-mono text-[9px] font-black uppercase tracking-[0.12em] text-zinc-500">{label}</dt>
+              <dd className="mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-amber-200">{value.replaceAll("_", " ")}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <section className="rounded-xl border border-white/10 bg-zinc-950/75 p-4">

@@ -66,7 +66,7 @@ const evidenceTone: Record<VisualEvidenceState, string> = {
 };
 
 function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
-  const hasImage = Boolean(item.src && item.alt);
+  const hasImage = Boolean(item.src && item.alt && item.sourceUrl);
 
   return (
     <article className="project-card__evidence">
@@ -107,15 +107,23 @@ function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
             {item.limitation}
           </p>
         )}
-        <a
-          href={item.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--umd-ash)] transition-colors hover:text-[var(--project-pop)]"
-        >
-          <ExternalLink size={12} />
-          {item.sourceLabel}
-        </a>
+        {item.sourceUrl ? (
+          <a
+            href={item.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--umd-ash)] transition-colors hover:text-[var(--project-pop)]"
+          >
+            <ExternalLink size={12} />
+            {item.sourceLabel}
+          </a>
+        ) : (
+          /* Owner is a private repository: cite it, do not publish a link the public cannot open. */
+          <span className="mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--umd-ash)]">
+            <FileWarning size={12} />
+            {item.sourceLabel}
+          </span>
+        )}
       </div>
     </article>
   );

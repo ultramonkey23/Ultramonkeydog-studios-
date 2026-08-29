@@ -62,9 +62,7 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
     title: "Player strain now reads live build stats",
     summary:
       "The player path derives VisualStrain from live elasticity, entropy, and discordance instead of pinning every run to one fixed strain.",
-    sourceLabel: "Savage Crown commit 2f3801b",
-    sourceUrl:
-      "https://github.com/ultramonkey23/savage-crown/commit/2f3801bdb61650fb8c410e835fba41c7d69d0bdb",
+    sourceLabel: "Private owner commit 2f3801b",
     proofCeiling:
       "Host tests passed for the current path. Category-dispatched anatomy is a recognized owner-law contradiction under repair; same-version device capture and Cody's visual judgment are also still required.",
     action: {

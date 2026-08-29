@@ -35,7 +35,7 @@ export interface PublicVisualEvidence {
   width?: number;
   height?: number;
   sourceLabel: string;
-  sourceUrl: string;
+  sourceUrl?: string;
 }
 
 export interface PublicVisual {

@@ -794,8 +794,29 @@
   line-height: 1.55;
 }
 
+.front-door__sitelinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.1rem;
+  flex-basis: 100%;
+  margin-bottom: 0.35rem;
+}
+
+.front-door__sitelinks a {
+  color: var(--umd-bone);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.front-door__sitelinks a:hover,
+.front-door__sitelinks a:focus-visible {
+  color: var(--umd-gold);
+  border-bottom-color: var(--umd-gold);
+}
+
 .front-door__footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
   border-top: 4px solid var(--umd-gold);
