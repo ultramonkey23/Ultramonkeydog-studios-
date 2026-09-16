@@ -24,6 +24,25 @@ export interface StudioSignal {
 
 export const STUDIO_SIGNALS: StudioSignal[] = [
   {
+    id: "monkeys-ear-windows-vst3-artifacts",
+    project: "Monkey's Ear",
+    date: "2026-09-16",
+    state: "TESTED",
+    title: "Monkey's Ear now preserves validated Windows VST3 artifacts",
+    summary:
+      "The public Monkey's Ear repository now builds and preserves validated Windows VST3 artifacts for the main instrument and standalone Vocal module. Recent host probes also verify that VST3 automation reaches DSP controls, turning the project from source-only proof into a concrete product body that can enter a bounded early-access release path.",
+    sourceLabel: "Monkey's Ear public commit 4ab786b",
+    sourceUrl:
+      "https://github.com/ultramonkey23/monkeys-ear/commit/4ab786b258a35427f4139f5922f787f01e05a2d6",
+    proofCeiling:
+      "Build, artifact preservation, deterministic DSP tests, and focused host-side validation are proven. A stranger-friendly installer, broader DAW compatibility, independent user acceptance, support flow, pricing, and paying-user validation are still open; this is not yet evidence for a finished mass-market release.",
+    action: {
+      label: "Explore Monkey's Ear",
+      kind: "external",
+      target: "https://github.com/ultramonkey23/monkeys-ear",
+    },
+  },
+  {
     id: "box-o-battles-math-spine-v0-1",
     project: "Box o' Battles",
     date: "2026-08-02",
@@ -50,7 +69,7 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
       "The site removed a weak utility-sigil showcase, added evidence-ranked media states, corrected stale Savage Crown claims, and passed the hosted deployment gate.",
     sourceLabel: "Studios merge e41e534",
     sourceUrl:
-      "https://github.com/ultramonkey23/Ultramonkeydog-studios-/commit/e41e534fff4cde2e8de9804f3c11f19ec5ab666d",
+      "https://github.com/ultramonkey23/Ultramonkeydog-studios-/commit/e41e534fff4cde3d8feb0404c414027727ec4fe",
     proofCeiling:
       "Code and hosted deployment are proven. Final human visual approval remains separate.",
   },
