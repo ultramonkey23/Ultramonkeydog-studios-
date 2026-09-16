@@ -24,6 +24,42 @@ export interface StudioSignal {
 
 export const STUDIO_SIGNALS: StudioSignal[] = [
   {
+    id: "monkeys-ear-windows-vst3-artifacts",
+    project: "Monkey's Ear",
+    date: "2026-09-16",
+    state: "TESTED",
+    title: "Monkey's Ear now preserves validated Windows VST3 artifacts",
+    summary:
+      "The public Monkey's Ear repository now builds and preserves validated Windows VST3 artifacts for the main instrument and standalone Vocal module. Recent host probes also verify that VST3 automation reaches DSP controls, turning the project from source-only proof into a concrete product body that can enter a bounded early-access release path.",
+    sourceLabel: "Monkey's Ear public commit 4ab786b",
+    sourceUrl:
+      "https://github.com/ultramonkey23/monkeys-ear/commit/4ab786b258a35427f4139f5922f787f01e05a2d6",
+    proofCeiling:
+      "Build, artifact preservation, deterministic DSP tests, and focused host-side validation are proven. A stranger-friendly installer, broader DAW compatibility, independent user acceptance, support flow, pricing, and paying-user validation are still open; this is not yet evidence for a finished mass-market release.",
+    action: {
+      label: "Explore Monkey's Ear",
+      kind: "external",
+      target: "https://github.com/ultramonkey23/monkeys-ear",
+    },
+  },
+  {
+    id: "savage-crown-generated-life-body-v2",
+    project: "Savage Crown",
+    date: "2026-09-14",
+    state: "CAPTURE_REQUIRED",
+    title: "Generated-Life Body V2 now travels through the real identity path",
+    summary:
+      "Savage Crown's current JUDGEMENT path now carries a bounded authored modular body family through the same causal identity route that survives placement, REBIRTH, and the first vessel. This replaces the Body V1 direction that failed device acceptance instead of marketing the failed visual as finished work.",
+    sourceLabel: "Private owner commit e5126bf",
+    proofCeiling:
+      "Source integration and the current generated-life path are real. Exact-current APK/device capture, phone-scale body and passive-VFX inspection, GPU evidence, and Cody's visual/play-feel acceptance are still open, so this is a development signal—not a release claim.",
+    action: {
+      label: "View Savage Crown",
+      kind: "section",
+      target: "project-card-savage-crown",
+    },
+  },
+  {
     id: "box-o-battles-math-spine-v0-1",
     project: "Box o' Battles",
     date: "2026-08-02",
