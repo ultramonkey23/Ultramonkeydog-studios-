@@ -43,6 +43,23 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
     },
   },
   {
+    id: "savage-crown-generated-life-body-v2",
+    project: "Savage Crown",
+    date: "2026-09-14",
+    state: "CAPTURE_REQUIRED",
+    title: "Generated-Life Body V2 now travels through the real identity path",
+    summary:
+      "Savage Crown's current JUDGEMENT path now carries a bounded authored modular body family through the same causal identity route that survives placement, REBIRTH, and the first vessel. This replaces the Body V1 direction that failed device acceptance instead of marketing the failed visual as finished work.",
+    sourceLabel: "Private owner commit e5126bf",
+    proofCeiling:
+      "Source integration and the current generated-life path are real. Exact-current APK/device capture, phone-scale body and passive-VFX inspection, GPU evidence, and Cody's visual/play-feel acceptance are still open, so this is a development signal—not a release claim.",
+    action: {
+      label: "View Savage Crown",
+      kind: "section",
+      target: "project-card-savage-crown",
+    },
+  },
+  {
     id: "box-o-battles-math-spine-v0-1",
     project: "Box o' Battles",
     date: "2026-08-02",
@@ -69,7 +86,7 @@ export const STUDIO_SIGNALS: StudioSignal[] = [
       "The site removed a weak utility-sigil showcase, added evidence-ranked media states, corrected stale Savage Crown claims, and passed the hosted deployment gate.",
     sourceLabel: "Studios merge e41e534",
     sourceUrl:
-      "https://github.com/ultramonkey23/Ultramonkeydog-studios-/commit/e41e534fff4cde3d8feb0404c414027727ec4fe",
+      "https://github.com/ultramonkey23/Ultramonkeydog-studios-/commit/e41e534fff4cde2e8de9804f3c11f19ec5ab666d",
     proofCeiling:
       "Code and hosted deployment are proven. Final human visual approval remains separate.",
   },
