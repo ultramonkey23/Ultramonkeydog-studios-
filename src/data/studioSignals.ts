@@ -24,18 +24,18 @@ export interface StudioSignal {
 
 export const STUDIO_SIGNALS: StudioSignal[] = [
   {
-    id: "monkeys-ear-windows-vst3-artifacts",
+    id: "monkeys-ear-vocal-release-candidate",
     project: "Monkey's Ear",
     date: "2026-09-16",
     state: "TESTED",
-    title: "Monkey's Ear now preserves validated Windows VST3 artifacts",
+    title: "Vocal is the first Monkey's Ear module approaching release",
     summary:
-      "The public Monkey's Ear repository now builds and preserves validated Windows VST3 artifacts for the main instrument and standalone Vocal module. Recent host probes also verify that VST3 automation reaches DSP controls, turning the project from source-only proof into a concrete product body that can enter a bounded early-access release path.",
-    sourceLabel: "Monkey's Ear public commit 4ab786b",
+      "Monkey's Ear is a connected ecosystem of VST3 effects and instruments: each module must work usefully on its own and can become richer when compatible Monkey's Ear peers are present. Vocal is the current near-term release candidate. The Synth and the remaining suite modules are still under development and are not being presented as sale-ready. Current Windows validation preserves VST3 artifacts, and focused host probes show Vocal automation reaching its DSP controls.",
+    sourceLabel: "Monkey's Ear Connected Module Standard",
     sourceUrl:
-      "https://github.com/ultramonkey23/monkeys-ear/commit/4ab786b258a35427f4139f5922f787f01e05a2d6",
+      "https://github.com/ultramonkey23/monkeys-ear/blob/main/docs/STANDALONE_MODULE_STANDARD.md",
     proofCeiling:
-      "Build, artifact preservation, deterministic DSP tests, and focused host-side validation are proven. A stranger-friendly installer, broader DAW compatibility, independent user acceptance, support flow, pricing, and paying-user validation are still open; this is not yet evidence for a finished mass-market release.",
+      "The connected-module architecture, Vocal module boundary, Windows artifact preservation, deterministic DSP checks, and focused host-side validation are real. The full Monkey's Ear suite is not release-ready, and the Synth and other modules remain farther from release. Vocal still needs its human REAPER/listening product gate, stranger-friendly packaging, broader compatibility evidence, support flow, pricing, and paying-user validation before a broad commercial claim is justified.",
     action: {
       label: "Explore Monkey's Ear",
       kind: "external",
