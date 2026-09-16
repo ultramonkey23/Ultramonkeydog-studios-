@@ -4,6 +4,13 @@ Public studio website for **Ultramonkeydog Studios**.
 
 *“Strange games. Deep systems. AI-assisted production. Human taste at the wheel.”*
 
+## Public release surfaces
+
+- Studio website: https://ultramonkeydog-studios.vercel.app/
+- Itch.io storefront: https://monkeydog23.itch.io/
+
+The Itch.io profile is an established public distribution surface and should be treated as a real release/storefront destination rather than a future placeholder. Individual products should only be linked there once their own release gates are satisfied.
+
 ## Public boundary
 
 This repository is a public presentation consumer—not the owner of private studio infrastructure or project decision engines.
