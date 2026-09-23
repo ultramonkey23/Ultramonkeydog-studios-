@@ -227,10 +227,42 @@ export default function BoxArena() {
   }, [matrix, a, b]);
 
   const reviewed = matrix?.reviewed?.[pairKey(a, b)] ?? null;
-  const reviewedAgrees =
-    reviewed && resolved
-      ? resolved.winner.toLowerCase().startsWith(reviewed.winner.split(" ")[0].toLowerCase())
-      : null;
+
+  /**
+   * The matrix already calibrated fresh winners against reviewed winners using the
+   * roster's stable identity (dossier_key -> display_name), so the site should not
+   * re-invent a cheaper first-word heuristic. We resolve the same way Box does:
+   * the fresh winner agrees when it names the same side of the pairing that the
+   * reviewed verdict named. Public Truth Order says show the disagreement, not
+   * smooth over it.
+   */
+  const reviewedAgrees = useMemo(() => {
+    if (!reviewed || !resolved || !matrix) return null;
+    const pair = matrix.matchups[pairKey(a, b)];
+    if (!pair) return null;
+
+    // Build the same sides map export_matrix uses: dossier_key -> display_name.
+    const sides = Object.fromEntries(
+      matrix.roster
+        .filter((entry) => entry.dossier_key === a || entry.dossier_key === b)
+        .map((entry) => [entry.dossier_key, entry.display_name])
+    );
+
+    // Identity resolution mirrors box_o_battles/export_matrix.py _calibrate().
+    // The reviewed card may use a short name ("Battle Beast") for a loadout
+    // roster entry ("Battle Beast with Hawkman's Mace"), so a prefix match on
+    // the roster display name is allowed in that direction only.
+    const reviewedSide =
+      Object.entries(sides).find(([, displayName]) => displayName === reviewed.winner)?.[0] ??
+      Object.entries(sides).find(([, displayName]) => displayName.startsWith(reviewed.winner))?.[0] ??
+      null;
+    // A fresh winner is always a roster display name, so the owner matches it exactly.
+    const freshSide =
+      Object.entries(sides).find(([, displayName]) => displayName === resolved.winner)?.[0] ?? null;
+
+    if (reviewedSide === null || freshSide === null) return null;
+    return reviewedSide === freshSide;
+  }, [resolved, reviewed, matrix, a, b]);
 
   const swap = useCallback(() => {
     setA(b);
@@ -344,17 +376,23 @@ export default function BoxArena() {
             */
             <section
               className={`rounded-xl border p-4 ${
-                reviewedAgrees
-                  ? "border-teal-400/25 bg-teal-400/5"
-                  : "border-red-400/30 bg-red-400/5"
+                reviewedAgrees === null
+                  ? "border-zinc-500/30 bg-zinc-500/5"
+                  : reviewedAgrees
+                    ? "border-teal-400/25 bg-teal-400/5"
+                    : "border-red-400/30 bg-red-400/5"
               }`}
             >
               <p
                 className={`font-mono text-[9px] font-black uppercase tracking-[0.14em] ${
-                  reviewedAgrees ? "text-teal-300" : "text-red-300"
+                  reviewedAgrees === null ? "text-zinc-400" : reviewedAgrees ? "text-teal-300" : "text-red-300"
                 }`}
               >
-                {reviewedAgrees ? "Matches the reviewed verdict" : "Contradicts the reviewed verdict"}
+                {reviewedAgrees === null
+                  ? "Could not match the reviewed verdict to a side"
+                  : reviewedAgrees
+                    ? "Matches the reviewed verdict"
+                    : "Contradicts the reviewed verdict"}
               </p>
               <p className="mt-2 text-sm leading-6 text-zinc-300">
                 {reviewed.battle_id} was ruled{" "}
@@ -362,7 +400,9 @@ export default function BoxArena() {
                   {reviewed.winner}, {reviewed.margin.replaceAll("_", " ")}
                 </strong>{" "}
                 by an analyst who chose the scenario and wrote the hinge.{" "}
-                {reviewedAgrees
+                {reviewedAgrees === null
+                  ? "The reviewed winner could not be resolved to either combatant, so no agreement is claimed."
+                  : reviewedAgrees
                   ? "The compiled candidate above lands the same way."
                   : "The compiled candidate above lands differently. Neither is calibrated, and a generic arena is not the scenario that ruling was made in — read the winner as unsettled."}
               </p>
