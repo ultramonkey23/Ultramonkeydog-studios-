@@ -58,6 +58,16 @@ type Fighter = {
   vulnerability_count: number;
   mechanisms: string[];
 };
+type Calibration = {
+  arena_id: string;
+  measured_pairs: number;
+  agreements: number;
+  reversals: number;
+  margin_matches: number;
+  unresolved: number;
+  caveat: string;
+  confidence_role: string;
+};
 type Matrix = {
   owner_commit: string;
   seed: number;
@@ -71,6 +81,8 @@ type Matrix = {
   matchups: Record<string, Record<string, Resolved>>;
   /** Pairings an analyst actually ruled on, so a fresh result can be checked against one. */
   reviewed: Record<string, { battle_id: string; winner: string; margin: string }>;
+  /** Small reviewed sample: reliability/replay evidence, never a win probability. */
+  calibration?: Calibration;
 };
 
 const MARGIN_TONE: Record<string, string> = {
@@ -227,6 +239,7 @@ export default function BoxArena() {
   }, [matrix, a, b]);
 
   const reviewed = matrix?.reviewed?.[pairKey(a, b)] ?? null;
+  const calibration = matrix?.calibration ?? null;
 
   /**
    * The matrix already calibrated fresh winners against reviewed winners using the
@@ -263,6 +276,8 @@ export default function BoxArena() {
     if (reviewedSide === null || freshSide === null) return null;
     return reviewedSide === freshSide;
   }, [resolved, reviewed, matrix, a, b]);
+
+  const reviewedMarginAgrees = reviewed && resolved ? reviewed.margin === resolved.margin : null;
 
   const swap = useCallback(() => {
     setA(b);
@@ -353,6 +368,35 @@ export default function BoxArena() {
         })}
       </div>
 
+      {calibration && (
+        <section className="mt-5 rounded-xl border border-blue-400/25 bg-blue-400/5 p-4">
+          <p className="font-mono text-[9px] font-black uppercase tracking-[0.14em] text-blue-200">
+            Reviewed replay calibration · {calibration.arena_id.replaceAll("_", " ")}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-zinc-300">
+            <span>
+              <b className="text-teal-300">
+                {calibration.agreements}/{calibration.measured_pairs}
+              </b>{" "}
+              winner agreements
+            </span>
+            <span>
+              <b className="text-red-300">{calibration.reversals}</b> reversal{calibration.reversals === 1 ? "" : "s"}
+            </span>
+            <span>
+              <b className="text-amber-300">
+                {calibration.margin_matches}/{calibration.measured_pairs}
+              </b>{" "}
+              margin matches
+            </span>
+          </div>
+          <p className="mt-3 text-xs leading-5 text-zinc-400">
+            <strong className="text-blue-100">Evidence reliability and replay consistency — never win probability.</strong>{" "}
+            {calibration.caveat}
+          </p>
+        </section>
+      )}
+
       {resolved ? (
         <div className="mt-5 space-y-4">
           <section className="rounded-xl border border-amber-400/25 bg-[linear-gradient(135deg,rgba(120,53,15,0.18),rgba(0,0,0,0.62))] p-5 sm:p-6">
@@ -402,8 +446,10 @@ export default function BoxArena() {
                 by an analyst who chose the scenario and wrote the hinge.{" "}
                 {reviewedAgrees === null
                   ? "The reviewed winner could not be resolved to either combatant, so no agreement is claimed."
+                  : reviewedAgrees && reviewedMarginAgrees === false
+                    ? "The compiled candidate names the same winner but not the reviewed margin. The margin remains unsettled; this is evidence reliability, never win probability."
                   : reviewedAgrees
-                  ? "The compiled candidate above lands the same way."
+                    ? "The compiled candidate above lands the same way."
                   : "The compiled candidate above lands differently. Neither is calibrated, and a generic arena is not the scenario that ruling was made in — read the winner as unsettled."}
               </p>
             </section>
