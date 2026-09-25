@@ -871,9 +871,10 @@
 
 @media (max-width: 480px) {
   .front-door__nav { padding-right: 0.7rem; padding-left: 0.7rem; }
+  .front-door__nav-links { gap: 0; }
   .front-door__brand strong { font-size: 0.9rem; }
   .front-door__nav-links button,
-  .front-door__nav-links a { padding-right: 0.45rem; padding-left: 0.45rem; font-size: 0.55rem; }
+  .front-door__nav-links a { padding-right: 0.3rem; padding-left: 0.3rem; font-size: 0.55rem; }
   .front-door__nav-links button:nth-child(3) { display: none; }
   .front-door__hero-copy { padding-right: 1rem; padding-left: 1rem; }
   .front-door__hero-actions,
