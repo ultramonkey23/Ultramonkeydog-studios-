@@ -293,7 +293,7 @@ export default function App() {
               <h2>PUT ’EM IN THE BOX.</h2>
             </div>
             <p>
-              Box o’ Battles is part comic issue, part evidence hearing, part “who actually stays dead?” machine. This website displays the owner-held card packet without pretending to recalculate it.
+              Box o’ Battles is part comic issue, part evidence hearing, part “who actually stays dead?” machine. Choose a fight and arena to explore a pinned matrix exported by the Box engine. The browser looks up its result and shows where a reviewed ruling disagrees.
             </p>
           </div>
           <BoxArena />

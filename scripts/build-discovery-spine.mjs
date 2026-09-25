@@ -62,8 +62,8 @@ function actionTier(project) {
   if (project.publicVisual.mediaState === "NATIVE_BUILD") {
     return { rank: 1, label: "IN DEVELOPMENT — NATIVE BUILD", priority: "0.7" };
   }
-  if (project.publicVisual.mediaState === "READ_ONLY_PACKET") {
-    return { rank: 2, label: "PUBLISHED PACKET", priority: "0.7" };
+  if (project.publicVisual.mediaState === "PRECOMPUTED_MATRIX") {
+    return { rank: 2, label: "INTERACTIVE MATCHUP MATRIX", priority: "0.7" };
   }
   return { rank: 3, label: "IN DEVELOPMENT", priority: "0.6" };
 }
