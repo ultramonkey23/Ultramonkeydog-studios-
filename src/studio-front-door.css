@@ -77,7 +77,10 @@
   gap: 0.45rem;
 }
 
-.front-door__nav-links button {
+.front-door__nav-links button,
+.front-door__nav-links a {
+  display: inline-flex;
+  align-items: center;
   min-height: 40px;
   border: 1px solid transparent;
   background: transparent;
@@ -88,10 +91,13 @@
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
 }
 
-.front-door__nav-links button:hover {
+.front-door__nav-links button:hover,
+.front-door__nav-links a:hover,
+.front-door__nav-links a:focus-visible {
   border-color: var(--umd-line);
   color: var(--umd-bone);
 }
@@ -866,7 +872,8 @@
 @media (max-width: 480px) {
   .front-door__nav { padding-right: 0.7rem; padding-left: 0.7rem; }
   .front-door__brand strong { font-size: 0.9rem; }
-  .front-door__nav-links button { padding-right: 0.45rem; padding-left: 0.45rem; font-size: 0.55rem; }
+  .front-door__nav-links button,
+  .front-door__nav-links a { padding-right: 0.45rem; padding-left: 0.45rem; font-size: 0.55rem; }
   .front-door__nav-links button:nth-child(3) { display: none; }
   .front-door__hero-copy { padding-right: 1rem; padding-left: 1rem; }
   .front-door__hero-actions,

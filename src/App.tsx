@@ -133,6 +133,7 @@ export default function App() {
           <a href="/play">Play</a>
           <button type="button" onClick={() => scrollToSection("worlds")}>Worlds</button>
           <button type="button" onClick={() => scrollToSection("box-o-battles")}>The Box</button>
+          <a href="/press">Press</a>
           <button type="button" onClick={() => scrollToSection("contact")}>Contact</button>
         </nav>
       </header>
@@ -351,6 +352,9 @@ export default function App() {
               <button type="button" onClick={handleCopyEmail} className="front-door__button front-door__button--ghost">
                 <Copy size={16} /> {copied ? "Copied" : "Copy email"}
               </button>
+              <a href="/press" className="front-door__button front-door__button--ghost">
+                Press &amp; tester information
+              </a>
             </div>
           </div>
 
@@ -374,6 +378,7 @@ export default function App() {
         */}
         <nav aria-label="Project pages" className="front-door__sitelinks">
           <a href="/play">Play now</a>
+          <a href="/press">Press &amp; collaboration</a>
           {PROJECTS_DATA.map((project) => (
             <a key={project.id} href={`/${project.id}`}>
               {project.title}
