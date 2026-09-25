@@ -14,7 +14,7 @@ export type ProjectVisualStyle =
 export type PublicMediaState =
   | "PLAYABLE_DEMO"
   | "NATIVE_BUILD"
-  | "READ_ONLY_PACKET"
+  | "PRECOMPUTED_MATRIX"
   | "EARLY_BUILD"
   | "CAPTURE_REQUIRED";
 
