@@ -117,7 +117,15 @@ li{margin:.42em 0}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--edge);color:var(--dim);font-size:.86rem}
 `.trim();
 
-function page({ slug, title, description, accent, body }) {
+function page({
+  slug,
+  title,
+  description,
+  accent,
+  body,
+  crumbHref = "/play",
+  crumbLabel = "Play",
+}) {
   const url = `${ORIGIN}/${slug}`;
   return `<!doctype html>
 <html lang="en">
@@ -145,7 +153,7 @@ ${STYLE}</style>
 </head>
 <body>
 <div class="wrap">
-<p class="crumb"><a href="/">Ultramonkeydog Studios</a> &nbsp;/&nbsp; <a href="/play">Play</a></p>
+<p class="crumb"><a href="/">Ultramonkeydog Studios</a> &nbsp;/&nbsp; <a href="${esc(crumbHref)}">${esc(crumbLabel)}</a></p>
 ${body}
 <footer>
 <p>Ultramonkeydog Studios — creator-owned, directed by Cody Haring.
@@ -315,6 +323,8 @@ function pressPage(projects) {
     title: "Press & collaboration — Ultramonkeydog Studios",
     description: "Studio facts, approved descriptions, two playable browser demos, press contact and Monkey's Ear Vocal tester inquiries.",
     accent: "#f2b74c",
+    crumbHref: "/press",
+    crumbLabel: "Press & collaboration",
     body: parts.join("\n"),
   });
 }
