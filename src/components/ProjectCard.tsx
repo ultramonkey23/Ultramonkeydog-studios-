@@ -53,7 +53,7 @@ const styleTheme: Record<
 const mediaTone: Record<PublicMediaState, string> = {
   PLAYABLE_DEMO: "project-card__status--playable",
   NATIVE_BUILD: "project-card__status--native",
-  READ_ONLY_PACKET: "project-card__status--packet",
+  PRECOMPUTED_MATRIX: "project-card__status--packet",
   EARLY_BUILD: "project-card__status--early",
   CAPTURE_REQUIRED: "project-card__status--capture",
 };
