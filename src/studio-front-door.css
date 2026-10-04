@@ -888,3 +888,11 @@
   .front-door__door:hover,
   .front-door__live-card:hover { transform: none; }
 }
+
+/* Keep the founder doorway usable on narrow phones. */
+@media (max-width: 480px) {
+  .front-door__nav { flex-wrap: wrap; gap: 0.25rem; }
+  .front-door__nav-links { width: 100%; justify-content: space-between; }
+  .front-door__nav-links button,
+  .front-door__nav-links a { min-height: 44px; font-size: 0.7rem; padding: 0.6rem; }
+}

@@ -84,8 +84,9 @@ const doorways = [
   },
 ] as const;
 
-const liveGames = PROJECTS_DATA.filter((project) => project.demoUrl);
-const studioProjects = PROJECTS_DATA.filter((project) => project.id !== "box-o-battles");
+const liveGames = PROJECTS_DATA.filter((project) => project.demoUrl && project.id !== "bone-league");
+const portfolioOrder = ["savage-crown", "what-we-fed", "saga-anxious-fluff", "feral-formation", "bone-league"];
+const studioProjects = PROJECTS_DATA.filter((project) => project.id !== "box-o-battles").sort((a, b) => portfolioOrder.indexOf(a.id) - portfolioOrder.indexOf(b.id));
 
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -133,7 +134,7 @@ export default function App() {
           <a href="/play">Play</a>
           <button type="button" onClick={() => scrollToSection("worlds")}>Worlds</button>
           <button type="button" onClick={() => scrollToSection("box-o-battles")}>The Box</button>
-          <a href="/press">Press</a>
+          <a href="/press">Press kit</a>
           <button type="button" onClick={() => scrollToSection("contact")}>Contact</button>
         </nav>
       </header>
@@ -162,14 +163,14 @@ export default function App() {
                 THAT BITE BACK.
               </h1>
               <p className="front-door__hero-lede">
-                Games, creatures, stories, art, sound, strange tools, and matchup chaos—built with deep systems and a very human sense of taste.
+                Cody Haring’s creator-owned studio for games, creatures, stories, sound and strange software. A private creation engine helps bring the work to life; human authorship, taste and final authority stay with Cody.
               </p>
 
               <div className="front-door__hero-actions">
-                <button type="button" onClick={() => scrollToSection("play")} className="front-door__button front-door__button--primary">
-                  Play something
-                  <Gamepad2 size={17} />
-                </button>
+                <a href="/press" className="front-door__button front-door__button--primary">
+                  Meet Cody &amp; the studio
+                  <ArrowUpRight size={17} />
+                </a>
                 <button type="button" onClick={() => scrollToSection("doorways")} className="front-door__button front-door__button--ghost">
                   Explore the studio
                   <ArrowDown size={17} />
@@ -221,7 +222,7 @@ export default function App() {
               <SectionLabel>Playable right now</SectionLabel>
               <h2>Stop reading. Go make a bad decision.</h2>
             </div>
-            <p>Two browser games are live. They are not trailers, mockups, or “coming soon” buttons.</p>
+            <p>Try Feral Formation as a piece of the studio’s work. Our flagship projects remain in development.</p>
           </div>
 
           <div className="front-door__live-grid">
@@ -329,6 +330,7 @@ export default function App() {
               <p>
                 Cody creates the concepts, chooses the systems, pushes the weirdness, rejects the generic parts, judges the feel, and decides what earns release. The studio pulls from death metal, underground hip hop, RPGs, roguelites, anime, manga, horror, creature obsession, and family life.
               </p>
+              <a href="/press" className="front-door__button front-door__button--ghost">Meet the founder / press kit <ArrowUpRight size={17} /></a>
             </div>
             <div className="front-door__cody-stamp" aria-hidden="true">
               <span>HUMAN</span>
@@ -353,7 +355,7 @@ export default function App() {
                 <Copy size={16} /> {copied ? "Copied" : "Copy email"}
               </button>
               <a href="/press" className="front-door__button front-door__button--ghost">
-                Press &amp; tester information
+                Studio press kit
               </a>
             </div>
           </div>
@@ -378,7 +380,7 @@ export default function App() {
         */}
         <nav aria-label="Project pages" className="front-door__sitelinks">
           <a href="/play">Play now</a>
-          <a href="/press">Press &amp; collaboration</a>
+          <a href="/press">Press / founder / assets</a>
           {PROJECTS_DATA.map((project) => (
             <a key={project.id} href={`/${project.id}`}>
               {project.title}
