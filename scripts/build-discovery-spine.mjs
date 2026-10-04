@@ -31,7 +31,10 @@ const ITCH = "https://monkeydog23.itch.io/";
 
 /** Load src/data.ts without duplicating it: bundle to a temp ESM file and import. */
 async function loadProjectData() {
-  const outfile = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "umd-spine-")), "data.mjs");
+  const outfile = path.join(
+    fs.mkdtempSync(path.join(os.tmpdir(), "umd-spine-")),
+    "data.mjs",
+  );
   await build({
     entryPoints: [path.join(ROOT, "src", "data.ts")],
     outfile,
@@ -129,6 +132,8 @@ function page({
   body,
   crumbHref = "/play",
   crumbLabel = "Play",
+  pageClass = "",
+  stylesheet = "",
 }) {
   const url = `${ORIGIN}/${slug}`;
   return `<!doctype html>
@@ -152,10 +157,11 @@ function page({
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${OG_IMAGE}">
 <meta name="theme-color" content="#060608">
+${stylesheet ? `<link rel="stylesheet" href="${esc(stylesheet)}">` : ""}
 <style>:root{--accent:${accent}}
 ${STYLE}</style>
 </head>
-<body>
+<body class="${esc(pageClass)}">
 <div class="wrap">
 <p class="crumb"><a href="/">Ultramonkeydog Studios</a> &nbsp;/&nbsp; <a href="${esc(crumbHref)}">${esc(crumbLabel)}</a></p>
 ${body}
@@ -192,7 +198,9 @@ function projectPage(project, siblings) {
       `<p><a class="cta" href="${esc(project.demoUrl)}">${esc(project.demoLabel ?? "Play it")}</a>` +
         `<a class="cta cta--ghost" href="/play">See everything playable</a></p>`,
     );
-    parts.push(`<p>Runs in the browser. No install, no account, no launcher.</p>`);
+    parts.push(
+      `<p>Runs in the browser. No install, no account, no launcher.</p>`,
+    );
   } else {
     parts.push(
       `<p>Not playable in a browser yet — this one is <strong>${esc(project.status)}</strong>. ` +
@@ -212,12 +220,15 @@ function projectPage(project, siblings) {
   parts.push(`<h2>What has actually been proven</h2>`);
   parts.push(`<p><strong>Current state:</strong> ${esc(project.status)}</p>`);
   parts.push(`<p>${esc(visual.note)}</p>`);
-  if (project.expandedDetails) parts.push(`<p>${esc(project.expandedDetails)}</p>`);
+  if (project.expandedDetails)
+    parts.push(`<p>${esc(project.expandedDetails)}</p>`);
   for (const item of visual.evidence ?? []) {
     parts.push(
       `<div class="card"><span class="state">${esc(item.state)}</span>` +
         `<h3>${esc(item.title)}</h3><p>${esc(item.note)}</p>` +
-        (item.limitation ? `<p class="limit">Limit: ${esc(item.limitation)}</p>` : "") +
+        (item.limitation
+          ? `<p class="limit">Limit: ${esc(item.limitation)}</p>`
+          : "") +
         `</div>`,
     );
   }
@@ -274,7 +285,10 @@ function playPage(projects) {
   );
   parts.push(
     `<ul class="next">${rest
-      .map((project) => `<li><a href="/${project.id}">${esc(project.title)}</a></li>`)
+      .map(
+        (project) =>
+          `<li><a href="/${project.id}">${esc(project.title)}</a></li>`,
+      )
       .join("")}</ul>`,
   );
 
@@ -291,32 +305,46 @@ function playPage(projects) {
 function pressPage(projects) {
   const inquiry = `mailto:${CONTACT}?subject=${encodeURIComponent("[UMD PRESS] Interview or assets")}&body=${encodeURIComponent("Hi Cody,\n\nMy outlet or project:\nStory or collaboration idea:\nAssets requested:\nTiming:\n")}`;
   const ids = ["savage-crown", "what-we-fed", "saga-anxious-fluff"];
-  const featured = ids.map(id => projects.find(project => project.id === id)).filter(Boolean);
-  const feral = projects.find(project => project.id === "feral-formation");
+  const featured = ids
+    .map((id) => projects.find((project) => project.id === id))
+    .filter(Boolean);
+  const feral = projects.find((project) => project.id === "feral-formation");
   const parts = [
-    `<p class="tier">CREATOR-OWNED STUDIO / PRESS KIT</p>`,
-    `<h1>One human director. A private creation engine. Strange work with teeth.</h1>`,
-    `<p class="lede">Ultramonkeydog Studios is Cody Haring’s creator-owned home for strange games, creature worlds, audio experiments and software systems. Cody originates the concepts, designs the causal systems, directs AI-assisted production and decides what earns release.</p>`,
-    `<p><a class="cta" href="${esc(inquiry)}">Request an interview or assets</a><a class="cta cta--ghost" href="/">Explore the studio</a></p>`,
-    `<h2>Copy you can use</h2>`,
-    `<div class="card"><h3>Studio description</h3><p>Ultramonkeydog Studios is Cody Haring’s privately owned studio for systems-heavy games, creature worlds, audio experiments and unusual software. Its signature is transformation with consequences, dark humor and human-directed production. Creative authority and original IP stay with the studio.</p></div>`,
-    `<div class="card"><h3>About Cody Haring</h3><p>Cody Haring is a self-taught autistic creator and the founder of Ultramonkeydog Studios. He uses AI as a bridge across disciplines while retaining authorship, design, criticism and final authority. His work draws from death-metal tension, underground-hip-hop recombination, creature obsession, RPGs, horror and family life. Weak beginnings can become feared; growth changes identity, actions and world response. Darkness leaves room for humor, tenderness, mystery and wonder.</p></div>`,
-    `<h2>Stories worth exploring</h2>`,
-    `<ul><li>An outsider creator building a private creation engine with ordinary subscriptions and modest model credits — Cody’s account, not an audited productivity claim.</li><li>Creature worlds where transformation changes what you can do and how the world responds.</li><li>AI as a directed production bridge, with a human author making the decisions.</li><li>Building toward overlooked, disabled and neurodivergent people — an intent, not a claim of tested accessibility outcomes.</li></ul>`,
-    `<h2>Flagship and long-horizon work</h2>`,
-    `<p>These projects are in development. They are not public release announcements.</p>`,
+    `<header class="press-cover"><div><p class="press-eyebrow">CREATOR-OWNED / HUMAN-DIRECTED / PRESS KIT</p><h1>Cody Haring.<br><em>Ultramonkeydog<br>Studios.</em></h1><p class="press-deck">One human director.<br>A private creation engine.<br>Strange work with teeth.</p><p class="lede">Games, creature worlds, audio experiments and unusual software. Cody originates the concepts, designs the causal systems, directs AI-assisted production and decides what earns release.</p><a class="cta" href="${esc(inquiry)}">Request an interview or assets ↗</a></div><figure><img src="/assets/studio-transformation-cover-v2.webp" width="1024" height="1536" alt="Studio cover illustration of a small creature transforming into a large bone-armored predator"><figcaption>AI-assisted studio illustration. Not gameplay.</figcaption></figure></header>`,
+    `<section class="press-editorial"><div><p class="press-eyebrow">THE HUMAN / REUSABLE BIO</p><h2>Self-taught.<br>Independent.<br><em>Unusual by design.</em></h2></div><div><p>Cody Haring is a self-taught autistic creator and the founder of Ultramonkeydog Studios. He uses AI as a bridge across disciplines while retaining authorship, design, criticism and final authority.</p><p>His work draws from death-metal tension, underground-hip-hop recombination, creature obsession, RPGs, horror and family life. Weak beginnings can become feared; growth changes identity, actions and world response. Darkness leaves room for humor, tenderness, mystery and wonder.</p></div></section>`,
+    `<section class="press-description"><p class="press-eyebrow">COPY YOU CAN USE / STUDIO DESCRIPTION</p><p>Ultramonkeydog Studios is Cody Haring’s privately owned studio for systems-heavy games, creature worlds, audio experiments and unusual software. Its signature is transformation with consequences, dark humor and human-directed production. Creative authority and original IP stay with the studio.</p></section>`,
+    `<section class="press-stories"><p class="press-eyebrow">STORY ANGLES</p><h2>More than an AI novelty story.</h2><ol><li><strong>The outsider’s bridge.</strong> A self-taught creator building a private creation engine with ordinary subscriptions and modest model credits. Cody’s account, not an audited productivity claim.</li><li><strong>Transformation with consequences.</strong> Creature worlds where growth changes what you can do and how the world responds.</li><li><strong>Human direction.</strong> AI as a production bridge, with a human author making the decisions.</li><li><strong>Room for overlooked people.</strong> Work intended for overlooked, disabled and neurodivergent people. Tested accessibility outcomes are not yet established.</li></ol></section>`,
+    `<section class="press-projects"><p class="press-eyebrow">CURRENT WORK / NOT RELEASE ANNOUNCEMENTS</p><h2>Different worlds.<br>Distinct ambitions.</h2>`,
   ];
-  for (const project of featured) {
-    parts.push(`<div class="card"><span class="state">${esc(project.id === "savage-crown" ? "FLAGSHIP / IN DEVELOPMENT" : "IN DEVELOPMENT")}</span><h3>${esc(project.title)}</h3><p>${esc(project.description)}</p><p class="limit">${esc(project.status)}</p><a href="/${esc(project.id)}">Explore the project and current evidence</a></div>`);
+  for (const [index, project] of featured.entries()) {
+    parts.push(
+      `<article class="press-project" data-project="${esc(project.id)}"><span class="press-number">0${index + 1}</span><div><p class="press-eyebrow">${esc(project.id === "savage-crown" ? "FLAGSHIP / IN DEVELOPMENT" : "IN DEVELOPMENT")}</p><h3>${esc(project.title)}</h3></div><div><p>${esc(project.description)}</p><p class="limit">${esc(project.status)}</p><a href="/${esc(project.id)}">Project and current evidence ↗</a></div></article>`,
+    );
   }
-  parts.push(`<div class="card"><span class="state">AUDIO / VALIDATION IN PROGRESS</span><h3>Monkey’s Ear</h3><p>Audio tooling in development. A Windows Vocal candidate has automated build and state-reconstruction proof. Real host workflow, listening and stable-distribution evidence remain incomplete; this is not a commercial release.</p></div>`);
-  if (feral?.demoUrl) parts.push(`<h2>Try a piece of the studio</h2><p>Feral Formation is secondary portfolio proof: a public browser demo, not the flagship launch.</p><div class="card"><h3>${esc(feral.title)}</h3><p>${esc(feral.description)}</p><a class="cta cta--ghost" href="${esc(feral.demoUrl)}">Try Feral Formation</a></div>`);
   parts.push(
-    `<h2>Independent by design</h2><p>The studio’s path is original products, direct audience support, grants, credits and selective partnerships that preserve creative control. It is not offering consulting or custom client services. The private creation engine is not for sale or public access.</p>`,
-    `<h2>Interview, assets or an aligned opportunity?</h2><p>Ask about the founder story, a specific project, creature art, audio, technical collaboration or a suitable program. Tell Cody what you need and when. Paid roles, budgets and partnership terms require a separate explicit agreement; no compensation or revenue share is promised here.</p><p><a class="cta" href="${esc(inquiry)}">Request an interview or assets</a></p><p>You choose what to share by email. Do not send confidential material. This page does not enroll you in a mailing list.</p>`,
-    `<h2>Studio image and official links</h2><p><a href="/assets/og-card.png">Download the 1200 × 630 studio image</a>. Conceptual studio artwork, not gameplay. Request current screenshots, footage or logos through the contact action.</p><ul><li><a href="mailto:${CONTACT}">${CONTACT}</a></li><li><a href="${ORIGIN}/">Official studio website</a></li><li><a href="${esc(ITCH)}">Official itch.io storefront</a></li></ul>`,
+    `</section><section id="monkeys-ear" class="press-audio"><p class="press-eyebrow">AUDIO / VALIDATION IN PROGRESS</p><h2>Monkey’s Ear.</h2><p>Audio modules and plugins in development. Voice/Vocal is the current validation candidate; the future integrated instrument is not a current release claim.</p><p class="limit">A Windows Vocal candidate has automated build and state-reconstruction proof. Real host workflow, listening and stable-distribution evidence remain incomplete. No commercial release, audio-quality or latency claim is made here.</p></section>`,
   );
-  return page({slug: "press", title: "Ultramonkeydog Studios Press Kit | Cody Haring", description: "Meet Cody Haring’s creator-owned studio: strange games, creature worlds, audio experiments, founder story, official links and asset requests.", accent: "#f2b74c", crumbHref: "/press", crumbLabel: "Press kit", body: parts.join("\n")});
+  if (feral?.demoUrl)
+    parts.push(
+      `<section class="press-demo"><p class="press-eyebrow">SECONDARY PORTFOLIO PROOF</p><h2>A smaller piece you can try.</h2><p>${esc(feral.description)}</p><p><a class="cta cta--ghost" href="${esc(feral.demoUrl)}">Try Feral Formation ↗</a></p><p class="limit">A public browser demo. Not the studio’s flagship launch.</p></section>`,
+    );
+  parts.push(
+    `<section class="press-editorial"><div><p class="press-eyebrow">INDEPENDENT BY DESIGN</p><h2>Original products.<br><em>Creative control.</em></h2></div><div><p>The studio’s path is original products, direct audience support, grants, credits and selective partnerships that preserve creative control. It is not offering consulting or custom client services. The private creation engine is not for sale or public access.</p><p>Paid roles, budgets and partnership terms require a separate explicit agreement. No compensation or revenue share is promised here.</p></div></section>`,
+    `<section class="press-assets"><p class="press-eyebrow">ASSETS / OFFICIAL LINKS</p><h2>Use the right evidence.</h2><p><a href="/assets/studio-transformation-cover-v2.webp">View the studio cover illustration</a> · <a href="/assets/og-card.png">1200 × 630 studio share image</a>. Both are conceptual studio artwork, not gameplay. Ask about art reuse and request current screenshots, footage or logos through the contact action.</p><ul class="next"><li><a href="${ORIGIN}/">Official studio website</a></li><li><a href="${esc(ITCH)}">Official itch.io storefront</a></li></ul></section>`,
+    `<section class="press-inquiry"><p class="press-eyebrow">ONE SPECIFIC CONVERSATION</p><h2>Interview, assets,<br><em>or an aligned opportunity?</em></h2><p>Tell Cody your outlet or project, the idea, the assets you need and the timing. A clear request is more useful than a vague collaboration offer.</p><p><a class="cta" href="${esc(inquiry)}">Request an interview or assets ↗</a></p><p class="limit">You choose what to share through your email app. No mailing-list enrollment. Do not send confidential material.</p></section>`,
+  );
+  return page({
+    slug: "press",
+    title: "Ultramonkeydog Studios Press Kit | Cody Haring",
+    description:
+      "Meet Cody Haring’s creator-owned studio: strange games, creature worlds, audio experiments, founder story, official links and asset requests.",
+    accent: "#d8b475",
+    crumbHref: "/press",
+    crumbLabel: "Press kit",
+    pageClass: "press-page",
+    stylesheet: "/assets/studio-press-v2.css",
+    body: parts.join("\n"),
+  });
 }
 
 function sitemap(projects) {
@@ -328,7 +356,10 @@ function sitemap(projects) {
     ...projects
       .slice()
       .sort((a, b) => actionTier(a).rank - actionTier(b).rank)
-      .map((project) => ({ loc: `${ORIGIN}/${project.id}`, priority: actionTier(project).priority })),
+      .map((project) => ({
+        loc: `${ORIGIN}/${project.id}`,
+        priority: actionTier(project).priority,
+      })),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -350,7 +381,9 @@ function writePage(slug, html) {
 
 async function main() {
   if (!fs.existsSync(DIST)) {
-    console.error("discovery-spine: dist/ not found — run the Vite build first.");
+    console.error(
+      "discovery-spine: dist/ not found — run the Vite build first.",
+    );
     process.exit(1);
   }
 
@@ -368,10 +401,16 @@ async function main() {
     written.push(`/${project.id}`);
   }
 
-  fs.writeFileSync(path.join(DIST, "sitemap.xml"), sitemap(PROJECTS_DATA), "utf8");
+  fs.writeFileSync(
+    path.join(DIST, "sitemap.xml"),
+    sitemap(PROJECTS_DATA),
+    "utf8",
+  );
   written.push("/sitemap.xml");
 
-  console.log(`discovery-spine: ${written.length} public URLs\n  ${written.join("\n  ")}`);
+  console.log(
+    `discovery-spine: ${written.length} public URLs\n  ${written.join("\n  ")}`,
+  );
 }
 
 main().catch((error) => {

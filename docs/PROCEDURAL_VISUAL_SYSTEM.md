@@ -1,6 +1,6 @@
 # Procedural Visual System
 
-Status: active public-site implementation contract
+Status: evidence-framing contract; studio-cover preview changes the homepage composition
 
 ## Purpose
 
@@ -19,6 +19,12 @@ This system is presentation framing. It is not gameplay capture, concept art, or
 7. External references
 
 Ultramonkeydog Studios owns the public website mutation and its proof artifacts. Private production infrastructure remains outside this repository and outside public presentation.
+
+## Studio-cover preview — October 4, 2026
+
+The review preview uses a founder-led cover composition and explicitly labeled AI-assisted studio illustration. It removes the global animated canvas from the entry point; a hidden renderer must not spend work behind an opaque page. Project-specific procedural framing remains available inside the development disclosures, where it is labeled and separated from product evidence.
+
+The original material rules below still constrain that framing. They do not require six equal cards, a global rainbow, or procedural effects as the homepage subject. This preview awaits Cody’s visual review and is not deployed.
 
 ## Shared studio signature
 

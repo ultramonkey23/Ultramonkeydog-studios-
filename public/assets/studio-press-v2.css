@@ -1,0 +1,289 @@
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/assets/fonts/barlow-condensed-latin-900-normal.woff2")
+    format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* Press companion to the studio cover. No scripts or external font requests. */
+.press-page {
+  --bone: #eee1bf;
+  --ink: #171814;
+  --dim: #b4a58b;
+  --edge: #5d5542;
+  background: var(--ink);
+}
+.press-page .wrap {
+  max-width: 1200px;
+  padding: 25px 5% 55px;
+}
+.press-page .crumb {
+  line-height: 1.8;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--edge);
+}
+.press-cover {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 5%;
+  padding: 46px 0 55px;
+  align-items: center;
+}
+.press-cover h1 {
+  font:
+    900 clamp(35px, 4.8vw, 64px) / 1 "Barlow Condensed",
+    Impact,
+    sans-serif;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  margin: 25px 0;
+}
+.press-cover h1 em {
+  color: #dfab84;
+  font-style: normal;
+}
+.press-deck {
+  font:
+    400 24px/1.25 Georgia,
+    serif;
+}
+.press-cover .lede {
+  font-size: 15px;
+  color: #d2c5ad;
+  max-width: 570px;
+}
+.press-page .cta {
+  border-radius: 0;
+  font-size: 14px;
+  background: #d8b475;
+  padding: 15px 20px;
+}
+.press-page .cta--ghost {
+  background: transparent;
+  border: 1px solid var(--dim);
+  color: var(--bone);
+}
+.press-cover figure {
+  margin: 0;
+}
+.press-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.press-cover figcaption {
+  font:
+    10px/1.7 "Courier New",
+    monospace;
+  color: var(--dim);
+  margin-top: 9px;
+}
+.press-eyebrow {
+  font:
+    700 10px/1.7 "Courier New",
+    monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d8b475;
+}
+.press-page section {
+  padding: 46px 0;
+  border-top: 1px solid var(--edge);
+}
+.press-page h2 {
+  font:
+    400 clamp(27px, 3.3vw, 43px) / 1.12 Georgia,
+    serif;
+  text-transform: none;
+  letter-spacing: -0.025em;
+  color: var(--bone);
+  margin: 18px 0 25px;
+}
+.press-page h2 em {
+  color: #d9a17b;
+}
+.press-editorial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8%;
+}
+.press-editorial > div:last-child {
+  padding-top: 6px;
+  font-size: 15px;
+  color: #d2c5ad;
+}
+.press-description {
+  background: #eee1bf;
+  color: #211e16;
+  margin-inline: -5.5%;
+  padding: 36px 5.5% !important;
+}
+.press-description .press-eyebrow {
+  color: #6e472d;
+}
+.press-description > p:last-child {
+  font:
+    400 clamp(21px, 2.2vw, 28px) / 1.45 Georgia,
+    serif;
+  max-width: 900px;
+}
+.press-stories ol {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px 7%;
+  padding: 0;
+  counter-reset: story;
+}
+.press-stories li {
+  font-size: 15px;
+  counter-increment: story;
+  border-top: 1px solid var(--edge);
+  padding-top: 16px;
+}
+.press-stories li::before {
+  content: "0" counter(story);
+  display: block;
+  font:
+    28px/1 Georgia,
+    serif;
+  color: #c68c65;
+  margin-bottom: 12px;
+}
+.press-stories strong {
+  display: block;
+  color: #dfca9e;
+  margin-bottom: 8px;
+}
+.press-project {
+  display: grid;
+  grid-template-columns: 45px 1fr 1.1fr;
+  gap: 4%;
+  border-top: 1px solid var(--edge);
+  padding: 28px 0;
+}
+.press-project h3 {
+  font:
+    900 29px/1 "Barlow Condensed",
+    Impact,
+    sans-serif;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+.press-project[data-project="what-we-fed"] h3 {
+  font-family: Georgia, serif;
+  color: #bbca91;
+}
+.press-project[data-project="saga-anxious-fluff"] h3 {
+  font-family: Georgia, serif;
+  text-transform: none;
+  color: #debaca;
+}
+.press-project > div:last-child {
+  font-size: 15px;
+  color: #d2c5ad;
+}
+.press-number {
+  font:
+    28px/1 Georgia,
+    serif;
+  color: #c68c65;
+}
+.press-page .limit {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--dim);
+  margin-block: 15px;
+}
+.press-audio {
+  border-left: 3px solid #b88751;
+  padding-left: 25px !important;
+}
+.press-audio > p,
+.press-demo > p {
+  max-width: 780px;
+}
+.press-assets .next a {
+  border-radius: 0;
+  min-height: 44px;
+}
+.press-inquiry {
+  margin-inline: -5.5%;
+  padding: 36px 5.5% !important;
+  background: #381b16;
+}
+.press-page footer {
+  font-size: 12px;
+  border-color: var(--edge);
+}
+.press-page a:not(.cta) {
+  text-underline-offset: 4px;
+}
+@media (max-width: 700px) {
+  .press-page .wrap {
+    padding: 20px 6% 35px;
+  }
+  .press-cover {
+    display: block;
+    padding-top: 25px;
+  }
+  .press-cover h1 {
+    font-size: 37px;
+  }
+  .press-cover figure {
+    margin-top: 26px;
+    max-height: 380px;
+    overflow: hidden;
+  }
+  .press-cover img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    object-position: 50% 25%;
+  }
+  .press-cover figcaption {
+    margin: 8px 0;
+  }
+  .press-editorial {
+    display: block;
+  }
+  .press-stories ol {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .press-project {
+    grid-template-columns: 30px 1fr;
+    gap: 12px;
+  }
+  .press-project > div:last-child {
+    grid-column: 2;
+  }
+  .press-page h2 {
+    font-size: 30px;
+  }
+  .press-project h3 {
+    font-size: 26px;
+  }
+  .press-page section {
+    padding-block: 30px;
+  }
+  .press-page .cta {
+    display: block;
+  }
+  .press-description,
+  .press-inquiry {
+    margin-inline: -6.82%;
+    padding-inline: 6.82% !important;
+  }
+}
+.press-project a,
+.press-page footer a,
+.press-page .crumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.press-page .crumb {
+  padding-bottom: 14px;
+}
