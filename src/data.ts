@@ -121,7 +121,7 @@ export const PROJECTS_DATA: Project[] = [
     id: "saga-anxious-fluff",
     title: "Saga of an Anxious Fluff",
     tone: "Colorful sensory-aware RPG",
-    description: "A family-facing creature-growth RPG dedicated to Cody's son, proving accessible and sensory-aware games can still carry deep progression and satisfying system math.",
+    description: "A family-facing creature-growth RPG dedicated to Cody's son, exploring how sensory-aware design could support deep progression and satisfying system math. Accessibility outcomes remain untested.",
     tags: ["All-Ages RPG", "Creature Growth", "Family-Friendly", "Progression", "Sensory-Aware"],
     status: "Design / Early Build",
     accentColor: "warm-amber",
