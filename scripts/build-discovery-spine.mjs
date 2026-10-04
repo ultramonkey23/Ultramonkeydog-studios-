@@ -25,7 +25,7 @@ import { pathToFileURL } from "node:url";
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
 const ORIGIN = "https://ultramonkeydog-studios.vercel.app";
-const OG_IMAGE = `${ORIGIN}/assets/og-card.png`;
+const OG_IMAGE = `${ORIGIN}/assets/studio-share-v3.png`;
 const CONTACT = "haringcody@gmail.com";
 const ITCH = "https://monkeydog23.itch.io/";
 
@@ -145,13 +145,17 @@ function page({
 <meta name="description" content="${esc(description)}">
 <meta name="author" content="Cody Haring">
 <link rel="canonical" href="${url}">
-<link rel="icon" href="/assets/og-card.png">
+<link rel="icon" href="/assets/studio-mark.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ultramonkeydog Studios">
 <meta property="og:url" content="${url}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${OG_IMAGE}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ultramonkeydog Studios: We make weird things that bite back. AI-assisted studio illustration, not gameplay.">
+<meta name="twitter:image:alt" content="Ultramonkeydog Studios transformation cover; studio illustration, not gameplay.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
@@ -176,15 +180,24 @@ Every state label on this page is copied from the studio's project record, inclu
 `;
 }
 
+const FLAGSHIP_DOORWAYS = {
+  "savage-crown": {number: "01", lane: "MUTATION / CONSEQUENCE", hook: "Become the thing the world fears.", direction: "Biological horror, hostile supernatural systems, and a creature identity shaped by mutation, grafts and passive synergy. The ambition is earned monstrous escalation—not growth that only changes a number.", accent: "#ee8765"},
+  "what-we-fed": {number: "02", lane: "HUNGER / BOND", hook: "Hunger is a choice. So is attachment.", direction: "Bond vs Eat puts attachment and consumption at the center of creature growth. Hunger, mutation pressure and music-driven escalation belong to the same dark mythic world.", accent: "#b5c279"},
+  "saga-anxious-fluff": {number: "03", lane: "TENDERNESS / DEPTH", hook: "Wonder deserves depth.", direction: "Tenderness, strange creatures and deep progression belong in the same family-facing world. Sensory-aware design is an intent; tested accessibility outcomes are not established.", accent: "#e0bf89"},
+};
+
 function projectPage(project, siblings) {
+  const doorway = FLAGSHIP_DOORWAYS[project.id];
   const tier = actionTier(project);
-  const accent = ACCENTS[project.accentColor] ?? "#f2b74c";
+  const accent = doorway?.accent ?? ACCENTS[project.accentColor] ?? "#f2b74c";
   const visual = project.publicVisual;
 
   const parts = [];
+  if (doorway) parts.push(`<header class="project-cover"><p class="project-lane">${doorway.number} / ${esc(doorway.lane)}</p>`);
   parts.push(`<p class="tier">${esc(tier.label)}</p>`);
   parts.push(`<h1>${esc(project.title)}</h1>`);
-  if (project.tone) parts.push(`<p class="tone">${esc(project.tone)}</p>`);
+  if (doorway) parts.push(`<p class="project-hook">${esc(doorway.hook)}</p></header>`);
+  else if (project.tone) parts.push(`<p class="tone">${esc(project.tone)}</p>`);
 
   parts.push(`<h2>What is this?</h2>`);
   parts.push(`<p class="lede">${esc(project.description)}</p>`);
@@ -201,6 +214,10 @@ function projectPage(project, siblings) {
     parts.push(
       `<p>Runs in the browser. No install, no account, no launcher.</p>`,
     );
+  } else if (doorway) {
+    const inquiry = `mailto:${CONTACT}?subject=${encodeURIComponent(`[UMD PROJECT] ${project.title}`)}&body=${encodeURIComponent(`Hi Cody,\n\nI'm interested in ${project.title}.\nMy question or idea:\nRelevant link (optional):\nTiming (if relevant):\n`)}`;
+    parts.push(`<p>This project is in development. There is no public playable release offered on this page. Read the current evidence below, or ask Cody a specific question about the project.</p>`);
+    parts.push(`<p><a class="cta" href="${esc(inquiry)}">Ask about ${esc(project.title)}</a></p><p class="contact-boundary">Opens your email app. No signup or mailing-list enrollment. Please do not send confidential material.</p>`);
   } else {
     parts.push(
       `<p>Not playable in a browser yet — this one is <strong>${esc(project.status)}</strong>. ` +
@@ -210,18 +227,22 @@ function projectPage(project, siblings) {
     parts.push(`<p><a class="cta" href="/play">Play what is live</a></p>`);
   }
 
+  if (doorway) parts.push(`<h2>The design obsession</h2><p class="lede">${esc(doorway.direction)}</p>`);
   if (project.systemsUnderTheHood?.length) {
-    parts.push(`<h2>Why it is interesting</h2>`);
+    if (doorway) parts.push(`<details class="proof-record"><summary>Explore the development systems</summary>`);
+    else parts.push(`<h2>Why it is interesting</h2>`);
     parts.push(
       `<ul>${project.systemsUnderTheHood.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>`,
     );
   }
 
+  if (doorway && project.systemsUnderTheHood?.length) parts.push(`</details>`);
   parts.push(`<h2>What has actually been proven</h2>`);
   parts.push(`<p><strong>Current state:</strong> ${esc(project.status)}</p>`);
   parts.push(`<p>${esc(visual.note)}</p>`);
   if (project.expandedDetails)
     parts.push(`<p>${esc(project.expandedDetails)}</p>`);
+  if (doorway && visual.evidence?.length) parts.push(`<details class="proof-record"><summary>Read the evidence and its limits</summary>`);
   for (const item of visual.evidence ?? []) {
     parts.push(
       `<div class="card"><span class="state">${esc(item.state)}</span>` +
@@ -233,10 +254,11 @@ function projectPage(project, siblings) {
     );
   }
 
-  parts.push(`<h2>Where do I go next?</h2>`);
+  if (doorway && visual.evidence?.length) parts.push(`</details>`);
+  parts.push(`<h2>More from the studio</h2>`);
   const links = siblings
-    .filter((other) => other.id !== project.id)
-    .sort((a, b) => actionTier(a).rank - actionTier(b).rank)
+    .filter((other) => other.id !== project.id && other.id !== "bone-league")
+    .sort((a, b) => (FLAGSHIP_DOORWAYS[a.id] ? 0 : 1) - (FLAGSHIP_DOORWAYS[b.id] ? 0 : 1))
     .map((other) => `<li><a href="/${other.id}">${esc(other.title)}</a></li>`)
     .join("");
   parts.push(`<ul class="next">${links}</ul>`);
@@ -247,11 +269,15 @@ function projectPage(project, siblings) {
     description: project.description,
     accent,
     body: parts.join("\n"),
+    crumbHref: "/#worlds",
+    crumbLabel: "The work",
+    pageClass: doorway ? `project-page project-page--${project.id}` : "",
+    stylesheet: doorway ? "/assets/studio-project-v3.css" : "",
   });
 }
 
 function playPage(projects) {
-  const playable = projects.filter((project) => project.demoUrl);
+  const playable = projects.filter((project) => project.demoUrl && project.id !== "bone-league");
   const rest = projects
     .filter((project) => !project.demoUrl)
     .sort((a, b) => actionTier(a).rank - actionTier(b).rank);
@@ -260,8 +286,8 @@ function playPage(projects) {
   parts.push(`<p class="tier">PLAY NOW</p>`);
   parts.push(`<h1>Play something weird.</h1>`);
   parts.push(
-    `<p class="lede">Two Ultramonkeydog games run in a browser tab right now. ` +
-      `No download, no account, no launcher. Start with either one.</p>`,
+    `<p class="lede">Feral Formation is a secondary studio prototype available in a browser. ` +
+      `The flagship worlds remain in development. This demo is portfolio proof, not a studio release announcement.</p>`,
   );
 
   for (const project of playable) {
@@ -278,7 +304,8 @@ function playPage(projects) {
     );
   }
 
-  parts.push(`<h2>Not playable in a browser yet</h2>`);
+  parts.push(`<details><summary>Earlier project archive</summary><p>Bone League is a smaller project, not ready to lead outreach or release work.</p><p><a href="/bone-league">Read the archived project record</a></p></details>`);
+  parts.push(`<h2>Flagship and other work in development</h2>`);
   parts.push(
     `<p>These are real and in progress. They are listed here so the answer to ` +
       `"what else is there?" is a link instead of a rumour.</p>`,
@@ -330,7 +357,7 @@ function pressPage(projects) {
     );
   parts.push(
     `<section class="press-editorial"><div><p class="press-eyebrow">INDEPENDENT BY DESIGN</p><h2>Original products.<br><em>Creative control.</em></h2></div><div><p>The studio’s path is original products, direct audience support, grants, credits and selective partnerships that preserve creative control. It is not offering consulting or custom client services. The private creation engine is not for sale or public access.</p><p>Paid roles, budgets and partnership terms require a separate explicit agreement. No compensation or revenue share is promised here.</p></div></section>`,
-    `<section class="press-assets"><p class="press-eyebrow">ASSETS / OFFICIAL LINKS</p><h2>Use the right evidence.</h2><p><a href="/assets/studio-transformation-cover-v2.webp">View the studio cover illustration</a> · <a href="/assets/og-card.png">1200 × 630 studio share image</a>. Both are conceptual studio artwork, not gameplay. Ask about art reuse and request current screenshots, footage or logos through the contact action.</p><ul class="next"><li><a href="${ORIGIN}/">Official studio website</a></li><li><a href="${esc(ITCH)}">Official itch.io storefront</a></li></ul></section>`,
+    `<section class="press-assets"><p class="press-eyebrow">ASSETS / OFFICIAL LINKS</p><h2>Use the right evidence.</h2><p><a href="/assets/studio-transformation-cover-v2.webp">View the studio cover illustration</a> · <a href="/assets/studio-share-v3.png">1200 × 630 studio share image</a>. Both are conceptual studio artwork, not gameplay. Ask about art reuse and request current screenshots, footage or logos through the contact action.</p><ul class="next"><li><a href="${ORIGIN}/">Official studio website</a></li><li><a href="${esc(ITCH)}">Official itch.io storefront</a></li></ul></section>`,
     `<section class="press-inquiry"><p class="press-eyebrow">ONE SPECIFIC CONVERSATION</p><h2>Interview, assets,<br><em>or an aligned opportunity?</em></h2><p>Tell Cody your outlet or project, the idea, the assets you need and the timing. A clear request is more useful than a vague collaboration offer.</p><p><a class="cta" href="${esc(inquiry)}">Request an interview or assets ↗</a></p><p class="limit">You choose what to share through your email app. No mailing-list enrollment. Do not send confidential material.</p></section>`,
   );
   return page({

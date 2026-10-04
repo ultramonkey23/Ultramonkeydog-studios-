@@ -38,3 +38,13 @@ Cover → explore the worlds → one project hook → project page or developmen
 Cody approved this direction and requested the next wave. Deployment follows a fresh canonical-parent check and non-force fast-forward. The preceding preview made no production changes; this wave carries its approved implementation into the canonical site. The review package includes the exact patch, added files, rendered desktop/phone screenshots and built pages.
 
 The cover is studio identity art, not evidence that any flagship looks or plays this way. No customer, demand, accessibility, audio quality, latency, playfeel, release-readiness or current-device claim was added.
+
+## Flagship doorway and sharing wave
+
+The next approved-direction continuation gives Savage Crown, WHAT WE FED and Saga distinct static project treatments, matching the homepage's rust, forest and lilac identities. Concept hooks and design intent precede optional development-system details; all existing status, evidence and limitations still come from `src/data.ts`. Each flagship's primary action is a project-specific `[UMD PROJECT]` email inquiry, rather than a diversion to a smaller prototype. No public build is invented.
+
+Bone League remains available through the earlier-project archive; it is removed from the play page's promoted demo cards and project recommendations. Feral Formation stays explicitly secondary portfolio proof. Neither is relabeled as a studio release.
+
+`public/assets/studio-share-v3.png` is the new 1200×630 share card. It uses the approved cover artwork and existing Barlow font, laid out by `docs/marketing/share-card/index.html`; it adds no generated project imagery. Open Graph and Twitter metadata on the homepage and all eight static pages point to this versioned URL, with dimensions and descriptive alt text. The favicon uses a small original U/arrow vector rather than shrinking the landscape share card. Old artwork is retained for recovery and existing links.
+
+Verification includes TypeScript/boundary/build checks, all nine emitted share-image references, four pages at 320/390/768/1440 widths, source-derived evidence disclosures and inquiry subject strings. Publication does not prove that a third-party social platform has refreshed its cached preview, that email delivery works, or that visitors convert. The useful learning signal is a specific project inquiry and its question, not an invented conversion rate.
