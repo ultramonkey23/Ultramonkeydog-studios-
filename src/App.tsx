@@ -22,7 +22,6 @@ import {
   Swords,
   WandSparkles,
 } from "lucide-react";
-import { motion } from "motion/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import { FUNDING_NEEDS, PROJECTS_DATA } from "./data";
@@ -30,6 +29,7 @@ import BoxArena from "./components/BoxArena";
 import MethodGrid from "./components/MethodGrid";
 import ProjectCard from "./components/ProjectCard";
 import "./studio-front-door.css";
+import "./studio-editorial.css";
 
 const emailAddress = "haringcody@gmail.com";
 
@@ -141,26 +141,20 @@ export default function App() {
 
       <main>
         <section className="front-door__hero" aria-labelledby="studio-title">
-          <div className="front-door__hero-art" aria-hidden="true">
-            <div className="front-door__moon" />
-            <div className="front-door__beast front-door__beast--one" />
-            <div className="front-door__beast front-door__beast--two" />
-            <div className="front-door__hero-sparks" />
-          </div>
+          <figure className="studio-specimen">
+            <img src="/assets/studio-creature.svg" alt="Original studio illustration: a many-eyed creature with branching antlers, a small beating heart, and a curled tail." width="640" height="720" />
+            <figcaption>FIG. 01 / STRANGE BY NATURE<br />Original studio artwork · not gameplay</figcaption>
+          </figure>
 
           <div className="front-door__hero-copy">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
+            <div>
               <p className="front-door__hero-kicker">
                 Creator-owned multimedia weirdness from Cody Haring
               </p>
               <h1 id="studio-title">
                 WE MAKE
-                <span>WEIRD THINGS</span>
-                THAT BITE BACK.
+                <span>WEIRD<br />THINGS</span>
+                <em>that bite back.</em>
               </h1>
               <p className="front-door__hero-lede">
                 Cody Haring’s creator-owned studio for games, creatures, stories, sound and strange software. A private creation engine helps bring the work to life; human authorship, taste and final authority stay with Cody.
@@ -176,7 +170,7 @@ export default function App() {
                   <ArrowDown size={17} />
                 </button>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           <div className="front-door__ticker" aria-label="Studio creative lanes">
@@ -186,8 +180,8 @@ export default function App() {
 
         <section id="doorways" className="front-door__section front-door__section--doors">
           <div className="front-door__section-heading">
-            <SectionLabel>Pick a door. Something is growling behind each one.</SectionLabel>
-            <h2>This is a whole multimedia studio—not one game wearing six hats.</h2>
+            <SectionLabel>Index / Follow your curiosity</SectionLabel>
+            <h2>A field guide to the studio.</h2>
             <p>
               Every property keeps its own identity. The shared signature is Cody’s taste: creatures, pressure, transformation, dark humor, emotional stakes, and systems with real guts.
             </p>
@@ -195,7 +189,6 @@ export default function App() {
 
           <div className="front-door__door-grid">
             {doorways.map((door, index) => {
-              const Icon = door.icon;
               return (
                 <button
                   key={door.id}
@@ -205,11 +198,9 @@ export default function App() {
                   data-tone={door.tone}
                 >
                   <span className="front-door__door-number">0{index + 1}</span>
-                  <Icon size={24} />
                   <small>{door.eyebrow}</small>
                   <strong>{door.title}</strong>
-                  <p>{door.copy}</p>
-                  <span className="front-door__door-enter">Enter <ArrowUpRight size={14} /></span>
+                  <span className="front-door__door-enter"><ArrowUpRight size={22} /></span>
                 </button>
               );
             })}

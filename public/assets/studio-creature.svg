@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 720">
+<defs><pattern id="h" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(28)"><path d="M0 0V9" stroke="#28241e" stroke-width="1"/></pattern></defs>
+<g fill="none" stroke="#28241e" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="325" cy="335" r="238" stroke="#a94b35" stroke-width="1"/>
+<path d="M325 75V604M82 335H568" stroke="#a94b35" stroke-dasharray="2 8"/>
+<g stroke-width="8"><path d="M265 245C207 197 222 110 177 62M226 164L151 132 129 80M216 197L141 185 91 141M177 62L183 28M179 82L140 46M375 245C430 179 414 109 476 55M419 167L490 134 521 80M431 197L507 189 554 149M474 57L462 24M475 78L519 48"/></g>
+<path d="M195 255L151 221 173 309C146 378 167 452 216 496L207 580 253 575 280 515C303 529 342 529 363 516L399 573 442 578 422 486C467 438 482 371 453 307L480 222 423 252C364 207 259 207 195 255Z" fill="#ddd1ac" stroke-width="5"/>
+<path d="M182 330C202 259 254 238 281 245L254 292 220 305 194 370M459 331C435 269 393 240 361 244L389 292 425 313 452 377" fill="url(#h)" stroke-width="2"/>
+<path d="M231 494C156 501 112 472 113 422 114 369 58 369 44 402 24 452 69 512 118 531 166 550 188 598 160 628 137 652 99 637 103 612" stroke-width="16"/>
+<path d="M233 497C158 504 110 473 112 423 114 369 58 369 44 403" stroke="#ddd1ac" stroke-width="7"/>
+<g stroke-width="4" fill="#eee5ca"><path d="M202 339Q238 294 277 339Q239 373 202 339Z"/><path d="M363 339Q403 294 443 339Q402 376 363 339Z"/><path d="M286 279Q322 245 351 279Q320 309 286 279Z"/></g>
+<g fill="#28241e"><ellipse cx="239" cy="335" rx="9" ry="18"/><ellipse cx="401" cy="336" rx="9" ry="18"/><ellipse cx="319" cy="278" rx="7" ry="12"/>
+<path d="M288 353Q319 336 351 353L322 377Z"/><path d="M247 399Q319 424 396 395Q368 473 320 471Q273 469 247 399Z"/></g>
+<g fill="#eee5ca" stroke-width="2"><path d="M260 405L279 438 288 414M305 419L320 449 334 419M352 412L361 441 381 405"/></g>
+<path d="M316 500C285 476 281 453 298 448 309 444 318 452 320 459 325 447 340 444 349 452 363 467 341 486 316 500Z" fill="#a94b35" stroke-width="2"/>
+<g stroke-width="2"><path d="M231 370L191 389M232 383L187 408M404 372L449 391M403 386L453 411M271 481L253 536M373 481L403 539M274 249L297 234M346 248L361 236"/></g>
+<path d="M79 662H564" stroke-width="2"/><path d="M79 652V672M564 652V672M176 657V667M273 657V667M370 657V667M467 657V667"/>
+</g></svg>
