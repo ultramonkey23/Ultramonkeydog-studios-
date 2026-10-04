@@ -25,7 +25,7 @@ const worlds = [
     chapter: "02",
     line: "Hunger is a choice. So is attachment.",
     promise:
-      "A dark mythic creature RPG built around Bond vs Eat: what you keep, what you consume, and what you become.",
+      "A wondrous, mythic creature RPG built around Bond vs Eat: what you keep, what you consume, and what you become.",
     cue: "HUNGER / BOND",
     type: "Creature RPG · in development",
   },
