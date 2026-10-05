@@ -176,6 +176,17 @@ export default function App() {
             <span>STRANGE CONSEQUENCES</span>
           </div>
         </section>
+        <section id="grow-teeth" className="cover-manifesto" aria-labelledby="campaign-title">
+          <p className="cover-kicker">Studio dispatch / October 5, 2026</p>
+          <h2 id="campaign-title">Grow teeth.<br /><em>Keep a heart.</em></h2>
+          <div>
+            <p>A creature should become something. Not just get bigger.</p>
+            <p>That is the thread through my work: growth that changes anatomy, choices and consequences. Hunger and attachment. Horror with room for wonder. Something vulnerable becoming something the world has to answer.</p>
+            <p>I’m Cody. Ultramonkeydog Studios is where I build those worlds—and the tools that help me make them. AI is a bridge across disciplines; the taste, direction and decisions are mine.</p>
+            <p>These worlds are in development. This dispatch is an invitation to explore the ideas taking shape, not a release announcement.</p>
+            <a className="cover-action" href="#worlds">Explore the worlds <ArrowDown size={18} /></a>
+          </div>
+        </section>
         <section className="cover-manifesto" aria-labelledby="manifesto-title">
           <p className="cover-kicker">The shared obsession</p>
           <h2 id="manifesto-title">
@@ -331,6 +342,19 @@ export default function App() {
             <a className="cover-text-link" href="/press">
               Founder story &amp; press kit <ArrowUpRight size={18} />
             </a>
+          </div>
+        </section>
+        <section id="creation-tools" className="cover-manifesto" aria-labelledby="tools-title">
+          <p className="cover-kicker">Software / tools for making</p>
+          <h2 id="tools-title">The tools have<br /><em>teeth, too.</em></h2>
+          <div>
+            <h3>MAW</h3>
+            <p>A monster-hearted coding CLI built on LLxprt’s provider, tool, session and extension engine. It has its own terminal identity and optional attachment to the studio’s private creation system. It can work independently of that system.</p>
+            <a className="cover-text-link" href="https://github.com/ultramonkey23/maw" target="_blank" rel="noopener noreferrer">Explore MAW’s source and setup <ArrowUpRight size={18} /></a>
+            <h3>Prehensile</h3>
+            <p>An experimental standalone software-engineering tool. Its bounded workflow checks a proposed patch, applies it, runs validation and reverts it by default. Sustained autonomous missions and evidence-driven learning remain objectives, not proven capabilities.</p>
+            <a className="cover-text-link" href="#contact">Ask about Prehensile <ArrowDown size={18} /></a>
+            <p>Both are development tools, not promises of effortless autonomous production. MAW retains its LLxprt lineage; Prehensile has its own implementation and runtime boundary.</p>
           </div>
         </section>
         <section
