@@ -13,7 +13,9 @@
     "clean": "rm -rf dist server.js",
     "lint": "npm run boundary:check && node node_modules/typescript/bin/tsc --noEmit",
     "spatial:scan": "node scripts/spatial-scan.mjs",
-    "discovery:build": "node scripts/build-discovery-spine.mjs"
+    "discovery:build": "node scripts/build-discovery-spine.mjs",
+    "play:vendor": "node scripts/vendor-play-bundles.mjs",
+    "play:verify": "node scripts/verify-live-play.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.1",
