@@ -1,0 +1,42 @@
+{
+  "title": {
+    "pass": true,
+    "screenshots": [
+      {
+        "screenshot": "/data/data/com.termux/files/home/repos/Ultramonkeydog-studios-github/public/assets/muttpit/title/127.0.0.1:8765.png",
+        "sha256": "918eefd6f19b05cc8ff49423070faf842f302df322e268593f6eacc2e885680a"
+      }
+    ],
+    "result": "PASS"
+  },
+  "kennel": {
+    "pass": true,
+    "screenshots": [
+      {
+        "screenshot": "/data/data/com.termux/files/home/repos/Ultramonkeydog-studios-github/public/assets/muttpit/kennel/127.0.0.1:8765.png",
+        "sha256": "92817b9aeff7d68df7d5f53bae8605077dca0a976f2c3480d3b3f41adace2d23"
+      }
+    ],
+    "result": "PASS"
+  },
+  "bout": {
+    "pass": true,
+    "screenshots": [
+      {
+        "screenshot": "/data/data/com.termux/files/home/repos/Ultramonkeydog-studios-github/public/assets/muttpit/bout/127.0.0.1:8765.png",
+        "sha256": "226d70523c978fb117fb45389ff5f63a59fe60c9d92c0db0abee73f10db41df3"
+      }
+    ],
+    "result": "PASS"
+  },
+  "mailbox": {
+    "pass": true,
+    "screenshots": [
+      {
+        "screenshot": "/data/data/com.termux/files/home/repos/Ultramonkeydog-studios-github/public/assets/muttpit/mailbox/127.0.0.1:8765.png",
+        "sha256": "4549ed35227a531e8e90afde4edbae1cfbd0cdedbd3c084dbf9a28e48ac51666"
+      }
+    ],
+    "result": "PASS"
+  }
+}

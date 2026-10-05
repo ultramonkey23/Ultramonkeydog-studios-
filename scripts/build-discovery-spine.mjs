@@ -233,9 +233,11 @@ function playPage(projects) {
   const parts = [];
   parts.push(`<p class="tier">PLAY NOW</p>`);
   parts.push(`<h1>Play something weird.</h1>`);
+  const COUNT_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+  const playableCount = COUNT_WORDS[playable.length] ?? String(playable.length);
   parts.push(
-    `<p class="lede">Two Ultramonkeydog games run in a browser tab right now. ` +
-      `No download, no account, no launcher. Start with either one.</p>`,
+    `<p class="lede">${playableCount} Ultramonkeydog ${playable.length === 1 ? "game runs" : "games run"} in a browser tab right now. ` +
+      `No download, no account, no launcher. ${playable.length === 1 ? "Start with it." : "Start with any of them."}</p>`,
   );
 
   for (const project of playable) {

@@ -7,7 +7,8 @@ export type ProceduralFieldVariant =
   | "savage-crown"
   | "saga-anxious-fluff"
   | "feral-formation"
-  | "box-o-battles";
+  | "box-o-battles"
+  | "muttpit";
 
 interface ProceduralFieldProps {
   seed: string;
@@ -64,6 +65,12 @@ const PALETTES: Record<ProceduralFieldVariant, FieldPalette> = {
     deep: "#221315",
     structure: "#f6e4b6",
     accents: ["#e94b39", "#ffc447", "#3f7cff", "#72c95a", "#b66ee8", "#ff79a8"],
+  },
+  "muttpit": {
+    ground: "#0c0906",
+    deep: "#221409",
+    structure: "#e9d9b0",
+    accents: ["#c9772f", "#f2b74c", "#4dd0d6", "#b489ff", "#b7d94a", "#ff75b5"],
   },
 };
 

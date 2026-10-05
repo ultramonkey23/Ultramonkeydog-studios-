@@ -48,6 +48,7 @@ const styleTheme: Record<
   "saga-anxious-fluff": { accent: "#ff7167", signal: "#5cc8ff", secondary: "#b995ff", pop: "#ffd84a", structure: "#fff0c9", icon: Sparkles },
   "feral-formation": { accent: "#ff9c45", signal: "#48bda0", secondary: "#776bd8", pop: "#d978aa", structure: "#e8e1c2", icon: Layers3 },
   "box-o-battles": { accent: "#e94b39", signal: "#ffc447", secondary: "#3f7cff", pop: "#b66ee8", structure: "#f6e4b6", icon: Scale },
+  "muttpit": { accent: "#c9772f", signal: "#f2b74c", secondary: "#b489ff", pop: "#b7d94a", structure: "#e9d9b0", icon: Gamepad2 },
 };
 
 const mediaTone: Record<PublicMediaState, string> = {
@@ -60,6 +61,7 @@ const mediaTone: Record<PublicMediaState, string> = {
 
 const evidenceTone: Record<VisualEvidenceState, string> = {
   PROMOTED_RUNTIME_ENVIRONMENT: "project-card__evidence-state--promoted",
+  PROMOTED_RUNTIME_GAMEPLAY: "project-card__evidence-state--promoted",
   WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL: "project-card__evidence-state--partial",
   ACCEPTED_REFERENCE: "project-card__evidence-state--reference",
   CAPTURE_REQUIRED: "project-card__evidence-state--capture",

@@ -9,7 +9,8 @@ export type ProjectVisualStyle =
   | "savage-crown"
   | "saga-anxious-fluff"
   | "feral-formation"
-  | "box-o-battles";
+  | "box-o-battles"
+  | "muttpit";
 
 export type PublicMediaState =
   | "PLAYABLE_DEMO"
@@ -20,6 +21,7 @@ export type PublicMediaState =
 
 export type VisualEvidenceState =
   | "PROMOTED_RUNTIME_ENVIRONMENT"
+  | "PROMOTED_RUNTIME_GAMEPLAY"
   | "WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL"
   | "ACCEPTED_REFERENCE"
   | "CAPTURE_REQUIRED";

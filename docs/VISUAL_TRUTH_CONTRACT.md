@@ -36,6 +36,7 @@ A runtime asset may still be weak website media. A strong reference may still be
 ## Visual evidence states
 
 - `PROMOTED_RUNTIME_ENVIRONMENT` — the asset is an active bounded runtime environment layer.
+- `PROMOTED_RUNTIME_GAMEPLAY` — the image is a real runtime capture of the shipped build being played (title, menu, or live gameplay composition), taken from the actual browser run rather than authored or staged.
 - `WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL` — the asset is integrated but visual promotion remains partial.
 - `ACCEPTED_REFERENCE` — the asset informs direction but is not runtime truth.
 - `CAPTURE_REQUIRED` — the full composition must be captured and reviewed before promotion.
