@@ -7,6 +7,7 @@ Public studio website for **Ultramonkeydog Studios**.
 ## Public release surfaces
 
 - Studio website: https://ultramonkeydog-studios.vercel.app/
+- Press and collaboration page: https://ultramonkeydog-studios.vercel.app/press
 - Itch.io storefront: https://monkeydog23.itch.io/
 
 The Itch.io profile is an established public distribution surface and should be treated as a real release/storefront destination rather than a future placeholder. Individual products should only be linked there once their own release gates are satisfied.

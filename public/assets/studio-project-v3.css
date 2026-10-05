@@ -1,0 +1,27 @@
+@font-face{font-family:"Barlow Condensed";src:url('/assets/fonts/barlow-condensed-latin-900-normal.woff2') format('woff2');font-weight:900;font-display:swap}
+.project-page{--bone:#eee1bf;--dim:#c3b6a0;--edge:#635349;background:#241914}
+.project-page--what-we-fed{background:#19231c;--edge:#4c604e}
+.project-page--saga-anxious-fluff{background:#29242f;--edge:#746574;--dim:#c9bdcf}
+.project-page .wrap{max-width:1080px;padding:28px 6% 64px}
+.project-page .crumb{line-height:1.8;border-bottom:1px solid var(--edge);padding-bottom:25px}
+.project-page .crumb a{display:inline-flex;align-items:center;min-height:44px}
+.project-cover{padding:44px 0 35px;border-bottom:3px solid var(--accent)}
+.project-lane{font:700 12px/1.5 ui-monospace,monospace;letter-spacing:.13em;color:var(--accent)}
+.project-page h1{font:900 clamp(48px,8vw,100px)/.98 'Barlow Condensed',sans-serif;text-transform:uppercase;max-width:850px;letter-spacing:-.015em;margin:20px 0}
+.project-page--what-we-fed h1,.project-page--saga-anxious-fluff h1{font-family:Georgia,serif;font-weight:400;letter-spacing:-.055em;font-size:clamp(36px,6.3vw,76px)}
+.project-page--saga-anxious-fluff h1{text-transform:none;max-width:760px}
+.project-hook{font:400 clamp(24px,3vw,35px)/1.2 Georgia,serif;color:var(--accent);max-width:700px;margin:24px 0 0}
+.project-page .lede{max-width:780px;font-size:clamp(18px,2vw,22px);color:var(--bone)}
+.project-page h2{color:var(--accent);margin-top:38px;line-height:1.5}
+.project-page .tier,.project-page .tags li,.project-page .card,.project-page .cta,.project-page .next a{border-radius:0}
+.project-page .tier{line-height:1.4;margin-top:14px}
+.project-page .card{background:transparent;border:0;border-top:1px solid var(--edge);padding:20px 0}
+.project-page .state{line-height:1.5}
+.project-page .limit{color:var(--dim)}
+.contact-boundary{max-width:620px;color:var(--dim);font-size:14px}
+.proof-record{border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);margin-top:24px;padding:5px 0}
+.proof-record summary{cursor:pointer;min-height:52px;display:list-item;padding:14px 8px;font-weight:700}
+.project-page .cta{margin-top:10px;max-width:100%;overflow-wrap:anywhere}
+.project-page footer a{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:480px){.project-page .wrap{padding:16px 6% 44px}.project-cover{padding-top:25px}.project-page h1{font-size:56px}.project-page--what-we-fed h1,.project-page--saga-anxious-fluff h1{font-size:40px}.project-page .cta{font-size:15px;padding:14px 12px}.project-page .next{gap:8px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}

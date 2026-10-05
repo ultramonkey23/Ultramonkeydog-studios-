@@ -11,6 +11,7 @@
  *
  * Output:
  *   dist/play/index.html      playable-right-now hub
+ *   dist/press/index.html     shareable studio facts, approved copy and contact
  *   dist/<project-id>/index.html   one durable page per property
  *   dist/sitemap.xml
  */
@@ -24,11 +25,16 @@ import { pathToFileURL } from "node:url";
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
 const ORIGIN = "https://ultramonkeydog-studios.vercel.app";
-const OG_IMAGE = `${ORIGIN}/assets/og-card.png`;
+const OG_IMAGE = `${ORIGIN}/assets/studio-share-v3.png`;
+const CONTACT = "haringcody@gmail.com";
+const ITCH = "https://monkeydog23.itch.io/";
 
 /** Load src/data.ts without duplicating it: bundle to a temp ESM file and import. */
 async function loadProjectData() {
-  const outfile = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "umd-spine-")), "data.mjs");
+  const outfile = path.join(
+    fs.mkdtempSync(path.join(os.tmpdir(), "umd-spine-")),
+    "data.mjs",
+  );
   await build({
     entryPoints: [path.join(ROOT, "src", "data.ts")],
     outfile,
@@ -59,8 +65,8 @@ function actionTier(project) {
   if (project.publicVisual.mediaState === "NATIVE_BUILD") {
     return { rank: 1, label: "IN DEVELOPMENT — NATIVE BUILD", priority: "0.7" };
   }
-  if (project.publicVisual.mediaState === "READ_ONLY_PACKET") {
-    return { rank: 2, label: "PUBLISHED PACKET", priority: "0.7" };
+  if (project.publicVisual.mediaState === "PRECOMPUTED_MATRIX") {
+    return { rank: 2, label: "INTERACTIVE MATCHUP MATRIX", priority: "0.7" };
   }
   return { rank: 3, label: "IN DEVELOPMENT", priority: "0.6" };
 }
@@ -105,16 +111,30 @@ li{margin:.42em 0}
 .card h3{margin:0 0 6px;font-size:1rem}
 .state{font:700 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.13em;
   color:var(--accent);display:block;margin-bottom:7px}
-.limit{margin:9px 0 0;padding-left:11px;border-left:1px solid var(--edge);color:var(--dim);font-size:.9rem}
+.limit{margin:9px 0 0;padding-left:11px;border-left:1px solid var(--edge);color:var(--dim);font-size:1rem}
 .next{display:flex;flex-wrap:wrap;gap:9px;padding:0;list-style:none;margin:14px 0 0}
 .next li{margin:0}
 .next a{display:inline-block;padding:8px 13px;border:1px solid var(--edge);border-radius:2px;
-  color:var(--bone);text-decoration:none;font-size:.9rem}
+  color:var(--bone);text-decoration:none;font-size:1rem}
+.wrap{overflow-wrap:break-word}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.cta,.next a{min-height:44px}
+@media(max-width:480px){.wrap{padding:20px 16px 48px}.cta{display:block;margin-right:0;text-align:center}h1{font-size:clamp(1.8rem,8vw,2.3rem)}}
 .next a:hover{border-color:var(--accent);color:var(--accent)}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--edge);color:var(--dim);font-size:.86rem}
 `.trim();
 
-function page({ slug, title, description, accent, body }) {
+function page({
+  slug,
+  title,
+  description,
+  accent,
+  body,
+  crumbHref = "/play",
+  crumbLabel = "Play",
+  pageClass = "",
+  stylesheet = "",
+}) {
   const url = `${ORIGIN}/${slug}`;
   return `<!doctype html>
 <html lang="en">
@@ -125,29 +145,34 @@ function page({ slug, title, description, accent, body }) {
 <meta name="description" content="${esc(description)}">
 <meta name="author" content="Cody Haring">
 <link rel="canonical" href="${url}">
-<link rel="icon" href="/assets/og-card.png">
+<link rel="icon" href="/assets/studio-mark.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ultramonkeydog Studios">
 <meta property="og:url" content="${url}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${OG_IMAGE}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ultramonkeydog Studios: We make weird things that bite back. AI-assisted studio illustration, not gameplay.">
+<meta name="twitter:image:alt" content="Ultramonkeydog Studios transformation cover; studio illustration, not gameplay.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${OG_IMAGE}">
 <meta name="theme-color" content="#060608">
+${stylesheet ? `<link rel="stylesheet" href="${esc(stylesheet)}">` : ""}
 <style>:root{--accent:${accent}}
 ${STYLE}</style>
 </head>
-<body>
+<body class="${esc(pageClass)}">
 <div class="wrap">
-<p class="crumb"><a href="/">Ultramonkeydog Studios</a> &nbsp;/&nbsp; <a href="/play">Play</a></p>
+<p class="crumb"><a href="/">Ultramonkeydog Studios</a> &nbsp;/&nbsp; <a href="${esc(crumbHref)}">${esc(crumbLabel)}</a></p>
 ${body}
 <footer>
 <p>Ultramonkeydog Studios — creator-owned, directed by Cody Haring.
 Every state label on this page is copied from the studio's project record, including the parts that are not finished.</p>
-<p><a href="/">Back to the front door</a> &middot; <a href="mailto:haringcody@gmail.com">haringcody@gmail.com</a></p>
+<p><a href="/">Back to the front door</a> &middot; <a href="/press">Press &amp; collaboration</a> &middot; <a href="mailto:${CONTACT}">${CONTACT}</a></p>
 </footer>
 </div>
 </body>
@@ -155,15 +180,24 @@ Every state label on this page is copied from the studio's project record, inclu
 `;
 }
 
+const FLAGSHIP_DOORWAYS = {
+  "savage-crown": {number: "01", lane: "MUTATION / CONSEQUENCE", hook: "Become the thing the world fears.", direction: "Biological horror, hostile supernatural systems, and a creature identity shaped by mutation, grafts and passive synergy. The ambition is earned monstrous escalation—not growth that only changes a number.", accent: "#ee8765"},
+  "what-we-fed": {number: "02", lane: "HUNGER / BOND", hook: "Hunger is a choice. So is attachment.", direction: "Bond vs Eat puts attachment and consumption at the center of creature growth. Hunger, mutation pressure and music-driven escalation belong to the same wondrous, mythic creature world.", accent: "#b5c279"},
+  "saga-anxious-fluff": {number: "03", lane: "TENDERNESS / DEPTH", hook: "Wonder deserves depth.", direction: "Tenderness, strange creatures and deep progression belong in the same family-facing world. Sensory-aware design is an intent; tested accessibility outcomes are not established.", accent: "#e0bf89"},
+};
+
 function projectPage(project, siblings) {
+  const doorway = FLAGSHIP_DOORWAYS[project.id];
   const tier = actionTier(project);
-  const accent = ACCENTS[project.accentColor] ?? "#f2b74c";
+  const accent = doorway?.accent ?? ACCENTS[project.accentColor] ?? "#f2b74c";
   const visual = project.publicVisual;
 
   const parts = [];
+  if (doorway) parts.push(`<header class="project-cover"><p class="project-lane">${doorway.number} / ${esc(doorway.lane)}</p>`);
   parts.push(`<p class="tier">${esc(tier.label)}</p>`);
   parts.push(`<h1>${esc(project.title)}</h1>`);
-  if (project.tone) parts.push(`<p class="tone">${esc(project.tone)}</p>`);
+  if (doorway) parts.push(`<p class="project-hook">${esc(doorway.hook)}</p></header>`);
+  else if (project.tone) parts.push(`<p class="tone">${esc(project.tone)}</p>`);
 
   parts.push(`<h2>What is this?</h2>`);
   parts.push(`<p class="lede">${esc(project.description)}</p>`);
@@ -177,7 +211,13 @@ function projectPage(project, siblings) {
       `<p><a class="cta" href="${esc(project.demoUrl)}">${esc(project.demoLabel ?? "Play it")}</a>` +
         `<a class="cta cta--ghost" href="/play">See everything playable</a></p>`,
     );
-    parts.push(`<p>Runs in the browser. No install, no account, no launcher.</p>`);
+    parts.push(
+      `<p>Runs in the browser. No install, no account, no launcher.</p>`,
+    );
+  } else if (doorway) {
+    const inquiry = `mailto:${CONTACT}?subject=${encodeURIComponent(`[UMD PROJECT] ${project.title}`)}&body=${encodeURIComponent(`Hi Cody,\n\nI'm interested in ${project.title}.\nMy question or idea:\nRelevant link (optional):\nTiming (if relevant):\n`)}`;
+    parts.push(`<p>This project is in development. There is no public playable release offered on this page. Read the current evidence below, or ask Cody a specific question about the project.</p>`);
+    parts.push(`<p><a class="cta" href="${esc(inquiry)}">Ask about ${esc(project.title)}</a></p><p class="contact-boundary">Opens your email app. No signup or mailing-list enrollment. Please do not send confidential material.</p>`);
   } else {
     parts.push(
       `<p>Not playable in a browser yet — this one is <strong>${esc(project.status)}</strong>. ` +
@@ -187,30 +227,38 @@ function projectPage(project, siblings) {
     parts.push(`<p><a class="cta" href="/play">Play what is live</a></p>`);
   }
 
+  if (doorway) parts.push(`<h2>The design obsession</h2><p class="lede">${esc(doorway.direction)}</p>`);
   if (project.systemsUnderTheHood?.length) {
-    parts.push(`<h2>Why it is interesting</h2>`);
+    if (doorway) parts.push(`<details class="proof-record"><summary>Explore the development systems</summary>`);
+    else parts.push(`<h2>Why it is interesting</h2>`);
     parts.push(
       `<ul>${project.systemsUnderTheHood.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>`,
     );
   }
 
+  if (doorway && project.systemsUnderTheHood?.length) parts.push(`</details>`);
   parts.push(`<h2>What has actually been proven</h2>`);
   parts.push(`<p><strong>Current state:</strong> ${esc(project.status)}</p>`);
   parts.push(`<p>${esc(visual.note)}</p>`);
-  if (project.expandedDetails) parts.push(`<p>${esc(project.expandedDetails)}</p>`);
+  if (project.expandedDetails)
+    parts.push(`<p>${esc(project.expandedDetails)}</p>`);
+  if (doorway && visual.evidence?.length) parts.push(`<details class="proof-record"><summary>Read the evidence and its limits</summary>`);
   for (const item of visual.evidence ?? []) {
     parts.push(
       `<div class="card"><span class="state">${esc(item.state)}</span>` +
         `<h3>${esc(item.title)}</h3><p>${esc(item.note)}</p>` +
-        (item.limitation ? `<p class="limit">Limit: ${esc(item.limitation)}</p>` : "") +
+        (item.limitation
+          ? `<p class="limit">Limit: ${esc(item.limitation)}</p>`
+          : "") +
         `</div>`,
     );
   }
 
-  parts.push(`<h2>Where do I go next?</h2>`);
+  if (doorway && visual.evidence?.length) parts.push(`</details>`);
+  parts.push(`<h2>More from the studio</h2>`);
   const links = siblings
-    .filter((other) => other.id !== project.id)
-    .sort((a, b) => actionTier(a).rank - actionTier(b).rank)
+    .filter((other) => other.id !== project.id && other.id !== "bone-league")
+    .sort((a, b) => (FLAGSHIP_DOORWAYS[a.id] ? 0 : 1) - (FLAGSHIP_DOORWAYS[b.id] ? 0 : 1))
     .map((other) => `<li><a href="/${other.id}">${esc(other.title)}</a></li>`)
     .join("");
   parts.push(`<ul class="next">${links}</ul>`);
@@ -221,11 +269,15 @@ function projectPage(project, siblings) {
     description: project.description,
     accent,
     body: parts.join("\n"),
+    crumbHref: "/#worlds",
+    crumbLabel: "The work",
+    pageClass: doorway ? `project-page project-page--${project.id}` : "",
+    stylesheet: doorway ? "/assets/studio-project-v3.css" : "",
   });
 }
 
 function playPage(projects) {
-  const playable = projects.filter((project) => project.demoUrl);
+  const playable = projects.filter((project) => project.demoUrl && project.id !== "bone-league");
   const rest = projects
     .filter((project) => !project.demoUrl)
     .sort((a, b) => actionTier(a).rank - actionTier(b).rank);
@@ -237,7 +289,8 @@ function playPage(projects) {
   const playableCount = COUNT_WORDS[playable.length] ?? String(playable.length);
   parts.push(
     `<p class="lede">${playableCount} Ultramonkeydog ${playable.length === 1 ? "game runs" : "games run"} in a browser tab right now. ` +
-      `No download, no account, no launcher. ${playable.length === 1 ? "Start with it." : "Start with any of them."}</p>`,
+      `These are playable portfolio proof, not a studio release announcement. ` +
+      `The flagship worlds remain in development.</p>`,
   );
 
   for (const project of playable) {
@@ -254,14 +307,18 @@ function playPage(projects) {
     );
   }
 
-  parts.push(`<h2>Not playable in a browser yet</h2>`);
+  parts.push(`<details><summary>Earlier project archive</summary><p>Bone League is a smaller project, not ready to lead outreach or release work.</p><p><a href="/bone-league">Read the archived project record</a></p></details>`);
+  parts.push(`<h2>Flagship and other work in development</h2>`);
   parts.push(
     `<p>These are real and in progress. They are listed here so the answer to ` +
       `"what else is there?" is a link instead of a rumour.</p>`,
   );
   parts.push(
     `<ul class="next">${rest
-      .map((project) => `<li><a href="/${project.id}">${esc(project.title)}</a></li>`)
+      .map(
+        (project) =>
+          `<li><a href="/${project.id}">${esc(project.title)}</a></li>`,
+      )
       .join("")}</ul>`,
   );
 
@@ -275,15 +332,64 @@ function playPage(projects) {
   });
 }
 
+function pressPage(projects) {
+  const inquiry = `mailto:${CONTACT}?subject=${encodeURIComponent("[UMD PRESS] Interview or assets")}&body=${encodeURIComponent("Hi Cody,\n\nMy outlet or project:\nStory or collaboration idea:\nAssets requested:\nTiming:\n")}`;
+  const ids = ["savage-crown", "what-we-fed", "saga-anxious-fluff"];
+  const featured = ids
+    .map((id) => projects.find((project) => project.id === id))
+    .filter(Boolean);
+  const feral = projects.find((project) => project.id === "feral-formation");
+  const parts = [
+    `<header class="press-cover"><div><p class="press-eyebrow">CREATOR-OWNED / HUMAN-DIRECTED / PRESS KIT</p><h1>Cody Haring.<br><em>Ultramonkeydog<br>Studios.</em></h1><p class="press-deck">One human director.<br>A private creation engine.<br>Strange work with teeth.</p><p class="lede">Games, creature worlds, audio experiments and unusual software. Cody originates the concepts, designs the causal systems, directs AI-assisted production and decides what earns release.</p><a class="cta" href="${esc(inquiry)}">Request an interview or assets ↗</a></div><figure><img src="/assets/studio-transformation-cover-v2.webp" width="1024" height="1536" alt="Studio cover illustration of a small creature transforming into a large bone-armored predator"><figcaption>AI-assisted studio illustration. Not gameplay.</figcaption></figure></header>`,
+    `<section class="press-editorial"><div><p class="press-eyebrow">THE HUMAN / REUSABLE BIO</p><h2>Self-taught.<br>Independent.<br><em>Unusual by design.</em></h2></div><div><p>Cody Haring is a self-taught autistic creator and the founder of Ultramonkeydog Studios. He uses AI as a bridge across disciplines while retaining authorship, design, criticism and final authority.</p><p>His work draws from death-metal tension, underground-hip-hop recombination, creature obsession, RPGs, horror and family life. Weak beginnings can become feared; growth changes identity, actions and world response. Darkness leaves room for humor, tenderness, mystery and wonder.</p></div></section>`,
+    `<section class="press-description"><p class="press-eyebrow">COPY YOU CAN USE / STUDIO DESCRIPTION</p><p>Ultramonkeydog Studios is Cody Haring’s privately owned studio for systems-heavy games, creature worlds, audio experiments and unusual software. Its signature is transformation with consequences, dark humor and human-directed production. Creative authority and original IP stay with the studio.</p></section>`,
+    `<section class="press-stories"><p class="press-eyebrow">STORY ANGLES</p><h2>More than an AI novelty story.</h2><ol><li><strong>The outsider’s bridge.</strong> A self-taught creator building a private creation engine with ordinary subscriptions and modest model credits. Cody’s account, not an audited productivity claim.</li><li><strong>Transformation with consequences.</strong> Creature worlds where growth changes what you can do and how the world responds.</li><li><strong>Human direction.</strong> AI as a production bridge, with a human author making the decisions.</li><li><strong>Room for overlooked people.</strong> Work intended for overlooked, disabled and neurodivergent people. Tested accessibility outcomes are not yet established.</li></ol></section>`,
+    `<section class="press-projects"><p class="press-eyebrow">CURRENT WORK / NOT RELEASE ANNOUNCEMENTS</p><h2>Different worlds.<br>Distinct ambitions.</h2>`,
+  ];
+  for (const [index, project] of featured.entries()) {
+    parts.push(
+      `<article class="press-project" data-project="${esc(project.id)}"><span class="press-number">0${index + 1}</span><div><p class="press-eyebrow">${esc(project.id === "savage-crown" ? "FLAGSHIP / IN DEVELOPMENT" : "IN DEVELOPMENT")}</p><h3>${esc(project.title)}</h3></div><div><p>${esc(project.description)}</p><p class="limit">${esc(project.status)}</p><a href="/${esc(project.id)}">Project and current evidence ↗</a></div></article>`,
+    );
+  }
+  parts.push(
+    `</section><section id="monkeys-ear" class="press-audio"><p class="press-eyebrow">AUDIO / VALIDATION IN PROGRESS</p><h2>Monkey’s Ear.</h2><p>Audio modules and plugins in development. Voice/Vocal is the current validation candidate; the future integrated instrument is not a current release claim.</p><p class="limit">A Windows Vocal candidate has automated build and state-reconstruction proof. Real host workflow, listening and stable-distribution evidence remain incomplete. No commercial release, audio-quality or latency claim is made here.</p></section>`,
+  );
+  if (feral?.demoUrl)
+    parts.push(
+      `<section class="press-demo"><p class="press-eyebrow">SECONDARY PORTFOLIO PROOF</p><h2>A smaller piece you can try.</h2><p>${esc(feral.description)}</p><p><a class="cta cta--ghost" href="${esc(feral.demoUrl)}">Try Feral Formation ↗</a></p><p class="limit">A public browser demo. Not the studio’s flagship launch.</p></section>`,
+    );
+  parts.push(
+    `<section class="press-editorial"><div><p class="press-eyebrow">INDEPENDENT BY DESIGN</p><h2>Original products.<br><em>Creative control.</em></h2></div><div><p>The studio’s path is original products, direct audience support, grants, credits and selective partnerships that preserve creative control. It is not offering consulting or custom client services. The private creation engine is not for sale or public access.</p><p>Paid roles, budgets and partnership terms require a separate explicit agreement. No compensation or revenue share is promised here.</p></div></section>`,
+    `<section class="press-assets"><p class="press-eyebrow">ASSETS / OFFICIAL LINKS</p><h2>Use the right evidence.</h2><p><a href="/assets/studio-transformation-cover-v2.webp">View the studio cover illustration</a> · <a href="/assets/studio-share-v3.png">1200 × 630 studio share image</a>. Both are conceptual studio artwork, not gameplay. Ask about art reuse and request current screenshots, footage or logos through the contact action.</p><ul class="next"><li><a href="${ORIGIN}/">Official studio website</a></li><li><a href="${esc(ITCH)}">Official itch.io storefront</a></li></ul></section>`,
+    `<section class="press-inquiry"><p class="press-eyebrow">ONE SPECIFIC CONVERSATION</p><h2>Interview, assets,<br><em>or an aligned opportunity?</em></h2><p>Tell Cody your outlet or project, the idea, the assets you need and the timing. A clear request is more useful than a vague collaboration offer.</p><p><a class="cta" href="${esc(inquiry)}">Request an interview or assets ↗</a></p><p class="limit">You choose what to share through your email app. No mailing-list enrollment. Do not send confidential material.</p></section>`,
+  );
+  return page({
+    slug: "press",
+    title: "Ultramonkeydog Studios Press Kit | Cody Haring",
+    description:
+      "Meet Cody Haring’s creator-owned studio: strange games, creature worlds, audio experiments, founder story, official links and asset requests.",
+    accent: "#d8b475",
+    crumbHref: "/press",
+    crumbLabel: "Press kit",
+    pageClass: "press-page",
+    stylesheet: "/assets/studio-press-v2.css",
+    body: parts.join("\n"),
+  });
+}
+
 function sitemap(projects) {
   const today = new Date().toISOString().slice(0, 10);
   const entries = [
     { loc: `${ORIGIN}/`, priority: "1.0" },
     { loc: `${ORIGIN}/play`, priority: "0.9" },
+    { loc: `${ORIGIN}/press`, priority: "0.7" },
     ...projects
       .slice()
       .sort((a, b) => actionTier(a).rank - actionTier(b).rank)
-      .map((project) => ({ loc: `${ORIGIN}/${project.id}`, priority: actionTier(project).priority })),
+      .map((project) => ({
+        loc: `${ORIGIN}/${project.id}`,
+        priority: actionTier(project).priority,
+      })),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -305,7 +411,9 @@ function writePage(slug, html) {
 
 async function main() {
   if (!fs.existsSync(DIST)) {
-    console.error("discovery-spine: dist/ not found — run the Vite build first.");
+    console.error(
+      "discovery-spine: dist/ not found — run the Vite build first.",
+    );
     process.exit(1);
   }
 
@@ -315,15 +423,24 @@ async function main() {
   writePage("play", playPage(PROJECTS_DATA));
   written.push("/play");
 
+  writePage("press", pressPage(PROJECTS_DATA));
+  written.push("/press");
+
   for (const project of PROJECTS_DATA) {
     writePage(project.id, projectPage(project, PROJECTS_DATA));
     written.push(`/${project.id}`);
   }
 
-  fs.writeFileSync(path.join(DIST, "sitemap.xml"), sitemap(PROJECTS_DATA), "utf8");
+  fs.writeFileSync(
+    path.join(DIST, "sitemap.xml"),
+    sitemap(PROJECTS_DATA),
+    "utf8",
+  );
   written.push("/sitemap.xml");
 
-  console.log(`discovery-spine: ${written.length} public URLs\n  ${written.join("\n  ")}`);
+  console.log(
+    `discovery-spine: ${written.length} public URLs\n  ${written.join("\n  ")}`,
+  );
 }
 
 main().catch((error) => {
