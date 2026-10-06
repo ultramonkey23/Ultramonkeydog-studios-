@@ -936,3 +936,75 @@
   #creation-tools > div { border-left: 0; border-top: 1px solid #817355; padding: 26px 0 0; }
   .world-record { margin-left: 0; margin-right: 0; }
 }
+
+/* Playable-now band — the shipped game gets a real front-door. */
+.cover-nav__play {
+  border: 1px solid #dfb954;
+  color: #dfb954 !important;
+  padding: 7px 14px;
+}
+.cover-nav__play:hover {
+  background: #dfb954;
+  color: var(--ink) !important;
+}
+.cover-live {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  padding: clamp(44px, 7vw, 88px) 4.5%;
+  border-bottom: 1px solid #635b49;
+  background: #1d1913;
+}
+.cover-live h2 {
+  margin-top: 14px !important;
+  font:
+    900 clamp(34px, 5vw, 62px) / 0.98 "Barlow Condensed",
+    Impact,
+    sans-serif;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.cover-live h2 em {
+  color: #dfb954;
+  font-style: normal;
+}
+.cover-live__copy > p {
+  margin-top: 18px !important;
+  max-width: 56ch;
+  color: #d8cbab;
+}
+.cover-live__note {
+  margin-top: 16px !important;
+  color: #c4ab92;
+  font:
+    11px/1.7 "Courier New",
+    monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cover-live__art {
+  position: relative;
+  border: 1px solid #635b49;
+  border-left: 5px solid var(--rust);
+  background: #12100c;
+}
+.cover-live__art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cover-live__art figcaption {
+  padding: 10px 14px;
+  border-top: 1px solid #635b49;
+  color: #c0b59a;
+  font:
+    10px/1.4 "Courier New",
+    monospace;
+  letter-spacing: 0.15em;
+}
+@media (max-width: 1000px) {
+  .cover-live {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -118,6 +118,9 @@ export default function App() {
           <small>STUDIOS / CODY HARING</small>
         </a>
         <nav aria-label="Primary navigation">
+          <a href="/play/muttpit/" className="cover-nav__play">
+            Play MUTTPIT
+          </a>
           <a href="#worlds">The work</a>
           <a href="#cody">The human</a>
           <a href="#contact">
@@ -148,9 +151,9 @@ export default function App() {
               Explore the worlds <ArrowDown size={18} />
             </a>
             <p className="studio-cover__note">
-              Flagship work is in development.
+              One game is playable right now: MUTTPIT.
               <br />
-              This is a studio doorway, not a release announcement.
+              More worlds are in development, on many fronts at once.
             </p>
           </div>
           <figure className="studio-cover__art">
@@ -176,6 +179,38 @@ export default function App() {
             <span>STRANGE CONSEQUENCES</span>
           </div>
         </section>
+        <section className="cover-live" aria-labelledby="live-title">
+          <div className="cover-live__copy">
+            <p className="cover-kicker">
+              Playable in your browser · free · no account
+            </p>
+            <h2 id="live-title">
+              MUTTPIT.
+              <br />
+              <em>Every verdict keeps its receipts.</em>
+            </h2>
+            <p>
+              Draft mongrels, write each dog&rsquo;s bite order, and mail your
+              kennel into the Pit. Fights are deterministic auto-battles you
+              watch like bloodsport: sequenced, auditable, replayable. Climb
+              the Bone Bracket or challenge a friend by kennel code.
+            </p>
+            <a className="cover-action" href="/play/muttpit/">
+              Play MUTTPIT now <ArrowUpRight size={18} />
+            </a>
+            <p className="cover-live__note">
+              Shipped and publicly playable. Static browser build, under 25 MB.
+            </p>
+          </div>
+          <figure className="cover-live__art">
+            <img
+              src="/assets/muttpit/bout/capture.png"
+              alt="MUTTPIT bout screen: two teams of mongrels trading tricks with a live event log"
+              loading="lazy"
+            />
+            <figcaption>MUTTPIT / RUNTIME CAPTURE / REAL BUILD</figcaption>
+          </figure>
+        </section>
         <section id="grow-teeth" className="cover-manifesto" aria-labelledby="campaign-title">
           <p className="cover-kicker">Studio dispatch / October 5, 2026</p>
           <h2 id="campaign-title">Grow teeth.<br /><em>Keep a heart.</em></h2>
@@ -183,7 +218,7 @@ export default function App() {
             <p>A creature should become something. Not just get bigger.</p>
             <p>That is the thread through my work: growth that changes anatomy, choices and consequences. Hunger and attachment. Horror with room for wonder. Something vulnerable becoming something the world has to answer.</p>
             <p>I’m Cody. Ultramonkeydog Studios is where I build those worlds—and the tools that help me make them. AI is a bridge across disciplines; the taste, direction and decisions are mine.</p>
-            <p>These worlds are in development. This dispatch is an invitation to explore the ideas taking shape, not a release announcement.</p>
+            <p>I’m working on many things at once. Some are playable today — MUTTPIT is live in your browser. The rest are ideas taking shape. This dispatch is an invitation to play what’s real and watch the rest grow teeth.</p>
             <a className="cover-action" href="#worlds">Explore the worlds <ArrowDown size={18} /></a>
           </div>
         </section>
@@ -336,8 +371,10 @@ export default function App() {
               how the work moves—not just how it looks.
             </p>
             <p>
-              A private creation engine helps bring the work to life.
-              Authorship, creative control and final judgment stay with me.
+              One private creation system helps bring the work to life — the
+              only part of the studio that stays private. Everything else can
+              be teased, shared or shipped. Authorship, creative control and
+              final judgment stay with me.
             </p>
             <a className="cover-text-link" href="/press">
               Founder story &amp; press kit <ArrowUpRight size={18} />
