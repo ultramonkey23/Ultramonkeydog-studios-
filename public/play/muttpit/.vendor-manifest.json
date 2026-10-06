@@ -2,18 +2,18 @@
   "schema": "studios_play_vendor_v1",
   "game": "muttpit",
   "mount": "/play/muttpit/",
-  "vendored_at": "2026-10-05T23:52:07.790Z",
+  "vendored_at": "2026-10-06T06:42:00.196Z",
   "source_dist": "../muttpit/dist",
-  "source_sha": "e3dd793",
-  "total_bytes": 52164,
+  "source_sha": "5a980cb",
+  "total_bytes": 55679,
   "files": [
     {
-      "file": "assets/index-B0ar1Oym.css",
-      "bytes": 6432
+      "file": "assets/index-BT1bTt7_.css",
+      "bytes": 7468
     },
     {
-      "file": "assets/index-d9w_enud.js",
-      "bytes": 45118
+      "file": "assets/index-DPokEaJC.js",
+      "bytes": 47597
     },
     {
       "file": "index.html",
