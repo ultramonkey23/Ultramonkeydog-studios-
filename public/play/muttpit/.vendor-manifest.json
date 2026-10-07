@@ -2,22 +2,174 @@
   "schema": "studios_play_vendor_v1",
   "game": "muttpit",
   "mount": "/play/muttpit/",
-  "vendored_at": "2026-10-06T20:18:00.510Z",
-  "source_dist": "../muttpit/dist",
-  "source_sha": "f0099e8",
-  "total_bytes": 67644,
+  "vendored_at": "2026-10-07T04:15:22.919Z",
+  "source_dist": "..\\muttpit\\dist",
+  "source_sha": "c6545fb",
+  "total_bytes": 1281124,
   "files": [
     {
-      "file": "assets/index-BZZ9RkMB.js",
-      "bytes": 53430
+      "file": "assets\\bonehound_cagewalker-BOcWXRbX.webp",
+      "bytes": 22848
     },
     {
-      "file": "assets/index-BfT-9MDe.css",
-      "bytes": 13600
+      "file": "assets\\bonehound_gravedigger-E5LMRIYv.webp",
+      "bytes": 24880
+    },
+    {
+      "file": "assets\\bonehound_halfskull-42vTDtSk.webp",
+      "bytes": 20830
+    },
+    {
+      "file": "assets\\bonehound_lantern-BjcRDKmX.webp",
+      "bytes": 20696
+    },
+    {
+      "file": "assets\\bonehound_mourner-CKlCcMRv.webp",
+      "bytes": 19788
+    },
+    {
+      "file": "assets\\bonehound_stitchjaw-C3TFOPQz.webp",
+      "bytes": 23090
+    },
+    {
+      "file": "assets\\brute_barrel-CGF3VaMJ.webp",
+      "bytes": 22394
+    },
+    {
+      "file": "assets\\brute_bucket-BWeu-NpF.webp",
+      "bytes": 18080
+    },
+    {
+      "file": "assets\\brute_hubcap-ByB0IpP7.webp",
+      "bytes": 22676
+    },
+    {
+      "file": "assets\\brute_padlock-C-v7pjzu.webp",
+      "bytes": 20444
+    },
+    {
+      "file": "assets\\brute_tankjaw-vXYZgOoE.webp",
+      "bytes": 21306
+    },
+    {
+      "file": "assets\\brute_wrecker-C4E2F8m_.webp",
+      "bytes": 22326
+    },
+    {
+      "file": "assets\\cur_alleyjack-DFA0J5gC.webp",
+      "bytes": 24964
+    },
+    {
+      "file": "assets\\cur_grinner-CD3gSgvN.webp",
+      "bytes": 18694
+    },
+    {
+      "file": "assets\\cur_oneeye-DvJuBcex.webp",
+      "bytes": 20104
+    },
+    {
+      "file": "assets\\cur_razorback-D0R8hctz.webp",
+      "bytes": 19582
+    },
+    {
+      "file": "assets\\cur_redmuzzle-BAR8fNEp.webp",
+      "bytes": 19656
+    },
+    {
+      "file": "assets\\cur_slinker-CjAIFUy4.webp",
+      "bytes": 20208
+    },
+    {
+      "file": "assets\\grem_chewtoy-B9nES_o8.webp",
+      "bytes": 20342
+    },
+    {
+      "file": "assets\\grem_fusebox-xPwn9itA.webp",
+      "bytes": 21468
+    },
+    {
+      "file": "assets\\grem_junkrat-BXTEGwn3.webp",
+      "bytes": 24304
+    },
+    {
+      "file": "assets\\grem_needler-Cxcv-262.webp",
+      "bytes": 23144
+    },
+    {
+      "file": "assets\\grem_smokestack-Cs3_R0Bt.webp",
+      "bytes": 23498
+    },
+    {
+      "file": "assets\\grem_sparkplug-D7UDwzN6.webp",
+      "bytes": 24378
+    },
+    {
+      "file": "assets\\hero-Dux5amKr.webp",
+      "bytes": 242120
+    },
+    {
+      "file": "assets\\index-BoJYFiUx.js",
+      "bytes": 73159
+    },
+    {
+      "file": "assets\\index-D6-ZmPGz.css",
+      "bytes": 27300
+    },
+    {
+      "file": "assets\\mongrel_bandit-C2gLaH9v.webp",
+      "bytes": 18316
+    },
+    {
+      "file": "assets\\mongrel_bruiser-BxZJfL5t.webp",
+      "bytes": 16646
+    },
+    {
+      "file": "assets\\mongrel_hustler-BEB5C8xc.webp",
+      "bytes": 18420
+    },
+    {
+      "file": "assets\\mongrel_oldtimer-B4VHL9BK.webp",
+      "bytes": 22548
+    },
+    {
+      "file": "assets\\mongrel_patchwork-DazzjCwT.webp",
+      "bytes": 21480
+    },
+    {
+      "file": "assets\\mongrel_scruff-DW0QZwU9.webp",
+      "bytes": 27024
+    },
+    {
+      "file": "assets\\pit-Cix1LDPi.webp",
+      "bytes": 166794
+    },
+    {
+      "file": "assets\\pupp_goggles-jfIWssiO.webp",
+      "bytes": 20374
+    },
+    {
+      "file": "assets\\pupp_pipsqueak-CZ_T6w7T.webp",
+      "bytes": 21416
+    },
+    {
+      "file": "assets\\pupp_rocket-Bx6pidEj.webp",
+      "bytes": 24136
+    },
+    {
+      "file": "assets\\pupp_scarf-BnyhalKn.webp",
+      "bytes": 20362
+    },
+    {
+      "file": "assets\\pupp_sneaker-BQF_1MP2.webp",
+      "bytes": 21624
+    },
+    {
+      "file": "assets\\pupp_sweetfang-C5owyNxe.webp",
+      "bytes": 19078
     },
     {
       "file": "index.html",
-      "bytes": 614
+      "bytes": 627
     }
   ]
 }

@@ -190,7 +190,8 @@ export default function App() {
               <em>Every verdict keeps its receipts.</em>
             </h2>
             <p>
-              Draft mongrels, write each dog&rsquo;s bite order, and mail your
+              Thirty-six scarred, junk-armored mongrels. Draft them, write each
+              dog&rsquo;s bite order, and mail your
               kennel into the Pit. Fights are deterministic auto-battles you
               watch like bloodsport: sequenced, auditable, replayable. Climb
               the Bone Bracket or challenge a friend by kennel code.
@@ -205,7 +206,7 @@ export default function App() {
           <figure className="cover-live__art">
             <img
               src="/assets/muttpit/bout/capture.png"
-              alt="MUTTPIT bout screen: two teams of mongrels trading tricks with a live event log"
+              alt="MUTTPIT bout mid-impact: two teams of illustrated junkyard dogs facing off in a fenced dirt pit, with the bout log below"
               loading="lazy"
             />
             <figcaption>MUTTPIT / RUNTIME CAPTURE / REAL BUILD</figcaption>
