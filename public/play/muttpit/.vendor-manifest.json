@@ -2,10 +2,10 @@
   "schema": "studios_play_vendor_v1",
   "game": "muttpit",
   "mount": "/play/muttpit/",
-  "vendored_at": "2026-10-07T09:12:01.333Z",
+  "vendored_at": "2026-10-07T14:43:55.007Z",
   "source_dist": "..\\muttpit\\dist",
-  "source_sha": "663b457",
-  "total_bytes": 1288376,
+  "source_sha": "e92c1d2",
+  "total_bytes": 1288726,
   "files": [
     {
       "file": "assets\\bonehound_cagewalker-BOcWXRbX.webp",
@@ -108,12 +108,12 @@
       "bytes": 242120
     },
     {
-      "file": "assets\\index-Cynt5VcH.css",
-      "bytes": 31378
+      "file": "assets\\index-B22aqwPs.js",
+      "bytes": 76683
     },
     {
-      "file": "assets\\index-DgU2s13A.js",
-      "bytes": 76333
+      "file": "assets\\index-Cynt5VcH.css",
+      "bytes": 31378
     },
     {
       "file": "assets\\mongrel_bandit-C2gLaH9v.webp",
