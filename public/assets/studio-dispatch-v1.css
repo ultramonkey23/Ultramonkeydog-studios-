@@ -27,10 +27,12 @@
 .dispatch-hero h1 {
   margin: 0;
   color: var(--pit-bone);
-  font: 900 clamp(3.3rem, 7.4vw, 7.2rem)/.79 "Arial Narrow", Impact, sans-serif;
+  font: 900 clamp(3.3rem, 6.2vw, 6.2rem)/.82 "Arial Narrow", Impact, sans-serif;
   letter-spacing: -.045em;
   text-transform: uppercase;
 }
+.dispatch-hero h1 span,
+.dispatch-hero h1 em { display: block; white-space: nowrap; }
 .dispatch-hero h1 em { color: #e46539; font-style: normal; }
 .dispatch-deck { max-width: 35rem; margin: 30px 0 0; color: #d7c3a3; font-size: 1.13rem; }
 .dispatch-cta {
