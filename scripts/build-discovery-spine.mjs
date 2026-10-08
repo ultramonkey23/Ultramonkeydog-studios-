@@ -12,6 +12,7 @@
  * Output:
  *   dist/play/index.html      playable-right-now hub
  *   dist/press/index.html     shareable studio facts, approved copy and contact
+ *   dist/dispatches/<slug>/index.html   durable studio editorials
  *   dist/<project-id>/index.html   one durable page per property
  *   dist/sitemap.xml
  */
@@ -134,6 +135,10 @@ function page({
   crumbLabel = "Play",
   pageClass = "",
   stylesheet = "",
+  ogImage = OG_IMAGE,
+  ogImageAlt = "Ultramonkeydog Studios: We make weird things that bite back. AI-assisted studio illustration, not gameplay.",
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
 }) {
   const url = `${ORIGIN}/${slug}`;
   return `<!doctype html>
@@ -151,15 +156,15 @@ function page({
 <meta property="og:url" content="${url}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
-<meta property="og:image" content="${OG_IMAGE}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Ultramonkeydog Studios: We make weird things that bite back. AI-assisted studio illustration, not gameplay.">
-<meta name="twitter:image:alt" content="Ultramonkeydog Studios transformation cover; studio illustration, not gameplay.">
+<meta property="og:image" content="${esc(ogImage)}">
+<meta property="og:image:width" content="${esc(ogImageWidth)}">
+<meta property="og:image:height" content="${esc(ogImageHeight)}">
+<meta property="og:image:alt" content="${esc(ogImageAlt)}">
+<meta name="twitter:image:alt" content="${esc(ogImageAlt)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
-<meta name="twitter:image" content="${OG_IMAGE}">
+<meta name="twitter:image" content="${esc(ogImage)}">
 <meta name="theme-color" content="#060608">
 ${stylesheet ? `<link rel="stylesheet" href="${esc(stylesheet)}">` : ""}
 <style>:root{--accent:${accent}}
@@ -178,6 +183,38 @@ Every state label on this page is copied from the studio's project record, inclu
 </body>
 </html>
 `;
+}
+
+function receiptsDispatch(projects) {
+  const muttpit = projects.find((project) => project.id === "muttpit");
+  if (!muttpit?.demoUrl) throw new Error("MUTTPIT public play URL is required for the receipts dispatch");
+  const capture = muttpit.publicVisual.evidence?.find((item) => item.id === "muttpit-bout");
+  if (!capture?.src) throw new Error("MUTTPIT runtime bout capture is required for the receipts dispatch");
+  const captureUrl = `${ORIGIN}${capture.src}`;
+  const body = [
+    `<article class="dispatch">`,
+    `<header class="dispatch-hero"><div><p class="dispatch-kicker">STUDIO DISPATCH 02 / OCTOBER 8, 2026</p><h1>A fight should<br><em>keep its receipts.</em></h1><p class="dispatch-deck">Why MUTTPIT makes the outcome inspectable—and why that matters more than pretending the machine is magic.</p><a class="dispatch-cta" href="${esc(muttpit.demoUrl)}">Enter the Pit ↗</a><p class="dispatch-boundary">Free browser build. No account. No install. Keyboard or touch.</p></div><figure><img src="${esc(capture.src)}" width="${esc(capture.width ?? 1280)}" height="${esc(capture.height ?? 757)}" alt="${esc(capture.alt)}"><figcaption>REAL RUNTIME CAPTURE / SHIPPED BROWSER BUILD</figcaption></figure></header>`,
+    `<section class="dispatch-body"><p class="dispatch-lead">Most auto-battlers ask you to trust the result. MUTTPIT lets the result show its work.</p><p>You draft four scarred, junk-armored mongrels. You decide each dog’s bite order. Then you mail that exact kennel into the Pit. The fight resolves from the two builds and a seed: same kennels, same seed, same event log, same replay hash.</p><p>That does not make the dogs predictable. Temperament, strain, stats, scars and the order of their moves still collide. It makes the consequence legible. When your kennel gets broken, you can inspect why, change the build and send it back meaner.</p><blockquote>Randomness can create a story. Hidden causality only creates an excuse.</blockquote><p>The idea comes from the same obsession running through Ultramonkeydog Studios: growth should change identity and action, and feedback should reveal cause, state, timing and consequence. In MUTTPIT, the receipts are part of the fantasy. The Pit is brutal. The verdict is not a shrug.</p></section>`,
+    `<section class="dispatch-mechanism"><p class="dispatch-kicker">THE LOOP</p><ol><li><span>01</span><strong>Draft a kennel.</strong><p>Four dogs. Six strains. Different stats, temperaments and grudges.</p></li><li><span>02</span><strong>Write the bite order.</strong><p>The sequence of attacks is part of the build, not decoration.</p></li><li><span>03</span><strong>Mail it to a rival.</strong><p>Share a Kennel Code. No synchronous lobby or live-service account.</p></li><li><span>04</span><strong>Audit the verdict.</strong><p>The event log and Verdict Packet make the outcome replayable and tamper-evident.</p></li></ol></section>`,
+    `<section class="dispatch-body"><h2>Made by one outsider, with a lot of strange machinery</h2><p>I’m Cody Haring, a self-taught autistic creator. I use AI as a bridge across code, art and production, then direct, test, reject and reshape the result until it belongs to this studio. MUTTPIT’s dog art is AI-assisted and art-directed; its game rules, interface, writing and final decisions are human-directed.</p><p>This is a small game, not the studio’s flagship and not a promise that everything else is ready. It is real work you can play today—and a clean sample of what Ultramonkeydog values: creatures as mechanics, systems with consequences, and enough honesty to show where the machine ends and the human judgment begins.</p><p class="dispatch-boundary">Public proof: the browser build and captures linked here were live when this dispatch was published. Audience demand, long-term balance and commercial readiness are not established.</p></section>`,
+    `<section class="dispatch-end"><p class="dispatch-kicker">THE PIT IS OPEN</p><h2>Build four dogs.<br>Send back a verdict.</h2><p><a class="dispatch-cta" href="${esc(muttpit.demoUrl)}">Play MUTTPIT now ↗</a><a class="dispatch-link" href="/muttpit">Read the game record</a></p></section>`,
+    `</article>`,
+  ];
+  return page({
+    slug: "dispatches/the-pit-keeps-receipts",
+    title: "A Fight Should Keep Its Receipts — Ultramonkeydog Studios",
+    description: "Inside MUTTPIT’s deterministic mailed-in fights: draft four mongrels, write their bite order, and inspect the verdict instead of trusting a black box.",
+    accent: "#efad47",
+    body: body.join("\n"),
+    crumbHref: "/muttpit",
+    crumbLabel: "MUTTPIT",
+    pageClass: "dispatch-page",
+    stylesheet: "/assets/studio-dispatch-v1.css",
+    ogImage: captureUrl,
+    ogImageAlt: capture.alt,
+    ogImageWidth: capture.width ?? 1280,
+    ogImageHeight: capture.height ?? 757,
+  });
 }
 
 const FLAGSHIP_DOORWAYS = {
@@ -383,6 +420,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/`, priority: "1.0" },
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
+    { loc: `${ORIGIN}/dispatches/the-pit-keeps-receipts`, priority: "0.8" },
     ...projects
       .slice()
       .sort((a, b) => actionTier(a).rank - actionTier(b).rank)
@@ -425,6 +463,12 @@ async function main() {
 
   writePage("press", pressPage(PROJECTS_DATA));
   written.push("/press");
+
+  writePage(
+    "dispatches/the-pit-keeps-receipts",
+    receiptsDispatch(PROJECTS_DATA),
+  );
+  written.push("/dispatches/the-pit-keeps-receipts");
 
   for (const project of PROJECTS_DATA) {
     writePage(project.id, projectPage(project, PROJECTS_DATA));
