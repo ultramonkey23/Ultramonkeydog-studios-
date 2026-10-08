@@ -6,3 +6,31 @@
   image-rendering: crisp-edges;
   image-rendering: pixelated;
 }
+
+/*
+ * Box Arena hero scar — deterministic collision light and scratch marks behind
+ * the win outlook. Procedural framing only: it carries no claim, no metric, and
+ * stands in for key art until reviewed illustration ships (CAPTURE_REQUIRED).
+ */
+.box-arena__hero-scar {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 85% -10%, rgba(251, 191, 36, 0.16), transparent 55%),
+    radial-gradient(80% 70% at 10% 110%, rgba(220, 38, 38, 0.12), transparent 60%),
+    repeating-linear-gradient(
+      118deg,
+      transparent 0 26px,
+      rgba(255, 255, 255, 0.025) 26px 27px,
+      transparent 27px 64px
+    );
+}
+
+.box-arena__hero-scar::after {
+  content: "";
+  position: absolute;
+  inset: 18% 42% 62% 8%;
+  border-top: 1px solid rgba(251, 191, 36, 0.22);
+  transform: rotate(-2deg);
+}

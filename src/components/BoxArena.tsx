@@ -187,6 +187,111 @@ function Picker({
   );
 }
 
+const STEP_LABEL: Record<string, string> = {
+  access: "ACCESS",
+  interaction: "INTERACT",
+  effect: "EFFECT",
+  permanence: "PERM",
+  repeatability: "REPEAT",
+  behavior: "BEHAVIOR",
+};
+
+const SUPPORT_TONE: Record<string, string> = {
+  Confirmed: "bg-amber-300/80",
+  "Plausibly Supported": "bg-amber-500/55",
+  Unsupported: "bg-red-500/45",
+};
+
+/**
+ * The battle flow: each side's strongest route drawn as a six-step conversion
+ * spine, mirrored around the collision seam where the two paths meet. Every bar
+ * and label is a matrix field drawn at its shipped value; this figure is a
+ * route diagram — not a fight simulation or canon choreography.
+ */
+function BattleFlow({ routes, roster }: { routes: Route[]; roster: Fighter[] }) {
+  const best = new Map<string, Route>();
+  for (const route of routes) {
+    const incumbent = best.get(route.combatant_id);
+    if (!incumbent || route.conversion_score > incumbent.conversion_score) {
+      best.set(route.combatant_id, route);
+    }
+  }
+  const lanes = [...best.values()];
+  if (lanes.length < 2) return null;
+
+  return (
+    <figure className="mt-5 rounded-xl border border-white/10 bg-black/25 p-4 sm:p-5">
+      <figcaption className="font-mono text-[9px] font-black uppercase leading-4 tracking-[0.14em] text-zinc-500">
+        Battle flow · mirrored conversion spines — owner route data, not a fight
+        simulation or canon choreography
+      </figcaption>
+      <div className="mt-4 space-y-2">
+        {lanes.map((route) => {
+          const name =
+            roster.find((entry) => entry.character_id === route.combatant_id)?.display_name ??
+            route.combatant_id;
+          const weakest = route.steps.reduce(
+            (lo, step) => (step.effective_strength < lo.effective_strength ? step : lo),
+            route.steps[0],
+          );
+          return (
+            <div key={route.route_id} className="rounded-lg border border-white/5 bg-zinc-950/60 p-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="font-display text-sm font-black uppercase text-white">{name}</p>
+                <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-500">
+                  {route.dependency_group} · {route.gate_state}
+                </p>
+              </div>
+              <div className="mt-3 grid grid-cols-6 gap-1">
+                {route.steps.map((step) => {
+                  const broke = step.step === weakest.step;
+                  return (
+                    <div key={step.step} className="min-w-0">
+                      <div
+                        className={`h-10 rounded-sm border ${
+                          broke && route.gate_state !== "OPEN"
+                            ? "border-red-400/60"
+                            : "border-white/10"
+                        } bg-zinc-900/80`}
+                        title={`${step.step} — ${step.support_state} — effective strength ${(step.effective_strength * 100).toFixed(1)}%`}
+                      >
+                        <div
+                          className={`w-full rounded-sm ${SUPPORT_TONE[step.support_state] ?? "bg-zinc-500/50"}`}
+                          style={{ height: `${Math.max(6, step.effective_strength * 100)}%`, marginTop: `${Math.max(0, 100 - Math.max(6, step.effective_strength * 100))}%` }}
+                        />
+                      </div>
+                      <p className="mt-1 truncate text-center font-mono text-[8px] uppercase tracking-[0.05em] text-zinc-500">
+                        {STEP_LABEL[step.step] ?? step.step}
+                      </p>
+                      <p className="text-center font-mono text-[8px] text-zinc-600">
+                        {(step.effective_strength * 100).toFixed(0)}%
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-500">
+                {route.gate_state === "OPEN" ? (
+                  <>
+                    Weakest link: <span className="text-amber-300">{STEP_LABEL[weakest.step] ?? weakest.step}</span>
+                  </>
+                ) : (
+                  <>
+                    Route breaks at{" "}
+                    <span className="text-red-300">{STEP_LABEL[weakest.step] ?? weakest.step}</span>
+                    {route.gate_reasons.length > 0 && <> · {route.gate_reasons.join(" · ")}</>}
+                  </>
+                )}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-zinc-400">{route.defeat_condition}</p>
+            </div>
+          );
+        })}
+      </div>
+    </figure>
+  );
+}
+
 function RouteCard({ route }: { route: Route }) {
   const open = route.gate_state === "OPEN";
   return (
@@ -444,12 +549,17 @@ export default function BoxArena() {
 
       {resolved ? (
         <div className="mt-5 space-y-4">
-          <section className="rounded-xl border border-amber-400/25 bg-[linear-gradient(135deg,rgba(120,53,15,0.18),rgba(0,0,0,0.62))] p-5 sm:p-6">
+          <section className="box-arena__hero relative overflow-hidden rounded-xl border border-amber-400/25 bg-[linear-gradient(135deg,rgba(120,53,15,0.18),rgba(0,0,0,0.62))] p-5 sm:p-6">
+            <div className="box-arena__hero-scar" aria-hidden="true" />
             <p className="font-mono text-[9px] font-black uppercase tracking-[0.14em] text-amber-300">
               {resolved.win_outlook.label}
             </p>
             <p className="mt-1 font-mono text-[9px] font-black uppercase tracking-[0.14em] text-zinc-500">
               Compiled candidate — not a reviewed verdict
+            </p>
+            <p className="mt-1 font-mono text-[9px] font-black uppercase tracking-[0.12em] text-zinc-600">
+              Key visual: capture_required — AI-assisted studio illustration
+              pending, not a runtime capture
             </p>
             <h4 className="mt-3 font-display text-3xl font-black uppercase text-white sm:text-5xl">{resolved.winner}</h4>
             {outlookWinner && (
@@ -483,6 +593,8 @@ export default function BoxArena() {
               {resolved.margin.replaceAll("_", " ")} · {(resolved.confidence * 100).toFixed(1)}% reliability
             </p>
           </section>
+
+          <BattleFlow routes={resolved.routes} roster={matrix.roster} />
 
           {reviewed && (
             /*

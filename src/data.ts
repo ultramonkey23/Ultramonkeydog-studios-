@@ -176,6 +176,8 @@ export const PROJECTS_DATA: Project[] = [
       "The pinned matrix contains version-locked fighters, arena choices, route evidence, and seeded engine results.",
       "The browser selects a stored result; it does not run a second evaluator.",
       "Every result leads with the owner's win outlook — who wins and how likely — as a model estimate labeled NOT CANON.",
+      "The battle flow mirrors the owner's conversion spines step by step — a route diagram, not a fight simulation or canon choreography.",
+      "Key visual state is honest: capture_required for the AI-assisted studio illustration that is not a runtime capture.",
       "Reviewed verdicts are displayed separately so disagreement stays visible.",
       "Route share and evidence confidence are separate measurements and are not calibrated win probabilities.",
     ],

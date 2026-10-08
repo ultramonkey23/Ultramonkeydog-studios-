@@ -85,9 +85,21 @@ if (!fs.existsSync(boxComponentPath)) {
   for (const [label, pattern] of [
     ["a verdict evaluator", /function\s+(evaluate|resolve|compute)(Matchup|Verdict|Winner)/i],
     ["route scoring math", /conversion_score\s*=\s*[^=]/],
+    ["step scoring math", /effective_strength\s*=\s*[^=]/],
     ["nondeterminism", /Math\.random/],
   ]) {
     if (pattern.test(arena)) failures.push(`BoxArena reintroduced ${label}: it presents, it does not calculate`);
+  }
+  // The battle flow is a route diagram and the key visual is illustration:
+  // both need their honesty labels or they read as fight simulation / capture.
+  if (!/mirrored conversion spines/i.test(arena)) {
+    failures.push("BoxArena lost the battle-flow label (mirrored conversion spines)");
+  }
+  if (!/not a fight simulation/i.test(arena)) {
+    failures.push("BoxArena lost the battle-flow honesty label (not a fight simulation)");
+  }
+  if (!/capture_required/i.test(arena) || !/not a runtime capture/i.test(arena)) {
+    failures.push("BoxArena lost the key-visual disclosure (capture_required / not a runtime capture)");
   }
 }
 if (!fs.existsSync(matrixPath)) {

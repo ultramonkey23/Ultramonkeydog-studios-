@@ -26,6 +26,31 @@ The review preview uses a founder-led cover composition and explicitly labeled A
 
 The original material rules below still constrain that framing. They do not require six equal cards, a global rainbow, or procedural effects as the homepage subject. This preview awaits Cody’s visual review and is not deployed.
 
+## Box Arena battle flow and key-visual lane — October 8, 2026
+
+The Box Arena now carries two added visual layers, both within these material
+rules:
+
+- **Battle flow (deterministic):** mirrored conversion spines draw each side's
+  strongest route across the six ordered owner route steps — a route diagram
+  with an explicit "not a fight simulation or canon choreography" label. It is
+  presentation of owner matrix fields at their shipped values, nothing more.
+- **Key visual (illustration lane, not yet shipped):** the hero scar is
+  procedural CSS framing. The AI-assisted studio illustration (FLUX.2 Klein via
+  the Lab's ComfyUI bridge) is declared `capture_required` on the page until it
+  exists; when an image endpoint is reachable the exact run is:
+
+  ```bash
+  COMFY_URL=<endpoint> COMFY_API_TOKEN=<token> python3 tools/comfy_bridge.py \
+    --template quig-vault/comfy_workflows/official_flux2_klein4b_text_to_image_api.json \
+    --prompt "<brutal comic arena clash study, no text>" \
+    --width 1536 --height 1024 --stem arena-clash-study \
+    --out repos/Ultramonkeydog-studios-github/public/box
+  ```
+
+  The output ships with the studio-cover disclosure grammar: "AI-ASSISTED
+  STUDIO ILLUSTRATION / NOT GAMEPLAY, NOT A RUNTIME CAPTURE".
+
 ## Shared studio signature
 
 The dominant studio style is **Studio Proof / Creator-Driven Presentation**: public work, honest evidence, project range, and Cody's authorship.
