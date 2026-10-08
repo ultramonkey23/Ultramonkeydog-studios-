@@ -112,8 +112,8 @@ const boxRequiredPatterns = [
   },
   {
     label: "owner matrix is the only source",
-    pattern: /matchup-matrix\.v0\.1\.json/,
-    probe: "matchup-matrix.v0.1.json",
+    pattern: /matchup-matrix\.v0\.2\.json/,
+    probe: "matchup-matrix.v0.2.json",
   },
   {
     label: "owner provenance is displayed",

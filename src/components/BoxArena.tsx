@@ -25,7 +25,7 @@ import { AlertTriangle, Loader2, Swords } from "lucide-react";
  * service to keep alive, no request to fail, and it works offline.
  */
 
-const MATRIX_URL = "/box/matchup-matrix.v0.1.json";
+const MATRIX_URL = "/box/matchup-matrix.v0.2.json";
 
 type Step = { step: string; support_state: string; effective_strength: number };
 type Route = {
@@ -39,7 +39,21 @@ type Route = {
   evidence_confidence: number;
   steps: Step[];
 };
+/**
+ * The headline the Math Spine owns: who wins and how likely. Shipped verbatim
+ * in every matrix entry; the site renders it and never recomputes, relabels,
+ * or rescales it.
+ */
+type WinOutlook = {
+  label: string;
+  method: string;
+  winner: string;
+  win_probability: Record<string, number>;
+  log_odds_a_over_b: number;
+  note: string;
+};
 type Resolved = {
+  win_outlook: WinOutlook;
   winner: string;
   margin: string;
   confidence: number;
@@ -95,6 +109,19 @@ const MARGIN_TONE: Record<string, string> = {
 /** Pairs are stored once, unordered. Normalise before looking one up. */
 function pairKey(a: string, b: string) {
   return a < b ? `${a}|${b}` : `${b}|${a}`;
+}
+
+/**
+ * The outlook's probabilities are keyed by the owner's stable character ids.
+ * Project them onto display names for reading; if an id ever stops resolving,
+ * the raw id is shown rather than a guessed name.
+ */
+function outlookSides(result: Resolved, roster: Fighter[]) {
+  return Object.entries(result.win_outlook.win_probability).map(([characterId, probability]) => ({
+    displayName:
+      roster.find((entry) => entry.character_id === characterId)?.display_name ?? characterId,
+    probability,
+  }));
 }
 
 function Picker({
@@ -235,7 +262,20 @@ export default function BoxArena() {
   const arenaWinners = useMemo(() => {
     if (!matrix) return {};
     const entry = matrix.matchups[pairKey(a, b)] ?? {};
-    return Object.fromEntries(Object.entries(entry).map(([id, value]) => [id, value.winner]));
+    return Object.fromEntries(
+      Object.entries(entry).map(([id, value]) => {
+        const winnerSide = outlookSides(value, matrix.roster).find(
+          (side) => side.displayName === value.win_outlook.winner,
+        );
+        return [
+          id,
+          {
+            winner: value.winner,
+            percent: winnerSide ? winnerSide.probability * 100 : null,
+          },
+        ];
+      }),
+    );
   }, [matrix, a, b]);
 
   const reviewed = matrix?.reviewed?.[pairKey(a, b)] ?? null;
@@ -306,6 +346,10 @@ export default function BoxArena() {
   }
 
   const shares = Object.entries(resolved?.route_share ?? {});
+  /** Owner numbers projected for reading: the outlook leads every result. */
+  const outlook = resolved ? outlookSides(resolved, matrix.roster) : null;
+  const outlookWinner = outlook?.find((side) => side.displayName === resolved?.win_outlook.winner) ?? null;
+  const outlookOther = outlook?.find((side) => side !== outlookWinner) ?? null;
 
   return (
     <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl border border-amber-500/25 bg-[#070708] p-4 shadow-[0_0_80px_rgba(245,158,11,0.07)] sm:p-6">
@@ -342,7 +386,7 @@ export default function BoxArena() {
       <div className="mt-4 flex flex-wrap gap-2">
         {matrix.arenas.map((entry) => {
           const active = entry.arena_id === arena;
-          const winner = arenaWinners[entry.arena_id];
+          const outcome = arenaWinners[entry.arena_id];
           return (
             <button
               key={entry.arena_id}
@@ -361,7 +405,8 @@ export default function BoxArena() {
                 {entry.label}
               </span>
               <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.08em] text-zinc-500">
-                {entry.distance_m}m · {winner ?? "—"}
+                {entry.distance_m}m · {outcome?.winner ?? "—"}
+                {outcome?.percent == null ? "" : ` · win ${outcome.percent.toFixed(0)}%`}
               </span>
             </button>
           );
@@ -401,13 +446,41 @@ export default function BoxArena() {
         <div className="mt-5 space-y-4">
           <section className="rounded-xl border border-amber-400/25 bg-[linear-gradient(135deg,rgba(120,53,15,0.18),rgba(0,0,0,0.62))] p-5 sm:p-6">
             <p className="font-mono text-[9px] font-black uppercase tracking-[0.14em] text-amber-300">
+              {resolved.win_outlook.label}
+            </p>
+            <p className="mt-1 font-mono text-[9px] font-black uppercase tracking-[0.14em] text-zinc-500">
               Compiled candidate — not a reviewed verdict
             </p>
             <h4 className="mt-3 font-display text-3xl font-black uppercase text-white sm:text-5xl">{resolved.winner}</h4>
+            {outlookWinner && (
+              <p className="mt-1 font-display text-2xl font-black uppercase text-amber-200 sm:text-3xl">
+                Win probability {(outlookWinner.probability * 100).toFixed(1)}%
+              </p>
+            )}
+            {outlook && outlookWinner && outlookOther && (
+              <div className="mt-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-bold">
+                  <span className="text-amber-200">
+                    {outlookWinner.displayName} · {(outlookWinner.probability * 100).toFixed(1)}%
+                  </span>
+                  <span className="text-red-200">
+                    {(outlookOther.probability * 100).toFixed(1)}% · {outlookOther.displayName}
+                  </span>
+                </div>
+                <div className="mt-2 flex h-3 overflow-hidden rounded-full bg-zinc-900">
+                  <div className="bg-amber-400/80" style={{ width: `${outlookWinner.probability * 100}%` }} />
+                  <div className="bg-red-500/70" style={{ width: `${outlookOther.probability * 100}%` }} />
+                </div>
+                <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.12em] text-zinc-500">
+                  {resolved.win_outlook.method}
+                </p>
+              </div>
+            )}
+            <p className="mt-3 max-w-3xl text-xs leading-5 text-zinc-300">{resolved.win_outlook.note}</p>
             <p
-              className={`mt-1 font-display text-xl font-black uppercase ${MARGIN_TONE[resolved.margin] ?? "text-amber-300"}`}
+              className={`mt-3 font-display text-xl font-black uppercase ${MARGIN_TONE[resolved.margin] ?? "text-amber-300"}`}
             >
-              {resolved.margin.replaceAll("_", " ")} · {(resolved.confidence * 100).toFixed(1)}% confidence
+              {resolved.margin.replaceAll("_", " ")} · {(resolved.confidence * 100).toFixed(1)}% reliability
             </p>
           </section>
 

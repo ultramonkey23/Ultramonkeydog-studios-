@@ -60,7 +60,7 @@ for (const file of scanRoots.flatMap(collectFiles)) {
 
 const cardPath = path.join(ROOT, "src/data/box-o-battles/bob-0003-arbiter-card-comic-hud-v0.3.json");
 const boxComponentPath = path.join(ROOT, "src/components/BoxArena.tsx");
-const matrixPath = path.join(ROOT, "public/box/matchup-matrix.v0.1.json");
+const matrixPath = path.join(ROOT, "public/box/matchup-matrix.v0.2.json");
 if (!fs.existsSync(cardPath)) failures.push("missing owner-vendored BOB #003 Arbiter Card packet");
 else {
   const card = JSON.parse(fs.readFileSync(cardPath, "utf8"));
@@ -76,7 +76,7 @@ if (!fs.existsSync(boxComponentPath)) {
   failures.push("missing src/components/BoxArena.tsx");
 } else {
   const arena = fs.readFileSync(boxComponentPath, "utf8");
-  if (!/matchup-matrix\.v0\.1\.json/.test(arena)) {
+  if (!/matchup-matrix\.v0\.2\.json/.test(arena)) {
     failures.push("BoxArena must load the owner-generated matchup matrix");
   }
   // Precise rules only. A guard that fires on correct code — `const winner =
@@ -91,16 +91,26 @@ if (!fs.existsSync(boxComponentPath)) {
   }
 }
 if (!fs.existsSync(matrixPath)) {
-  failures.push("missing public/box/matchup-matrix.v0.1.json — the arena has nothing to display");
+  failures.push("missing public/box/matchup-matrix.v0.2.json — the arena has nothing to display");
 } else {
   const matrix = JSON.parse(fs.readFileSync(matrixPath, "utf8"));
-  if (matrix.schema_version !== "arbiter.matchup-matrix.v0.1") failures.push("matchup matrix schema drifted");
+  if (matrix.schema_version !== "arbiter.matchup-matrix.v0.2") failures.push("matchup matrix schema drifted");
   if (!matrix.owner_commit || matrix.owner_commit === "UNKNOWN") failures.push("matchup matrix lost its owner commit");
   if (!/not reviewed verdicts/.test(matrix.proof_ceiling ?? "")) failures.push("matchup matrix lost its proof ceiling");
   for (const key of Object.keys(matrix.matchups ?? {})) {
     if (key !== key.split("|").sort().join("|")) {
       failures.push(`matchup matrix key ${key} is not in canonical order and cannot be looked up`);
       break;
+    }
+  }
+  for (const [key, arenas] of Object.entries(matrix.matchups ?? {})) {
+    for (const [arenaId, result] of Object.entries(arenas)) {
+      const outlook = result.win_outlook;
+      if (!outlook || !/NOT CANON/.test(outlook.label ?? "")) {
+        failures.push(`matchup ${key}/${arenaId} lost its win outlook (owner model estimate, NOT CANON)`);
+      } else if (outlook.winner !== result.winner) {
+        failures.push(`matchup ${key}/${arenaId} win outlook disagrees with the winner field`);
+      }
     }
   }
 }

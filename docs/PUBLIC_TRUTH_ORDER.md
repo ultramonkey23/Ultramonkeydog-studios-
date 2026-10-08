@@ -73,6 +73,21 @@ Open contradiction, disclosed on the card rather than resolved:
   a "contradicts the reviewed verdict" panel naming BOB-0003's Darth Vader ruling. Neither is
   promoted over the other, and neither is calibrated.
 
+Resolved at owner matrix v0.2 (2026-10-08):
+
+- every arena result now leads with the Math Spine's `win_outlook` — who wins and
+  how likely — exported by the owner and rendered read-only here;
+- the outlook is labeled `WIN PROBABILITY — MODEL ESTIMATE, NOT CANON`: a
+  Bradley-Terry-style estimate over evidence-graded route scores, never canon
+  truth or calibrated odds;
+- the older rule "compiled candidates are not win probabilities" is narrowed, not
+  dropped: they carry the owner's model estimate and nothing stronger. Route share
+  and evidence confidence remain separate measurements and are not win
+  probabilities;
+- the Vader vs Sauron disclosure above is unchanged in shape: the current engine's
+  candidate (Sauron, a ~52/48 model estimate) still contradicts BOB #003's
+  reviewed Darth Vader ruling, neither is calibrated, and neither is promoted.
+
 ## Presentation gate
 
 A Studios signal or project card passes this contract only when a reader can tell:
