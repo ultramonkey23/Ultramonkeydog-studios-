@@ -220,7 +220,7 @@ export default function App() {
             <p>That is the thread through my work: growth that changes anatomy, choices and consequences. Hunger and attachment. Horror with room for wonder. Something vulnerable becoming something the world has to answer.</p>
             <p>I’m Cody. Ultramonkeydog Studios is where I build those worlds—and the tools that help me make them. AI is a bridge across disciplines; the taste, direction and decisions are mine.</p>
             <p>I’m working on many things at once. Some are playable today — MUTTPIT is live in your browser. The rest are ideas taking shape. This dispatch is an invitation to play what’s real and watch the rest grow teeth.</p>
-            <a className="cover-action" href="/dispatches/the-pit-keeps-receipts">Read the newest dispatch <ArrowUpRight size={18} /></a>
+            <a className="cover-action" href="/dispatches/the-machine-stays-private">Read the newest dispatch <ArrowUpRight size={18} /></a>
           </div>
         </section>
         <section className="cover-manifesto" aria-labelledby="manifesto-title">

@@ -217,6 +217,29 @@ function receiptsDispatch(projects) {
   });
 }
 
+function privateEngineDispatch() {
+  const body = [
+    `<article class="engine-dispatch">`,
+    `<header class="engine-hero"><div><p class="engine-kicker">STUDIO DISPATCH 03 / OCTOBER 10, 2026</p><h1>The machine stays <em>private.</em><br>The work has to survive <strong>in public.</strong></h1><p class="engine-deck">Ultramonkeydog Studios is one human director using AI as a bridge across disciplines—not a secret team, an effortless content factory, or a machine replacing judgment.</p><p><a class="engine-cta" href="/press">Open the public studio record ↗</a></p></div><figure><img src="/assets/studio-transformation-cover-v2.webp" width="1024" height="1536" alt="Studio illustration of a small vulnerable creature transforming into a large bone-armored predator"><figcaption>AI-ASSISTED STUDIO ILLUSTRATION / NOT GAMEPLAY</figcaption></figure></header>`,
+    `<section class="engine-body"><p class="engine-lead">The private system can help Cody move faster. It cannot make the work worth caring about.</p><p>I’m Cody Haring: a self-taught autistic creator building games, audio tools and unusual software. I use a private creation engine to coordinate research, criticism and execution across disciplines I could not staff in the traditional way.</p><p>That engine is leverage, not authorship. I originate the concepts, design the systems, set the constraints, reject the wrong answers, integrate the pieces and decide what earns release. When the machinery produces generic work, the answer is not to market it harder. The answer is to cut it, correct it or make it stranger.</p><blockquote>Private machinery earns nothing. Public work has to carry its own weight.</blockquote></section>`,
+    `<section class="engine-ledger" aria-labelledby="ledger-title"><div><p class="engine-kicker">THE PUBLIC / PRIVATE LINE</p><h2 id="ledger-title">No magic curtain.<br><em>A hard boundary.</em></h2></div><dl><div><dt>PUBLIC</dt><dd>Playable artifacts, honest status, source when a project is ready, visible limitations and a direct way to respond.</dd></div><div><dt>PRIVATE</dt><dd>The studio’s internal creation system, working state, private research and unreleased project material.</dd></div><div><dt>HUMAN</dt><dd>Concept, taste, system design, criticism, integration, acceptance and the final decision to ship—or not.</dd></div></dl></section>`,
+    `<section class="engine-body"><h2>Proof is the part a stranger can touch.</h2><p>The studio website and press record are public. MAW’s source and setup are public. MUTTPIT is a small playable sample, not the flagship. Prehensile is still experimental and not yet presented as a public product. The flagship worlds remain in development.</p><p>Those boundaries matter. A build passing on one machine is not broad compatibility. An accessibility intention is not an accessibility outcome. A strange internal architecture is not audience demand. Each claim has to stop where the evidence stops.</p><p class="engine-boundary">Current proof ceiling: public pages, one browser-playable portfolio sample, a public MAW repository, and bounded development evidence described on the studio record. Audience demand, commercial readiness, broad compatibility and sustained autonomous operation are not established.</p></section>`,
+    `<section class="engine-end"><p class="engine-kicker">ONE HUMAN DIRECTOR / WORK YOU CAN INSPECT</p><h2>Don’t trust the machine.<br><em>Judge what survived it.</em></h2><p><a class="engine-cta" href="/press">Meet Cody + inspect the record ↗</a><a class="engine-link" href="/#creation-tools">See the creation tools</a></p></section>`,
+    `</article>`,
+  ];
+  return page({
+    slug: "dispatches/the-machine-stays-private",
+    title: "The Machine Stays Private. The Work Has to Survive in Public. — Ultramonkeydog Studios",
+    description: "Cody Haring on building Ultramonkeydog Studios with a private AI-assisted creation engine, human direction, and public proof that stops where the evidence stops.",
+    accent: "#c8ff3d",
+    body: body.join("\n"),
+    crumbHref: "/#cody",
+    crumbLabel: "Cody Haring",
+    pageClass: "engine-page",
+    stylesheet: "/assets/studio-engine-dispatch-v1.css",
+  });
+}
+
 const FLAGSHIP_DOORWAYS = {
   "savage-crown": {number: "01", lane: "MUTATION / CONSEQUENCE", hook: "Become the thing the world fears.", direction: "Biological horror, hostile supernatural systems, and a creature identity shaped by mutation, grafts and passive synergy. The ambition is earned monstrous escalation—not growth that only changes a number.", accent: "#ee8765"},
   "what-we-fed": {number: "02", lane: "HUNGER / BOND", hook: "Hunger is a choice. So is attachment.", direction: "Bond vs Eat puts attachment and consumption at the center of creature growth. Hunger, mutation pressure and music-driven escalation belong to the same wondrous, mythic creature world.", accent: "#b5c279"},
@@ -420,6 +443,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/`, priority: "1.0" },
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
+    { loc: `${ORIGIN}/dispatches/the-machine-stays-private`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/the-pit-keeps-receipts`, priority: "0.8" },
     ...projects
       .slice()
@@ -469,6 +493,12 @@ async function main() {
     receiptsDispatch(PROJECTS_DATA),
   );
   written.push("/dispatches/the-pit-keeps-receipts");
+
+  writePage(
+    "dispatches/the-machine-stays-private",
+    privateEngineDispatch(),
+  );
+  written.push("/dispatches/the-machine-stays-private");
 
   for (const project of PROJECTS_DATA) {
     writePage(project.id, projectPage(project, PROJECTS_DATA));
