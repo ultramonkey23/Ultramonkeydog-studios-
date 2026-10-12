@@ -240,6 +240,29 @@ function privateEngineDispatch() {
   });
 }
 
+function silhouetteDispatch() {
+  const body = [
+    `<article class="shadow-dispatch">`,
+    `<header class="shadow-hero"><div><p class="shadow-kicker">STUDIO DISPATCH 04 / OCTOBER 12, 2026</p><h1>A monster should survive <em>as a shadow.</em></h1><p class="shadow-deck">Before lore. Before texture. Before the expensive detail. Its body should already tell you what it can do—and what it might do to you.</p><p><a class="shadow-cta" href="/#worlds">Enter the flagship worlds ↗</a></p></div><figure><img src="/assets/studio-creature.svg" width="640" height="720" alt="Inked three-eyed studio creature drawn over circular anatomy guides"><figcaption>STUDIO CREATURE STUDY / NOT GAMEPLAY</figcaption></figure></header>`,
+    `<section class="shadow-body"><p class="shadow-lead">If two creatures become the same black shape at play size, color and lore are carrying a design the anatomy did not finish.</p><p>Ultramonkeydog Studios is obsessed with creatures as mechanics. A hooked back should imply a different attack than a heavy jaw. A defensive body should occupy space differently from a fast striker. Mutation should change the creature’s verbs—not just decorate the same skeleton.</p><p>That means the earliest useful question is brutally simple: if every surface detail disappears, does the body still communicate identity, direction and threat?</p><blockquote>Detail can make a monster beautiful. Silhouette makes it readable.</blockquote></section>`,
+    `<section class="shadow-sequence" aria-labelledby="sequence-title"><div><p class="shadow-kicker">THE CREATURE TEST</p><h2 id="sequence-title">Shape first.<br><em>Then consequence.</em></h2></div><ol><li><span>01</span><strong>Shadow</strong><p>Can the creature be distinguished at a glance and at actual play size?</p></li><li><span>02</span><strong>Action</strong><p>Does the anatomy imply movement, reach, weight or defense before an explanation arrives?</p></li><li><span>03</span><strong>Consequence</strong><p>When the body mutates, do its options and the world’s response change with it?</p></li><li><span>04</span><strong>Surface</strong><p>Only then do color, material, scars and ornament earn their place.</p></li></ol></section>`,
+    `<section class="shadow-body"><h2>Measurement can catch a lie. It cannot supply taste.</h2><p>The studio’s private creation system can measure transparent bounds and compare broad shape evidence. That is useful for catching accidental sameness, wasted canvas and silhouettes that collapse into each other.</p><p>It cannot decide whether a creature is frightening, tender, funny or worth remembering. A shape fingerprint is evidence for review—not a style score, an aesthetic verdict or permission to ship. Cody still makes the creative judgment.</p><p class="shadow-boundary">Proof boundary: this dispatch describes the studio’s current design method and a verified internal review mechanism. The illustration is a studio creature study, not gameplay. It does not prove final creature art, device readability, animation quality, playfeel or accessibility outcomes in any unreleased game.</p></section>`,
+    `<section class="shadow-end"><p class="shadow-kicker">CREATURES ARE NOT DECORATION</p><h2>Read the body.<br><em>Then fear the change.</em></h2><p><a class="shadow-cta" href="/savage-crown">Enter Savage Crown’s record ↗</a><a class="shadow-link" href="/what-we-fed">Follow hunger into What We Fed</a></p></section>`,
+    `</article>`,
+  ];
+  return page({
+    slug: "dispatches/a-monster-should-survive-as-a-shadow",
+    title: "A Monster Should Survive as a Shadow — Ultramonkeydog Studios",
+    description: "Why Ultramonkeydog Studios designs creatures from silhouette, action and consequence before surface detail—and why measurement informs review without replacing taste.",
+    accent: "#f08a5d",
+    body: body.join("\n"),
+    crumbHref: "/#worlds",
+    crumbLabel: "The worlds",
+    pageClass: "shadow-page",
+    stylesheet: "/assets/studio-shadow-dispatch-v1.css",
+  });
+}
+
 const FLAGSHIP_DOORWAYS = {
   "savage-crown": {number: "01", lane: "MUTATION / CONSEQUENCE", hook: "Become the thing the world fears.", direction: "Biological horror, hostile supernatural systems, and a creature identity shaped by mutation, grafts and passive synergy. The ambition is earned monstrous escalation—not growth that only changes a number.", accent: "#ee8765"},
   "what-we-fed": {number: "02", lane: "HUNGER / BOND", hook: "Hunger is a choice. So is attachment.", direction: "Bond vs Eat puts attachment and consumption at the center of creature growth. Hunger, mutation pressure and music-driven escalation belong to the same wondrous, mythic creature world.", accent: "#b5c279"},
@@ -443,6 +466,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/`, priority: "1.0" },
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
+    { loc: `${ORIGIN}/dispatches/a-monster-should-survive-as-a-shadow`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/the-machine-stays-private`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/the-pit-keeps-receipts`, priority: "0.8" },
     ...projects
@@ -499,6 +523,12 @@ async function main() {
     privateEngineDispatch(),
   );
   written.push("/dispatches/the-machine-stays-private");
+
+  writePage(
+    "dispatches/a-monster-should-survive-as-a-shadow",
+    silhouetteDispatch(),
+  );
+  written.push("/dispatches/a-monster-should-survive-as-a-shadow");
 
   for (const project of PROJECTS_DATA) {
     writePage(project.id, projectPage(project, PROJECTS_DATA));
