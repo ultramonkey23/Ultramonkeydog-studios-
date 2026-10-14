@@ -240,6 +240,26 @@ function privateEngineDispatch() {
   });
 }
 
+function growthDispatch() {
+  return page({
+    slug: "dispatches/a-level-up-should-change-the-question",
+    title: "A Level-Up Should Change the Question — Ultramonkeydog Studios",
+    description: "More damage is not the whole fantasy. A studio design dispatch about creature growth, attachment, and power that changes what you choose next.",
+    accent: "#b5c279",
+    pageClass: "shadow-page growth-page",
+    stylesheet: "/assets/studio-shadow-dispatch-v1.css",
+    crumbHref: "/what-we-fed",
+    crumbLabel: "What We Fed",
+    body: `<article class="shadow-dispatch">
+<header class="shadow-hero"><div><p class="shadow-kicker">STUDIO DISPATCH 05 / OCTOBER 14, 2026</p><h1>A level-up should change <em>the question.</em></h1><p class="shadow-deck">Yesterday: can I survive this creature? Tomorrow: do I keep it beside me—or make its power part of me?</p><a class="shadow-cta" href="/what-we-fed">Explore What We Fed ↗</a></div><figure class="growth-plate" aria-label="Design principle: survival becomes attachment, then a consequential choice"><span>01 / SURVIVE</span><strong>FEAR</strong><span>02 / UNDERSTAND</span><strong>ATTACH</strong><span>03 / CHOOSE</span><strong>BOND<br>OR EAT</strong><figcaption>DESIGN PRINCIPLE / NOT A GAME SCREEN</figcaption></figure></header>
+<section class="shadow-body"><p class="shadow-lead">If getting stronger only makes the same decision easier, the number grew. The character did not.</p><p>There is pleasure in a bigger damage number. We are not trying to take that away. But the creature-RPG fantasy we care about asks for another kind of growth: a change in what you can do, what you notice, and what you are willing to lose.</p><p>Start weak, become feared is not simply a promise to inflate statistics. It is a promise that the relationship between you and the world should change. Something that once cornered you might become a companion. Something you learned to love might also offer the exact power your build is missing.</p><blockquote>Power is more interesting when it gives you a harder choice.</blockquote></section>
+<section class="shadow-sequence" aria-labelledby="growth-title"><div><p class="shadow-kicker">THE GROWTH TEST</p><h2 id="growth-title">More power.<br><em>Different decisions.</em></h2></div><ol><li><span>01</span><strong>New verb</strong><p>Does growth add a way to act, combine, defend, or relate—not just a larger result?</p></li><li><span>02</span><strong>New pressure</strong><p>Does that power create a weakness, commitment, or rhythm you must learn?</p></li><li><span>03</span><strong>New attachment</strong><p>Is the creature a particular presence you care about, rather than a disposable stat container?</p></li><li><span>04</span><strong>New question</strong><p>Would your stronger self make a different choice in the same situation?</p></li></ol></section>
+<section class="shadow-body"><h2>Hunger is useful. That is the problem.</h2><p>What We Fed puts Bond vs Eat at the center of its design direction. The interesting tension is not a morality button labeled good or evil. It is the collision between attachment and usefulness: keep a creature beside you, or consume what it could let you become.</p><p>That distinction matters. A creature should not need a speech to become memorable. Its behavior, support, danger, and place in your build can make the relationship specific. Then the reward is no longer just an item. It is a decision about that relationship.</p><p>We want wonder to survive inside the horror. A strange world is more unsettling when there is something in it worth protecting. A power fantasy is more personal when your final shape remembers how you got there.</p><p class="shadow-boundary">Read this as creative direction, not a feature-completion announcement. What We Fed is in development. This editorial contains no gameplay capture and does not establish a public demo, finished progression, release date, accessibility outcome, or commercial readiness. The project record separates current evidence from unfinished work.</p></section>
+<section class="shadow-end"><p class="shadow-kicker">WHAT WOULD YOU KEEP?</p><h2>Grow teeth.<br><em>Keep a heart.</em></h2><p><a class="shadow-cta" href="/what-we-fed">Open the What We Fed record ↗</a></p><p><a class="shadow-link" href="mailto:${CONTACT}?subject=What%20We%20Fed%20%E2%80%94%20what%20I%20would%20keep">Tell Cody which choice stayed with you</a></p><p class="growth-support">No beta signup or download is promised. The email opens your mail app; sharing a thought is optional and is not a mailing-list subscription.</p></section>
+</article>`,
+  });
+}
+
 function silhouetteDispatch() {
   const body = [
     `<article class="shadow-dispatch">`,
@@ -466,6 +486,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/`, priority: "1.0" },
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
+    { loc: `${ORIGIN}/dispatches/a-level-up-should-change-the-question`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/a-monster-should-survive-as-a-shadow`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/the-machine-stays-private`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/the-pit-keeps-receipts`, priority: "0.8" },
@@ -529,6 +550,9 @@ async function main() {
     silhouetteDispatch(),
   );
   written.push("/dispatches/a-monster-should-survive-as-a-shadow");
+
+  writePage("dispatches/a-level-up-should-change-the-question", growthDispatch());
+  written.push("/dispatches/a-level-up-should-change-the-question");
 
   for (const project of PROJECTS_DATA) {
     writePage(project.id, projectPage(project, PROJECTS_DATA));
