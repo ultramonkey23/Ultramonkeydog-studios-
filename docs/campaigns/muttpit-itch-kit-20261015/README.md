@@ -31,9 +31,9 @@ All prepared images derive from real browser captures of the shipped build (`pub
 5. Set cover `prepared/itch-cover-630x500.png`, screenshots in order ss1→ss4.
 6. Pricing: **No payments / free** (matches the public build's existing claim).
 7. Visibility: **Published** (or "Restricted" first if you want to look before it is public — link still works).
-8. Web build: either (a) zip `repos/muttpit`'s shipped build output and use itch's **"This file will be played in the browser"** upload, with viewport 1280×757 and "Enable fullscreen" on, or (b) keep the build hosted on the studio site and use itch's **"Embed"** option pointing at `https://ultramonkeydog-studios.vercel.app/play/muttpit/`. Option (b) is one field and keeps the deployed bundle as the single truth; option (a) gets itch's own hosting and offline-ish resilience.
+8. Web build: either (a) upload a ZIP with `index.html` at the root and **relative** asset paths (itch iframe requirement) or (b) use itch's **"Embed"** option pointing at `https://ultramonkeydog-studios.vercel.app/play/muttpit/`. WARNING: For (a): the currently deployed site bundle is deliberately pinned to **absolute** `/play/muttpit/...` asset URLs (that fixed the 2026-10-05 white screen on the site), so it will NOT run inside itch's iframe — option (a) needs a rebuild with a relative base first. Option (b) is one field, needs no rebuild, and keeps the deployed bundle as the single truth; the only caveat is that the game then depends on the studio site being up. Recommendation: **(b) now, (a) later** if itch hosting resilience becomes worth a second bundle.
 9. Page footer/links: studio site `https://ultramonkeydog-studios.vercel.app/` and `https://ultramonkeydog-studios.vercel.app/muttpit`.
-10. After publishing: run `node scripts/verify-live-play.mjs https://monkeydog23.itch.io/muttpit --game muttpit` **only if** option (a) was used; for option (b) open the embedded page and confirm the game boots and a bout can start.
+10. After publishing: open the page **inside the actual itch iframe** (not just the page shell), confirm the game boots and a bout can start, and confirm the page appears in itch Browse/Search after its indexing delay (public page ≠ indexed page).
 
 ## Decisions that belong to Cody
 
