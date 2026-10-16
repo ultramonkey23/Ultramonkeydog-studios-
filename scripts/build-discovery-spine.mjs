@@ -248,6 +248,36 @@ function privateEngineDispatch() {
   });
 }
 
+const DISPATCHES = [
+  ["pick-your-strange", "Pick your strange.", "2026-10-16", "A first visit to the studio: creature worlds, sound, tools, and the human behind them."],
+  ["a-level-up-should-change-the-question", "A Level-Up Should Change the Question", "2026-10-14", "Growth, attachment, and the choices power makes harder."],
+  ["a-monster-should-survive-as-a-shadow", "A Monster Should Survive as a Shadow", "2026-10-12", "Silhouette, action, consequence, then surface."],
+  ["the-machine-stays-private", "The Machine Stays Private. The Work Has to Survive in Public.", "2026-10-10", "Human direction, private machinery, public work."],
+  ["the-pit-keeps-receipts", "A Fight Should Keep Its Receipts", "2026-10-08", "The studio’s smaller browser-game sample and its inspectable outcomes."],
+];
+
+function dispatchIndex() {
+  return page({slug:"dispatches",title:"Studio Dispatches — Ultramonkeydog Studios",description:"Read Cody Haring’s studio dispatches: creature design, meaningful growth, human direction, and unusual independent work.",accent:"#d8b475",crumbHref:"/",crumbLabel:"Studio",body:`<p class="tier">THE STUDIO JOURNAL</p><h1>Dispatches from the strange.</h1><p class="lede">Not a promise of finished worlds. A record of what matters while making them.</p><nav aria-label="Studio dispatches">${DISPATCHES.map(([slug,title,date,summary])=>`<article class="card"><time datetime="${date}">${date}</time><h2><a href="/dispatches/${slug}">${esc(title)}</a></h2><p>${esc(summary)}</p></article>`).join("")}</nav>`});
+}
+
+function visitorDispatch() {
+  return page({
+    slug:"dispatches/pick-your-strange",title:"Pick Your Strange — A First Visit to Ultramonkeydog Studios",
+    description:"A first-visit guide to Cody Haring’s creature worlds, audio experiments and unusual software. Choose your doorway without mistaking development for release.",
+    accent:"#e5b981",pageClass:"visitor-page",stylesheet:"/assets/studio-visitor-guide-v1.css",crumbHref:"/dispatches",crumbLabel:"Dispatches",
+    body:`<article><header class="visitor-cover"><p class="tier">STUDIO DISPATCH / OCTOBER 16, 2026</p><h1>Pick your<br><em>strange.</em></h1><p class="lede">You do not need to understand the machinery. Find the thing that gets under your skin.</p><a class="cta" href="#doorways">Choose a doorway ↓</a><p>Ultramonkeydog Studios / Created and directed by Cody Haring</p></header>
+<section class="visitor-intro"><h2>Different worlds. Not different skins.</h2><p>A creature should become something. A system should leave consequences. Horror should have room for beauty, humor and something worth protecting. Those ideas connect this studio’s work, but they do not make every project the same game.</p><p>If this is your first visit, start with a question—not a wall of project names.</p></section>
+<section id="doorways" aria-labelledby="doorway-title"><h2 id="doorway-title">What pulls you in?</h2><div class="visitor-grid">
+<article class="visitor-door"><span>01 / MUTATION</span><h3>I want power<br>to change me.</h3><p>Savage Crown’s direction is biological horror, hostile supernatural systems and earned monstrous escalation. Creature identity, grafts and passive synergy belong to the fantasy—not just a bigger damage number.</p><p class="limit">In development. This is a project record, not a download or release announcement.</p><a class="cta" href="/savage-crown?utm_source=studio_dispatch&utm_medium=owned_web&utm_campaign=pick_your_strange">Enter Savage Crown ↗</a></article>
+<article class="visitor-door"><span>02 / ATTACHMENT</span><h3>I want the monster<br>to matter.</h3><p>What We Fed asks what you keep, what you consume and what you become. Bond vs Eat puts usefulness beside attachment inside a wondrous, mythic creature-RPG direction.</p><p class="limit">In development. Read the current evidence and unfinished work before expecting a public build.</p><a class="cta" href="/what-we-fed?utm_source=studio_dispatch&utm_medium=owned_web&utm_campaign=pick_your_strange">Enter What We Fed ↗</a></article>
+<article class="visitor-door"><span>03 / WONDER</span><h3>I want tenderness<br>without shallow systems.</h3><p>Saga of an Anxious Fluff is the family-facing, creature-growth branch: wonder, deep progression and a sensory-aware design intent can belong together.</p><p class="limit">Early work. Sensory-aware intent is not a proven accessibility outcome.</p><a class="cta" href="/saga-anxious-fluff?utm_source=studio_dispatch&utm_medium=owned_web&utm_campaign=pick_your_strange">Meet Anxious Fluff ↗</a></article>
+<article class="visitor-door"><span>04 / MAKING</span><h3>I want to meet<br>the person making this.</h3><p>Cody is a self-taught creator using AI as a bridge across disciplines. The concepts, criticism, direction and final decisions stay human. The press record is the place for the founder story, official links and asset requests.</p><p class="limit">No consulting offer, paid role or partnership terms are implied.</p><a class="cta" href="/press?utm_source=studio_dispatch&utm_medium=owned_web&utm_campaign=pick_your_strange">Meet Cody ↗</a></article>
+</div></section>
+<section class="visitor-intro"><h2>And the other frequencies?</h2><p>Monkey’s Ear explores audio tools. MAW and Prehensile belong to the software-making side. They are not interchangeable with the games, and a development tool is not a promise of effortless autonomous production.</p><p><a href="/#creation-tools">Explore the making tools</a> · <a href="/press#monkeys-ear">Read the audio boundary</a></p><p>The <a href="/dispatches">dispatch archive</a> goes deeper into the design choices. Read what interests you; you do not need to follow every branch.</p></section>
+<section class="visitor-close"><h2>Follow a thread.<br>Not a hype cycle.</h2><p>Open one project record above. If a specific idea stays with you, tell Cody what caught—and what you could not understand.</p><a class="cta" href="mailto:${CONTACT}?subject=%5BUMD%20DOORWAY%5D%20The%20thread%20that%20caught%20me">Send one specific thought ↗</a><p class="limit">Opens your email app. Optional feedback, not a mailing-list subscription. Do not send confidential material. No beta place, release date or response time is promised.</p></section></article>`,
+  });
+}
+
 function growthDispatch() {
   return page({
     slug: "dispatches/a-level-up-should-change-the-question",
@@ -574,6 +604,8 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/`, priority: "1.0" },
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
+    { loc: `${ORIGIN}/dispatches`, priority: "0.8" },
+    { loc: `${ORIGIN}/dispatches/pick-your-strange`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/a-level-up-should-change-the-question`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/a-monster-should-survive-as-a-shadow`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/the-machine-stays-private`, priority: "0.9" },
@@ -614,6 +646,10 @@ async function main() {
 
   const { PROJECTS_DATA } = await loadProjectData();
   const written = [];
+  writePage("dispatches", dispatchIndex());
+  written.push("/dispatches");
+  writePage("dispatches/pick-your-strange", visitorDispatch());
+  written.push("/dispatches/pick-your-strange");
 
   writePage("play", playPage(PROJECTS_DATA));
   written.push("/play");
