@@ -119,6 +119,11 @@ li{margin:.42em 0}
   color:var(--bone);text-decoration:none;font-size:1rem}
 .wrap{overflow-wrap:break-word}
 a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.captures{margin:16px 0 0}
+.captures figure{margin:0 0 22px}
+.captures img{display:block;width:100%;height:auto;border:1px solid var(--edge);border-radius:3px}
+.captures figcaption{margin-top:8px;font:600 11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--dim)}
 .cta,.next a{min-height:44px}
 @media(max-width:480px){.wrap{padding:20px 16px 48px}.cta{display:block;margin-right:0;text-align:center}h1{font-size:clamp(1.8rem,8vw,2.3rem)}}
 .next a:hover{border-color:var(--accent);color:var(--accent)}
@@ -139,6 +144,7 @@ function page({
   ogImageAlt = "Ultramonkeydog Studios: We make weird things that bite back. AI-assisted studio illustration, not gameplay.",
   ogImageWidth = 1200,
   ogImageHeight = 630,
+  jsonLd = "",
 }) {
   const url = `${ORIGIN}/${slug}`;
   return `<!doctype html>
@@ -166,6 +172,7 @@ function page({
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${esc(ogImage)}">
 <meta name="theme-color" content="#060608">
+${jsonLd ? `<script type="application/ld+json">${jsonLd}</script>` : ""}
 ${stylesheet ? `<link rel="stylesheet" href="${esc(stylesheet)}">` : ""}
 <style>:root{--accent:${accent}}
 ${STYLE}</style>
@@ -294,6 +301,9 @@ function projectPage(project, siblings) {
   const tier = actionTier(project);
   const accent = doorway?.accent ?? ACCENTS[project.accentColor] ?? "#f2b74c";
   const visual = project.publicVisual;
+  const shots = (visual.evidence ?? []).filter((item) => item.src);
+  const heroShot =
+    shots.find((item) => item.state === "PROMOTED_RUNTIME_GAMEPLAY") ?? shots[0];
 
   const parts = [];
   if (doorway) parts.push(`<header class="project-cover"><p class="project-lane">${doorway.number} / ${esc(doorway.lane)}</p>`);
@@ -328,6 +338,28 @@ function projectPage(project, siblings) {
         `something that is finished enough to hand to a stranger.</p>`,
     );
     parts.push(`<p><a class="cta" href="/play">Play what is live</a></p>`);
+  }
+
+  if (shots.length) {
+    parts.push(
+      `<h2>${project.demoUrl ? "From the shipped build" : "Captured evidence"}</h2>`,
+    );
+    parts.push(
+      `<div class="captures">${shots
+        .map(
+          (item) =>
+            `<figure><img src="${esc(item.src)}" width="${esc(item.width ?? 1280)}" height="${esc(item.height ?? 757)}" loading="lazy" alt="${esc(item.alt ?? item.title)}">` +
+            `<figcaption>${esc(item.title)} — ${
+              item.state === "PROMOTED_RUNTIME_GAMEPLAY"
+                ? "real runtime capture / shipped browser build"
+                : esc(item.state).toLowerCase()
+            }</figcaption></figure>`,
+        )
+        .join("")}</div>`,
+    );
+    parts.push(
+      `<p class="limit">Every image on this page is a capture of the actual shipped build driven in a real browser, not staged art.</p>`,
+    );
   }
 
   if (doorway) parts.push(`<h2>The design obsession</h2><p class="lede">${esc(doorway.direction)}</p>`);
@@ -366,6 +398,27 @@ function projectPage(project, siblings) {
     .join("");
   parts.push(`<ul class="next">${links}</ul>`);
 
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": project.demoUrl ? "VideoGame" : "CreativeWork",
+    name: project.title,
+    description: project.description,
+    url: `${ORIGIN}/${project.id}`,
+    ...(heroShot ? { image: `${ORIGIN}${heroShot.src}` } : {}),
+    genre: project.tags,
+    author: {
+      "@type": "Organization",
+      name: "Ultramonkeydog Studios",
+      url: ORIGIN,
+    },
+    ...(project.demoUrl
+      ? {
+          applicationCategory: "Game",
+          operatingSystem: "Web Browser",
+        }
+      : {}),
+  });
+
   return page({
     slug: project.id,
     title: `${project.title} — Ultramonkeydog Studios`,
@@ -376,6 +429,15 @@ function projectPage(project, siblings) {
     crumbLabel: "The work",
     pageClass: doorway ? `project-page project-page--${project.id}` : "",
     stylesheet: doorway ? "/assets/studio-project-v3.css" : "",
+    ...(heroShot
+      ? {
+          ogImage: `${ORIGIN}${heroShot.src}`,
+          ogImageAlt: heroShot.alt ?? heroShot.title,
+          ogImageWidth: heroShot.width ?? 1280,
+          ogImageHeight: heroShot.height ?? 757,
+        }
+      : {}),
+    jsonLd,
   });
 }
 
@@ -425,6 +487,10 @@ function playPage(projects) {
       .join("")}</ul>`,
   );
 
+  const leadShot = playable
+    .flatMap((project) => (project.publicVisual.evidence ?? []).filter((item) => item.src))
+    .find((item) => item.state === "PROMOTED_RUNTIME_GAMEPLAY");
+
   return page({
     slug: "play",
     title: "Play — Ultramonkeydog Studios",
@@ -432,6 +498,27 @@ function playPage(projects) {
       "Ultramonkeydog games you can play in a browser right now, plus everything else the studio is building.",
     accent: "#f2b74c",
     body: parts.join("\n"),
+    ...(leadShot
+      ? {
+          ogImage: `${ORIGIN}${leadShot.src}`,
+          ogImageAlt: leadShot.alt ?? leadShot.title,
+          ogImageWidth: leadShot.width ?? 1280,
+          ogImageHeight: leadShot.height ?? 757,
+        }
+      : {}),
+    jsonLd: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Play — Ultramonkeydog Studios",
+      url: `${ORIGIN}/play`,
+      hasPart: playable.map((project) => ({
+        "@type": "VideoGame",
+        name: project.title,
+        url: `${ORIGIN}/${project.id}`,
+        applicationCategory: "Game",
+        operatingSystem: "Web Browser",
+      })),
+    }),
   });
 }
 
