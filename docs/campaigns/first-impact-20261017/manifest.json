@@ -3,7 +3,7 @@
   "campaign": "ULTRAMONKEYDOG STUDIOS — FIRST IMPACT",
   "produced_at": "2026-10-18",
   "authority": "Cody Haring owns IP and final artistic approval",
-  "direction_decision": "Cody 2026-10-18: Vertical 9:16 cuts retired due to static cuts and compromised screen presence. FIRST IMPACT focuses exclusively on the two definitive 16:9 Widescreen Masters.",
+  "direction_decision": "Cody 2026-10-18: Vertical 9:16 cuts retired due to static cuts and compromised screen presence. FIRST IMPACT focuses exclusively on the definitive 16:9 Widescreen Masters.",
   "primary_exports": [
     {
       "file": "exports/videoA_studio_16x9.mp4",
@@ -28,6 +28,18 @@
       "music_bed": "Devour (SoundCloud id 620698710, THE FALL primary score)",
       "labeling": "real captured in-engine gameplay motion (Riot battle, title screen) via Godot Movie Maker + verified playtest stills; IN DEVELOPMENT label in outro",
       "polish": "High-octane pacing at 36.0s; synchronized combat cuts to Devour energy peaks; bold gold in-game title branding overlay; crisp tactical callouts"
+    },
+    {
+      "file": "exports/videoC_ghengismon_tokyosos_16x9.mp4",
+      "piece": "VIDEO_C_ghengis_mon_tokyo_sos",
+      "aspect": "16:9",
+      "role": "HERO_KAIJU_TRAILER",
+      "seconds": 51.5,
+      "size_bytes": 72713601,
+      "resolution": "1920x1080",
+      "music_bed": "Tokyo s.o.s. (Suno Remix of Cody SoundCloud track, kaiju/Godzilla-inspired battle march)",
+      "labeling": "real captured in-engine Godot Movie Maker gameplay (Riot battle, title screen) + verified playtest stills (Hero awakening, War Market, Conquest Map); IN DEVELOPMENT label in outro",
+      "polish": "High-octane 51.5s kaiju cut; synchronized musical transitions (4.9s ancestral awakening, 22.0s massive riot drop, 39.5s title climax explosion); bold Georgia and Century Gothic typography; zero synthetic fakes"
     }
   ],
   "archived_exports": [
@@ -42,14 +54,21 @@
       "aspect": "9:16",
       "status": "ARCHIVED_NOT_FOR_DISTRIBUTION",
       "reason": "Retired per director feedback: tactical battlefield width and card draft market are best experienced in uncompromised 16:9 widescreen."
+    },
+    {
+      "file": "exports/videoC_ghengismon_tokyosos_9x16.mp4",
+      "aspect": "9:16",
+      "status": "ARCHIVED_NOT_FOR_DISTRIBUTION",
+      "reason": "Retired per director feedback: tactical battlefield width and monster riots are best experienced in uncompromised 16:9 widescreen."
     }
   ],
   "music_provenance": {
-    "source": "https://soundcloud.com/cody-haring-380974285/tracks (Cody-authored, verified live via yt-dlp)",
+    "source": "https://soundcloud.com/cody-haring-380974285/tracks (Cody-authored, verified live via yt-dlp) + Suno remix (Tokyo s.o.s.)",
     "staged_with_info_json": "C:/Users/harin/.lab/source_staging/first-impact/cody-soundcloud/",
     "tracks": {
       "Devour": {"id": 620698710, "role": "THE_FALL_PRIMARY_SCORE", "used_in": "VIDEO_B"},
       "Mega-mind": {"id": 1486149688, "role": "HIGH_INTENSITY_COMBAT", "used_in": "VIDEO_A"},
+      "Tokyo-sos": {"id": "Suno Remix / Cody SoundCloud", "role": "KAIJU_BATTLE_MARCH", "used_in": "VIDEO_C"},
       "the Sound": {"id": 1093149880, "role": "DIMENSIONAL_TRANSITION", "used_in": "reserved (logo sting)"},
       "shifting the realms": {"id": 1048677886, "role": "PLANE_SHIFT_PULSE", "used_in": "reserved (title showcase)"}
     }

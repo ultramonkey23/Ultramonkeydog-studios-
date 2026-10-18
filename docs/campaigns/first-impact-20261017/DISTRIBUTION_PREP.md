@@ -14,6 +14,7 @@ Per Cody's artistic direction (2026-10-18), the FIRST IMPACT campaign concentrat
 |---|---|---|---|
 | **YouTube / Studio Site / X (Twitter) / Press** | `exports/videoA_studio_16x9.mp4` | 1920×1080, H.264/AAC, 44.20s, 26.5MB | **Studio Arrival** ("The Door Is Open") — Hero studio brand teaser. |
 | **YouTube / Studio Site / X (Twitter) / Press** | `exports/videoB_ghengismon_16x9.mp4` | 1920×1080, H.264/AAC, 36.00s, 49.2MB | **Ghengis Mon** ("War of Five Continents") — High-octane gameplay trailer. |
+| **YouTube / Studio Site / X (Twitter) / Press** | `exports/videoC_ghengismon_tokyosos_16x9.mp4` | 1920×1080, H.264/AAC, 51.50s, 72.7MB | **Ghengis Mon** ("Tokyo S.O.S. Kaiju Cut") — High-octane monster warfare trailer. |
 
 ---
 
@@ -93,6 +94,39 @@ GHENGIS MON: Brood Riot — War of Five Continents.
 Autonomous armies, card-draft war markets, living battlefields. In active development.
 
 https://ultramonkeydog-studios.vercel.app/
+```
+
+### Video C: Ghengis Mon ("Tokyo S.O.S. Kaiju Cut")
+
+**YouTube / Video Title:**  
+`GHENGIS MON | Tokyo S.O.S. Kaiju Cut [Monster Warfare Trailer]`
+
+**Description:**  
+```text
+Every empire begins as an egg. One brood. Five continents. One returned god.
+
+Hatch an ancestral kaiju scion. Recruit or devour at the War Market. Command living battlefields with brutal momentum across five continents, where autonomous monster riots leave permanent scars.
+
+GHENGIS MON: BROOD RIOT — WAR OF FIVE CONTINENTS is in active development.
+Captured live in-engine via Godot 4.6.1 Movie Maker.
+
+Creator & Director: Cody Haring
+Music: "Tokyo s.o.s." (Suno Remix of Cody Haring's SoundCloud original)
+
+Follow the invasion:
+https://ultramonkeydog-studios.vercel.app/ghengis-mon
+```
+
+**X / Social Post:**  
+```text
+Every empire begins as an egg.
+Five continents. One returned god.
+Autonomous monster riots clashing to Tokyo S.O.S.
+
+GHENGIS MON: Brood Riot — War of Five Continents.
+In active development.
+
+https://ultramonkeydog-studios.vercel.app/ghengis-mon
 ```
 
 ---

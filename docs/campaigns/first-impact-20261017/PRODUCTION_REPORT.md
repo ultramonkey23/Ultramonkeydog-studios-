@@ -24,9 +24,11 @@
 |---|---|---|---|---|---|
 | **VIDEO A — Studio Arrival** | 44.20s | 1920x1080 | 16:9 Widescreen | Hero Studio Teaser | `exports/videoA_studio_16x9.mp4` |
 | **VIDEO B — Ghengis Mon** | 36.00s | 1920x1080 | 16:9 Widescreen | Hero Gameplay Trailer | `exports/videoB_ghengismon_16x9.mp4` |
+| **VIDEO C — Ghengis Mon (Tokyo S.O.S.)** | 51.50s | 1920x1080 | 16:9 Widescreen | Hero Kaiju Trailer | `exports/videoC_ghengismon_tokyosos_16x9.mp4` |
 | **Visual Proof: Video A** | — | 1920x1080 | Contact Sheet (Opening) | Evidence | `evidence/videoA_16x9_contact.png` |
 | **Visual Proof: Video A (Climax)** | — | 1920x1080 | Contact Sheet (Climax) | Evidence | `evidence/videoA_16x9_late_contact.png` |
 | **Visual Proof: Video B** | — | 1920x1080 | Contact Sheet | Evidence | `evidence/videoB_16x9_contact.png` |
+| **Visual Proof: Video C** | — | 1920x1080 | Contact Sheet | Evidence | `evidence/videoC_16x9_contact.png` |
 
 *(Note: Vertical 9:16 files remain in `exports/` for archival record, but are removed from active campaign distribution).*
 
@@ -61,6 +63,18 @@
   5. **War of Five Continents (10.6s - 21.8s):** Relentless autonomous army clashing captured directly from Godot 4.6.1 Movie Maker with live damage floats and combat callouts.
   6. **The War Remembers (21.8s - 25.0s):** Combat consequence, scars, and fallen banners.
   7. **Title Climax & Outro (25.0s - 36.0s):** In-engine title revelation with bold gold branding, ending on *"in development · follow the war · ultramonkeydog-studios.vercel.app"*.
+
+### C. Video C: Ghengis Mon — "Tokyo S.O.S. Kaiju Cut" (51.50s, 16:9)
+- **Audio Bed:** *Tokyo s.o.s.* (Suno Remix of Cody Haring's original SoundCloud track; kaiju/Godzilla-inspired battle march).
+- **Narrative Flow:**
+  1. **Ominous Kaiju Awakening (0.0s - 4.9s):** Deep atmospheric build: *"EVERY EMPIRE BEGINS AS AN EGG — one brood · five continents · one returned god"*.
+  2. **Ancestral Hero Hatching (4.9s - 10.5s):** Drops on first heavy musical transient: Hero Scion awakening and ancestral heritage selection (*"the bloodline remembers · generation 1"*).
+  3. **The War Market (10.5s - 16.0s):** High-stakes card drafting (*"every card is a fork — recruit or devour"*).
+  4. **Strategic Continent Invasion Map (16.0s - 22.0s):** Theatre selection and continent rivalries (*"five continents · rival grudges"*).
+  5. **Clashing Monster Armies (22.0s - 31.0s):** Drops on the massive 22.0s musical groove drop: autonomous monster riots captured live from Godot 4.6.1 Movie Maker (*"WAR OF FIVE CONTINENTS · real gameplay · autonomous monster riots"*).
+  6. **Brutal Escalation (31.0s - 39.5s):** Floating combat damage, critical marks, and permanent battlefield scars (*"LIVING BATTLEFIELDS · every wound leaves a permanent scar"*).
+  7. **Title Climax Explosion (39.5s - 46.5s):** Peak musical crescendo revealing in-engine title screen (*"GHENGIS MON · BROOD RIOT · WAR OF FIVE CONTINENTS"*).
+  8. **Decisive Outro (46.5s - 51.5s):** Clean fade into track resolution: *"inspired by kaiju · music - Tokyo s.o.s. · in development · ultramonkeydog-studios.vercel.app/ghengis-mon"*.
 
 ---
 
