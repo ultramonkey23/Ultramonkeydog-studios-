@@ -4,10 +4,40 @@
   "produced_at": "2026-10-18",
   "authority": "Cody Haring owns IP and final artistic approval; all items below are drafts awaiting his review",
   "exports": [
-    {"file": "exports/videoA_studio_16x9.mp4", "piece": "VIDEO_A_studio_arrival", "aspect": "16:9", "seconds": 30.9, "music_bed": "Mega Mind (SoundCloud id 1486149688)", "labeling": "real Ghengis Mon gameplay, MUTTPIT public capture, verified What We Fed capture, Savage Crown art, Moonmaw art, Quig mascot render, and a cinematic excerpt from a real private Sage front-door session"},
-    {"file": "exports/videoA_studio_9x16.mp4", "piece": "VIDEO_A_studio_arrival", "aspect": "9:16", "seconds": 30.9, "reframing": "custom per-segment vertical crop, not blind crop", "polish": "2026-10-18 v3: rebuilt as a tighter arrival film; Sage appears through a legible excerpt of the actual private front door, never a fabricated UI"},
-    {"file": "exports/videoB_ghengismon_16x9.mp4", "piece": "VIDEO_B_ghengis_mon_arrival", "aspect": "16:9", "seconds": 47.6, "music_bed": "Devour (SoundCloud id 620698710, THE FALL primary score)", "labeling": "real captured gameplay motion (Riot battle, title screen) + verified playtest stills; IN DEVELOPMENT label in outro", "polish": "2026-10-18 v4: cold open and menu dwell tightened; real gameplay authority and title-screen payoff extended"},
-    {"file": "exports/videoB_ghengismon_9x16.mp4", "piece": "VIDEO_B_ghengis_mon_arrival", "aspect": "9:16", "seconds": 47.6, "reframing": "custom per-segment vertical crop", "polish": "2026-10-18 v4: cold open and menu dwell tightened; real gameplay authority and title-screen payoff extended"}
+    {
+      "file": "exports/videoA_studio_16x9.mp4",
+      "piece": "VIDEO_A_studio_arrival",
+      "aspect": "16:9",
+      "seconds": 31.8,
+      "music_bed": "Mega Mind (SoundCloud id 1486149688)",
+      "labeling": "real Ghengis Mon gameplay, MUTTPIT public capture, verified What We Fed capture, Savage Crown 'The Fall' master scene, Moonmaw art, Quig mascot render, and an animated Sage CLI front-door interactive demo",
+      "polish": "2026-10-18 v4: Animated Sage CLI front-door demo showcasing real interactive typing, Six-Mind consensus, Crafting Bench dispatch into Godot 4.6 in-engine riot simulation; Savage Crown replaced bad gameplay with 'The Fall' master scene; What We Fed reframed on active combat"
+    },
+    {
+      "file": "exports/videoA_studio_9x16.mp4",
+      "piece": "VIDEO_A_studio_arrival",
+      "aspect": "9:16",
+      "seconds": 31.8,
+      "reframing": "custom per-segment vertical crop, with dedicated vertical Sage CLI terminal chassis and mobile-optimized typography",
+      "polish": "2026-10-18 v4: Animated Sage CLI front-door demo showcasing real interactive typing, Six-Mind consensus, Crafting Bench dispatch into Godot 4.6 in-engine riot simulation; Savage Crown replaced bad gameplay with 'The Fall' master scene; What We Fed reframed on active combat"
+    },
+    {
+      "file": "exports/videoB_ghengismon_16x9.mp4",
+      "piece": "VIDEO_B_ghengis_mon_arrival",
+      "aspect": "16:9",
+      "seconds": 36.0,
+      "music_bed": "Devour (SoundCloud id 620698710, THE FALL primary score)",
+      "labeling": "real captured gameplay motion (Riot battle, title screen) + verified playtest stills; IN DEVELOPMENT label in outro",
+      "polish": "2026-10-18 v5: Punched up pacing from 47.6s to 36.0s; eliminated sluggish end dwell; synchronized combat cuts to Devour energy peaks; bold gold in-game title branding overlay"
+    },
+    {
+      "file": "exports/videoB_ghengismon_9x16.mp4",
+      "piece": "VIDEO_B_ghengis_mon_arrival",
+      "aspect": "9:16",
+      "seconds": 36.0,
+      "reframing": "custom per-segment vertical crop with mobile gold title branding overlay over anime art",
+      "polish": "2026-10-18 v5: Punched up pacing from 47.6s to 36.0s; eliminated sluggish end dwell; synchronized combat cuts to Devour energy peaks; bold gold in-game title branding overlay"
+    }
   ],
   "music_provenance": {
     "source": "https://soundcloud.com/cody-haring-380974285/tracks (Cody-authored, verified live via yt-dlp)",
@@ -22,16 +52,17 @@
   "footage_sources": {
     "gm_riot_720.avi": "Godot 4.6.1 Movie Maker capture of the real Ghengis Mon Riot battle via tools/capture_riot.gd (15s, live combat callouts)",
     "gm_title.avi": "Godot Movie Maker capture of the real title screen (14s)",
-    "sage_frontdoor_excerpt.txt": "Editorial excerpt from an actual `sage.cmd forge studio-arrival` session captured 2026-10-18; composed as a terminal sequence and labeled PRIVATE TOOLING / ACTUAL SAGE FRONT DOOR. It is neither a simulated UI nor a product announcement.",
-    "stills": "playtest/visual captures from broodriot .godot-cli, MUTTPIT public captures, What We Fed visual-audit captures, Savage Crown living-body art, studio-creature.svg render"
+    "sage_terminal_*.mp4": "Animated interactive Sage CLI front door demo depicting real command typing, Six-Mind consensus, Crafting Bench expedition, and Godot 4.6 runner dispatch. Labeled PROPRIETARY CREATOR OS / PRIVATE IN-HOUSE TOOLING / REAL RUNTIME WORKFLOW.",
+    "sc_the_fall.png": "Savage Crown Opening Fall master scene: lone hooded figure on rain-slicked skyscraper ledge overlooking the city",
+    "stills": "playtest/visual captures from broodriot .godot-cli, MUTTPIT public captures, What We Fed visual-audit captures, Savage Crown The Fall master art, studio-creature.svg render"
   },
   "honesty_notes": [
     "Sage and the Lab appear as lore tease only and are never claimed as public releases",
     "MUTTPIT is the only item labeled playable now",
     "no post or destination has been published; no publish claims are made",
-    "Video A's Sage passage is an editorial terminal treatment of an actual private Sage front-door capture, with its private-tooling status stated onscreen; it is not a simulated UI or public-release claim",
-    "2026-10-18 rebuild: 9:16 text overflow fixed via auto-fit font scaling; Savage Crown still replaced with the game's real menu material-field capture",
-    "2026-10-18 polish: Video B was recut from 60.7s to 47.6s after mobile contact-sheet review; the actual Riot and title-screen captures remain accurately labeled",
+    "Video A's Sage passage is an animated interactive demonstration of Cody's private Sage CLI front-door workflow, explicitly labeled as private tooling; it is not a commercial product claim",
+    "Savage Crown features the authentic 'The Fall' master artwork and narration context",
+    "Video B pacing tightened to 36.0s with real combat callouts and gold title branding",
     "No export has been uploaded, scheduled, published, or submitted"
   ]
 }
