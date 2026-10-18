@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#241914"/>
+  <g transform="translate(122 170)">
+    <rect width="220" height="220" rx="18" fill="#eee1bf"/>
+    <path d="M39 41h38v84q0 50 33 50t33-50V41h38v88q0 86-71 86T39 129Z" fill="#241914"/>
+    <path d="M144 32l56 39-56 39z" fill="#ee8765"/>
+    <circle cx="186" cy="70" r="11" fill="#241914"/>
+  </g>
+  <text x="405" y="265" font-family="Georgia,serif" font-size="96" font-weight="bold" fill="#eee1bf">ULTRAMONKEYDOG</text>
+  <text x="412" y="342" font-family="Arial,sans-serif" font-size="39" font-weight="bold" letter-spacing="15" fill="#ee8765">STUDIOS</text>
+  <path d="M410 378H1310" stroke="#a94b35" stroke-width="4"/>
+  <text x="413" y="426" font-family="Arial,sans-serif" font-size="22" letter-spacing="4" fill="#eee1bf">DIRECTION 01  /  SURGICAL STAMP</text>
+  <text x="413" y="475" font-family="Georgia,serif" font-size="29" fill="#eee1bf">A hard-edged production mark: the existing M/play symbol becomes</text>
+  <text x="413" y="515" font-family="Georgia,serif" font-size="29" fill="#eee1bf">a field-stamp for arrivals, thumbnails, and the site masthead.</text>
+  <text x="120" y="750" font-family="Arial,sans-serif" font-size="25" letter-spacing="5" fill="#ee8765">EXPERIMENTS CONTINUE</text>
+</svg>

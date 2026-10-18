@@ -1,0 +1,93 @@
+{
+  "schema": "lab_comfy_generation_provenance_v1",
+  "generated_at_utc": "2026-10-18T05:14:41Z",
+  "prompt_id": "de0d2d53-e3a5-4432-a9e0-578946e3026b",
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8000,
+    "url": "http://127.0.0.1:8000",
+    "kind": "LOCAL",
+    "auth": "none"
+  },
+  "workflow": {
+    "path": "C:\\Users\\harin\\ultramonkeydog-lab\\quig-vault\\comfy_workflows\\flux2_klein4b_image_edit_api.json",
+    "sha256": "7e49751ba76b301767d408af8222f75af939fb7cb78d3bd0e83c802c3e5f0018",
+    "capability": "SOURCE_TRANSFORM"
+  },
+  "prompt": "Preserve the recognizable three-eyed Quig studio mascot silhouette and warm mischievous companion character. Transform it into a premium dark mad scientist outsider game studio seal with tactile ink and cream paper, ember red calibration ring, hand-drawn cosmic antennae, bold readable iconic silhouette, centered emblem only, no words, no letters, no logos, no watermark, no generic corporate icon.",
+  "negative_prompt": "text lettering typography words logos watermark photorealism generic robot random animal extra faces deformed anatomy",
+  "style": null,
+  "prompt_source": "INLINE_--prompt",
+  "injected_nodes": [
+    "74"
+  ],
+  "injected_negative_nodes": [
+    "67"
+  ],
+  "image_input_nodes": [
+    "100"
+  ],
+  "semantic_references": [
+    {
+      "role": "SOURCE_IMAGE",
+      "source_path": "C:\\Users\\harin\\ultramonkeydog-lab\\scratch\\first_impact\\stills\\studio_creature.png",
+      "sha256": "7adbc7b456bd0647fccbdfddfb315278c08c58a730bb8d882da6ce518955b382",
+      "bound_image": "staged_references/7adbc7b4_studio_creature.png",
+      "node_id": "100"
+    }
+  ],
+  "dimension_nodes": [
+    "62.width",
+    "62.height",
+    "66.width",
+    "66.height"
+  ],
+  "dimensions": {
+    "width": 768,
+    "height": 768
+  },
+  "sampler_adjustments": [],
+  "reseeded": [
+    "73.noise_seed=165041352511998"
+  ],
+  "identity": {
+    "capability": "SOURCE_TRANSFORM",
+    "seeds": {
+      "73.noise_seed": 165041352511998
+    },
+    "models": {
+      "70.unet_name": "flux-2-klein-base-4b.safetensors",
+      "71.clip_name": "qwen_3_4b.safetensors",
+      "72.vae_name": "flux2-vae.safetensors"
+    },
+    "samplers": {
+      "61.sampler_name": "euler",
+      "62.steps": 20,
+      "63.cfg": 5
+    },
+    "references": {
+      "100": "staged_references/7adbc7b4_studio_creature.png"
+    }
+  },
+  "model_licenses": {
+    "flux-2-klein-base-4b.safetensors": {
+      "spdx": "Apache-2.0",
+      "source": "https://github.com/black-forest-labs/flux2/blob/main/README.md",
+      "verified_on": "2026-09-01"
+    },
+    "flux2-vae.safetensors": {
+      "spdx": "UNKNOWN_REQUIRES_REVIEW",
+      "source": null,
+      "verified_on": null
+    },
+    "qwen_3_4b.safetensors": {
+      "spdx": "UNKNOWN_REQUIRES_REVIEW",
+      "source": null,
+      "verified_on": null
+    }
+  },
+  "images": [
+    "C:\\Users\\harin\\Ultramonkeydog-studios-\\docs\\campaigns\\first-impact-20261017\\concept\\quig_signal_local_exploration.png"
+  ],
+  "mirrored_images": []
+}
