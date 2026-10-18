@@ -12,9 +12,8 @@ Per Cody's artistic direction (2026-10-18), the FIRST IMPACT campaign concentrat
 
 | Destination | Master File | Technical Specs | Role |
 |---|---|---|---|
-| **YouTube / Studio Site / X (Twitter) / Press** | `exports/videoA_studio_16x9.mp4` | 1920×1080, H.264/AAC, 44.20s, 26.5MB | **Studio Arrival** ("The Door Is Open") — Hero studio brand teaser. |
-| **YouTube / Studio Site / X (Twitter) / Press** | `exports/videoB_ghengismon_16x9.mp4` | 1920×1080, H.264/AAC, 36.00s, 49.2MB | **Ghengis Mon** ("War of Five Continents") — High-octane gameplay trailer. |
-| **YouTube / Studio Site / X (Twitter) / Press** | `exports/videoC_ghengismon_tokyosos_16x9.mp4` | 1920×1080, H.264/AAC, 51.50s, 72.7MB | **Ghengis Mon** ("Tokyo S.O.S. Kaiju Cut") — High-octane monster warfare trailer. |
+| **YouTube / Studio Site / X (Twitter) / Press** | `exports/videoA_studio_16x9.mp4` | 1920×1080, H.264/AAC, 51.50s, 48.8MB | **Studio Arrival** ("The Door Is Open") — Hero studio brand teaser scored to Tokyo S.O.S. |
+| **YouTube / Studio Site / X (Twitter) / Press** | `exports/videoB_ghengismon_16x9.mp4` | 1920×1080, H.264/AAC, 36.00s, 49.2MB | **Ghengis Mon** ("War of Five Continents") — High-octane gameplay trailer scored to Devour. |
 
 ---
 
@@ -44,7 +43,7 @@ One living studio mascot named Quig. A stack of games and autonomous systems tha
 MUTTPIT is playable free right now in your browser. 
 GHENGIS MON, WHAT WE FED, and SAVAGE CROWN are in active development.
 
-Music: "Mega Mind" by Cody Haring
+Music: "Tokyo s.o.s." (Suno Remix of Cody Haring's SoundCloud original)
 Private creator tooling: Sage CLI (internal developer tooling, not a public product)
 
 Play MUTTPIT now & follow the games:
@@ -59,6 +58,7 @@ Ultramonkeydog Studios arrives with four worlds in motion.
 MUTTPIT is playable free now; Ghengis Mon, What We Fed, and Savage Crown are growing teeth.
 
 Directed by Cody Haring.
+Music: "Tokyo s.o.s."
 https://ultramonkeydog-studios.vercel.app/
 ```
 
@@ -96,39 +96,6 @@ Autonomous armies, card-draft war markets, living battlefields. In active develo
 https://ultramonkeydog-studios.vercel.app/
 ```
 
-### Video C: Ghengis Mon ("Tokyo S.O.S. Kaiju Cut")
-
-**YouTube / Video Title:**  
-`GHENGIS MON | Tokyo S.O.S. Kaiju Cut [Monster Warfare Trailer]`
-
-**Description:**  
-```text
-Every empire begins as an egg. One brood. Five continents. One returned god.
-
-Hatch an ancestral kaiju scion. Recruit or devour at the War Market. Command living battlefields with brutal momentum across five continents, where autonomous monster riots leave permanent scars.
-
-GHENGIS MON: BROOD RIOT — WAR OF FIVE CONTINENTS is in active development.
-Captured live in-engine via Godot 4.6.1 Movie Maker.
-
-Creator & Director: Cody Haring
-Music: "Tokyo s.o.s." (Suno Remix of Cody Haring's SoundCloud original)
-
-Follow the invasion:
-https://ultramonkeydog-studios.vercel.app/ghengis-mon
-```
-
-**X / Social Post:**  
-```text
-Every empire begins as an egg.
-Five continents. One returned god.
-Autonomous monster riots clashing to Tokyo S.O.S.
-
-GHENGIS MON: Brood Riot — War of Five Continents.
-In active development.
-
-https://ultramonkeydog-studios.vercel.app/ghengis-mon
-```
-
 ---
 
 ## 4. Pre-Publish Checklist
@@ -136,4 +103,4 @@ https://ultramonkeydog-studios.vercel.app/ghengis-mon
 1. **Title Selection:** `GHENGIS MON` is the primary public game title; `BROOD RIOT · WAR OF FIVE CONTINENTS` is the subtitle.
 2. **Account Selection:** Cody selects destination channels (YouTube, X, Discord, Reddit, Press).
 3. **Honesty Retained:** Retain *"in development"* on Ghengis Mon / What We Fed / Savage Crown, *"playable free now"* on MUTTPIT, and *"private creator tooling"* on Sage CLI.
-4. **Music Clearance:** Cody-authored SoundCloud masters (*Devour* and *Mega Mind*) verified.
+4. **Music Clearance:** Cody-authored masters (*Tokyo s.o.s.* and *Devour*) verified.

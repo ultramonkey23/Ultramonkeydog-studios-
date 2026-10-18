@@ -10,12 +10,12 @@
       "piece": "VIDEO_A_studio_arrival",
       "aspect": "16:9",
       "role": "HERO_STUDIO_TEASER",
-      "seconds": 44.2,
-      "size_bytes": 26515452,
+      "seconds": 51.5,
+      "size_bytes": 48824792,
       "resolution": "1920x1080",
-      "music_bed": "Mega Mind (SoundCloud id 1486149688)",
+      "music_bed": "Tokyo s.o.s. (Suno Remix of Cody SoundCloud track, kaiju/Godzilla-inspired battle march)",
       "labeling": "real Ghengis Mon gameplay, MUTTPIT public capture, verified What We Fed combat, authentic Savage Crown in-engine 'The Fall' cutscene, Moonmaw art, Quig mascot render, and authentic native PowerShell sage execution demo",
-      "polish": "Authentic native PowerShell sage demo captured from real execution (Quig ASCII familiar, living membrane vitals, Cody prompt 'what is ultramonkeydog-lab and who is cody?', speed-ramped thinking Quig pulse, streamed response with truthful human creator sovereignty and private tooling definitions with live blinking cursor); Authentic Savage Crown in-engine 'The Fall' cutscene captured directly from Android emulator (3D perspective roof camera push, falling rain shaders, hooded figure on precipice, authored dialogue: 'Ever since I was young, I had this feeling that I didn't belong here.'); What We Fed active combat; Ghengis Mon riot combat landing on Mega Mind musical drop"
+      "polish": "High-octane 51.5s Studio Arrival cut scored to Tokyo S.O.S.; 4.8s initial hit into authentic native PowerShell Sage demo affirming Cody Haring as human creator/director; massive 22.0s groove drop into live Ghengis Mon riot combat; MUTTPIT and What We Fed combat bursts; Savage Crown 'The Fall' rooftop cutscene through 39.5s climax; decisive Ultramonkeydog Studios brand outro; mastered to broadcast -14.0 LUFS"
     },
     {
       "file": "exports/videoB_ghengismon_16x9.mp4",
@@ -28,18 +28,6 @@
       "music_bed": "Devour (SoundCloud id 620698710, THE FALL primary score)",
       "labeling": "real captured in-engine gameplay motion (Riot battle, title screen) via Godot Movie Maker + verified playtest stills; IN DEVELOPMENT label in outro",
       "polish": "High-octane pacing at 36.0s; synchronized combat cuts to Devour energy peaks; bold gold in-game title branding overlay; crisp tactical callouts"
-    },
-    {
-      "file": "exports/videoC_ghengismon_tokyosos_16x9.mp4",
-      "piece": "VIDEO_C_ghengis_mon_tokyo_sos",
-      "aspect": "16:9",
-      "role": "HERO_KAIJU_TRAILER",
-      "seconds": 51.5,
-      "size_bytes": 72713601,
-      "resolution": "1920x1080",
-      "music_bed": "Tokyo s.o.s. (Suno Remix of Cody SoundCloud track, kaiju/Godzilla-inspired battle march)",
-      "labeling": "real captured in-engine Godot Movie Maker gameplay (Riot battle, title screen) + verified playtest stills (Hero awakening, War Market, Conquest Map); IN DEVELOPMENT label in outro",
-      "polish": "High-octane 51.5s kaiju cut; synchronized musical transitions (4.9s ancestral awakening, 22.0s massive riot drop, 39.5s title climax explosion); bold Georgia and Century Gothic typography; zero synthetic fakes"
     }
   ],
   "archived_exports": [
@@ -54,12 +42,6 @@
       "aspect": "9:16",
       "status": "ARCHIVED_NOT_FOR_DISTRIBUTION",
       "reason": "Retired per director feedback: tactical battlefield width and card draft market are best experienced in uncompromised 16:9 widescreen."
-    },
-    {
-      "file": "exports/videoC_ghengismon_tokyosos_9x16.mp4",
-      "aspect": "9:16",
-      "status": "ARCHIVED_NOT_FOR_DISTRIBUTION",
-      "reason": "Retired per director feedback: tactical battlefield width and monster riots are best experienced in uncompromised 16:9 widescreen."
     }
   ],
   "music_provenance": {
@@ -67,8 +49,8 @@
     "staged_with_info_json": "C:/Users/harin/.lab/source_staging/first-impact/cody-soundcloud/",
     "tracks": {
       "Devour": {"id": 620698710, "role": "THE_FALL_PRIMARY_SCORE", "used_in": "VIDEO_B"},
-      "Mega-mind": {"id": 1486149688, "role": "HIGH_INTENSITY_COMBAT", "used_in": "VIDEO_A"},
-      "Tokyo-sos": {"id": "Suno Remix / Cody SoundCloud", "role": "KAIJU_BATTLE_MARCH", "used_in": "VIDEO_C"},
+      "Mega-mind": {"id": 1486149688, "role": "RESERVED_SCORE", "used_in": "archived"},
+      "Tokyo-sos": {"id": "Suno Remix / Cody SoundCloud", "role": "STUDIO_ARRIVAL_SCORE", "used_in": "VIDEO_A"},
       "the Sound": {"id": 1093149880, "role": "DIMENSIONAL_TRANSITION", "used_in": "reserved (logo sting)"},
       "shifting the realms": {"id": 1048677886, "role": "PLANE_SHIFT_PULSE", "used_in": "reserved (title showcase)"}
     }
