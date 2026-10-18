@@ -165,7 +165,6 @@ a:focus-visible {
   color: var(--umd-gold);
   -webkit-text-fill-color: currentColor;
 }
-
 .text-gradient-silver {
   background: none;
   color: var(--umd-bone);
