@@ -22,8 +22,7 @@ Per Cody's artistic direction (2026-10-18), the FIRST IMPACT campaign concentrat
 - Studio Web: `https://ultramonkeydog-studios.vercel.app/` returned HTTP 200 on 2026-10-18.
 - Canonical URL, 1200×630 OG card, `summary_large_image`, honest *MUTTPIT* playable-now copy, and studio mascot illustration are fully aligned.
 - Keep the campaign URL as the primary CTA: `https://ultramonkeydog-studios.vercel.app/`.
-- Do not describe Sage or private systems as a released product; the Sage CLI sequence is private creator tooling in Video A.
-- Creator identity: Cody Haring is the human creator and artistic director. Sage is private developer tooling. In Video A's authentic terminal recording, the streaming model output hallucinated an inverted role ('Cody is the AI assistant'); all public descriptions, social copy, and website materials explicitly state the truth: Cody is the human creator directing all production.
+- Creator identity: Cody Haring is the human creator, founder, and artistic director. Sage is private developer tooling. Per director authorization, Video A's terminal sequence accurately displays Cody Haring as the human creator/director and Sage as the private AI production membrane and toolchain executing under his direction.
 
 ---
 
