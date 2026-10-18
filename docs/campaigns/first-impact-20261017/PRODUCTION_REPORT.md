@@ -2,69 +2,70 @@
 
 **IP & Artistic Director:** Cody Haring  
 **Production Studio:** Ultramonkeydog Studios / Living Lab Autonomous Production  
-**Status:** ALL 4 MASTERS REBUILT, VERIFIED WITH REAL EMULATION / IN-ENGINE CAPTURES, AND STAGED.
+**Status:** DEFINITIVE 16:9 WIDESCREEN MASTERS APPROVED & ACTIVE. VERTICAL CUTS RETIRED.
 
 ---
 
-## 1. Master Deliverables Summary
+## 1. Creative Direction Decision: Focus on 16:9 Widescreen Cinema
 
-| Deliverable | Duration | Resolution | Format | State | Location |
+**Director Ruling (Cody 2026-10-18):**  
+> *"maybe we dont use the vertical version too many static cuts and not as good as tthe widescreens"*
+
+### Rationale & Creative Assessment
+1. **Visual Scale & Immersion:** The core games (*Ghengis Mon*, *Savage Crown: The Fall*, *What We Fed*, *MUTTPIT*) and the native PowerShell *Sage* terminal command deck are inherently horizontal, panoramic experiences.
+2. **Elimination of Static Letterboxing:** Fitting 16:9 widescreen footage into 9:16 vertical frames creates static visual dead zones (even with ambient blur), breaking the momentum and making the games look boxed in.
+3. **Hero Cinema Focus:** The campaign delivers maximum impact as high-definition widescreen cinematic masters. Distribution will prioritize full-screen landscape destinations: YouTube, Studio Web, X/Twitter, and cinematic embeds.
+
+---
+
+## 2. Primary Deliverables Summary
+
+| Deliverable | Duration | Resolution | Format | Role | Location |
 |---|---|---|---|---|---|
-| **VIDEO A — Studio Arrival** (16:9) | 44.20s | 1920x1080 | Landscape | FINAL (Real Emulation) | `exports/videoA_studio_16x9.mp4` |
-| **VIDEO A — Studio Arrival** (9:16) | 46.83s | 1080x1920 | Vertical Zero-Crop | FINAL (Real Emulation) | `exports/videoA_studio_9x16.mp4` |
-| **VIDEO B — Ghengis Mon** (16:9) | 36.00s | 1920x1080 | Landscape | FINAL (In-Engine Godot) | `exports/videoB_ghengismon_16x9.mp4` |
-| **VIDEO B — Ghengis Mon** (9:16) | 38.40s | 1080x1920 | Vertical Zero-Crop | FINAL (In-Engine Godot) | `exports/videoB_ghengismon_9x16.mp4` |
-| **Visual Proof: Video A (16:9)** | — | 1920x1080 | Contact Sheet (Early) | VERIFIED | `evidence/videoA_16x9_contact.png` |
-| **Visual Proof: Video A (16:9 Late)** | — | 1920x1080 | Contact Sheet (Late) | VERIFIED | `evidence/videoA_16x9_late_contact.png` |
-| **Visual Proof: Video A (9:16)** | — | 1080x1920 | Contact Sheet (Early) | VERIFIED | `evidence/videoA_9x16_contact.png` |
-| **Visual Proof: Video A (9:16 Late)** | — | 1080x1920 | Contact Sheet (Late) | VERIFIED | `evidence/videoA_9x16_late_contact.png` |
-| **Visual Proof: Video B (16:9)** | — | 1920x1080 | Contact Sheet | VERIFIED | `evidence/videoB_16x9_contact.png` |
-| **Visual Proof: Video B (9:16)** | — | 1080x1920 | Contact Sheet | VERIFIED | `evidence/videoB_9x16_contact.png` |
+| **VIDEO A — Studio Arrival** | 44.20s | 1920x1080 | 16:9 Widescreen | Hero Studio Teaser | `exports/videoA_studio_16x9.mp4` |
+| **VIDEO B — Ghengis Mon** | 36.00s | 1920x1080 | 16:9 Widescreen | Hero Gameplay Trailer | `exports/videoB_ghengismon_16x9.mp4` |
+| **Visual Proof: Video A** | — | 1920x1080 | Contact Sheet (Opening) | Evidence | `evidence/videoA_16x9_contact.png` |
+| **Visual Proof: Video A (Climax)** | — | 1920x1080 | Contact Sheet (Climax) | Evidence | `evidence/videoA_16x9_late_contact.png` |
+| **Visual Proof: Video B** | — | 1920x1080 | Contact Sheet | Evidence | `evidence/videoB_16x9_contact.png` |
+
+*(Note: Vertical 9:16 files remain in `exports/` for archival record, but are removed from active campaign distribution).*
 
 ---
 
-## 2. Director Feedback Addressed & Verified
+## 3. The Definitive Widescreen Masters
 
-### A. Real Sage CLI Front Door Experience (Native PowerShell Execution via Emulation)
-- **Problem:** Previous versions used synthetic canvas renders or headless simulations rather than Cody's authentic native PowerShell launcher.
-- **Solution:** Captured directly via Android emulator `lab_pixel_api34` Termux SSH connected to native Windows host PowerShell:
-  1. **Native PowerShell Prompt:** Shows clean Windows PowerShell prompt:  
-     `PS C:\Users\harin\ultramonkeydog-lab> sage`
-  2. **Authentic Quig ASCII Familiar & Vitals:** The living lab wakes up with cyan pixel Quig familiar, membrane vitals (`Watchdog: ALIVE(28408)`, `BootCore: + PASS`, `Ecology: Sockets:24/OK MycelialPaths:2`), and focus status (`Awaiting Cody direction`).
-  3. **Real Human Question Typing:** Director prompt entered authentically:  
-     `CODY > what is ultramonkeydog-lab and who is cody?`
-  4. **Dynamic Speed-Ramp Thinking:** Quig animated thinking pulse (`[ Sage is answering .. ]`) is speed-ramped 17x to create a rapid-fire kinetic burst.
-  5. **Streamed Real Response:** Sage streams its actual live response and holds with live cursor blinking:  
-     *"ultramonkeydog-lab is the current working directory, indicating the root of the project or workspace you're currently in... Cody is the AI assistant designed to interact with and manage tasks..."*
-  6. **Zero Mockups:** 100% authentic SurfaceFlinger screen recording with zero synthetic or simulated frames.
+### A. Video A: Studio Arrival — "The Door Is Open" (44.20s, 16:9)
+- **Audio Bed:** *Mega Mind* (SoundCloud id 1486149688) by Cody Haring.
+- **Narrative Flow:**
+  1. **Hook (0.0s - 1.8s):** Deep purple title card: *"THE DOOR IS OPEN — no permission · just the work"*.
+  2. **Quig Keeps Watch (1.8s - 4.3s):** Studio mascot & familiar Quig with slow hypnotic push-in.
+  3. **The Front Door — Sage CLI (4.3s - 18.5s):** 
+     - Real native PowerShell terminal launching `sage`.
+     - Quig ASCII familiar waking up and Living Lab membrane vitals initializing (`Watchdog: ALIVE(28408)`, `BootCore: + PASS`, `Sockets: 24/OK`).
+     - Real prompt entry: `CODY > what is ultramonkeydog-lab and who is cody?`
+     - 17x speed-ramped kinetic thinking pulse.
+     - Full streamed answer revealed live on screen with cursor blinking.
+  4. **The Musical Drop & Combat Burst (18.5s - 23.0s):** Explodes into *Ghengis Mon* in-engine Riot combat right as *Mega Mind* drops heavy bass.
+  5. **Game Proofs (23.0s - 28.6s):** *MUTTPIT* (playable free now) followed by *What We Fed* (action horror combat).
+  6. **Savage Crown: The Fall (28.6s - 34.1s):** Real in-engine 3D perspective camera push along skyscraper rooftop, falling rain shaders, hooded figure on the precipice, and dialogue: *"Ever since I was young, I had this feeling that I didn't belong here. Not just with other people."*
+  7. **War Market & Moonmaw (34.1s - 39.2s):** Tactical card draft and hero creature art.
+  8. **Outro (39.2s - 44.2s):** Ultramonkeydog Studios brand card fading smoothly into music resolution.
 
-### B. Savage Crown — "The Fall" Real In-Engine Cutscene
-- **Problem:** Previous cuts used placeholder gameplay instead of the iconic scene from *The Fall*.
-- **Solution:** Captured directly from Android emulator `lab_pixel_api34` running the native Savage Crown APK:
-  1. **3D Perspective Camera Push:** Dramatic camera push forward along the rainy skyscraper rooftop toward the precipice.
-  2. **Real-Time Shaders:** Rain shader streaks falling across the dark cyberpunk skyline.
-  3. **Hooded Figure & Dialogue:** Figure stands at the ledge against the tempest, accompanied by authored poetry:  
-     *“Ever since I was young, I had this feeling that I didn't belong here. Not just with other people.”*
-  4. **Clean 16:9 Cinema Framing:** 100% authentic in-engine cutscene with zero synthetic overlays.
-
-### C. Zero-Crop Vertical Cinema-Fit Standard ("Vertical Version Cuts a Bunch Out")
-- **Problem:** Conventional vertical crops cut off 68% of the horizontal frame, destroying battlefield flanks, card details, code lines, and UI.
-- **Solution:** Engineered the **Cinema-Fit Canvas Presentation** across all 9:16 exports:
-  1. **Background Layer:** Video scaled to 1080x1920, heavy box blur (`boxblur=25:5`), and dimmed brightness (-32%). Acts as an ambient, reactive lighting aura that responds to every on-screen flash and movement.
-  2. **Foreground Layer:** Full, uncropped 16:9 widescreen footage scaled to exactly 1080x608, placed dead-center (`y = 656`) with accent divider rules.
-  3. **Upper Cinematic Band (y = 0 to 656):** Main headline in Georgia bold typography with generous margin padding.
-  4. **Lower Cinematic Band (y = 1264 to 1920):** Contextual subtitle in Gothic bold typography.
-  5. **Result:** **100% of the widescreen image is preserved! Zero pixels cropped.**
-
-### D. Ghengis Mon High-Octane Pacing (Video B)
-- 36.0s runtime synchronized to *Devour* musical energy drops.
-- Authentic in-engine Godot 4.6.1 Movie Maker combat motion: autonomous armies clashing, damage callouts, card draft market, and strategic continent conquest map.
-- Bold gold in-game title branding overlay.
+### B. Video B: Ghengis Mon — "Brood Riot: War of Five Continents" (36.00s, 16:9)
+- **Audio Bed:** *Devour* (SoundCloud id 620698710) by Cody Haring.
+- **Narrative Flow:**
+  1. **Premise (0.0s - 1.8s):** *"EVERY EMPIRE BEGINS AS AN EGG — one brood · five continents · one returned god"*.
+  2. **Hero Scion Awakening (1.8s - 5.2s):** In-engine hero scion selection and ancestral lineage memories.
+  3. **The War Market (5.2s - 8.6s):** High-stakes creature card drafting: *"every card is a fork — recruit or devour"*.
+  4. **Strategic Conquest Map (8.6s - 10.6s):** Tactical continent invasion theatre selection.
+  5. **War of Five Continents (10.6s - 21.8s):** Relentless autonomous army clashing captured directly from Godot 4.6.1 Movie Maker with live damage floats and combat callouts.
+  6. **The War Remembers (21.8s - 25.0s):** Combat consequence, scars, and fallen banners.
+  7. **Title Climax & Outro (25.0s - 36.0s):** In-engine title revelation with bold gold branding, ending on *"in development · follow the war · ultramonkeydog-studios.vercel.app"*.
 
 ---
 
-## 3. Creative Persona & Integrity Standard
+## 4. Creative Persona & Tone Alignment
 
-- **The Anonymous Outsider Auteur:** Cody is framed as the lone mastermind operating from an autonomous laboratory, wielding proprietary software (`Sage`) to produce deep, ambitious worlds without commercial gatekeepers.
-- **Mascot & Lore Integrity:** Quig is preserved as the three-eyed familiar and studio sentinel.
-- **Truthful Labeling Standard:** MUTTPIT is labeled *"playable free"*; Ghengis Mon, What We Fed, and Savage Crown are labeled *"in development"*; Sage CLI is labeled *"private in-house tooling"*.
+- **The Anonymous Outsider Auteur:** Cody is established as the solo visionary directing autonomous systems, custom engines, and unique IP without waiting for publisher validation.
+- **Authentic Verification:** Every game clip is captured from real running software (Android emulator SurfaceFlinger screenrecord, Godot Movie Maker). Zero mockups or synthetic fakes.
+- **Honest Industry Framing:** *MUTTPIT* is explicitly playable now; *Ghengis Mon*, *What We Fed*, and *Savage Crown* are in development; *Sage CLI* is private creator tooling.
