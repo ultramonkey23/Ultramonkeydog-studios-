@@ -2,55 +2,67 @@
 
 **IP & Artistic Director:** Cody Haring  
 **Production Studio:** Ultramonkeydog Studios / Living Lab Autonomous Production  
-**Status:** ALL MASTERS REBUILT, PUNCHED UP, AND STAGED.
+**Status:** ALL 4 MASTERS REBUILT, VERIFIED, AND STAGED.
 
 ---
 
-## 1. What was Rebuilt & Punched Up
+## 1. Master Deliverables Summary
 
-| Deliverable | Duration | State | Location |
-|---|---|---|---|
-| **VIDEO A — Studio Arrival** (16:9) | 31.8s | REBUILT v4 | `exports/videoA_studio_16x9.mp4` |
-| **VIDEO A — Studio Arrival** (9:16) | 31.8s | REBUILT v4 | `exports/videoA_studio_9x16.mp4` |
-| **VIDEO B — Ghengis Mon** (16:9) | 36.0s | PUNCHED UP v5 | `exports/videoB_ghengismon_16x9.mp4` |
-| **VIDEO B — Ghengis Mon** (9:16) | 36.0s | PUNCHED UP v5 | `exports/videoB_ghengismon_9x16.mp4` |
-| **Contact Sheets (Mobile Proof)** | — | VERIFIED v5 | `concept/videoA_contact_v5.png`, `concept/videoB_contact_v5.png` |
-| **Sage CLI Demo Proof** | — | GENERATED | `concept/sage_cli_frontdoor_demo.png` |
-| **The Fall Master Asset** | — | STAGED | `concept/sc_the_fall.png` |
+| Deliverable | Duration | Format | State | Location |
+|---|---|---|---|---|
+| **VIDEO A — Studio Arrival** (16:9) | 33.2s | Landscape | REBUILT v5 | `exports/videoA_studio_16x9.mp4` |
+| **VIDEO A — Studio Arrival** (9:16) | 33.2s | Vertical | REBUILT v5 | `exports/videoA_studio_9x16.mp4` |
+| **VIDEO B — Ghengis Mon** (16:9) | 36.0s | Landscape | REBUILT v6 | `exports/videoB_ghengismon_16x9.mp4` |
+| **VIDEO B — Ghengis Mon** (9:16) | 36.0s | Vertical | REBUILT v6 | `exports/videoB_ghengismon_9x16.mp4` |
+| **Visual Proof: Video A (16:9)** | — | Contact Sheet | VERIFIED | `evidence/videoA_16x9_contact.png` |
+| **Visual Proof: Video A (9:16)** | — | Contact Sheet | VERIFIED | `evidence/videoA_9x16_contact.png` |
+| **Visual Proof: Video B (16:9)** | — | Contact Sheet | VERIFIED | `evidence/videoB_16x9_contact.png` |
+| **Visual Proof: Video B (9:16)** | — | Contact Sheet | VERIFIED | `evidence/videoB_9x16_contact.png` |
 
 ---
 
 ## 2. Director Feedback Addressed
 
-### A. Sage CLI Front Door Experience (Live Interactive Demo)
-- **Problem:** The previous cut displayed a static, illegible text excerpt in a brown box for 3.7 seconds. It felt dead, generic, and failed to communicate Cody's proprietary workflow or process.
-- **Solution:** Engineered a dedicated frame-by-frame animated terminal engine (`generate_sage_terminal.py`):
-  1. **Window Chassis:** Dark obsidian glass (`#0c0e14`), subtle ambient cyan/purple glow, Mac/Linux style window controls (red/amber/green dots), and session identifier `session: 72ff9e00`.
-  2. **Wake Banner:** Authentic Sage Living Membrane ASCII header featuring Quig (`[VIGILANT COMPANION]`), Watchdog status (`ALIVE(pid 57660)`), and autonomous grem count (61 discovered).
-  3. **Live Typing Cadence:** Cody enters his command in real time: `CODY > /work "ignite brood riot: 14 scion bloodlines on 5 continents"` with a pulsing block cursor `█`.
-  4. **Autonomous Synthesis Cascade:** Six-Mind consensus locks in, Quig responds with tactical dialogue (*"Awakening the warlords. Bloodlines synchronized."*), mutation synthesizes 14 scion bloodlines, and Godot 4.6 Movie Maker is dispatched.
-  5. **Kinetic Smash Cut:** Terminal surges with scanlines and a phosphor pulse at 9.2s, landing the cut directly before Mega Mind's massive 9.5s energy drop as real in-engine riot gameplay explodes onto the screen!
-  6. **Labeling:** Clean top and bottom badges (`PROPRIETARY CREATOR OS · SAGE CLI FRONT DOOR` and `PRIVATE IN-HOUSE TOOLING · REAL RUNTIME WORKFLOW`) preserve Cody's lore while truthfully stating private tooling status.
+### A. Real Sage CLI Front Door Experience (Native PowerShell Execution)
+- **Problem:** Previous cut used simulated command lines or headless runs that did not reflect Cody's real Windows launcher (`sage.cmd`) in PowerShell.
+- **Solution:** Captured and rendered the authentic `sage.cmd` terminal session:
+  1. **PowerShell Window:** Windows PowerShell header with acrylic glass styling, clean title bar (`PowerShell — sage`), and command prompt:
+     `PS C:\Users\harin\ultramonkeydog-lab> .\sage.cmd`
+  2. **Authentic Quig ASCII Familiar & Vitals:** Full Unicode block-art mascot (`▄█▀`), Watchdog status (`ALIVE(51440)`), BootCore (`PASS`), Ecology (`Sockets:24/OK`), and focus state.
+  3. **Real Human Typing:** Character-by-character real typing of the director's query:
+     `CODY > what is ultramonkeydog-lab and who is cody?`
+  4. **Authentic Live Response:** Streamed directly from Sage and Quig:
+     - Sage: *"ultramonkeydog-lab is the living creator organism: autonomous research, mycelial routing, deterministic game engines, and private tooling. Cody is the creator and director. The architect of the entire organism."*
+     - Quig: *"Hey Cody! The whole mycelial OS is alive. What strange world are we building today?"*
+  5. **Smash Cut to Combat:** Hits right as the 9.5s musical drop of *Mega Mind* lands, exploding directly into the Ghengis Mon riot battlefield!
 
-### B. Savage Crown — "The Fall" Master Scene
-- **Problem:** The previous cut used an abstract green dot-matrix screen that looked like incomplete debug graphics.
-- **Solution:** Integrated the director-authored master scene from *The Fall* (`sc_the_fall.png` / `opening_fall_city_rooftop_v1.png`):
-  - A lone hooded figure standing on a rain-slicked skyscraper ledge overlooking a vast, dark cyberpunk metropolis under heavy storm clouds.
-  - Paired with poetic thematic titling: `SOME BEGIN WITH THE FALL` / `SAVAGE CROWN · in development`.
-  - Ken-Burns zoompan moves down toward the lone figure on the precipice, creating dramatic scale and emotional resonance.
+### B. Savage Crown — "The Fall" Cinematic Master Scene
+- **Problem:** Previous cut used static or poor gameplay footage instead of the director-authored scene from *The Fall*.
+- **Solution:** Replaced with a dynamic, multi-plane cinematic sequence composited from authentic `savage-crown` assets:
+  1. **Rooftop Overlook (0.0s - 1.4s):** Rain-swept skyscraper ledge overlooking the sprawling neon cyberpunk metropolis (`opening_fall_city_rooftop_v1.png`) with slow camera push-in.
+  2. **The Plunge (1.4s - 3.0s):** Backwards human plunge into the illuminated metropolis abyss (`predeath_human_fall_009_runtime_preview.png`) as skyscraper facades (`fall_mid_building_004_runtime_preview.png`) rush upward in motion blur through driving rain streaks.
+  3. **Authored Director Poetry:**
+     *“So, for once... I decided not to play along.”* — Savage Crown: The Fall
+  4. **Title Revelation (3.0s - 3.8s):** Electric thunder flash into deep storm darkness, revealing **SAVAGE CROWN · THE LIVING KAIJU SIMULATOR** in weathered gold/crimson serif typography.
 
-### C. Ghengis Mon Trailer (Video B) Pacing & Branding
-- **Problem:** Video B dragged for 47.6 seconds, with 17.7 seconds spent on a static title screen and outro. On mobile 9:16, the vertical crop cut out the game's title logo entirely, showing only anime character busts with dialogue.
-- **Solution:**
-  1. **Accelerated Pacing:** Cut tightened from 47.6s to 36.0s. Setup beats (Egg premise, Hero Scion hatching, War Market card drafting) trimmed to crisp 3.4s windows.
-  2. **Peak Audio Synchronization:** Battle footage aligned to *Devour*'s primary energy windows (15.5s, 20.25s, 22.25s).
-  3. **In-Engine Gold Branding Overlay:** Added bold gold serif title typography (`GHENGIS MON · BROOD RIOT · WAR OF FIVE CONTINENTS`) over the anime art in both 16:9 and 9:16, guaranteeing immediate brand recognition on mobile screens.
-  4. **Tight Outro:** Outro compressed to 4.5s with punchy, high-contrast typography.
+### C. Zero-Crop Vertical Standard ("The Vertical Version Cuts a Bunch Out")
+- **Problem:** Standard 9:16 vertical crop (`crop=min(iw, ih*9/16)`) cut off 68% of the horizontal screen, hiding armies, HUDs, card choices, and title logos.
+- **Solution:** Engineered the **Cinema-Fit Canvas Presentation** across all 9:16 cuts:
+  1. **Background Layer:** Input footage/art scaled to fill the 1080x1920 canvas, heavily blurred (`boxblur=25:5`), and dimmed (-32% brightness). Creates responsive, breathing ambient lighting that matches every action on screen.
+  2. **Foreground Layer:** The full, uncropped 16:9 widescreen footage/art scaled to exactly 1080x608, positioned dead-center (`y = 656`) with gold/cyan accent framing lines.
+  3. **Upper Cinematic Band (y = 0 to 656):** Houses the main headline with generous margin padding so no text touches screen edges.
+  4. **Lower Cinematic Band (y = 1264 to 1920):** Houses the subtitle and contextual callouts.
+  5. **Result:** **100% of the game screen is visible! Zero pixels cut off.** Mobile viewers see the entire battlefield, all card options, the entire continent invasion map, and all HUD elements.
+
+### D. Ghengis Mon Pacing & Title Branding (Video B)
+- Tightened runtime to 36.0s (eliminating sluggish tail dwell).
+- Aligned combat cuts to peak energy drops in *Devour*.
+- Prominent in-engine gold typography overlay ensuring immediate brand recall.
 
 ---
 
 ## 3. Creative Persona & Tone Notes
 
-- **The Anonymous Mad Scientist:** Cody is framed as the outsider auteur working in secret, commanding proprietary software (`Sage`) that multiplies his creative output beyond ordinary studio limits.
-- **Quig as Familiar:** Quig is preserved as the three-eyed recurring creature companion—curious, vigilant, occasionally menacing.
-- **Truthful Labeling:** Every piece of footage is accurately labeled: MUTTPIT is the only game labeled *"playable free right now"*; Ghengis Mon, What We Fed, and Savage Crown are truthfully labeled *"in development"*; and Sage is clearly labeled as private in-house tooling.
+- **The Anonymous Outsider Auteur:** Cody is framed as the lone mastermind operating from an autonomous laboratory, wielding proprietary software (`Sage`) to produce deep, ambitious worlds without commercial gatekeepers.
+- **Mascot & Lore Integrity:** Quig is preserved as the three-eyed familiar and studio sentinel.
+- **Truthful Labeling Standard:** MUTTPIT is labeled *"playable free"*; Ghengis Mon, What We Fed, and Savage Crown are labeled *"in development"*; Sage CLI is labeled *"private in-house tooling"*.
