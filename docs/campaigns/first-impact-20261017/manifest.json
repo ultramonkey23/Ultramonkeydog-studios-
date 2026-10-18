@@ -4,10 +4,10 @@
   "produced_at": "2026-10-18",
   "authority": "Cody Haring owns IP and final artistic approval; all items below are drafts awaiting his review",
   "exports": [
-    {"file": "exports/videoA_studio_16x9.mp4", "piece": "VIDEO_A_studio_arrival", "aspect": "16:9", "seconds": 44.5, "music_bed": "Mega Mind (SoundCloud id 1486149688)", "labeling": "mix of real gameplay captures (Ghengis Mon riot/title, MUTTPIT), verified development captures (What We Fed) and art assets (Savage Crown, Moonmaw, studio mascot SVG render)"},
-    {"file": "exports/videoA_studio_9x16.mp4", "piece": "VIDEO_A_studio_arrival", "aspect": "9:16", "seconds": 44.5, "reframing": "custom per-segment vertical crop, not blind crop"},
-    {"file": "exports/videoB_ghengismon_16x9.mp4", "piece": "VIDEO_B_ghengis_mon_arrival", "aspect": "16:9", "seconds": 53.3, "music_bed": "Devour (SoundCloud id 620698710, THE FALL primary score)", "labeling": "real captured gameplay motion (Riot battle, title screen) + verified playtest stills; IN DEVELOPMENT label in outro", "polish": "2026-10-18 pacing rebuild: duplicate Riot dwell reduced and real title-screen payoff extended"},
-    {"file": "exports/videoB_ghengismon_9x16.mp4", "piece": "VIDEO_B_ghengis_mon_arrival", "aspect": "9:16", "seconds": 53.3, "reframing": "custom per-segment vertical crop", "polish": "2026-10-18 pacing rebuild: duplicate Riot dwell reduced and real title-screen payoff extended"}
+    {"file": "exports/videoA_studio_16x9.mp4", "piece": "VIDEO_A_studio_arrival", "aspect": "16:9", "seconds": 30.9, "music_bed": "Mega Mind (SoundCloud id 1486149688)", "labeling": "real Ghengis Mon gameplay, MUTTPIT public capture, verified What We Fed capture, Savage Crown art, Moonmaw art, Quig mascot render, and a cinematic excerpt from a real private Sage front-door session"},
+    {"file": "exports/videoA_studio_9x16.mp4", "piece": "VIDEO_A_studio_arrival", "aspect": "9:16", "seconds": 30.9, "reframing": "custom per-segment vertical crop, not blind crop", "polish": "2026-10-18 v3: rebuilt as a tighter arrival film; Sage appears through a legible excerpt of the actual private front door, never a fabricated UI"},
+    {"file": "exports/videoB_ghengismon_16x9.mp4", "piece": "VIDEO_B_ghengis_mon_arrival", "aspect": "16:9", "seconds": 47.6, "music_bed": "Devour (SoundCloud id 620698710, THE FALL primary score)", "labeling": "real captured gameplay motion (Riot battle, title screen) + verified playtest stills; IN DEVELOPMENT label in outro", "polish": "2026-10-18 v4: cold open and menu dwell tightened; real gameplay authority and title-screen payoff extended"},
+    {"file": "exports/videoB_ghengismon_9x16.mp4", "piece": "VIDEO_B_ghengis_mon_arrival", "aspect": "9:16", "seconds": 47.6, "reframing": "custom per-segment vertical crop", "polish": "2026-10-18 v4: cold open and menu dwell tightened; real gameplay authority and title-screen payoff extended"}
   ],
   "music_provenance": {
     "source": "https://soundcloud.com/cody-haring-380974285/tracks (Cody-authored, verified live via yt-dlp)",
@@ -22,15 +22,16 @@
   "footage_sources": {
     "gm_riot_720.avi": "Godot 4.6.1 Movie Maker capture of the real Ghengis Mon Riot battle via tools/capture_riot.gd (15s, live combat callouts)",
     "gm_title.avi": "Godot Movie Maker capture of the real title screen (14s)",
+    "sage_frontdoor_excerpt.txt": "Editorial excerpt from an actual `sage.cmd forge studio-arrival` session captured 2026-10-18; composed as a terminal sequence and labeled PRIVATE TOOLING / ACTUAL SAGE FRONT DOOR. It is neither a simulated UI nor a product announcement.",
     "stills": "playtest/visual captures from broodriot .godot-cli, MUTTPIT public captures, What We Fed visual-audit captures, Savage Crown living-body art, studio-creature.svg render"
   },
   "honesty_notes": [
     "Sage and the Lab appear as lore tease only and are never claimed as public releases",
     "MUTTPIT is the only item labeled playable now",
     "no post or destination has been published; no publish claims are made",
-    "Sage is shown as an honest text-card lore tease only (no UI screenshot was used — the candidate screenshot was a terminal artifact and was rejected during critique)",
+    "Video A's Sage passage is an editorial terminal treatment of an actual private Sage front-door capture, with its private-tooling status stated onscreen; it is not a simulated UI or public-release claim",
     "2026-10-18 rebuild: 9:16 text overflow fixed via auto-fit font scaling; Savage Crown still replaced with the game's real menu material-field capture",
-    "2026-10-18 polish: Video B was recut from 60.7s to 53.3s after mobile contact-sheet review; the actual Riot and title-screen captures remain accurately labeled",
+    "2026-10-18 polish: Video B was recut from 60.7s to 47.6s after mobile contact-sheet review; the actual Riot and title-screen captures remain accurately labeled",
     "No export has been uploaded, scheduled, published, or submitted"
   ]
 }
