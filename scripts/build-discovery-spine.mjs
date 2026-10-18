@@ -598,51 +598,6 @@ function pressPage(projects) {
   });
 }
 
-function pressPage(projects) {
-  const playable = projects.filter((project) => project.demoUrl);
-  const inquiry = (subject, body) =>
-    `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  const parts = [
-    `<p class="tier">STUDIO / PRESS / COLLABORATION</p>`,
-    `<h1>Strange games. Deep systems.</h1>`,
-    `<p class="lede">Ultramonkeydog Studios is Cody Haring's creator-owned home for games, creatures, sound, stories and strange tools. AI assists production; Cody directs the ideas, systems and final taste.</p>`,
-    `<p><a class="cta" href="${esc(inquiry("Ultramonkeydog Studios — press inquiry", "Hi Cody,\n\nI'm reaching out from [outlet / channel] about [project / story].\n\nMy deadline or proposed timing is [date].\n"))}">Request an interview or assets</a>` +
-      `<a class="cta cta--ghost" href="${esc(ITCH)}">Studio on itch.io</a></p>`,
-    `<h2>Copy you can use</h2>`,
-    `<div class="card"><h3>Short studio description</h3><p>Ultramonkeydog Studios is Cody Haring's creator-owned studio making systems-rich games, creature worlds, audio experiments and strange interactive projects. Its work blends dark humor, transformation and human-directed AI-assisted production.</p></div>`,
-    `<div class="card"><h3>About Cody</h3><p>Cody Haring designs the studio's concepts and systems, directs the creative work, and makes final release decisions. His influences include death metal, underground hip hop, roguelites, anime, manga and horror.</p></div>`,
-    `<h2>Playable coverage starting points</h2>`,
-    `<p>These are public browser demos. Cover the current build you actually play; the games continue to evolve.</p>`,
-  ];
-  for (const project of playable) {
-    parts.push(`<div class="card"><span class="state">PUBLIC BROWSER DEMO</span>` +
-      `<h3>${esc(project.title)}</h3><p>${esc(project.description)}</p>` +
-      `<p><a class="cta" href="${esc(project.demoUrl)}">${esc(project.demoLabel ?? "Play")}</a>` +
-      `<a class="cta cta--ghost" href="/${esc(project.id)}">Project facts</a></p></div>`);
-  }
-  parts.push(
-    `<h2>Audio creators: help shape Vocal</h2>`,
-    `<p>Monkey's Ear is a developing family of audio modules. Its standalone Voice/Vocal VST3 is the first candidate for tester feedback. A Windows x64 tester bundle has an automated validation path; a public release and human REAPER listening approval are still pending. Request testing details and tell Cody your DAW, Windows version and the vocal problem you want it to solve.</p>`,
-    `<p><a class="cta" href="${esc(inquiry("Monkey's Ear Vocal — tester interest", "Hi Cody,\n\nI want to test Vocal. My DAW and version: [ ].\nWindows version: [ ].\nVocal use case / problem: [ ].\nListening or workflow feedback I can provide: [ ].\n"))}">Ask about Vocal testing</a>` +
-      `<a class="cta cta--ghost" href="https://github.com/ultramonkey23/monkeys-ear">See the audio project</a></p>`,
-    `<h2>Studio image and usage</h2>`,
-    `<p><a href="/assets/og-card.png">Download the 1200 × 630 studio image</a>. It is a conceptual studio image, not a screenshot from any playable game. For current game screenshots, footage, logos, or interview material, email Cody with the project and format you need.</p>`,
-    `<h2>Contact and official links</h2>`,
-    `<ul><li>Press, publishing, collaboration and tester inquiries: <a href="mailto:${CONTACT}">${CONTACT}</a></li>` +
-      `<li><a href="${ORIGIN}/">Official studio website</a></li>` +
-      `<li><a href="${esc(ITCH)}">Official itch.io storefront</a></li></ul>`,
-  );
-  return page({
-    slug: "press",
-    title: "Press & collaboration — Ultramonkeydog Studios",
-    description: "Studio facts, approved descriptions, two playable browser demos, press contact and Monkey's Ear Vocal tester inquiries.",
-    accent: "#f2b74c",
-    crumbHref: "/press",
-    crumbLabel: "Press & collaboration",
-    body: parts.join("\n"),
-  });
-}
-
 function sitemap(projects) {
   const today = new Date().toISOString().slice(0, 10);
   const entries = [
