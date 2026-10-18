@@ -38,6 +38,15 @@ const worlds = [
     cue: "TENDERNESS / DEPTH",
     type: "Long-horizon project · early build",
   },
+  {
+    id: "ghengis-mon",
+    chapter: "04",
+    line: "Every empire begins as an egg.",
+    promise:
+      "A creature warfare roguelite across five continents: command the War Market with brutal recruit-or-devour choices, spark autonomous army riots, and face a living world that remembers every grudge.",
+    cue: "WARFARE / DEVOUR",
+    type: "Creature warfare · in development",
+  },
 ];
 const contactUrl = `mailto:${email}?subject=${encodeURIComponent("[UMD STUDIO] A specific idea")}&body=${encodeURIComponent("Hi Cody,\n\nI’m interested in:\nMy idea or question:\nRelevant link (optional):\nTiming (if relevant):\n")}`;
 
@@ -367,10 +376,10 @@ export default function App() {
           </div>
           <div className="cover-founder__story">
             <p>
-              I’m an autistic creator building games, tools and worlds with AI
-              as a bridge across disciplines. I originate the concepts, design
-              the systems, direct production, reject what doesn’t fit and decide
-              what earns release.
+              I’m Cody Haring: the human creator and artistic director behind
+              every world here. I originate the concepts, design the systems,
+              direct production, reject what doesn’t fit and decide what earns
+              release.
             </p>
             <p>
               Death-metal tension. Underground-hip-hop recombination. Creature
@@ -378,10 +387,10 @@ export default function App() {
               how the work moves—not just how it looks.
             </p>
             <p>
-              One private creation system helps bring the work to life — the
-              only part of the studio that stays private. Everything else can
-              be teased, shared or shipped. Authorship, creative control and
-              final judgment stay with me.
+              Private creation tooling (such as Sage) assists production across
+              disciplines, but stays entirely private. Sage is not Cody, not an
+              AI persona of Cody, and not a public product. Authorship, creative
+              direction, human taste, and final release authority stay with me.
             </p>
             <a className="cover-text-link" href="/press">
               Founder story &amp; press kit <ArrowUpRight size={18} />

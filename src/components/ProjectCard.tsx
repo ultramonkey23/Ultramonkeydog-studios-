@@ -14,6 +14,7 @@ import {
   Layers3,
   Scale,
   Sparkles,
+  Swords,
   Trophy,
 } from "lucide-react";
 
@@ -49,6 +50,7 @@ const styleTheme: Record<
   "feral-formation": { accent: "#ff9c45", signal: "#48bda0", secondary: "#776bd8", pop: "#d978aa", structure: "#e8e1c2", icon: Layers3 },
   "box-o-battles": { accent: "#e94b39", signal: "#ffc447", secondary: "#3f7cff", pop: "#b66ee8", structure: "#f6e4b6", icon: Scale },
   "muttpit": { accent: "#c9772f", signal: "#f2b74c", secondary: "#b489ff", pop: "#b7d94a", structure: "#e9d9b0", icon: Gamepad2 },
+  "ghengis-mon": { accent: "#f2b74c", signal: "#e65100", secondary: "#9c27b0", pop: "#ffd700", structure: "#f5e6c8", icon: Swords },
 };
 
 const mediaTone: Record<PublicMediaState, string> = {

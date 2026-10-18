@@ -22,7 +22,8 @@ Per Cody's artistic direction (2026-10-18), the FIRST IMPACT campaign concentrat
 - Studio Web: `https://ultramonkeydog-studios.vercel.app/` returned HTTP 200 on 2026-10-18.
 - Canonical URL, 1200×630 OG card, `summary_large_image`, honest *MUTTPIT* playable-now copy, and studio mascot illustration are fully aligned.
 - Keep the campaign URL as the primary CTA: `https://ultramonkeydog-studios.vercel.app/`.
-- Do not describe Sage or the Lab as a released product; the Sage CLI sequence is private creator tooling/lore in Video A.
+- Do not describe Sage or private systems as a released product; the Sage CLI sequence is private creator tooling in Video A.
+- Creator identity: Cody Haring is the human creator and artistic director. Sage is private developer tooling. In Video A's authentic terminal recording, the streaming model output hallucinated an inverted role ('Cody is the AI assistant'); all public descriptions, social copy, and website materials explicitly state the truth: Cody is the human creator directing all production.
 
 ---
 
@@ -37,13 +38,14 @@ Per Cody's artistic direction (2026-10-18), the FIRST IMPACT campaign concentrat
 ```text
 The door is open. No permission. Just the work.
 
-One anonymous outsider. One living studio mascot named Quig. A stack of games and autonomous systems that refuse to sit still. 
+Creator & Director: Cody Haring.
+One living studio mascot named Quig. A stack of games and autonomous systems that refuse to sit still. 
 
 MUTTPIT is playable free right now in your browser. 
 GHENGIS MON, WHAT WE FED, and SAVAGE CROWN are in active development.
 
 Music: "Mega Mind" by Cody Haring
-Private creator tooling: Sage CLI / Living Lab Membrane
+Private creator tooling: Sage CLI (internal developer tooling, not a public product)
 
 Play MUTTPIT now & follow the games:
 https://ultramonkeydog-studios.vercel.app/
@@ -56,7 +58,7 @@ The door is open. No permission. Just the work.
 Ultramonkeydog Studios arrives with four worlds in motion. 
 MUTTPIT is playable free now; Ghengis Mon, What We Fed, and Savage Crown are growing teeth.
 
-Built from an autonomous lab.
+Directed by Cody Haring.
 https://ultramonkeydog-studios.vercel.app/
 ```
 
@@ -76,10 +78,11 @@ Hatch a Hero Scion. Recruit or devour at the War Market. Command living battlefi
 GHENGIS MON: BROOD RIOT — WAR OF FIVE CONTINENTS is in active development.
 Captured live in-engine via Godot 4.6.1 Movie Maker.
 
+Creator & Director: Cody Haring
 Music: "Devour" (The Fall Primary Score) by Cody Haring
 
 Follow the invasion:
-https://ultramonkeydog-studios.vercel.app/
+https://ultramonkeydog-studios.vercel.app/ghengis-mon
 ```
 
 **X / Social Post:**  

@@ -382,6 +382,12 @@
   margin-right: 7%;
   border-left: 4px solid #bd94b4;
 }
+.world-record--ghengis-mon {
+  --world-accent: #f2b74c;
+  background: #231b12;
+  margin-left: 4%;
+  border-left: 4px solid #d48b28;
+}
 .world-record__name .cover-kicker {
   color: var(--world-accent);
 }

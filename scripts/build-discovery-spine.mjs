@@ -337,6 +337,7 @@ const FLAGSHIP_DOORWAYS = {
   "savage-crown": {number: "01", lane: "MUTATION / CONSEQUENCE", hook: "Become the thing the world fears.", direction: "Biological horror, hostile supernatural systems, and a creature identity shaped by mutation, grafts and passive synergy. The ambition is earned monstrous escalation—not growth that only changes a number.", accent: "#ee8765"},
   "what-we-fed": {number: "02", lane: "HUNGER / BOND", hook: "Hunger is a choice. So is attachment.", direction: "Bond vs Eat puts attachment and consumption at the center of creature growth. Hunger, mutation pressure and music-driven escalation belong to the same wondrous, mythic creature world.", accent: "#b5c279"},
   "saga-anxious-fluff": {number: "03", lane: "TENDERNESS / DEPTH", hook: "Wonder deserves depth.", direction: "Tenderness, strange creatures and deep progression belong in the same family-facing world. Sensory-aware design is an intent; tested accessibility outcomes are not established.", accent: "#e0bf89"},
+  "ghengis-mon": {number: "04", lane: "WARFARE / DEVOUR", hook: "Every empire begins as an egg.", direction: "Autonomous creature warfare across five fractured continents. Hatch an ancestral Hero Scion, master the War Market's recruit-or-devour economy, and command massive army riots on living battlefields that remember every scar and grudge.", accent: "#f2b74c"},
 };
 
 function projectPage(project, siblings) {
@@ -394,14 +395,28 @@ function projectPage(project, siblings) {
             `<figure><img src="${esc(item.src)}" width="${esc(item.width ?? 1280)}" height="${esc(item.height ?? 757)}" loading="lazy" alt="${esc(item.alt ?? item.title)}">` +
             `<figcaption>${esc(item.title)} — ${
               item.state === "PROMOTED_RUNTIME_GAMEPLAY"
-                ? "real runtime capture / shipped browser build"
+                ? (project.demoUrl ? "real runtime capture / shipped browser build" : "in-engine runtime capture / Godot 4")
                 : esc(item.state).toLowerCase()
             }</figcaption></figure>`,
         )
         .join("")}</div>`,
     );
     parts.push(
-      `<p class="limit">Every image on this page is a capture of the actual shipped build driven in a real browser, not staged art.</p>`,
+      `<p class="limit">${project.demoUrl ? "Every image on this page is a capture of the actual shipped build driven in a real browser, not staged art." : "Every image on this page is an authentic capture from the game's running engine or verified development environments, not staged marketing art."}</p>`,
+    );
+  }
+
+  if (project.id === "ghengis-mon") {
+    parts.push(`<h2>Official 16:9 Trailer &amp; Cinematic Master</h2>`);
+    parts.push(
+      `<div class="card" style="border-left-color:${accent}">` +
+        `<span class="state" style="color:${accent}">TRAILER MASTER COMPLETED · DEVOUR BED</span>` +
+        `<h3>Ghengis Mon: Brood Riot — War of Five Continents</h3>` +
+        `<p>The official 36-second 16:9 widescreen gameplay trailer is finalized in the studio vault, cut to Cody Haring's primary battle score <em>"Devour"</em> with in-engine Godot 4.6.1 Movie Maker combat captures, tactical Riot callouts, and the gold title reveal.</p>` +
+        (project.trailerUrl
+          ? `<p><a class="cta" href="${esc(project.trailerUrl)}" target="_blank" rel="noopener noreferrer">${esc(project.trailerLabel ?? "Watch the Trailer on YouTube")} ↗</a></p>`
+          : `<p class="limit">The public YouTube premiere link will be embedded and linked here as the trailer goes live. Follow the studio for the live drop.</p>`) +
+      `</div>`,
     );
   }
 
@@ -567,7 +582,7 @@ function playPage(projects) {
 
 function pressPage(projects) {
   const inquiry = `mailto:${CONTACT}?subject=${encodeURIComponent("[UMD PRESS] Interview or assets")}&body=${encodeURIComponent("Hi Cody,\n\nMy outlet or project:\nStory or collaboration idea:\nAssets requested:\nTiming:\n")}`;
-  const ids = ["savage-crown", "what-we-fed", "saga-anxious-fluff"];
+  const ids = ["savage-crown", "what-we-fed", "saga-anxious-fluff", "ghengis-mon"];
   const featured = ids
     .map((id) => projects.find((project) => project.id === id))
     .filter(Boolean);
@@ -576,12 +591,12 @@ function pressPage(projects) {
     `<header class="press-cover"><div><p class="press-eyebrow">CREATOR-OWNED / HUMAN-DIRECTED / PRESS KIT</p><h1>Cody Haring.<br><em>Ultramonkeydog<br>Studios.</em></h1><p class="press-deck">One human director.<br>A private creation engine.<br>Strange work with teeth.</p><p class="lede">Games, creature worlds, audio experiments and unusual software. Cody originates the concepts, designs the causal systems, directs AI-assisted production and decides what earns release.</p><a class="cta" href="${esc(inquiry)}">Request an interview or assets ↗</a></div><figure><img src="/assets/studio-transformation-cover-v2.webp" width="1024" height="1536" alt="Studio cover illustration of a small creature transforming into a large bone-armored predator"><figcaption>AI-assisted studio illustration. Not gameplay.</figcaption></figure></header>`,
     `<section class="press-editorial"><div><p class="press-eyebrow">THE HUMAN / REUSABLE BIO</p><h2>Self-taught.<br>Independent.<br><em>Unusual by design.</em></h2></div><div><p>Cody Haring is a self-taught autistic creator and the founder of Ultramonkeydog Studios. He uses AI as a bridge across disciplines while retaining authorship, design, criticism and final authority.</p><p>His work draws from death-metal tension, underground-hip-hop recombination, creature obsession, RPGs, horror and family life. Weak beginnings can become feared; growth changes identity, actions and world response. Darkness leaves room for humor, tenderness, mystery and wonder.</p></div></section>`,
     `<section class="press-description"><p class="press-eyebrow">COPY YOU CAN USE / STUDIO DESCRIPTION</p><p>Ultramonkeydog Studios is Cody Haring’s privately owned studio for systems-heavy games, creature worlds, audio experiments and unusual software. Its signature is transformation with consequences, dark humor and human-directed production. Creative authority and original IP stay with the studio.</p></section>`,
-    `<section class="press-stories"><p class="press-eyebrow">STORY ANGLES</p><h2>More than an AI novelty story.</h2><ol><li><strong>The outsider’s bridge.</strong> A self-taught creator building a private creation engine with ordinary subscriptions and modest model credits. Cody’s account, not an audited productivity claim.</li><li><strong>Transformation with consequences.</strong> Creature worlds where growth changes what you can do and how the world responds.</li><li><strong>Human direction.</strong> AI as a production bridge, with a human author making the decisions.</li><li><strong>Room for overlooked people.</strong> Work intended for overlooked, disabled and neurodivergent people. Tested accessibility outcomes are not yet established.</li></ol></section>`,
+    `<section class="press-stories"><p class="press-eyebrow">STORY ANGLES</p><h2>More than an AI novelty story.</h2><ol><li><strong>The outsider’s bridge.</strong> A self-taught creator building a private creation engine with ordinary subscriptions and modest model credits. Cody’s account, not an audited productivity claim.</li><li><strong>Transformation with consequences.</strong> Creature worlds where growth changes what you can do and how the world responds.</li><li><strong>Human direction.</strong> AI as a production bridge, with a human author making the decisions. Cody Haring is the human founder, creator, and artistic director. Sage is private AI-assisted production tooling—not Cody, not an AI persona, and not a public product. (Unscripted live terminal outputs from external language models have occasionally hallucinated role inversions, such as labeling Cody an AI assistant; Cody is the human director directing all systems.)</li><li><strong>Room for overlooked people.</strong> Work intended for overlooked, disabled and neurodivergent people. Tested accessibility outcomes are not yet established.</li></ol></section>`,
     `<section class="press-projects"><p class="press-eyebrow">CURRENT WORK / NOT RELEASE ANNOUNCEMENTS</p><h2>Different worlds.<br>Distinct ambitions.</h2>`,
   ];
   for (const [index, project] of featured.entries()) {
     parts.push(
-      `<article class="press-project" data-project="${esc(project.id)}"><span class="press-number">0${index + 1}</span><div><p class="press-eyebrow">${esc(project.id === "savage-crown" ? "FLAGSHIP / IN DEVELOPMENT" : "IN DEVELOPMENT")}</p><h3>${esc(project.title)}</h3></div><div><p>${esc(project.description)}</p><p class="limit">${esc(project.status)}</p><a href="/${esc(project.id)}">Project and current evidence ↗</a></div></article>`,
+      `<article class="press-project" data-project="${esc(project.id)}"><span class="press-number">0${index + 1}</span><div><p class="press-eyebrow">${esc(project.id === "savage-crown" ? "FLAGSHIP / IN DEVELOPMENT" : project.id === "ghengis-mon" ? "CREATURE WARFARE / IN DEVELOPMENT" : "IN DEVELOPMENT")}</p><h3>${esc(project.title)}</h3></div><div><p>${esc(project.description)}</p><p class="limit">${esc(project.status)}</p><a href="/${esc(project.id)}">Project and current evidence ↗</a></div></article>`,
     );
   }
   parts.push(
@@ -593,7 +608,7 @@ function pressPage(projects) {
     );
   parts.push(
     `<section class="press-editorial"><div><p class="press-eyebrow">INDEPENDENT BY DESIGN</p><h2>Original products.<br><em>Creative control.</em></h2></div><div><p>The studio’s path is original products, direct audience support, grants, credits and selective partnerships that preserve creative control. It is not offering consulting or custom client services. The private creation engine is not for sale or public access.</p><p>Paid roles, budgets and partnership terms require a separate explicit agreement. No compensation or revenue share is promised here.</p></div></section>`,
-    `<section class="press-assets"><p class="press-eyebrow">ASSETS / OFFICIAL LINKS</p><h2>Use the right evidence.</h2><p><strong>Gameplay captures — real runtime captures of the shipped MUTTPIT browser build:</strong> <a href="/assets/muttpit/title/capture.png">title screen</a> · <a href="/assets/muttpit/kennel/capture.png">kennel screen</a> · <a href="/assets/muttpit/bout/capture.png">bout impact frame</a> · <a href="/assets/muttpit/mailbox/capture.png">mailbox / Verdict Packet</a> · <a href="/assets/muttpit/muttpit-share-1200x630.png">1200 × 630 share card cut from the bout capture</a>. Dog and key art are AI-assisted illustrations (local FLUX.2 Klein), art-directed, curated and retouched by the studio; interface, typography and all game text are authored in code.</p><p><strong>Studio artwork:</strong> <a href="/assets/studio-transformation-cover-v2.webp">studio cover illustration</a> · <a href="/assets/studio-share-v3.png">1200 × 630 studio share image</a>. Both are conceptual studio artwork, not gameplay. Ask about art reuse and request further screenshots, footage or logos through the contact action.</p><ul class="next"><li><a href="${ORIGIN}/">Official studio website</a></li><li><a href="${esc(ITCH)}">Official itch.io storefront</a></li></ul></section>`,
+    `<section class="press-assets"><p class="press-eyebrow">ASSETS / OFFICIAL LINKS</p><h2>Use the right evidence.</h2><p><strong>Gameplay captures — real runtime captures of the shipped MUTTPIT browser build:</strong> <a href="/assets/muttpit/title/capture.png">title screen</a> · <a href="/assets/muttpit/kennel/capture.png">kennel screen</a> · <a href="/assets/muttpit/bout/capture.png">bout impact frame</a> · <a href="/assets/muttpit/mailbox/capture.png">mailbox / Verdict Packet</a> · <a href="/assets/muttpit/muttpit-share-1200x630.png">1200 × 630 share card cut from the bout capture</a>. Dog and key art are AI-assisted illustrations (local FLUX.2 Klein), art-directed, curated and retouched by the studio; interface, typography and all game text are authored in code.</p><p><strong>Ghengis Mon captures — real in-engine runtime captures from Godot 4.6.1:</strong> <a href="/assets/ghengis-mon/title.webp">title screen</a> · <a href="/assets/ghengis-mon/battle.webp">Riot combat capture</a> · <a href="/assets/ghengis-mon/market.webp">War Market draft</a> · <a href="/assets/ghengis-mon/conquest-map.webp">conquest map</a>.</p><p><strong>Studio artwork:</strong> <a href="/assets/studio-transformation-cover-v2.webp">studio cover illustration</a> · <a href="/assets/studio-share-v3.png">1200 × 630 studio share image</a>. Both are conceptual studio artwork, not gameplay. Ask about art reuse and request further screenshots, footage or logos through the contact action.</p><ul class="next"><li><a href="${ORIGIN}/">Official studio website</a></li><li><a href="${esc(ITCH)}">Official itch.io storefront</a></li></ul></section>`,
     `<section class="press-inquiry"><p class="press-eyebrow">ONE SPECIFIC CONVERSATION</p><h2>Interview, assets,<br><em>or an aligned opportunity?</em></h2><p>Tell Cody your outlet or project, the idea, the assets you need and the timing. A clear request is more useful than a vague collaboration offer.</p><p><a class="cta" href="${esc(inquiry)}">Request an interview or assets ↗</a></p><p class="limit">You choose what to share through your email app. No mailing-list enrollment. Do not send confidential material.</p></section>`,
   );
   return page({

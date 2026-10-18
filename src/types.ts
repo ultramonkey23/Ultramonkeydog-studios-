@@ -10,7 +10,8 @@ export type ProjectVisualStyle =
   | "saga-anxious-fluff"
   | "feral-formation"
   | "box-o-battles"
-  | "muttpit";
+  | "muttpit"
+  | "ghengis-mon";
 
 export type PublicMediaState =
   | "PLAYABLE_DEMO"
@@ -63,6 +64,8 @@ export interface Project {
   expandedDetails?: string;
   tone?: string;
   systemsUnderTheHood?: string[];
+  trailerUrl?: string;
+  trailerLabel?: string;
 }
 
 export interface ProductionRole {
