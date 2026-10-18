@@ -1,6 +1,6 @@
 # FIRST IMPACT — Production Report (outgoing session, 2026-10-18)
 
-Owner: Cody Haring (IP + final artistic authority). Produced with Ultramonkeydog Lab.
+Owner: Cody Haring (IP + final artistic authority). Produced with private production tooling.
 Status: FINAL CAMPAIGN PACKAGE PREPARED — exports, brand directions, distribution copy, and evidence are staged for Cody review. Nothing has been published.
 
 ## What was really made
@@ -11,9 +11,9 @@ Status: FINAL CAMPAIGN PACKAGE PREPARED — exports, brand directions, distribut
 | VIDEO B — Ghengis Mon arrives (53.3s, 16:9 + 9:16) | POLISHED, staged | `exports/videoB_ghengismon_16x9.mp4`, `exports/videoB_ghengismon_9x16.mp4` |
 | Brand system | EVALUATED, staged | `brand_direction_01_surgical_stamp.svg`, `brand_direction_02_quig_signal.svg`, `brand_direction_03_experiment_press.svg`, `BRAND_EVALUATION.md` |
 | Distribution deck | PREPARED, not published | `DISTRIBUTION_PREP.md` |
-| Music beds (Mega Mind / Devour / The Sound / Shifting the Realms) | DONE, provenance recorded | lab `scratch/first_impact/audio/` + `~/.lab/source_staging/first-impact/cody-soundcloud/` |
+| Music beds (Mega Mind / Devour / The Sound / Shifting the Realms) | DONE, provenance recorded | private campaign audio workspace + source-staging archive |
 | Real gameplay motion capture | DONE | `footage/gm_riot_720.avi` (15s Riot battle w/ live callouts), `footage/gm_title.avi` (14s title) |
-| Handoff + recipes + hazard map | DONE | `HANDOFF.md` (this folder + lab scratch) |
+| Handoff + recipes + hazard map | DONE | `HANDOFF.md` (this folder + private production workspace) |
 
 ## What was tested / validated
 
@@ -53,12 +53,12 @@ Successor's critique pass should now judge pacing/music sync/impact, not clippin
 - Public title form: `GHENGIS MON` (recommended) vs `BROOD RIOT: WAR OF FIVE CONTINENTS`.
 - "playable free" wording for MUTTPIT.
 - Sage tease wording ("THE SECRET INGREDIENT / proprietary software that
-  breaks my limits" — lore only; Lab/Sage are never public releases).
+  breaks my limits" — lore only; private tooling and Sage are never public releases).
 - Which extra short is produced first (logo sting / title showcase / Quig short).
 
 ## Music provenance (all Cody-authored, SoundCloud cody-haring-380974285)
 
-- Devour (id 620698710) — Video B bed; THE FALL primary score per the Lab's
+- Devour (id 620698710) — Video B bed; THE FALL primary score per the internal
   savage_crown_soundtrack_atlas.json. Name matches the game's core verb.
 - Mega-mind (id 1486149688) — Video A bed (quiet intro + lift = built-in reveal).
 - the Sound (id 1093149880) and shifting the realms (id 1048677886) — cut as

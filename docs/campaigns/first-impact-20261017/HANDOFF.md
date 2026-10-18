@@ -8,9 +8,9 @@ state from the outgoing session — trust it, but re-verify cheaply before build
 
 > You are finishing the ULTRAMONKEYDOG STUDIOS "FIRST IMPACT" campaign (studio
 > arrival video + Ghengis Mon arrival video + branding + distribution prep).
-> Boot Ultramonkeydog Lab first (mcp boot DEEP / health / lane_check / drift;
+> Boot the private production system first (deep health / lane / drift checks;
 > it is the partner for this work). Read
-> `C:\Users\harin\ultramonkeydog-lab\scratch\first_impact\HANDOFF.md` — it is
+> the private campaign handoff — it is
 > your full state map. Built so far: Video A (studio, 44.5s) and Video B
 > (Ghengis Mon, 60.7s), each in 16:9 + 9:16, at
 > `scratch\first_impact\video{A,B}_*.mp4`, cut to Cody's own music (Mega Mind /
@@ -22,10 +22,10 @@ state from the outgoing session — trust it, but re-verify cheaply before build
 > metadata, platform formats — NEVER claim anything published); (4) copy final
 > exports + manifest + production report into
 > `C:\Users\harin\Ultramonkeydog-studios-\docs\campaigns\first-impact-20261017\`
-> and close out the Lab side with a receipt + `python labctl finish`. Creative
+> and close out private production with a receipt. Creative
 > voice Cody mandated: he is framed as an ANONYMOUS MAD-SCIENTIST OUTSIDER game
 > dev; tease Sage + "proprietary software that breaks my limits" as LORE ONLY
-> (the Lab and Sage are never public releases); Quig appears as studio mascot.
+> (private tooling and Sage are never public releases); Quig appears as studio mascot.
 > Never optimize for minimal/safe — take the highest-value complete improvement.
 > If provider limits bite, spawn cheap sub-agents (Cody authorized creating
 > sub-agents/skills; grems in `state/grem_identity.json` + grem_discovery are
@@ -38,13 +38,13 @@ state from the outgoing session — trust it, but re-verify cheaply before build
 
 1. Frame Cody as a **mad scientist anonymous outsider game dev**.
 2. **Show Sage a bit + "I have proprietary software that breaks my limits to
-   create"** — but Sage and Ultramonkeydog Lab are **NOT public releases**, only
+   create"** — but Sage and private tooling are **NOT public releases**, only
    cool lore/tease. Never imply they will ship.
 3. **Quig is the studio mascot** (his canonical identity: QUIG_PARTNER_V1,
    "the recurring companion face across Cody's creations" — retrieve via
    `mcp__lab__partner_identity`). Already a Ghengis Mon narrator voice.
 4. Provider/model hard limits are not an excuse — **spawn cheap sub-agents**;
-   Cody permits creating skills + sub-agents to work better with the Lab.
+   Cody permits creating skills + sub-agents to work better with private production tooling.
    (No LLxprt subagents are registered — `/subagent` is a user-side CLI command.
    Parallelize via background shell jobs meanwhile.)
 5. Honesty law from the mission: real gameplay / dev capture / art asset labels
@@ -52,7 +52,7 @@ state from the outgoing session — trust it, but re-verify cheaply before build
 
 ## 2. What is BUILT and verified (paths on this machine)
 
-Production workspace: `C:\Users\harin\ultramonkeydog-lab\scratch\first_impact\`
+Production workspace: private first-impact workspace.
 - `videoA_studio_16x9.mp4` + `videoA_studio_9x16.mp4` — 44.5s studio arrival,
   Mega Mind bed (Cody's track, downloaded w/ provenance). Structure: black
   "ONE ANONYMOUS MAD SCIENTIST" → Quig mascot beat (studio-creature.svg render)
@@ -112,7 +112,7 @@ Production workspace: `C:\Users\harin\ultramonkeydog-lab\scratch\first_impact\`
 - SoundCloud verified live: `https://soundcloud.com/cody-haring-380974285/tracks`
   (88+ tracks, tool = `python -m yt_dlp`). The four named tracks all exist and
   are downloaded with .info.json provenance to
-  `C:\Users\harin\.lab\source_staging\first-impact\cody-soundcloud\`:
+  private first-impact source-staging archive:
   Devour (id 620698710, THE FALL primary score per
   `quig-vault/asset_manifests/savage_crown_soundtrack_atlas.json`),
   Mega-mind (1486149688), the Sound (1093149880), shifting the realms (1048677886).
@@ -175,7 +175,7 @@ Production workspace: `C:\Users\harin\ultramonkeydog-lab\scratch\first_impact\`
 4. **Deliver + close**: copy final exports + `manifest.json` (track provenance,
    asset sources, clip labeling) + `PRODUCTION_REPORT.md` (what was made/tested/
    improved, what is incomplete, decisions needing Cody) into
-   `Ultramonkeydog-studios-\docs\campaigns\first-impact-20261017\`. Then a Lab
+   `Ultramonkeydog-studios-\docs\campaigns\first-impact-20261017\`. Then a private-production
    receipt (`receipts/receipt_<ts>_first_impact_campaign.md`, declaring
    FILES_CHANGED) + `python labctl finish --receipt <path> --yes -m ...`
    (two runs may be needed; if GH013 push block: `git rebase --autostash
@@ -188,6 +188,6 @@ Production workspace: `C:\Users\harin\ultramonkeydog-lab\scratch\first_impact\`
   edits show both — the outro uses the combined form).
 - Whether MUTTPIT copy should say "playable free" (current cut says it).
 - Sage tease wording ("THE SECRET INGREDIENT / proprietary software that
-  breaks my limits") — currently lore-flavored, Lab unnamed on screen.
+  breaks my limits") — currently lore-flavored, private tooling unnamed on screen.
 - Which extra short deserves production first (logo sting vs title showcase vs
   Quig mascot short).

@@ -1,6 +1,6 @@
 # FIRST IMPACT — Campaign Creative Brief (v1, discovery-driven)
 
-Owner: Cody Haring (IP + final artistic authority). Produced with Ultramonkeydog Lab.
+Owner: Cody Haring (IP + final artistic authority). Produced with private production tooling.
 Date: 2026-10-17. Status: IN PRODUCTION.
 
 ## What discovery actually found (evidence, not storyboard)
@@ -24,7 +24,7 @@ Date: 2026-10-17. Status: IN PRODUCTION.
 - **Music (verified live on SoundCloud, cody-haring-380974285, 88+ tracks):**
   Devour (game's THE FALL primary score), Mega Mind (combat), The Sound
   (dimensional transition), Shifting the Realms (realm shift) — all four named
-  tracks exist; downloaded with provenance to ~/.lab/source_staging/first-impact/.
+  tracks exist; downloaded with provenance to the private source-staging archive.
 
 ## Common identity thread (what connects the portfolio)
 
@@ -69,7 +69,7 @@ Deliverables: 16:9 master + 9:16 vertical cut.
 - Every clip labeled truthfully: real gameplay (Ghengis Mon/MUTTPIT), dev capture,
   or art asset. No fake footage, no "coming soon" implying finished.
 - Only Cody's original music. Provenance recorded in manifest.
-- The Lab + Cockpit stay private; public copy shows real playable work.
+- Private production tools stay private; public copy shows real playable work.
 
 ## Open creative calls for Cody (final authority)
 
