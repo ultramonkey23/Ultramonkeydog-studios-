@@ -147,9 +147,14 @@ export default function App() {
               Games, creature worlds, sound and unusual systems. Created and
               directed by <a href="#cody">Cody Haring</a>.
             </p>
-            <a href="#worlds" className="cover-action">
-              Explore the worlds <ArrowDown size={18} />
-            </a>
+            <div className="studio-cover__actions" aria-label="Ways to enter the studio">
+              <a href="/play" className="cover-action">
+                Play what’s live <ArrowUpRight size={18} />
+              </a>
+              <a href="#worlds" className="cover-text-link">
+                Explore the worlds <ArrowDown size={18} />
+              </a>
+            </div>
             <p className="studio-cover__note">
               One game is playable right now: MUTTPIT.
               <br />

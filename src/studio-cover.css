@@ -173,6 +173,17 @@
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
 }
+.studio-cover__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: 24px;
+}
+.studio-cover__actions .cover-action,
+.studio-cover__actions .cover-text-link {
+  margin-top: 0;
+}
 .cover-action {
   display: inline-flex;
   align-items: center;
@@ -721,8 +732,13 @@
     max-width: 360px;
     font-size: 15px;
   }
-  .studio-cover__copy .cover-action {
+  .studio-cover__actions {
     margin-top: 18px;
+    gap: 14px;
+  }
+  .studio-cover__actions .cover-action,
+  .studio-cover__actions .cover-text-link {
+    margin-top: 0;
   }
   .studio-cover__note {
     font-size: 11px;
