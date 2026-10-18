@@ -249,12 +249,24 @@ function privateEngineDispatch() {
 }
 
 const DISPATCHES = [
+  ["silhouette-before-surface", "Silhouette Before Surface: Four Tests for Creatures That Behave", "2026-10-18", "A practical peer-facing exercise: shadow, action, consequence, surface—and where measurement must stop."],
   ["pick-your-strange", "Pick your strange.", "2026-10-16", "A first visit to the studio: creature worlds, sound, tools, and the human behind them."],
   ["a-level-up-should-change-the-question", "A Level-Up Should Change the Question", "2026-10-14", "Growth, attachment, and the choices power makes harder."],
   ["a-monster-should-survive-as-a-shadow", "A Monster Should Survive as a Shadow", "2026-10-12", "Silhouette, action, consequence, then surface."],
   ["the-machine-stays-private", "The Machine Stays Private. The Work Has to Survive in Public.", "2026-10-10", "Human direction, private machinery, public work."],
   ["the-pit-keeps-receipts", "A Fight Should Keep Its Receipts", "2026-10-08", "The studio’s smaller browser-game sample and its inspectable outcomes."],
 ];
+
+function silhouetteGuide() {
+  const article = fs.readFileSync(path.join(ROOT, "docs/campaigns/silhouette-before-surface/article.md"), "utf8");
+  const blocks = article.trim().split(/\n\s*\n/);
+  const html = blocks.map((block) => {
+    if (block.startsWith("# ")) return `<h1>${esc(block.slice(2))}</h1>`;
+    if (block.startsWith("## ")) return `<h2>${esc(block.slice(3))}</h2>`;
+    return `<p>${esc(block.replace(/\n/g, " "))}</p>`;
+  }).join("\n");
+  return page({slug:"dispatches/silhouette-before-surface",title:"Silhouette Before Surface — Creature Design Tests | Ultramonkeydog Studios",description:"Four practical creature-design tests: review the shadow, name the action, evolve the decision, then restore detail. Measurement informs review; it does not replace taste.",accent:"#e5b981",crumbHref:"/dispatches",crumbLabel:"Dispatches",pageClass:"creature-guide",stylesheet:"/assets/studio-creature-guide-v1.css",body:`<article><header><p class="tier">PRACTICAL DESIGN GUIDE / OCTOBER 18, 2026</p><p class="lede">A reusable design exercise from Ultramonkeydog Studios. Not a feature-completion or release announcement.</p></header>${html}<aside class="guide-next"><h2>Take one creature through the four tests.</h2><p>Which test changed your decision? Tell Cody the specific read that failed—or the strange detail you chose to keep.</p><a class="cta" href="mailto:${CONTACT}?subject=%5BUMD%20CREATURE%20TEST%5D%20One%20design%20decision">Share a design observation ↗</a><p>Opens your email app. No mailing-list enrollment; do not send confidential work.</p><p><a href="/dispatches/a-monster-should-survive-as-a-shadow">Read the original studio dispatch</a> · <a href="/dispatches">Browse all dispatches</a></p></aside></article>`});
+}
 
 function dispatchIndex() {
   return page({slug:"dispatches",title:"Studio Dispatches — Ultramonkeydog Studios",description:"Read Cody Haring’s studio dispatches: creature design, meaningful growth, human direction, and unusual independent work.",accent:"#d8b475",crumbHref:"/",crumbLabel:"Studio",body:`<p class="tier">THE STUDIO JOURNAL</p><h1>Dispatches from the strange.</h1><p class="lede">Not a promise of finished worlds. A record of what matters while making them.</p><nav aria-label="Studio dispatches">${DISPATCHES.map(([slug,title,date,summary])=>`<article class="card"><time datetime="${date}">${date}</time><h2><a href="/dispatches/${slug}">${esc(title)}</a></h2><p>${esc(summary)}</p></article>`).join("")}</nav>`});
@@ -604,6 +616,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/`, priority: "1.0" },
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
+    { loc: `${ORIGIN}/dispatches/silhouette-before-surface`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches`, priority: "0.8" },
     { loc: `${ORIGIN}/dispatches/pick-your-strange`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/a-level-up-should-change-the-question`, priority: "0.9" },
@@ -646,6 +659,8 @@ async function main() {
 
   const { PROJECTS_DATA } = await loadProjectData();
   const written = [];
+  writePage("dispatches/silhouette-before-surface", silhouetteGuide());
+  written.push("/dispatches/silhouette-before-surface");
   writePage("dispatches", dispatchIndex());
   written.push("/dispatches");
   writePage("dispatches/pick-your-strange", visitorDispatch());
