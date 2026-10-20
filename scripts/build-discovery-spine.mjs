@@ -156,6 +156,7 @@ function page({
 <meta name="description" content="${esc(description)}">
 <meta name="author" content="Cody Haring">
 <link rel="canonical" href="${url}">
+<link rel="alternate" type="application/rss+xml" title="Ultramonkeydog Studios Dispatches" href="/feed.xml">
 <link rel="icon" href="/assets/studio-mark.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ultramonkeydog Studios">
@@ -185,7 +186,7 @@ ${body}
 <footer>
 <p>Ultramonkeydog Studios — creator-owned, directed by Cody Haring.
 Every state label on this page is copied from the studio's project record, including the parts that are not finished.</p>
-<p><a href="/">Back to the front door</a> &middot; <a href="/press">Press &amp; collaboration</a> &middot; <a href="mailto:${CONTACT}">${CONTACT}</a></p>
+<p><a href="/">Back to the front door</a> &middot; <a href="/follow">Follow by RSS</a> &middot; <a href="/press">Press &amp; collaboration</a> &middot; <a href="mailto:${CONTACT}">${CONTACT}</a></p>
 </footer>
 </div>
 </body>
@@ -249,6 +250,7 @@ function privateEngineDispatch() {
 }
 
 const DISPATCHES = [
+  ["keep-the-strange-in-your-feed", "Keep the strange in your feed.", "2026-10-20", "Follow the studio’s public dispatches by RSS: a direct address, short summaries, and no studio signup."],
   ["silhouette-before-surface", "Silhouette Before Surface: Four Tests for Creatures That Behave", "2026-10-18", "A practical peer-facing exercise: shadow, action, consequence, surface—and where measurement must stop."],
   ["pick-your-strange", "Pick your strange.", "2026-10-16", "A first visit to the studio: creature worlds, sound, tools, and the human behind them."],
   ["a-level-up-should-change-the-question", "A Level-Up Should Change the Question", "2026-10-14", "Growth, attachment, and the choices power makes harder."],
@@ -269,7 +271,37 @@ function silhouetteGuide() {
 }
 
 function dispatchIndex() {
-  return page({slug:"dispatches",title:"Studio Dispatches — Ultramonkeydog Studios",description:"Read Cody Haring’s studio dispatches: creature design, meaningful growth, human direction, and unusual independent work.",accent:"#d8b475",crumbHref:"/",crumbLabel:"Studio",body:`<p class="tier">THE STUDIO JOURNAL</p><h1>Dispatches from the strange.</h1><p class="lede">Not a promise of finished worlds. A record of what matters while making them.</p><nav aria-label="Studio dispatches">${DISPATCHES.map(([slug,title,date,summary])=>`<article class="card"><time datetime="${date}">${date}</time><h2><a href="/dispatches/${slug}">${esc(title)}</a></h2><p>${esc(summary)}</p></article>`).join("")}</nav>`});
+  return page({slug:"dispatches",title:"Studio Dispatches — Ultramonkeydog Studios",description:"Read Cody Haring’s studio dispatches: creature design, meaningful growth, human direction, and unusual independent work.",accent:"#d8b475",crumbHref:"/",crumbLabel:"Studio",body:`<p class="tier">THE STUDIO JOURNAL</p><h1>Dispatches from the strange.</h1><p class="lede">Not a promise of finished worlds. A record of what matters while making them.</p><p><a class="cta" href="/follow">Follow the dispatches by RSS ↗</a></p><nav aria-label="Studio dispatches">${DISPATCHES.map(([slug,title,date,summary])=>`<article class="card"><time datetime="${date}">${date}</time><h2><a href="/dispatches/${slug}">${esc(title)}</a></h2><p>${esc(summary)}</p></article>`).join("")}</nav>`});
+}
+
+function feedAddress() {
+  return `<div class="feed-address"><label for="feed-url">Copy this address into your RSS reader</label><input id="feed-url" type="url" readonly value="${ORIGIN}/feed.xml" spellcheck="false"><a class="cta" href="/feed.xml">Open the RSS feed ↗</a></div>`;
+}
+
+function followPage() {
+  return page({slug:"follow",title:"Follow the Studio by RSS — Ultramonkeydog Studios",description:"A direct way to follow Cody Haring’s public studio dispatches. Add the RSS address to your reader; no studio account or email signup.",accent:"#f2b74c",crumbHref:"/dispatches",crumbLabel:"Dispatches",pageClass:"feed-page",stylesheet:"/assets/studio-feed-v1.css",body:`<article><p class="tier">A QUIET WAY TO KEEP UP</p><h1>Keep the strange<br>in your feed.</h1><p class="lede">New public studio dispatches. Short summaries. A link to the whole piece. Your reader, your pace.</p>${feedAddress()}<h2>Three steps. No studio signup.</h2><ol><li>Copy the address above.</li><li>In your RSS reader, choose Add feed or Subscribe and paste it.</li><li>Open a dispatch when it interests you. Remove the feed whenever you want.</li></ol><p>A browser may show XML when you open the feed. That is the subscription file, not a broken page. If you do not use a reader, <a href="/dispatches">the journal remains readable on the web</a>.</p><h2>What you are following</h2><p>Public writing from Cody Haring about creature design, transformation, unusual games and making things. Development posts are not promises of releases. The feed contains summaries and article links, not game downloads or private work.</p><h2>Privacy and boundaries</h2><p>No email address or studio subscription account is requested. This is a public static feed, not a private channel. Your reader and the hosting provider may process requests; their privacy practices still apply. Following does not enroll you in a mailing list or grant access to unreleased builds.</p><p><a href="/dispatches/keep-the-strange-in-your-feed">Read why this doorway exists</a></p></article>`});
+}
+
+function followDispatch() {
+  const article = fs.readFileSync(path.join(ROOT, "docs/campaigns/keep-the-strange-in-your-feed/article.md"), "utf8");
+  const html = article.trim().split(/\n\s*\n/).map((block) => {
+    if (block.startsWith("# ")) return `<h1>${esc(block.slice(2))}</h1>`;
+    if (block.startsWith("## ")) return `<h2>${esc(block.slice(3))}</h2>`;
+    return `<p>${esc(block.replace(/\n/g, " "))}</p>`;
+  }).join("\n");
+  return page({slug:"dispatches/keep-the-strange-in-your-feed",title:"Keep the Strange in Your Feed — Ultramonkeydog Studios",description:"Follow Ultramonkeydog Studios directly by RSS: creature-design dispatches, short summaries and links to the full work, without a studio signup.",accent:"#f2b74c",crumbHref:"/dispatches",crumbLabel:"Dispatches",pageClass:"feed-page",stylesheet:"/assets/studio-feed-v1.css",body:`<article><p class="tier">STUDIO DISPATCH / OCTOBER 20, 2026</p>${html}<aside><h2>One address. Your pace.</h2>${feedAddress()}<p><a href="/follow">RSS setup and privacy details</a> · <a href="/dispatches">Read the journal on the web</a></p></aside></article>`});
+}
+
+function dispatchFeed() {
+  // The archive is the item owner. Never refresh GUIDs or dates just because a build ran.
+  const items = DISPATCHES.map(([slug,title,date,summary]) => {
+    const url = `${ORIGIN}/dispatches/${slug}`;
+    // The archive owns publication days, not exact times. RSS dates are optional:
+    // retain the known day in the summary instead of inventing a midnight/noon timestamp.
+    const taggedUrl = `${url}?utm_source=rss&utm_medium=feed&utm_campaign=studio_dispatches`;
+    return `<item><title>${esc(title)}</title><link>${esc(taggedUrl)}</link><guid isPermaLink="true">${url}</guid><description>${date} — ${esc(summary)}</description></item>`;
+  });
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ultramonkeydog Studios Dispatches</title><link>${ORIGIN}/dispatches</link><description>Creature design, transformation and unusual independent work. Public dispatches by Cody Haring.</description><language>en-us</language><atom:link href="${ORIGIN}/feed.xml" rel="self" type="application/rss+xml"/>${items.join("\n")}</channel></rss>\n`;
 }
 
 function visitorDispatch() {
@@ -631,6 +663,8 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/`, priority: "1.0" },
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
+    { loc: `${ORIGIN}/follow`, priority: "0.8" },
+    { loc: `${ORIGIN}/dispatches/keep-the-strange-in-your-feed`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/silhouette-before-surface`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches`, priority: "0.8" },
     { loc: `${ORIGIN}/dispatches/pick-your-strange`, priority: "0.9" },
@@ -674,6 +708,10 @@ async function main() {
 
   const { PROJECTS_DATA } = await loadProjectData();
   const written = [];
+  writePage("follow", followPage());
+  writePage("dispatches/keep-the-strange-in-your-feed", followDispatch());
+  fs.writeFileSync(path.join(DIST, "feed.xml"), dispatchFeed(), "utf8");
+  written.push("/follow", "/dispatches/keep-the-strange-in-your-feed", "/feed.xml");
   writePage("dispatches/silhouette-before-surface", silhouetteGuide());
   written.push("/dispatches/silhouette-before-surface");
   writePage("dispatches", dispatchIndex());
