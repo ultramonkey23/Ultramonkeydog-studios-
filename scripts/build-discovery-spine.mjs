@@ -250,6 +250,7 @@ function privateEngineDispatch() {
 }
 
 const DISPATCHES = [
+  ["silhouette-before-surface-editor-copy", "Silhouette Before Surface: editor copy", "2026-10-22", "A complete, text-first reviewer package for editors considering the creature-design article."],
   ["keep-the-strange-in-your-feed", "Keep the strange in your feed.", "2026-10-20", "Follow the studio’s public dispatches by RSS: a direct address, short summaries, and no studio signup."],
   ["silhouette-before-surface", "Silhouette Before Surface: Four Tests for Creatures That Behave", "2026-10-18", "A practical peer-facing exercise: shadow, action, consequence, surface—and where measurement must stop."],
   ["pick-your-strange", "Pick your strange.", "2026-10-16", "A first visit to the studio: creature worlds, sound, tools, and the human behind them."],
@@ -258,6 +259,22 @@ const DISPATCHES = [
   ["the-machine-stays-private", "The Machine Stays Private. The Work Has to Survive in Public.", "2026-10-10", "Human direction, private machinery, public work."],
   ["the-pit-keeps-receipts", "A Fight Should Keep Its Receipts", "2026-10-08", "The studio’s smaller browser-game sample and its inspectable outcomes."],
 ];
+
+function silhouetteEditorCopy() {
+  const article = fs.readFileSync(path.join(ROOT, "docs/campaigns/silhouette-before-surface/article.md"), "utf8");
+  const blocks = article.trim().split(/\n\s*\n/);
+  const html = blocks.map((block) => {
+    if (block.startsWith("# ")) return `<h2>${esc(block.slice(2))}</h2>`;
+    if (block.startsWith("## ")) return `<h3>${esc(block.slice(3))}</h3>`;
+    return `<p>${esc(block.replace(/\n/g, " "))}</p>`;
+  }).join("\n");
+  return page({slug:"dispatches/silhouette-before-surface-editor-copy",title:"Silhouette Before Surface — Editor Copy | Ultramonkeydog Studios",description:"A complete text-first reviewer package for editors considering Cody Haring’s 1,152-word creature-design article, with summary, rights boundary and downloadable copy.",accent:"#e5b981",crumbHref:"/dispatches/silhouette-before-surface",crumbLabel:"Original article",pageClass:"editor-copy",stylesheet:"/assets/studio-editor-copy-v1.css",body:`<article><header><p class="tier">EDITOR COPY / OCTOBER 22, 2026</p><h1>One article.<br>A clean handoff.</h1><p class="lede">Everything needed to assess <cite>Silhouette Before Surface</cite> without opening a private folder or asking Cody to rewrite it.</p><div class="editor-actions"><a class="cta" href="/media/silhouette-before-surface-editor-copy.txt" download>Download plain-text copy ↗</a><a href="/dispatches/silhouette-before-surface">Read the canonical web edition</a></div></header><section class="editor-facts" aria-labelledby="facts-title"><h2 id="facts-title">Editorial facts</h2><dl><div><dt>Headline</dt><dd>Silhouette Before Surface: Four Tests for Creatures That Behave</dd></div><div><dt>Byline</dt><dd>Cody Haring, Ultramonkeydog Studios</dd></div><div><dt>Length</dt><dd>1,152 words including headings and byline</dd></div><div><dt>Topic</dt><dd>Game design / art direction</dd></div><div><dt>Summary</dt><dd>Four creature-design tests: shadow, action, consequence, surface. Practical exercises for readable bodies, meaningful growth and human-led visual judgment.</dd></div><div><dt>Assets</dt><dd>Text-first by design. No images are required.</dd></div></dl></section><section class="editor-boundary"><h2>Reuse boundary</h2><p>This page is an assessment package, not blanket syndication permission. Please contact Cody before reposting or materially editing the article. Attribution and a canonical link are required if reuse is agreed. The illustrative shield creature is not a shipped feature; the article makes no unreleased-game completion, accessibility, player-study or audio-quality claim.</p><p><a href="mailto:${CONTACT}?subject=%5BUMD%20ARTICLE%5D%20Silhouette%20Before%20Surface">Ask about publication or edits ↗</a></p></section><section class="editor-article" aria-labelledby="copy-title"><p class="tier">FULL REVIEW COPY</p><h2 id="copy-title" class="sr-only">Full article copy</h2>${html}</section><footer class="editor-note"><p>Prepared for editorial review. No fee, placement, acceptance or publication rights are implied.</p></footer></article>`});
+}
+
+function silhouetteEditorText() {
+  const article = fs.readFileSync(path.join(ROOT, "docs/campaigns/silhouette-before-surface/article.md"), "utf8").trim();
+  return `EDITOR COPY\n\n${article}\n\nEDITORIAL AND REUSE NOTE\n\nThis is a text-first article and needs no images. It may be assessed without contacting the author. Contact Cody Haring before reposting or materially editing it. Attribution and a canonical link are required if reuse is agreed. The imaginary shield creature is an illustrative exercise, not a shipped feature. No unreleased-game completion, accessibility, player-study or audio-quality claim is made.\n\nCanonical source: ${ORIGIN}/dispatches/silhouette-before-surface\nContact: ${CONTACT}\n\nPrepared for editorial review. No fee, placement, acceptance or publication rights are implied.\n`;
+}
 
 function silhouetteGuide() {
   const article = fs.readFileSync(path.join(ROOT, "docs/campaigns/silhouette-before-surface/article.md"), "utf8");
@@ -664,6 +681,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
     { loc: `${ORIGIN}/follow`, priority: "0.8" },
+    { loc: `${ORIGIN}/dispatches/silhouette-before-surface-editor-copy`, priority: "0.8" },
     { loc: `${ORIGIN}/dispatches/keep-the-strange-in-your-feed`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/silhouette-before-surface`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches`, priority: "0.8" },
@@ -709,9 +727,12 @@ async function main() {
   const { PROJECTS_DATA } = await loadProjectData();
   const written = [];
   writePage("follow", followPage());
+  writePage("dispatches/silhouette-before-surface-editor-copy", silhouetteEditorCopy());
+  fs.mkdirSync(path.join(DIST, "media"), { recursive: true });
+  fs.writeFileSync(path.join(DIST, "media/silhouette-before-surface-editor-copy.txt"), silhouetteEditorText(), "utf8");
   writePage("dispatches/keep-the-strange-in-your-feed", followDispatch());
   fs.writeFileSync(path.join(DIST, "feed.xml"), dispatchFeed(), "utf8");
-  written.push("/follow", "/dispatches/keep-the-strange-in-your-feed", "/feed.xml");
+  written.push("/follow", "/dispatches/silhouette-before-surface-editor-copy", "/media/silhouette-before-surface-editor-copy.txt", "/dispatches/keep-the-strange-in-your-feed", "/feed.xml");
   writePage("dispatches/silhouette-before-surface", silhouetteGuide());
   written.push("/dispatches/silhouette-before-surface");
   writePage("dispatches", dispatchIndex());
