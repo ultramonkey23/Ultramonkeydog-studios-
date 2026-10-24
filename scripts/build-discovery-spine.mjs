@@ -250,6 +250,7 @@ function privateEngineDispatch() {
 }
 
 const DISPATCHES = [
+  ["the-first-second-has-teeth", "The First Second Has Teeth", "2026-10-24", "What the studio’s first reel taught us about earning attention before asking for it."],
   ["silhouette-before-surface-editor-copy", "Silhouette Before Surface: editor copy", "2026-10-22", "A complete, text-first reviewer package for editors considering the creature-design article."],
   ["keep-the-strange-in-your-feed", "Keep the strange in your feed.", "2026-10-20", "Follow the studio’s public dispatches by RSS: a direct address, short summaries, and no studio signup."],
   ["silhouette-before-surface", "Silhouette Before Surface: Four Tests for Creatures That Behave", "2026-10-18", "A practical peer-facing exercise: shadow, action, consequence, surface—and where measurement must stop."],
@@ -259,6 +260,24 @@ const DISPATCHES = [
   ["the-machine-stays-private", "The Machine Stays Private. The Work Has to Survive in Public.", "2026-10-10", "Human direction, private machinery, public work."],
   ["the-pit-keeps-receipts", "A Fight Should Keep Its Receipts", "2026-10-08", "The studio’s smaller browser-game sample and its inspectable outcomes."],
 ];
+
+function firstSecondDispatch() {
+  return page({
+    slug: "dispatches/the-first-second-has-teeth",
+    title: "The First Second Has Teeth — Ultramonkeydog Studios",
+    description: "A field note from Ultramonkeydog Studios’ first public reel: real reach, a costly opening second, and the next hook test.",
+    accent: "#ff784f",
+    crumbHref: "/dispatches",
+    crumbLabel: "Dispatches",
+    body: `<article>
+<header><p class="tier">FIELD NOTE / OCTOBER 24, 2026</p><h1>The first second<br>has teeth.</h1><p class="lede">The studio’s first reel crossed 600 combined views, mostly on Facebook Reels. It also lost too many people in the opening second. Both facts matter.</p></header>
+<section><h2>Reach is not the same as attention</h2><p>For a new studio with no posting machine behind it, the reel found a real audience. That is useful public evidence: the work reached beyond the room where it was made.</p><p>But a view count is not a victory lap. The one-second skip rate stayed high. On a fast feed, the opening frame is not an introduction. It is the whole audition.</p><blockquote>Do not make a stranger wait for the creature to show its teeth.</blockquote></section>
+<section><h2>What changes next</h2><p>The next cut will not begin with a patient logo, a soft fade or an explanation. It will begin with one readable consequence: a creature already in motion, an impact already landing, or a transformation already impossible to ignore.</p><ol><li><strong>Frame one: consequence.</strong> Show the collision before naming the studio.</li><li><strong>By half a second: identity.</strong> One silhouette, one action, one readable subject.</li><li><strong>By one second: a question.</strong> Make the viewer need the next beat: what changed, what hit, what is about to break?</li><li><strong>After the hook: context.</strong> Name the world and the human creator only after the image earns the time.</li></ol></section>
+<section><h2>The next honest test</h2><p>Two openings, one body:</p><ul><li><strong>Impact cut:</strong> begin on the strongest collision or transformation frame.</li><li><strong>Face cut:</strong> begin on one creature looking directly back at the viewer.</li></ul><p>The body, caption and destination stay the same. The useful signal is which opening holds more people past the first second—not which version collects the most empty impressions.</p><p class="limit">Evidence boundary: the combined view count, channel mix and high one-second skip pattern are reported from Cody Haring’s connected Instagram/Facebook analytics. This is an early single-campaign observation, not an audited benchmark, a demand claim or proof that either proposed opening will perform better.</p></section>
+<section><h2>Choose the opening wound</h2><p>If you make, edit or simply watch strange work: which earns your next second—an impact already happening, or a creature looking back?</p><p><a class="cta" href="mailto:${CONTACT}?subject=%5BUMD%20FIRST%20SECOND%5D%20Impact%20or%20face&body=My%20pick%3A%20%5Bimpact%20%2F%20face%5D%0AThe%20detail%20that%20stopped%20me%3A%20">Answer: impact or face ↗</a></p><p>No mailing list. Opens your email app. Do not send confidential work.</p></section>
+</article>`,
+  });
+}
 
 function silhouetteEditorCopy() {
   const article = fs.readFileSync(path.join(ROOT, "docs/campaigns/silhouette-before-surface/article.md"), "utf8");
@@ -681,6 +700,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
     { loc: `${ORIGIN}/follow`, priority: "0.8" },
+    { loc: `${ORIGIN}/dispatches/the-first-second-has-teeth`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/silhouette-before-surface-editor-copy`, priority: "0.8" },
     { loc: `${ORIGIN}/dispatches/keep-the-strange-in-your-feed`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/silhouette-before-surface`, priority: "0.9" },
@@ -726,6 +746,8 @@ async function main() {
 
   const { PROJECTS_DATA } = await loadProjectData();
   const written = [];
+  writePage("dispatches/the-first-second-has-teeth", firstSecondDispatch());
+  written.push("/dispatches/the-first-second-has-teeth");
   writePage("follow", followPage());
   writePage("dispatches/silhouette-before-surface-editor-copy", silhouetteEditorCopy());
   fs.mkdirSync(path.join(DIST, "media"), { recursive: true });

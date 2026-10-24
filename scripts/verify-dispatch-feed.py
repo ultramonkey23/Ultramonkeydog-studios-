@@ -36,7 +36,7 @@ def verify(xml):
     archived = {ORIGIN + x for x in archive.links if x.startswith("/dispatches/")}
     urls = [i.findtext("link").split("?")[0] for i in items]
     assert len(urls) == len(set(urls)) and set(urls) == archived
-    assert urls[0].endswith("/silhouette-before-surface-editor-copy")
+    assert urls[0].endswith("/the-first-second-has-teeth")
     for item in items:
         link = item.findtext("link")
         url = link.split("?")[0]
