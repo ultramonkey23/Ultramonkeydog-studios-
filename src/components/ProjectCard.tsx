@@ -12,6 +12,7 @@ import {
   FileWarning,
   Gamepad2,
   Layers3,
+  Play,
   Scale,
   Sparkles,
   Swords,
@@ -51,6 +52,7 @@ const styleTheme: Record<
   "box-o-battles": { accent: "#e94b39", signal: "#ffc447", secondary: "#3f7cff", pop: "#b66ee8", structure: "#f6e4b6", icon: Scale },
   "muttpit": { accent: "#c9772f", signal: "#f2b74c", secondary: "#b489ff", pop: "#b7d94a", structure: "#e9d9b0", icon: Gamepad2 },
   "ghengis-mon": { accent: "#f2b74c", signal: "#e65100", secondary: "#9c27b0", pop: "#ffd700", structure: "#f5e6c8", icon: Swords },
+  voidwalking: { accent: "#f54b72", signal: "#73efff", secondary: "#542c88", pop: "#ffbd4a", structure: "#ffe08a", icon: Play },
 };
 
 const mediaTone: Record<PublicMediaState, string> = {
@@ -59,6 +61,7 @@ const mediaTone: Record<PublicMediaState, string> = {
   PRECOMPUTED_MATRIX: "project-card__status--packet",
   EARLY_BUILD: "project-card__status--early",
   CAPTURE_REQUIRED: "project-card__status--capture",
+  MUSIC_VIDEO: "project-card__status--early",
 };
 
 const evidenceTone: Record<VisualEvidenceState, string> = {
@@ -67,6 +70,7 @@ const evidenceTone: Record<VisualEvidenceState, string> = {
   WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL: "project-card__evidence-state--partial",
   ACCEPTED_REFERENCE: "project-card__evidence-state--reference",
   CAPTURE_REQUIRED: "project-card__evidence-state--capture",
+  PROMOTED_ARTIST_VIDEO: "project-card__evidence-state--promoted",
 };
 
 function EvidenceCard({ item }: { item: PublicVisualEvidence }) {
@@ -221,6 +225,19 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           >
             <Gamepad2 size={15} />
             {project.demoLabel ?? "Open project"}
+            <ArrowUpRight size={14} />
+          </a>
+        )}
+
+        {project.trailerUrl && (
+          <a
+            href={project.trailerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card__action mt-5"
+          >
+            <Play size={15} />
+            {project.trailerLabel ?? "Watch video"}
             <ArrowUpRight size={14} />
           </a>
         )}

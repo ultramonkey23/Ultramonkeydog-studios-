@@ -10,6 +10,7 @@ import {
   FlaskConical,
   Layers,
   Megaphone,
+  Music2,
   Palette,
   Terminal,
   Wrench,
@@ -27,6 +28,7 @@ const iconMap = {
   Layers,
   Eye,
   Megaphone,
+  Music2,
   FlaskConical,
 } as const;
 

@@ -32,6 +32,7 @@ A runtime asset may still be weak website media. A strong reference may still be
 - `READ_ONLY_PACKET` — a project-owned packet is presented without local evaluation.
 - `EARLY_BUILD` — development exists, but no stronger public media claim is made.
 - `CAPTURE_REQUIRED` — no current reviewed showcase image has been promoted.
+- `MUSIC_VIDEO` — an artist-owned audio/video master is presented as original music art, not as gameplay or a runtime capture.
 
 ## Visual evidence states
 
@@ -40,6 +41,7 @@ A runtime asset may still be weak website media. A strong reference may still be
 - `WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL` — the asset is integrated but visual promotion remains partial.
 - `ACCEPTED_REFERENCE` — the asset informs direction but is not runtime truth.
 - `CAPTURE_REQUIRED` — the full composition must be captured and reviewed before promotion.
+- `PROMOTED_ARTIST_VIDEO` — an artist-owned music-video master has been rendered and its stream/provenance are recorded; sampled frame proof is not a substitute for the creator's release approval.
 
 ## Naming law
 

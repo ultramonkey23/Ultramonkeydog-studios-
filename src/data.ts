@@ -329,6 +329,39 @@ export const PROJECTS_DATA: Project[] = [
       "Generational Hero Scions hatch from ancestral eggs with distinct strain lineages, passive combat auras, and evolutionary ceilings.",
     ],
   },
+  {
+    id: "voidwalking",
+    title: "VOIDWALKING",
+    tone: "Original music · cosmic-metal animated video",
+    description: "Cody Haring's Voidwalking is an original lyric-driven music video: a masked courier crosses a broken star-machine, turns a live-wire palm against a cathedral mecha, and writes an anthem through the void.",
+    tags: ["Original Music", "Animated Video", "Cosmic Metal", "Lyric Cinema", "Studio Production"],
+    status: "Artist-owned animated film · visual production in progress",
+    accentColor: "crimson",
+    publicVisual: {
+      style: "voidwalking",
+      mediaState: "MUSIC_VIDEO",
+      mediaLabel: "Artist-owned music · cinematic animation",
+      heading: "VOIDWALKING / LIVE-WIRE HYMN",
+      note: "An original lyric-driven animated film in production from Cody's supplied master and lyrics. It is music art—not gameplay, a runtime capture, or a claim about a game build.",
+      facets: ["Lyric-driven cosmic opera", "Original painted key art", "Directed motion-plate production"],
+      evidence: [
+        {
+          id: "voidwalking-cinematic-production",
+          title: "VOIDWALKING — cinematic animation production",
+          state: "CAPTURE_REQUIRED",
+          note: "The music-video lane is being built as original painted key art, short locally generated motion plates, composited animation, and a lyric edit against the artist-supplied master.",
+          limitation: "No trailer or final frame is public until the creator approves the finished visual treatment and master.",
+          sourceLabel: "Private production in progress",
+        },
+      ],
+    },
+    expandedDetails: "VOIDWALKING establishes a Studio-linked music-artistry lane alongside the games: artist-owned audio and lyrics become a cinematic treatment, original key art, directed motion plates, composited animation, and a final music-video master. It has no gameplay or runtime-evidence claim.",
+    systemsUnderTheHood: [
+      "A local cinematic pipeline establishes a consistent original character, mechanical-world key art, and an editorial shot plan before final assembly.",
+      "Short local image-to-video motion plates will be selected and composited with hand-authored parallax, fractures, typography, and the artist-supplied master.",
+      "The Studio evidence entry keeps music-art production distinct from gameplay, project screenshots, and Studio-generated page framing.",
+    ],
+  },
 ];
 
 export const PRODUCTION_ROLES: ProductionRole[] = [
@@ -341,6 +374,7 @@ export const PRODUCTION_ROLES: ProductionRole[] = [
   { title: "Grant Materials", roleDescription: "Preparing public program pitches, support requests, budget reasoning, and compliance-friendly materials.", iconName: "Megaphone", howAiHelps: "Improves structure, vocabulary, clarity, and evidence trails for funders and incubators." },
   { title: "Playtest Analysis", roleDescription: "Parsing player logs, session reports, control friction, failure thresholds, and balance diagnostics.", iconName: "FlaskConical", howAiHelps: "Finds patterns in raw feedback and points iteration toward the highest-impact fixes." },
   { title: "Trailer / Marketing Prep", roleDescription: "Compiling hooks, teaser language, gameplay capture plans, transcripts, and sound timing notes.", iconName: "Megaphone", howAiHelps: "Drafts public copy and capture structures after the underlying proof state is known." },
+  { title: "Music & Video", roleDescription: "Turning Cody's original masters and lyrics into authored visual treatments, animated music-video masters, and honest Studio media artifacts.", iconName: "Music2", howAiHelps: "Maps lyric and song structure into original visual systems, local render passes, and bounded media proof while Cody retains authorship, taste, and release authority." },
 ];
 
 export const FUNDING_NEEDS: FundingNeed[] = [

@@ -11,21 +11,24 @@ export type ProjectVisualStyle =
   | "feral-formation"
   | "box-o-battles"
   | "muttpit"
-  | "ghengis-mon";
+  | "ghengis-mon"
+  | "voidwalking";
 
 export type PublicMediaState =
   | "PLAYABLE_DEMO"
   | "NATIVE_BUILD"
   | "PRECOMPUTED_MATRIX"
   | "EARLY_BUILD"
-  | "CAPTURE_REQUIRED";
+  | "CAPTURE_REQUIRED"
+  | "MUSIC_VIDEO";
 
 export type VisualEvidenceState =
   | "PROMOTED_RUNTIME_ENVIRONMENT"
   | "PROMOTED_RUNTIME_GAMEPLAY"
   | "WIRED_RUNTIME_CANDIDATE_DEVICE_PARTIAL"
   | "ACCEPTED_REFERENCE"
-  | "CAPTURE_REQUIRED";
+  | "CAPTURE_REQUIRED"
+  | "PROMOTED_ARTIST_VIDEO";
 
 export interface PublicVisualEvidence {
   id: string;
