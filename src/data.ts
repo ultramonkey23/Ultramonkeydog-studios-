@@ -349,7 +349,7 @@ export const PROJECTS_DATA: Project[] = [
           id: "voidwalking-cinematic-production",
           title: "VOIDWALKING — cinematic animation production",
           state: "CAPTURE_REQUIRED",
-          note: "The music-video lane is being built as original painted key art, short locally generated motion plates, composited animation, and a lyric edit against the artist-supplied master.",
+          note: "The music-video lane is being built as original painted key art, short locally generated motion plates, composited animation, and a lyric edit against the artist-supplied master. Identity canon: voidwalking.json v13 (a non-human dimensional singularity entity, zero humanoid silhouette) in ultramonkey23/voidwalking.",
           limitation: "No trailer or final frame is public until the creator approves the finished visual treatment and master.",
           sourceLabel: "Private production in progress",
         },
