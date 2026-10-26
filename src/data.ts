@@ -333,7 +333,7 @@ export const PROJECTS_DATA: Project[] = [
     id: "voidwalking",
     title: "VOIDWALKING",
     tone: "Original music · cosmic-metal animated video",
-    description: "Cody Haring's Voidwalking is an original lyric-driven music video: a masked courier crosses a broken star-machine, turns a live-wire palm against a cathedral mecha, and writes an anthem through the void.",
+    description: "Cody Haring's Voidwalking is an original lyric-driven music video: a fundamentally non-human dimensional singularity (an ancient cracked porcelain death mask floating in a black gravitational accretion disk, zero human silhouette) descends into the Weeping Dreadnought's non-euclidean abyss and tears open a violet escape route across the dead universe.",
     tags: ["Original Music", "Animated Video", "Cosmic Metal", "Lyric Cinema", "Studio Production"],
     status: "Artist-owned animated film · visual production in progress",
     accentColor: "crimson",
@@ -357,7 +357,7 @@ export const PROJECTS_DATA: Project[] = [
     },
     expandedDetails: "VOIDWALKING establishes a Studio-linked music-artistry lane alongside the games: artist-owned audio and lyrics become a cinematic treatment, original key art, directed motion plates, composited animation, and a final music-video master. It has no gameplay or runtime-evidence claim.",
     systemsUnderTheHood: [
-      "A local cinematic pipeline establishes a consistent original character, mechanical-world key art, and an editorial shot plan before final assembly.",
+      "A local cinematic pipeline establishes a consistent non-human entity design (absolutely zero humanoid figure, torso, or silhouette), cosmic-horror key art, and an editorial shot plan before final assembly.",
       "Short local image-to-video motion plates will be selected and composited with hand-authored parallax, fractures, typography, and the artist-supplied master.",
       "The Studio evidence entry keeps music-art production distinct from gameplay, project screenshots, and Studio-generated page framing.",
     ],
