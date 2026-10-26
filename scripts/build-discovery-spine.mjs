@@ -250,6 +250,7 @@ function privateEngineDispatch() {
 }
 
 const DISPATCHES = [
+  ["before-the-first-frame-there-was-a-song", "Before the First Frame, There Was a Song", "2026-10-26", "VOIDWALKING begins with Cody’s original master and lyrics—not a trailer brief looking for music."],
   ["the-first-second-has-teeth", "The First Second Has Teeth", "2026-10-24", "What the studio’s first reel taught us about earning attention before asking for it."],
   ["silhouette-before-surface-editor-copy", "Silhouette Before Surface: editor copy", "2026-10-22", "A complete, text-first reviewer package for editors considering the creature-design article."],
   ["keep-the-strange-in-your-feed", "Keep the strange in your feed.", "2026-10-20", "Follow the studio’s public dispatches by RSS: a direct address, short summaries, and no studio signup."],
@@ -260,6 +261,25 @@ const DISPATCHES = [
   ["the-machine-stays-private", "The Machine Stays Private. The Work Has to Survive in Public.", "2026-10-10", "Human direction, private machinery, public work."],
   ["the-pit-keeps-receipts", "A Fight Should Keep Its Receipts", "2026-10-08", "The studio’s smaller browser-game sample and its inspectable outcomes."],
 ];
+
+function voidwalkingDispatch() {
+  const screening = `mailto:${CONTACT}?subject=${encodeURIComponent("[VOIDWALKING] Screening notice")}&body=${encodeURIComponent("Hi Cody,\n\nPlease let me know when a public VOIDWALKING screening or trailer is ready.\n\nWhat drew me in:\n\n")}`;
+  return page({
+    slug: "dispatches/before-the-first-frame-there-was-a-song",
+    title: "Before the First Frame, There Was a Song — VOIDWALKING",
+    description: "How The Monkeydog’s original VOIDWALKING master and lyrics became a non-human cosmic-metal animated-film direction—without pretending the unfinished film is released.",
+    accent: "#f54b72",
+    crumbHref: "/voidwalking",
+    crumbLabel: "VOIDWALKING",
+    body: `<article>
+<header><p class="tier">MUSIC-ART PRODUCTION NOTE / OCTOBER 26, 2026</p><h1>Before the first frame,<br>there was a song.</h1><p class="lede"><strong>VOIDWALKING</strong> did not begin as a trailer brief looking for dramatic music. It began with Cody Haring’s original master and lyrics as The Monkeydog. The film has to answer to that sound.</p></header>
+<section><h2>The music is not wallpaper</h2><p>A heavy track already contains architecture: pressure, rupture, silence, return. Treating it as background would flatten the thing that made the film necessary.</p><p>The visual direction listens for those forces. A cracked porcelain death mask floats inside a black gravitational accretion disk. The entity is a dimensional singularity—not a person in armor, not a masked courier, not a human silhouette with cosmic decoration.</p><blockquote>The song supplies the gravity. The image has to survive inside it.</blockquote></section>
+<section><h2>A body that cannot walk like us</h2><p>The earliest visual attempts exposed the central problem: ordinary walking and fighting made the cosmic horror feel like familiar AI animation wearing a stranger costume.</p><p>The replacement rule is structural. VOIDWALKING moves through zero-gravity glides, folding geometry, orbiting shards, spatial fractures and metamorphosis. Its motion must reveal what the creature <em>is</em>. If it can be swapped with a human walk cycle, the shot has failed.</p><ol><li><strong>Identity before spectacle.</strong> One non-human form remains recognizable across the film.</li><li><strong>Motion from anatomy.</strong> Accretion rings, obsidian armatures and spatial fractures determine the verbs.</li><li><strong>Cuts answer the song.</strong> Vocal entrances, beat pressure and instrumental openings shape the edit.</li><li><strong>Text stays rare.</strong> Lyric fragments strike on selected sung hits instead of becoming karaoke.</li></ol></section>
+<section><h2>What exists—and what does not</h2><p>The private production owner contains the mastered audio reference, lyric timing, shot structure, character identity and a sequential film pipeline. The public studio record carries only the approved summary and proof boundary.</p><p class="limit">VOIDWALKING is an artist-owned animated film in visual production. No trailer, final frame or finished music-video master is public here. This dispatch does not claim final animation quality, release readiness, audience demand, distribution, awards or commercial availability.</p></section>
+<section><h2>Hear about the first public screening</h2><p>If the song-world interests you, ask for one notice when a public trailer or screening actually exists. This is not a preorder, mailing-list signup or promise of a release date.</p><p><a class="cta" href="${esc(screening)}">Request a screening notice ↗</a><a class="cta cta--ghost" href="/voidwalking">Read the current film record</a></p><p>Opens your email app. Cody replies manually; do not send confidential material.</p></section>
+</article>`,
+  });
+}
 
 function firstSecondDispatch() {
   return page({
@@ -443,6 +463,10 @@ function projectPage(project, siblings) {
     const inquiry = `mailto:${CONTACT}?subject=${encodeURIComponent(`[UMD PROJECT] ${project.title}`)}&body=${encodeURIComponent(`Hi Cody,\n\nI'm interested in ${project.title}.\nMy question or idea:\nRelevant link (optional):\nTiming (if relevant):\n`)}`;
     parts.push(`<p>This project is in development. There is no public playable release offered on this page. Read the current evidence below, or ask Cody a specific question about the project.</p>`);
     parts.push(`<p><a class="cta" href="${esc(inquiry)}">Ask about ${esc(project.title)}</a></p><p class="contact-boundary">Opens your email app. No signup or mailing-list enrollment. Please do not send confidential material.</p>`);
+  } else if (project.id === "voidwalking") {
+    const screening = `mailto:${CONTACT}?subject=${encodeURIComponent("[VOIDWALKING] Screening notice")}&body=${encodeURIComponent("Hi Cody,\n\nPlease let me know when a public VOIDWALKING screening or trailer is ready.\n\nWhat drew me in:\n\n")}`;
+    parts.push(`<p>The film is in visual production. No trailer or final frame is public yet. Read the production note, or request one manual notice when a public screening actually exists.</p>`);
+    parts.push(`<p><a class="cta" href="/dispatches/before-the-first-frame-there-was-a-song">Read the production note</a><a class="cta cta--ghost" href="${esc(screening)}">Request a screening notice</a></p><p class="contact-boundary">No preorder, release-date promise or mailing-list enrollment. Opens your email app; do not send confidential material.</p>`);
   } else {
     parts.push(
       `<p>Not playable in a browser yet — this one is <strong>${esc(project.status)}</strong>. ` +
@@ -700,6 +724,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
     { loc: `${ORIGIN}/follow`, priority: "0.8" },
+    { loc: `${ORIGIN}/dispatches/before-the-first-frame-there-was-a-song`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/the-first-second-has-teeth`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/silhouette-before-surface-editor-copy`, priority: "0.8" },
     { loc: `${ORIGIN}/dispatches/keep-the-strange-in-your-feed`, priority: "0.9" },
@@ -746,6 +771,8 @@ async function main() {
 
   const { PROJECTS_DATA } = await loadProjectData();
   const written = [];
+  writePage("dispatches/before-the-first-frame-there-was-a-song", voidwalkingDispatch());
+  written.push("/dispatches/before-the-first-frame-there-was-a-song");
   writePage("dispatches/the-first-second-has-teeth", firstSecondDispatch());
   written.push("/dispatches/the-first-second-has-teeth");
   writePage("follow", followPage());
