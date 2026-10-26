@@ -21,7 +21,7 @@ GENERICITY_CHECK: The gate is generic by construction (docs/CANON_IDENTITIES.md 
 VERTICAL_SLICE_CHECK: The slice is end-to-end from canon to pixels: spec identity (voidwalking.json v13) -> contract markers and pin -> card copy in src/data.ts -> build gate -> vite bundle -> live deployed page, verified at each hop (gate red/green proof, npm run build green, live bundle grep 0 stale markers / 1 canon pin).
 PROOF_CLAIM_MATCH: Every claimed behavior has a direct check: superseded-marker absence and required-marker presence (scripts/canon-identity-check.mjs negative fixture exit 1 with all markers named, real run exit 0), build integration (npm run build exit 0 with the gate in boundary:check), and deployed-runtime agreement (curl of the live bundle shows the v13 copy and the pin, with none of the stale phrases).
 PROOF_BUDGET_USED: one fixture-seeded negative run, one real-tree gate run, two full npm run build passes (pre-gate and post-gate), one live-bundle fetch and grep, plus the previous copy-fix build; total under 10 minutes of compute on the Termux node.
-FILES_CHANGED: src/data.ts, docs/CANON_IDENTITIES.md, scripts/canon-identity-check.mjs, package.json, receipts/receipt_20261025_voidwalking_identity_canon_gate.md, voidwalking repo: docs/STORYBOARD_v2.md (deleted), voidwalking repo: legacy/ (deleted, 16 files)
+FILES_CHANGED: src/data.ts, docs/CANON_IDENTITIES.md, scripts/canon-identity-check.mjs, package.json, receipts/receipt_20261025_voidwalking_identity_canon_gate.md, voidwalking repo: docs/STORYBOARD_v2.md (deleted), voidwalking repo: legacy/ (deleted, 16 files), projects/voidwalking.json (lab registry: node_repo_paths.termux registration for the commit tooling)
 
 ## DIRECTOR_READABLE
 
