@@ -250,6 +250,7 @@ function privateEngineDispatch() {
 }
 
 const DISPATCHES = [
+  ["a-monster-should-not-borrow-a-human-skeleton", "A Monster Should Not Borrow a Human Skeleton", "2026-10-28", "A creature-motion method: body plan, contact, consequence, then surface."],
   ["before-the-first-frame-there-was-a-song", "Before the First Frame, There Was a Song", "2026-10-26", "VOIDWALKING begins with Cody’s original master and lyrics—not a trailer brief looking for music."],
   ["the-first-second-has-teeth", "The First Second Has Teeth", "2026-10-24", "What the studio’s first reel taught us about earning attention before asking for it."],
   ["silhouette-before-surface-editor-copy", "Silhouette Before Surface: editor copy", "2026-10-22", "A complete, text-first reviewer package for editors considering the creature-design article."],
@@ -261,6 +262,35 @@ const DISPATCHES = [
   ["the-machine-stays-private", "The Machine Stays Private. The Work Has to Survive in Public.", "2026-10-10", "Human direction, private machinery, public work."],
   ["the-pit-keeps-receipts", "A Fight Should Keep Its Receipts", "2026-10-08", "The studio’s smaller browser-game sample and its inspectable outcomes."],
 ];
+
+function bodyPlanDispatch() {
+  const article = fs.readFileSync(path.join(ROOT, "docs/campaigns/monster-not-human-skeleton/article.md"), "utf8");
+  const blocks = article.trim().split(/\n\s*\n/);
+  const html = blocks.map((block) => {
+    if (block.startsWith("# ")) return `<h1>${esc(block.slice(2))}</h1>`;
+    if (block.startsWith("## ")) return `<h2>${esc(block.slice(3))}</h2>`;
+    if (/^\d+\. \*\*/.test(block)) {
+      const items = block.split("\n").map((line) => line.replace(/^\d+\. /, ""));
+      return `<ol>${items.map((item) => `<li>${item.replace(/^\*\*(.+?)\*\*/, "<strong>$1</strong>")}</li>`).join("")}</ol>`;
+    }
+    return `<p>${esc(block.replace(/\n/g, " ")).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")}</p>`;
+  }).join("\n");
+  return page({
+    slug: "dispatches/a-monster-should-not-borrow-a-human-skeleton",
+    title: "A Monster Should Not Borrow a Human Skeleton | Ultramonkeydog Studios",
+    description: "A practical creature-animation method: begin with anatomy, test contact and consequence, then let surface detail earn its place.",
+    accent: "#d67cff",
+    crumbHref: "/dispatches",
+    crumbLabel: "Dispatches",
+    pageClass: "creature-guide",
+    stylesheet: "/assets/studio-creature-guide-v1.css",
+    body: `<article><header><p class="tier">CREATURE MOTION FIELD GUIDE / OCTOBER 28, 2026</p><p class="lede">A studio method for making non-human movement begin with anatomy instead of a convenient human performance.</p></header>${html}<aside class="guide-next"><h2>Break the borrowed skeleton.</h2><p>Run one creature through the body-plan test before polishing it. The checklist is plain text so it can live beside a sketch, animation timeline, or design document.</p><p><a class="cta" href="/media/creature-body-plan-motion-test.txt" download>Download the motion test ↗</a><a class="cta cta--ghost" href="/savage-crown?utm_source=motion_field_guide&utm_medium=owned_web&utm_campaign=monster_not_human_skeleton">Enter Savage Crown’s creature world</a></p><p class="limit">The article describes a verified production method, not a finished creature pack or released-game feature. Opens no account and collects no signup.</p></aside></article>`,
+  });
+}
+
+function bodyPlanTestText() {
+  return `ULTRAMONKEYDOG STUDIOS — CREATURE BODY-PLAN MOTION TEST\n\n1. BODY PLAN\nName the anatomy before the animation: quadruped, shell-heavy, upright, serpentine, winged, many-legged, tentacled, floating, or a clearly described alternative.\n\n2. MASS + CONTACT\nWhere is the center of mass? What touches the world? What part leads travel, attack, recoil, and recovery?\n\n3. NINE CONDITIONS\nCheck idle, travel, attack, special action, hit front, hit back, stagger, death, and victory. If they all reduce to human crouch/lunge/recoil/roar, stop and redesign.\n\n4. ANCHORS\nMark feet or support points, center, head, strike point, contact frame, and moving hurt regions. Verify the strike arrives and support points do not drift.\n\n5. SPECIES VERB\nName one action this body can perform that a human rig cannot supply honestly. If there is none, the anatomy is not yet affecting play or presentation.\n\n6. TRANSFORMATION CONSEQUENCE\nWhen the body changes, identify the new verb, commitment, contact rule, or vulnerability. A larger number or added surface detail is not enough.\n\n7. UGLY-STAGE REVIEW\nBefore final texture and lighting, inspect framing, clipping, depth, surface direction, part ownership, bone-length consistency, and silhouette.\n\n8. HUMAN JUDGMENT\nRecord the measurable failure separately from the creative decision. A test may expose sliding feet; it cannot decide whether the creature deserves fear, tenderness, disgust, humor, or wonder.\n\nPUBLIC PROOF BOUNDARY\nThis checklist accompanies a verified studio production method. It does not certify a finished animation set, game integration, device performance, player readability, accessibility outcome, or final creature design.\n\nCanonical article: https://ultramonkeydog-studios.vercel.app/dispatches/a-monster-should-not-borrow-a-human-skeleton\n`;
+}
 
 function voidwalkingDispatch() {
   const screening = `mailto:${CONTACT}?subject=${encodeURIComponent("[VOIDWALKING] Screening notice")}&body=${encodeURIComponent("Hi Cody,\n\nPlease let me know when a public VOIDWALKING screening or trailer is ready.\n\nWhat drew me in:\n\n")}`;
@@ -724,6 +754,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
     { loc: `${ORIGIN}/follow`, priority: "0.8" },
+    { loc: `${ORIGIN}/dispatches/a-monster-should-not-borrow-a-human-skeleton`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/before-the-first-frame-there-was-a-song`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/the-first-second-has-teeth`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/silhouette-before-surface-editor-copy`, priority: "0.8" },
@@ -771,13 +802,16 @@ async function main() {
 
   const { PROJECTS_DATA } = await loadProjectData();
   const written = [];
+  writePage("dispatches/a-monster-should-not-borrow-a-human-skeleton", bodyPlanDispatch());
+  fs.mkdirSync(path.join(DIST, "media"), { recursive: true });
+  fs.writeFileSync(path.join(DIST, "media/creature-body-plan-motion-test.txt"), bodyPlanTestText(), "utf8");
+  written.push("/dispatches/a-monster-should-not-borrow-a-human-skeleton", "/media/creature-body-plan-motion-test.txt");
   writePage("dispatches/before-the-first-frame-there-was-a-song", voidwalkingDispatch());
   written.push("/dispatches/before-the-first-frame-there-was-a-song");
   writePage("dispatches/the-first-second-has-teeth", firstSecondDispatch());
   written.push("/dispatches/the-first-second-has-teeth");
   writePage("follow", followPage());
   writePage("dispatches/silhouette-before-surface-editor-copy", silhouetteEditorCopy());
-  fs.mkdirSync(path.join(DIST, "media"), { recursive: true });
   fs.writeFileSync(path.join(DIST, "media/silhouette-before-surface-editor-copy.txt"), silhouetteEditorText(), "utf8");
   writePage("dispatches/keep-the-strange-in-your-feed", followDispatch());
   fs.writeFileSync(path.join(DIST, "feed.xml"), dispatchFeed(), "utf8");
