@@ -250,6 +250,7 @@ function privateEngineDispatch() {
 }
 
 const DISPATCHES = [
+  ["victory-should-open-the-market", "Victory Should Open the Market", "2026-10-30", "Why battle consequences should become the next decision instead of another results-screen gate."],
   ["a-monster-should-not-borrow-a-human-skeleton", "A Monster Should Not Borrow a Human Skeleton", "2026-10-28", "A creature-motion method: body plan, contact, consequence, then surface."],
   ["before-the-first-frame-there-was-a-song", "Before the First Frame, There Was a Song", "2026-10-26", "VOIDWALKING begins with Cody’s original master and lyrics—not a trailer brief looking for music."],
   ["the-first-second-has-teeth", "The First Second Has Teeth", "2026-10-24", "What the studio’s first reel taught us about earning attention before asking for it."],
@@ -262,6 +263,35 @@ const DISPATCHES = [
   ["the-machine-stays-private", "The Machine Stays Private. The Work Has to Survive in Public.", "2026-10-10", "Human direction, private machinery, public work."],
   ["the-pit-keeps-receipts", "A Fight Should Keep Its Receipts", "2026-10-08", "The studio’s smaller browser-game sample and its inspectable outcomes."],
 ];
+
+function marketFlowDispatch() {
+  const response = `mailto:${CONTACT}?subject=${encodeURIComponent("[GHENGIS MON] Recruit or devour")}&body=${encodeURIComponent("The battle just ended. My first War Market instinct is: [recruit / devour]\n\nThe consequence I would want to see carried forward:\n\n")}`;
+  return page({
+    slug: "dispatches/victory-should-open-the-market",
+    title: "Victory Should Open the Market — Ghengis Mon",
+    description: "A Ghengis Mon design note about carrying battle rewards, creature deeds and world reaction directly into the next War Market decision.",
+    accent: "#f2b74c",
+    crumbHref: "/ghengis-mon",
+    crumbLabel: "Ghengis Mon",
+    pageClass: "war-flow",
+    stylesheet: "/assets/studio-war-flow-v1.css",
+    ogImage: `${ORIGIN}/assets/ghengis-mon/battle.webp`,
+    ogImageAlt: "Real Ghengis Mon Godot runtime capture of autonomous creature armies fighting across a terraced battlefield.",
+    ogImageWidth: 1280,
+    ogImageHeight: 720,
+    body: `<article>
+<header class="war-hero"><p class="tier">GHENGIS MON DESIGN DISPATCH / OCTOBER 30, 2026</p><h1>Victory should open<br><em>the market.</em></h1><p class="lede">A battle is not finished when the last creature falls. It is finished when the damage, deeds and world reaction change what you do next.</p><a class="cta" href="#the-flow">Follow the consequence ↓</a></header>
+<figure class="war-wide"><img src="/assets/ghengis-mon/battle.webp" width="1280" height="720" alt="Ghengis Mon runtime battle: autonomous creature armies clash on terraced lanes while damage numbers and combat events resolve"><figcaption>REAL GODOT RUNTIME CAPTURE / EARLIER DEVELOPMENT BUILD / NOT THE NEW MARKET DEBRIEF</figcaption></figure>
+<section id="the-flow"><h2>The old rhythm wastes its own impact</h2><p>Win. Stop. Read a summary. Press Proceed. Open the place where the reward can finally matter.</p><p>That sequence is familiar, but familiarity is not the same as usefulness. In a creature-warfare roguelite, the battle has already produced the next question. Which fighter earned experience? Who became a Living Legend? What grudge or world reaction survived the clash? What can the brood afford now?</p><blockquote>If the consequence is real, it should arrive where the next decision lives.</blockquote></section>
+<section class="war-chain" aria-label="Battle consequence flow"><span>BATTLE</span><b>→</b><span>DEEDS + REWARDS</span><b>→</b><span>WAR MARKET</span><b>→</b><span>RECRUIT OR DEVOUR</span></section>
+<section><h2>No pause does not mean no information</h2><p>The answer is not to throw the receipt away. Ghengis Mon now carries ordinary battle results into a compact, dismissible War Market debrief. The purse is already committed. Individual creatures keep their witnessed deeds and earned experience. Living Legends, the causal battle story and world reaction remain visible beside the offers those consequences can change.</p><p>The distinction matters: the market reads completed facts. It does not mint rewards a second time. Trading remains live, and the debrief can leave without taking the market with it.</p><p>Exceptional crossings remain exceptional. A terminal failed run and Divine Judgment can still demand a deliberate choice. Ordinary victory and loss do not need to impersonate them.</p></section>
+<figure class="war-wide"><img src="/assets/ghengis-mon/market.webp" width="1280" height="720" loading="lazy" alt="Earlier Ghengis Mon War Market runtime capture showing creature offers with recruit and devour choices"><figcaption>REAL GODOT RUNTIME CAPTURE / EARLIER WAR MARKET SURFACE / THE CURRENT DEBRIEF IS PROVEN SEPARATELY</figcaption></figure>
+<section><h2>The next choice should remember the fight</h2><p>The War Market is not a neutral shop. Every creature card asks whether the brood needs another living body or the permanent value released by devouring it. Carrying the battle directly into that fork gives the decision context. A creature that saved the line, broke under pressure or changed the battle story should affect how the next offer feels.</p><p>This is the larger design rule: remove pauses that only repeat information, then make the surviving information more causal. Faster does not have to mean shallower.</p></section>
+<section class="war-proof"><p class="tier">WHAT IS ACTUALLY PROVEN</p><h2>A rendered desktop route, not a release claim.</h2><p>The opening oath, War Camp, War Room, Market, battle, reward debrief and council have been exercised through a rendered Godot 4.7.2 desktop campaign route. Focused runtime checks also cover automatic Market arrival, visible purse and creature contribution, optional dismissal, world reaction, and uninterrupted trading.</p><p class="limit">The battle and Market images on this page are authentic earlier in-engine captures, not screenshots of the newly repaired debrief. This dispatch does not establish a public demo, final art, target-device performance, touch usability, player comprehension, accessibility outcomes, audience demand, release date or commercial readiness.</p></section>
+<section class="war-choice"><p class="tier">THE NEXT INSTINCT</p><h2>Recruit the body.<br><em>Or devour the possibility.</em></h2><p>Inspect the current Ghengis Mon evidence, then answer one useful question: after a costly victory, which consequence would make you recruit—or make you devour?</p><p><a class="cta" href="/ghengis-mon?utm_source=war_market_dispatch&utm_medium=owned_web&utm_campaign=victory_opens_market">Enter the war record ↗</a><a class="cta cta--ghost" href="${esc(response)}">Answer: recruit or devour</a></p><p class="limit">The response opens your email app. No account, preorder, beta place or mailing-list enrollment. Do not send confidential material.</p></section>
+</article>`,
+  });
+}
 
 function bodyPlanDispatch() {
   const article = fs.readFileSync(path.join(ROOT, "docs/campaigns/monster-not-human-skeleton/article.md"), "utf8");
@@ -754,6 +784,7 @@ function sitemap(projects) {
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
     { loc: `${ORIGIN}/follow`, priority: "0.8" },
+    { loc: `${ORIGIN}/dispatches/victory-should-open-the-market`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/a-monster-should-not-borrow-a-human-skeleton`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/before-the-first-frame-there-was-a-song`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/the-first-second-has-teeth`, priority: "0.9" },
@@ -802,6 +833,8 @@ async function main() {
 
   const { PROJECTS_DATA } = await loadProjectData();
   const written = [];
+  writePage("dispatches/victory-should-open-the-market", marketFlowDispatch());
+  written.push("/dispatches/victory-should-open-the-market");
   writePage("dispatches/a-monster-should-not-borrow-a-human-skeleton", bodyPlanDispatch());
   fs.mkdirSync(path.join(DIST, "media"), { recursive: true });
   fs.writeFileSync(path.join(DIST, "media/creature-body-plan-motion-test.txt"), bodyPlanTestText(), "utf8");

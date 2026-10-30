@@ -265,14 +265,14 @@ export const PROJECTS_DATA: Project[] = [
     tone: "Creature warfare roguelite · Brood Riot",
     description: "A tactical creature warfare roguelite across five fractured continents: hatch an ancestral Hero Scion, master the War Market's brutal recruit-or-devour economy, and command autonomous army riots on living battlefields that remember every wound and rival grudge.",
     tags: ["Creature Warfare", "Godot 4", "Brood Riot", "War Market", "Autonomous Armies", "Devour Mechanic"],
-    status: "In Development — 16:9 Trailer Master Approved",
+    status: "In Development — Rendered Desktop Campaign Route Proven",
     accentColor: "warm-amber",
     publicVisual: {
       style: "ghengis-mon",
       mediaState: "EARLY_BUILD",
       mediaLabel: "In-engine capture · in development",
       heading: "BROOD RIOT: WAR OF FIVE CONTINENTS",
-      note: "Captured directly from in-engine Godot 4.6.1 runtime. Creature warfare, autonomous riots, and the War Market economy are actively simulated in code.",
+      note: "Authentic in-engine captures show the Godot creature-warfare build. A newer rendered Godot 4.7.2 desktop campaign proof reaches the opening oath, War Camp, War Room, Market, battle, reward debrief, and council; these archived captures predate that repaired route.",
       facets: ["Every empire begins as an egg", "Recruit or devour", "The war remembers"],
       evidence: [
         {
@@ -318,6 +318,14 @@ export const PROJECTS_DATA: Project[] = [
           width: 1280,
           height: 720,
           sourceLabel: "Ghengis Mon (Broodriot) repository (in development)",
+        },
+        {
+          id: "gm-rendered-campaign-route",
+          title: "Rendered opening-to-council campaign route",
+          state: "PROMOTED_RUNTIME_GAMEPLAY",
+          note: "A rendered Godot 4.7.2 desktop campaign proof completes the mandatory opening oath, War Camp, War Room, War Market, Riot battle, automatic reward debrief, and council route. The ordinary battle debrief is dismissible and does not block trading.",
+          limitation: "Desktop development-host proof only. No public build, target-device performance, touch usability, final art, accessibility outcome, or broad player comprehension is established.",
+          sourceLabel: "Ghengis Mon rendered campaign proof (Godot 4.7.2 desktop)",
         },
       ],
     },
