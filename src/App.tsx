@@ -196,38 +196,43 @@ export default function App() {
             <span>STRANGE CONSEQUENCES</span>
           </div>
         </section>
-        <section className="cover-live" aria-labelledby="live-title">
+        <section className="cover-live cover-current" aria-labelledby="current-title">
           <div className="cover-live__copy">
-            <p className="cover-kicker">
-              Playable in your browser · free · no account
-            </p>
-            <h2 id="live-title">
-              MUTTPIT.
+            <p className="cover-kicker">Creature warfare · In development</p>
+            <h2 id="current-title">
+              GHENGIS MON.
               <br />
-              <em>Every verdict keeps its receipts.</em>
+              <em>Recruit. Devour. Evolve.</em>
             </h2>
             <p>
-              Thirty-six scarred, junk-armored mongrels. Draft them, write each
-              dog&rsquo;s bite order, and mail your
-              kennel into the Pit. Fights are deterministic auto-battles you
-              watch like bloodsport: sequenced, auditable, replayable. Climb
-              the Bone Bracket or challenge a friend by kennel code.
+              Hatch your General, build a warband, and fight through a world that
+              remembers the battles. Recruit a creature, devour a rival species,
+              or evolve something nobody expected.
             </p>
-            <a className="cover-action" href="/play/muttpit/">
-              Play MUTTPIT now <ArrowUpRight size={18} />
+            <a className="cover-action" href="/ghengis-mon">
+              Explore Ghengis Mon <ArrowUpRight size={18} />
             </a>
             <p className="cover-live__note">
-              Shipped and publicly playable. Static browser build, under 25 MB.
+              Working Godot campaign · Current 3D art still in development · Not a public demo
             </p>
           </div>
-          <figure className="cover-live__art">
-            <img
-              src="/assets/muttpit/bout/capture.png"
-              alt="MUTTPIT bout mid-impact: two teams of illustrated junkyard dogs facing off in a fenced dirt pit, with the bout log below"
-              loading="lazy"
-            />
-            <figcaption>MUTTPIT / RUNTIME CAPTURE / REAL BUILD</figcaption>
-          </figure>
+          <div className="cover-current__routes" aria-label="Other active studio work">
+            <a className="cover-current__route" href="/what-we-fed">
+              <span>CREATURE RPG</span>
+              <strong>WHAT WE FED</strong>
+              <small>Bond with a creature. Or eat it. Live with the choice.</small>
+            </a>
+            <a className="cover-current__route" href="/savage-crown">
+              <span>ANDROID RPG</span>
+              <strong>SAVAGE CROWN</strong>
+              <small>Mutation, generated life and a body that changes with the run.</small>
+            </a>
+            <a className="cover-current__route" href="/voidwalking">
+              <span>ORIGINAL MUSIC & FILM</span>
+              <strong>THE MONKEYDOG</strong>
+              <small>VOIDWALKING is finished. The public music-video upload is separate.</small>
+            </a>
+          </div>
         </section>
         <section id="grow-teeth" className="cover-manifesto" aria-labelledby="campaign-title">
           <p className="cover-kicker">Studio dispatch / October 5, 2026</p>
