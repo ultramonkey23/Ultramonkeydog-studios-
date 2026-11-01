@@ -60,16 +60,30 @@ const ACCENTS = {
  * This is the hierarchy the flat front door does not express.
  */
 function actionTier(project) {
-  if (project.demoUrl) {
-    return { rank: 0, label: "PLAYABLE NOW", priority: "0.9" };
+  // Active work matters more than old public demos. Preserve archival truth
+  // without turning a two-day Lab proof into the studio's acquisition product.
+  if (project.id === "muttpit") {
+    return { rank: 9, label: "PLAYABLE LAB PROOF — ARCHIVED", priority: "0.3" };
   }
-  if (project.publicVisual.mediaState === "NATIVE_BUILD") {
-    return { rank: 1, label: "IN DEVELOPMENT — NATIVE BUILD", priority: "0.7" };
+  if (project.id === "bone-league") {
+    return { rank: 8, label: "EARLIER PLAYABLE PROJECT", priority: "0.3" };
+  }
+  if (project.id === "ghengis-mon") {
+    return { rank: 0, label: "ACTIVE CREATURE WARFARE — IN DEVELOPMENT", priority: "0.9" };
+  }
+  if (["what-we-fed", "savage-crown", "fretfang"].includes(project.id)) {
+    return { rank: 1, label: "ACTIVE GAME — IN DEVELOPMENT", priority: "0.8" };
+  }
+  if (project.id === "voidwalking") {
+    return { rank: 1, label: "ORIGINAL MUSIC — FILM FINISHED", priority: "0.8" };
+  }
+  if (project.demoUrl) {
+    return { rank: 4, label: "PLAYABLE PORTFOLIO", priority: "0.6" };
   }
   if (project.publicVisual.mediaState === "PRECOMPUTED_MATRIX") {
-    return { rank: 2, label: "INTERACTIVE MATCHUP MATRIX", priority: "0.7" };
+    return { rank: 4, label: "INTERACTIVE MATCHUP MATRIX", priority: "0.6" };
   }
-  return { rank: 3, label: "IN DEVELOPMENT", priority: "0.6" };
+  return { rank: 5, label: "IN DEVELOPMENT", priority: "0.5" };
 }
 
 function esc(value) {
