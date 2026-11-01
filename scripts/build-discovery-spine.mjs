@@ -395,7 +395,35 @@ function feedAddress() {
 }
 
 function followPage() {
-  return page({slug:"follow",title:"Follow the Studio by RSS — Ultramonkeydog Studios",description:"A direct way to follow Cody Haring’s public studio dispatches. Add the RSS address to your reader; no studio account or email signup.",accent:"#f2b74c",crumbHref:"/dispatches",crumbLabel:"Dispatches",pageClass:"feed-page",stylesheet:"/assets/studio-feed-v1.css",body:`<article><p class="tier">A QUIET WAY TO KEEP UP</p><h1>Keep the strange<br>in your feed.</h1><p class="lede">New public studio dispatches. Short summaries. A link to the whole piece. Your reader, your pace.</p>${feedAddress()}<h2>Three steps. No studio signup.</h2><ol><li>Copy the address above.</li><li>In your RSS reader, choose Add feed or Subscribe and paste it.</li><li>Open a dispatch when it interests you. Remove the feed whenever you want.</li></ol><p>A browser may show XML when you open the feed. That is the subscription file, not a broken page. If you do not use a reader, <a href="/dispatches">the journal remains readable on the web</a>.</p><h2>What you are following</h2><p>Public writing from Cody Haring about creature design, transformation, unusual games and making things. Development posts are not promises of releases. The feed contains summaries and article links, not game downloads or private work.</p><h2>Privacy and boundaries</h2><p>No email address or studio subscription account is requested. This is a public static feed, not a private channel. Your reader and the hosting provider may process requests; their privacy practices still apply. Following does not enroll you in a mailing list or grant access to unreleased builds.</p><p><a href="/dispatches/keep-the-strange-in-your-feed">Read why this doorway exists</a></p></article>`});
+  return page({
+    slug:"follow",
+    title:"Follow Ultramonkeydog Studios — Games, Music & New Work",
+    description:"Follow the monkeydog's original music, Ultramonkeydog Studios' creature games, and current projects on YouTube, TikTok or the direct studio RSS feed.",
+    accent:"#f2b74c",
+    crumbHref:"/",
+    crumbLabel:"Studio",
+    pageClass:"feed-page",
+    stylesheet:"/assets/studio-feed-v1.css",
+    body:`<article>
+      <p class="tier">KEEP UP WITH THE STUDIO</p>
+      <h1>Games. Music.<br>Whatever comes next.</h1>
+      <p class="lede">Follow the music, creature games and things being made at Ultramonkeydog Studios. No account needed on this website.</p>
+      <h2>Follow where you already are</h2>
+      <div class="follow-channels">
+        <a href="https://www.youtube.com/channel/UC83dR856mxiUy1JUDPqsU3w" target="_blank" rel="noopener noreferrer"><strong>YouTube</strong><span>Music videos and studio video releases ↗</span></a>
+        <a href="https://www.tiktok.com/@supermonkeydog" target="_blank" rel="noopener noreferrer"><strong>TikTok</strong><span>Short clips and new experiments ↗</span></a>
+        <a href="https://monkeydog23.itch.io/" target="_blank" rel="noopener noreferrer"><strong>itch.io</strong><span>Projects and playable releases when available ↗</span></a>
+      </div>
+      <h2>Follow without social media</h2>
+      <p>Studio dispatches have a public RSS feed. Add it to a feed reader to see new posts without signing up or waiting for an algorithm to show them.</p>
+      ${feedAddress()}
+      <h2>Explore the actual projects</h2>
+      <p><a href="/ghengis-mon">Ghengis Mon</a> · <a href="/what-we-fed">WHAT WE FED</a> · <a href="/savage-crown">Savage Crown</a> · <a href="/voidwalking">The monkeydog / VOIDWALKING</a></p>
+      <p>Those games are in development. A finished music-video file does not automatically mean a public video upload. The project pages say what is and is not available.</p>
+      <h2>No fake signup</h2>
+      <p>This page doesn't collect an email address. Following on YouTube, TikTok, itch.io or through an RSS reader is handled by that platform. Nothing here enrolls you in a studio mailing list.</p>
+    </article>`
+  });
 }
 
 function followDispatch() {
