@@ -166,9 +166,9 @@ export default function App() {
               </a>
             </div>
             <p className="studio-cover__note">
-              One game is playable right now: MUTTPIT.
+              MUTTPIT is the main browser game you can play now.
               <br />
-              More worlds are in development, on many fronts at once.
+              Feral Formation also has a smaller browser demo. The bigger worlds are still in development.
             </p>
           </div>
           <figure className="studio-cover__art">
