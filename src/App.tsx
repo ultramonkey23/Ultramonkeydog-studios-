@@ -103,7 +103,7 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const [showBox, setShowBox] = useState(false);
   const [showProof, setShowProof] = useState(false);
-  const feral = PROJECTS_DATA.find((p) => p.id === "feral-formation")!;
+  const fretfang = PROJECTS_DATA.find((p) => p.id === "fretfang")!;
   const film = PROJECTS_DATA.find((p) => p.id === "voidwalking")!;
   async function copyEmail() {
     try {
@@ -327,21 +327,18 @@ export default function App() {
                 </p>
               </article>
               <article>
-                <span className="cover-kicker">
-                  A smaller piece you can try
-                </span>
-                <h3>{feral.title}</h3>
-                <p>{feral.description}</p>
-                <a
-                  href={feral.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cover-text-link"
-                >
-                  Try the browser demo <ArrowUpRight size={18} />
+                <span className="cover-kicker">Original songs · Rhythm boss game</span>
+                <h3>FRETFANG</h3>
+                <p>
+                  Seven songs by the monkeydog, seven boss fights. Time your
+                  attacks to the music, fight with a controller or guitar input,
+                  and earn creatures through performance.
+                </p>
+                <a href="/fretfang" className="cover-text-link">
+                  Explore FRETFANG <ArrowUpRight size={18} />
                 </a>
                 <p className="bench-boundary">
-                  Secondary portfolio work. Not a flagship launch.
+                  {fretfang.status}
                 </p>
               </article>
               <article id="box-o-battles">

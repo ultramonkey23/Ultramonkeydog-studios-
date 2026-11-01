@@ -418,7 +418,7 @@ function followPage() {
       <p>Studio dispatches have a public RSS feed. Add it to a feed reader to see new posts without signing up or waiting for an algorithm to show them.</p>
       ${feedAddress()}
       <h2>Explore the actual projects</h2>
-      <p><a href="/ghengis-mon">Ghengis Mon</a> · <a href="/what-we-fed">WHAT WE FED</a> · <a href="/savage-crown">Savage Crown</a> · <a href="/voidwalking">The monkeydog / VOIDWALKING</a></p>
+      <p><a href="/ghengis-mon">Ghengis Mon</a> · <a href="/what-we-fed">WHAT WE FED</a> · <a href="/savage-crown">Savage Crown</a> · <a href="/fretfang">FRETFANG</a> · <a href="/voidwalking">The monkeydog / VOIDWALKING</a></p>
       <p>Those games are in development. A finished music-video file does not automatically mean a public video upload. The project pages say what is and is not available.</p>
       <h2>No fake signup</h2>
       <p>This page doesn't collect an email address. Following on YouTube, TikTok, itch.io or through an RSS reader is handled by that platform. Nothing here enrolls you in a studio mailing list.</p>
@@ -551,6 +551,9 @@ function projectPage(project, siblings) {
     const inquiry = `mailto:${CONTACT}?subject=${encodeURIComponent(`[UMD PROJECT] ${project.title}`)}&body=${encodeURIComponent(`Hi Cody,\n\nI'm interested in ${project.title}.\nMy question or idea:\nRelevant link (optional):\nTiming (if relevant):\n`)}`;
     parts.push(`<p>This project is in development. There is no public playable release offered on this page. Read the current evidence below, or ask Cody a specific question about the project.</p>`);
     parts.push(`<p><a class="cta" href="${esc(inquiry)}">Ask about ${esc(project.title)}</a></p><p class="contact-boundary">Opens your email app. No signup or mailing-list enrollment. Please do not send confidential material.</p>`);
+  } else if (project.id === "fretfang") {
+    parts.push(`<p>FRETFANG is a playable pre-alpha in development, built around seven original songs by the monkeydog. None of its existing visuals are approved as showcase art, and there is no public demo or promised release date.</p>`);
+    parts.push(`<p><a class="cta" href="/voidwalking">Explore the original music</a><a class="cta cta--ghost" href="/follow">Follow the studio</a></p><p class="contact-boundary">The music and playable timing systems are real; the visual rebuild still has to earn its place.</p>`);
   } else if (project.id === "voidwalking") {
     parts.push(`<p>The full VOIDWALKING music video is finished. It is an original song by the monkeydog, with a 3:52 animated cosmic-horror film from Ultramonkeydog Studios. A public YouTube watch link is not verified yet, so this page does not pretend you can stream it here.</p>`);
     parts.push(`<p><a class="cta" href="/dispatches/before-the-first-frame-there-was-a-song">How the film started</a><a class="cta cta--ghost" href="/follow">Follow studio updates</a></p><p class="contact-boundary">No preorder, invented premiere date or automatic screening notices. /follow offers the existing public RSS feed.</p>`);

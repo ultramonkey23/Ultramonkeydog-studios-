@@ -12,6 +12,7 @@ export type ProjectVisualStyle =
   | "box-o-battles"
   | "muttpit"
   | "ghengis-mon"
+  | "fretfang"
   | "voidwalking";
 
 export type PublicMediaState =
