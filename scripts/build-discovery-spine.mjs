@@ -549,8 +549,8 @@ function projectPage(project, siblings) {
     );
   } else if (doorway) {
     const inquiry = `mailto:${CONTACT}?subject=${encodeURIComponent(`[UMD PROJECT] ${project.title}`)}&body=${encodeURIComponent(`Hi Cody,\n\nI'm interested in ${project.title}.\nMy question or idea:\nRelevant link (optional):\nTiming (if relevant):\n`)}`;
-    parts.push(`<p>This project is in development. There is no public playable release offered on this page. Read the current evidence below, or ask Cody a specific question about the project.</p>`);
-    parts.push(`<p><a class="cta" href="${esc(inquiry)}">Ask about ${esc(project.title)}</a></p><p class="contact-boundary">Opens your email app. No signup or mailing-list enrollment. Please do not send confidential material.</p>`);
+    parts.push(`<p>This project is in development. There is no public playable release offered on this page. The current work and its limitations are listed below. Follow the studio for later footage and release news.</p>`);
+    parts.push(`<p><a class="cta" href="/follow">Follow studio updates</a><a class="cta cta--ghost" href="${esc(inquiry)}">Ask about ${esc(project.title)}</a></p><p class="contact-boundary">Following uses the existing YouTube, TikTok and RSS links; there is no project-specific notification signup. Inquiries open your email app.</p>`);
   } else if (project.id === "fretfang") {
     parts.push(`<p>FRETFANG is a playable pre-alpha in development, built around seven original songs by the monkeydog. None of its existing visuals are approved as showcase art, and there is no public demo or promised release date.</p>`);
     parts.push(`<p><a class="cta" href="/voidwalking">Explore the original music</a><a class="cta cta--ghost" href="/follow">Follow the studio</a></p><p class="contact-boundary">The music and playable timing systems are real; the visual rebuild still has to earn its place.</p>`);
@@ -682,7 +682,7 @@ function projectPage(project, siblings) {
 }
 
 function playPage(projects) {
-  const playable = projects.filter((project) => project.demoUrl && project.id !== "bone-league");
+  const playable = projects.filter((project) => project.demoUrl && !["bone-league", "muttpit"].includes(project.id));
   const rest = projects
     .filter((project) => !project.demoUrl)
     .sort((a, b) => actionTier(a).rank - actionTier(b).rank);
@@ -712,7 +712,7 @@ function playPage(projects) {
     );
   }
 
-  parts.push(`<details><summary>Earlier project archive</summary><p>Bone League is a smaller project, not ready to lead outreach or release work.</p><p><a href="/bone-league">Read the archived project record</a></p></details>`);
+  parts.push(`<details><summary>Earlier Lab experiments and archived games</summary><p>MUTTPIT was a two-day proof of the Lab, not an active studio campaign. Bone League is another smaller earlier project. Both remain documented without being promoted as the main work.</p><p><a href="/muttpit">MUTTPIT project record</a> · <a href="/bone-league">Bone League project record</a></p></details>`);
   parts.push(`<h2>Flagship and other work in development</h2>`);
   parts.push(
     `<p>These are real and in progress. They are listed here so the answer to ` +
