@@ -1077,3 +1077,19 @@
   .cover-current__routes { margin-top: 0; min-height: 0; }
   .cover-current__route { min-height: 118px; }
 }
+
+/* Navigational fit for expanded active-studio routes. */
+@media (max-width: 1150px) {
+  .cover-nav { flex-wrap: wrap; row-gap: 10px; }
+  .cover-nav nav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 2px clamp(12px, 2.7vw, 28px);
+  }
+  .cover-nav nav a { min-height: 44px; }
+}
+@media (max-width: 700px) {
+  .cover-nav nav { justify-content: flex-start; gap: 3px 15px; }
+  .cover-nav nav a { font-size: 12px; min-height: 44px; }
+}
