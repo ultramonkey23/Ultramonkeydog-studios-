@@ -1030,3 +1030,50 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Active studio worlds — factual links rather than stale prototype art. */
+.cover-current__routes {
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  border: 1px solid #625b4b;
+  background: #11130f;
+}
+.cover-current__route {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  padding: clamp(18px, 2.6vw, 34px);
+  color: #f1e9d5 !important;
+  text-decoration: none;
+  border-left: 4px solid transparent;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+.cover-current__route + .cover-current__route { border-top: 1px solid #625b4b; }
+.cover-current__route:hover,
+.cover-current__route:focus-visible {
+  background: #25271d;
+  border-left-color: #d0a46e;
+}
+.cover-current__route span {
+  font: 700 11px/1.35 "Courier New", monospace;
+  letter-spacing: .12em;
+  color: #d8b987;
+}
+.cover-current__route strong {
+  font: 900 clamp(28px, 3vw, 40px)/1 "Barlow Condensed", Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+.cover-current__route small {
+  color: #cbc3ae;
+  font-size: 14px;
+  line-height: 1.5;
+}
+@media (max-width: 1000px) {
+  .cover-current__routes { min-height: 360px; }
+}
+@media (max-width: 700px) {
+  .cover-current__routes { margin-top: 0; min-height: 0; }
+  .cover-current__route { min-height: 118px; }
+}
