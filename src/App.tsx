@@ -128,10 +128,12 @@ export default function App() {
           <small>STUDIOS / CODY HARING</small>
         </a>
         <nav aria-label="Primary navigation">
-          <a href="/play/muttpit/" className="cover-nav__play">
-            Play MUTTPIT
+          <a href="/ghengis-mon" className="cover-nav__play">
+            Ghengis Mon
           </a>
-          <a href="#worlds">The work</a>
+          <a href="#worlds">Games</a>
+          <a href="#studio-sound">Music &amp; audio</a>
+          <a href="/follow">Follow</a>
           <a href="#cody">The human</a>
           <a href="#contact">
             Get in touch <ArrowUpRight size={14} />
@@ -158,17 +160,17 @@ export default function App() {
               directed by <a href="#cody">Cody Haring</a>.
             </p>
             <div className="studio-cover__actions" aria-label="Ways to enter the studio">
-              <a href="/play" className="cover-action">
-                Play what’s live <ArrowUpRight size={18} />
+              <a href="/ghengis-mon" className="cover-action">
+                Explore Ghengis Mon <ArrowUpRight size={18} />
               </a>
               <a href="#worlds" className="cover-text-link">
                 Explore the worlds <ArrowDown size={18} />
               </a>
             </div>
             <p className="studio-cover__note">
-              MUTTPIT is the main browser game you can play now.
+              Creature RPGs, living warbands, original music, animation, and tools.
               <br />
-              Feral Formation also has a smaller browser demo. The bigger worlds are still in development.
+              Some projects are playable; the bigger worlds are still taking shape.
             </p>
           </div>
           <figure className="studio-cover__art">
@@ -276,7 +278,7 @@ export default function App() {
             />
           ))}
         </section>
-        <section className="cover-workbench" aria-labelledby="bench-title">
+        <section id="studio-sound" className="cover-workbench" aria-labelledby="bench-title">
           <div className="cover-section-head">
             <p className="cover-kicker">Sound / play / argument</p>
             <h2 id="bench-title">Other frequencies.</h2>
