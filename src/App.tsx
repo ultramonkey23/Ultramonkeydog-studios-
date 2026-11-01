@@ -235,14 +235,14 @@ export default function App() {
           </div>
         </section>
         <section id="grow-teeth" className="cover-manifesto" aria-labelledby="campaign-title">
-          <p className="cover-kicker">Studio dispatch / October 5, 2026</p>
+          <p className="cover-kicker">What connects the work</p>
           <h2 id="campaign-title">Grow teeth.<br /><em>Keep a heart.</em></h2>
           <div>
             <p>A creature should become something. Not just get bigger.</p>
-            <p>That is the thread through my work: growth that changes anatomy, choices and consequences. Hunger and attachment. Horror with room for wonder. Something vulnerable becoming something the world has to answer.</p>
-            <p>I’m Cody. Ultramonkeydog Studios is where I build those worlds—and the tools that help me make them. AI is a bridge across disciplines; the taste, direction and decisions are mine.</p>
-            <p>I’m working on many things at once. Some are playable today — MUTTPIT is live in your browser. The rest are ideas taking shape. This dispatch is an invitation to play what’s real and watch the rest grow teeth.</p>
-            <a className="cover-action" href="/dispatches/victory-should-open-the-market">Read the newest dispatch <ArrowUpRight size={18} /></a>
+            <p>Ghengis Mon, WHAT WE FED and Savage Crown all explore that differently: creatures that change anatomy, choices, relationships and what the world does in return.</p>
+            <p>The creatures can be ridiculous, beautiful, frightening or worth protecting. Anime, horror, deep RPG systems and a taste for weird combinations all have room here.</p>
+            <p>Music has its own place, too: original songs by the monkeydog, animated films like VOIDWALKING, and rhythm-combat experiments like FRETFANG. The bigger games are still in development.</p>
+            <a className="cover-action" href="/dispatches/victory-should-open-the-market">Explore Ghengis Mon’s War Market <ArrowUpRight size={18} /></a>
             <a className="cover-text-link" href="/dispatches">Browse the studio dispatches <ArrowUpRight size={18} /></a>
             <a className="cover-text-link" href="/follow">Follow by RSS <ArrowUpRight size={18} /></a>
           </div>
@@ -513,6 +513,7 @@ export default function App() {
       </main>
       <footer className="cover-footer">
         <a href="/press">Press kit</a>
+        <a href="/follow">Follow the studio</a>
         <a
           href="https://monkeydog23.itch.io/"
           target="_blank"
