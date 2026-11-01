@@ -263,7 +263,7 @@ export const PROJECTS_DATA: Project[] = [
     id: "ghengis-mon",
     title: "GHENGIS MON",
     tone: "Creature warfare roguelite · Brood Riot",
-    description: "A tactical creature warfare roguelite across five fractured continents: hatch an ancestral Hero Scion, master the War Market's brutal recruit-or-devour economy, and command autonomous army riots on living battlefields that remember every wound and rival grudge.",
+    description: "A creature-warband roguelite where one of your monsters becomes the General. Hatch a Hero Scion, recruit or devour creatures in the War Market, and lead autonomous armies across five continents. Evolve, experiment, and let each war leave a mark.",
     tags: ["Creature Warfare", "Godot 4", "Brood Riot", "War Market", "Autonomous Armies", "Devour Mechanic"],
     status: "In Development — Rendered Desktop Campaign Route Proven",
     accentColor: "warm-amber",
@@ -272,8 +272,8 @@ export const PROJECTS_DATA: Project[] = [
       mediaState: "EARLY_BUILD",
       mediaLabel: "In-engine capture · in development",
       heading: "BROOD RIOT: WAR OF FIVE CONTINENTS",
-      note: "Authentic in-engine captures show the Godot creature-warfare build. A newer rendered Godot 4.7.2 desktop campaign proof reaches the opening oath, War Camp, War Room, Market, battle, reward debrief, and council; these archived captures predate that repaired route.",
-      facets: ["Every empire begins as an egg", "Recruit or devour", "The war remembers"],
+      note: "These are real older Godot gameplay captures, NOT the current intended art quality. A newer Godot 4.7.2 rendered desktop route reaches oath, Camp, War Room, Market, battle, debrief and council. The active visual target is lively textured 3D: truly different creatures from adorable and absurd to spectacular and frightening, with an expressive mature-anime cast, color, comedy and moments of beauty. Creator-approved new visual replacements are still in progress.",
+      facets: ["Creatures worth collecting", "Recruit or devour", "The war remembers", "3D visual rebuild in progress"],
       evidence: [
         {
           id: "gm-title-composition",
