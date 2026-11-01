@@ -524,9 +524,8 @@ function projectPage(project, siblings) {
     parts.push(`<p>This project is in development. There is no public playable release offered on this page. Read the current evidence below, or ask Cody a specific question about the project.</p>`);
     parts.push(`<p><a class="cta" href="${esc(inquiry)}">Ask about ${esc(project.title)}</a></p><p class="contact-boundary">Opens your email app. No signup or mailing-list enrollment. Please do not send confidential material.</p>`);
   } else if (project.id === "voidwalking") {
-    const screening = `mailto:${CONTACT}?subject=${encodeURIComponent("[VOIDWALKING] Screening notice")}&body=${encodeURIComponent("Hi Cody,\n\nPlease let me know when a public VOIDWALKING screening or trailer is ready.\n\nWhat drew me in:\n\n")}`;
-    parts.push(`<p>The film is in visual production. No trailer or final frame is public yet. Read the production note, or request one manual notice when a public screening actually exists.</p>`);
-    parts.push(`<p><a class="cta" href="/dispatches/before-the-first-frame-there-was-a-song">Read the production note</a><a class="cta cta--ghost" href="${esc(screening)}">Request a screening notice</a></p><p class="contact-boundary">No preorder, release-date promise or mailing-list enrollment. Opens your email app; do not send confidential material.</p>`);
+    parts.push(`<p>The full VOIDWALKING music video is finished. It is an original song by the monkeydog, with a 3:52 animated cosmic-horror film from Ultramonkeydog Studios. A public YouTube watch link is not verified yet, so this page does not pretend you can stream it here.</p>`);
+    parts.push(`<p><a class="cta" href="/dispatches/before-the-first-frame-there-was-a-song">How the film started</a><a class="cta cta--ghost" href="/follow">Follow studio updates</a></p><p class="contact-boundary">No preorder, invented premiere date or automatic screening notices. /follow offers the existing public RSS feed.</p>`);
   } else {
     parts.push(
       `<p>Not playable in a browser yet — this one is <strong>${esc(project.status)}</strong>. ` +

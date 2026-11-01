@@ -104,6 +104,7 @@ export default function App() {
   const [showBox, setShowBox] = useState(false);
   const [showProof, setShowProof] = useState(false);
   const feral = PROJECTS_DATA.find((p) => p.id === "feral-formation")!;
+  const film = PROJECTS_DATA.find((p) => p.id === "voidwalking")!;
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText(email);
@@ -303,6 +304,21 @@ export default function App() {
               </a>
             </article>
             <div className="cover-bench-secondary">
+              <article>
+                <span className="cover-kicker">Original music · finished film</span>
+                <h3>VOIDWALKING / the monkeydog</h3>
+                <p>
+                  An original song made into a full animated cosmic-horror
+                  music video. The film is finished; the public video upload is
+                  a separate release step.
+                </p>
+                <a href="/voidwalking" className="cover-text-link">
+                  See the film project <ArrowUpRight size={18} />
+                </a>
+                <p className="bench-boundary">
+                  {film.status}
+                </p>
+              </article>
               <article>
                 <span className="cover-kicker">
                   A smaller piece you can try
