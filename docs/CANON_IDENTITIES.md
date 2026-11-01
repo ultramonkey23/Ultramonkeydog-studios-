@@ -19,18 +19,20 @@ change. A gate failure after a canon move is the gate doing its job.
       "source_repo": "ultramonkey23/voidwalking",
       "source_file": "voidwalking.json",
       "source_field": "identity",
-      "spec_version": "v13",
-      "spec_commit": "ce74ac0",
-      "pin_text": "voidwalking.json v13",
+      "spec_version": "v14",
+      "spec_commit": "a941f189ddfbb4817d5e0fe49a07aca9e5d327dd",
+      "pin_text": "voidwalking.json v14",
       "required_markers": [
         "non-human",
         "singularity",
-        "accretion disk",
-        "porcelain death mask"
+        "stellar nucleus",
+        "obsidian crescents"
       ],
       "superseded_markers": [
         "masked courier",
         "live-wire palm",
+        "porcelain death mask",
+        "accretion disk",
         "star-machine",
         "cathedral mecha",
         "cathedral-mecha"
@@ -40,9 +42,4 @@ change. A gate failure after a canon move is the gate doing its job.
 }
 ```
 
-Note: the sung lyric refrain "live-wire hymn" is artist canon (the master and
-lyrics are unchanged by visual identity revisions) and is deliberately NOT a
-superseded marker. The superseded claim was the CHARACTER identity: a masked
-courier with a live-wire palm. Current canon (spec v13): a fundamentally
-non-human dimensional singularity entity - an ancient cracked porcelain death
-mask floating in a black gravitational accretion disk, zero human silhouette.
+Note: the song and its lyrics have not been rewritten. The obsolete v13 porcelain-mask description applied to the *character design*, not to the music. In v14 the Voidwalker is a non-human stellar singularity with a white nucleus, detached obsidian crescents, and torn violet spacetime ribbons. The film is finished; the official public video link is a separate release step.
