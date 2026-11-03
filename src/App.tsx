@@ -424,7 +424,7 @@ export default function App() {
           <div>
             <h3>MAW</h3>
             <p>A monster-hearted coding CLI built on LLxprt’s provider, tool, session and extension engine. It has its own terminal identity and optional attachment to the studio’s private creation system. It can work independently of that system.</p>
-            <a className="cover-text-link" href="https://github.com/ultramonkey23/maw" target="_blank" rel="noopener noreferrer">Explore MAW’s source and setup <ArrowUpRight size={18} /></a>
+            <a className="cover-text-link" href="/maw">Choose a MAW setup path <ArrowUpRight size={18} /></a>
             <h3>Prehensile</h3>
             <p>An experimental standalone software-engineering tool. Its bounded workflow checks a proposed patch, applies it, runs validation and reverts it by default. Sustained autonomous missions and evidence-driven learning remain objectives, not proven capabilities.</p>
             <a className="cover-text-link" href="#contact">Ask about Prehensile <ArrowDown size={18} /></a>
