@@ -816,12 +816,27 @@ function pressPage(projects) {
   });
 }
 
+function mawPage() {
+  const repo = "https://github.com/ultramonkey23/maw";
+  const jsonLd = JSON.stringify({"@context":"https://schema.org","@type":"SoftwareSourceCode",name:"MAW",description:"A public multi-provider coding CLI with its own command identity and optional private Lab attachment.",codeRepository:repo,license:"https://www.apache.org/licenses/LICENSE-2.0",programmingLanguage:"TypeScript"}).replace(/</g, "\\u003c");
+  const body = [
+    `<span class="tier">PUBLIC SOURCE / STANDALONE BY DEFAULT</span><h1>MAW</h1><p class="tone">A monster-hearted, multi-provider coding CLI for the terminal.</p><p class="lede">MAW keeps LLxprt’s provider, profile, tool, session and extension foundation, then gives the fork its own command identity, source-install paths and optional connection to Ultramonkeydog Lab. The ordinary <code>maw</code> command works without that private system.</p>`,
+    `<p><a class="cta" href="${repo}?utm_source=studio_site&utm_medium=product_page&utm_campaign=maw_public_cli">Open MAW on GitHub ↗</a><a class="cta cta--ghost" href="${repo}#start-with-maw--the-actual-fork">Windows setup</a><a class="cta cta--ghost" href="${repo}/blob/main/docs/termux-maw.md">Experimental Termux path</a></p>`,
+    `<section><h2>Choose the mode you mean</h2><div class="card"><span class="state">STANDALONE</span><h3><code>maw</code></h3><p>Use the coding CLI in an ordinary repository. Choose and configure your own provider and model. No Ultramonkeydog Lab services are required.</p></div><div class="card"><span class="state">OPTIONAL PRIVATE CONNECTION</span><h3><code>maw-lab</code> / <code>lab-maw</code></h3><p>Request the existing private Lab MCP connection. Inside MAW, <code>/mcp</code> reports what actually connected. This mode does not make private Lab technology public.</p></div></section>`,
+    `<section><h2>Start from source</h2><div class="card"><span class="state">WINDOWS</span><p>Install Node 24+, Git, npm and Bun 1.3.14+. Clone the repository, then run:</p><p><code>npm ci</code><br><code>npm run build</code><br><code>&amp; .\\\\scripts\\\\install-maw-windows.ps1</code><br><code>maw --help</code></p><p><a href="${repo}#start-with-maw--the-actual-fork">Read the complete Windows guide ↗</a></p></div><div class="card"><span class="state">ANDROID / TERMUX / ARM64 — EXPERIMENTAL</span><p>The separate source path uses a pinned Android Bun runtime. Desktop success does not prove every native dependency works on a phone.</p><p><a href="${repo}/blob/main/docs/termux-maw.md">Read the Termux steps before installing ↗</a></p></div></section>`,
+    `<section><h2>What this page proves</h2><ul><li>The source and setup documentation are public.</li><li>The standalone command is the default; private Lab attachment is explicit and optional.</li><li>MAW retains and names its LLxprt lineage and Apache-2.0 attribution.</li></ul><p class="limit">This is a source-based development product, not a hosted service or a promise of unattended autonomy. Provider calls can cost money and require your own credentials. The published evidence does not establish compatibility on every machine, provider or workload.</p></section>`,
+    `<section><h2>Useful feedback</h2><p>If you try MAW, the useful report is specific: operating system, setup path, provider, command, expected result and what happened instead.</p><p><a class="cta cta--ghost" href="${repo}/issues">Report a reproducible issue ↗</a></p></section>`,
+  ];
+  return page({slug:"maw",title:"MAW — Multi-provider coding CLI | Ultramonkeydog Studios",description:"MAW is a public, source-based multi-provider coding CLI with standalone Windows setup, an experimental Termux path and optional private Lab attachment.",accent:"#8fe36b",crumbHref:"/#creation-tools",crumbLabel:"Creation tools",body:body.join("\n"),jsonLd});
+}
+
 function sitemap(projects) {
   const today = new Date().toISOString().slice(0, 10);
   const entries = [
     { loc: `${ORIGIN}/`, priority: "1.0" },
     { loc: `${ORIGIN}/play`, priority: "0.9" },
     { loc: `${ORIGIN}/press`, priority: "0.7" },
+    { loc: `${ORIGIN}/maw`, priority: "0.9" },
     { loc: `${ORIGIN}/follow`, priority: "0.8" },
     { loc: `${ORIGIN}/dispatches/victory-should-open-the-market`, priority: "0.9" },
     { loc: `${ORIGIN}/dispatches/a-monster-should-not-borrow-a-human-skeleton`, priority: "0.9" },
@@ -900,6 +915,9 @@ async function main() {
 
   writePage("press", pressPage(PROJECTS_DATA));
   written.push("/press");
+
+  writePage("maw", mawPage());
+  written.push("/maw");
 
   writePage(
     "dispatches/the-pit-keeps-receipts",
