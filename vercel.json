@@ -5,9 +5,30 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
-    { "source": "/feed.xml", "headers": [
-      { "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" },
-      { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300" }
-    ] }
+    {
+      "source": "/feed.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, s-maxage=300"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/maw",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/maw/:path*",
+      "destination": "/",
+      "permanent": true
+    }
   ]
 }

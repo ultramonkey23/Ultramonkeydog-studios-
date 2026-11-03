@@ -422,13 +422,10 @@ export default function App() {
           <p className="cover-kicker">Software / tools for making</p>
           <h2 id="tools-title">The tools have<br /><em>teeth, too.</em></h2>
           <div>
-            <h3>MAW</h3>
-            <p>A monster-hearted coding CLI built on LLxprt’s provider, tool, session and extension engine. It has its own terminal identity and optional attachment to the studio’s private creation system. It can work independently of that system.</p>
-            <a className="cover-text-link" href="/maw">Choose a MAW setup path <ArrowUpRight size={18} /></a>
             <h3>Prehensile</h3>
             <p>An experimental standalone software-engineering tool. Its bounded workflow checks a proposed patch, applies it, runs validation and reverts it by default. Sustained autonomous missions and evidence-driven learning remain objectives, not proven capabilities.</p>
             <a className="cover-text-link" href="#contact">Ask about Prehensile <ArrowDown size={18} /></a>
-            <p>Both are development tools, not promises of effortless autonomous production. MAW retains its LLxprt lineage; Prehensile has its own implementation and runtime boundary.</p>
+            <p>Prehensile is a development tool, not a promise of effortless autonomous production.</p>
           </div>
         </section>
         <section
