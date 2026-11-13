@@ -1,4 +1,6 @@
-# MUTTPIT — itch.io project page copy (paste-ready)
+# MUTTPIT — historical itch.io project page draft (retired)
+> **ARCHIVED DRAFT — creator correction 2026-11-13:** This prepared copy is NOT a current itch publication request or promotion approval. MUTTPIT was a one-shot proof game and is not to be heavily pushed. Ghengis Mon is approaching release and retains the Studio spotlight. Reuse only after Cody explicitly directs a new MUTTPIT-specific publication.
+
 
 Proof ceiling for every line below: the shipped browser build exists and is playable at
 https://ultramonkeydog-studios.vercel.app/play/muttpit/ . No audience-demand, revenue,
