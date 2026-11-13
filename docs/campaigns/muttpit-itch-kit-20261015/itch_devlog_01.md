@@ -1,4 +1,6 @@
-# itch.io devlog #1 — draft (post at launch or shortly after)
+# itch.io devlog #1 — archived proposal (not scheduled for posting)
+> **ARCHIVED DRAFT — creator correction 2026-11-13:** This is historical proposed publication copy, not a post-at-launch instruction. MUTTPIT is a one-shot demonstration, not the active marketing focus. Ghengis Mon is the approaching-release lead. Do not publish without new specific creator direction.
+
 
 **Title:** `MUTTPIT arrives — a browser auto-battler that keeps receipts`
 
