@@ -136,6 +136,10 @@ a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
 .captures{margin:16px 0 0}
 .captures figure{margin:0 0 22px}
 .captures img{display:block;width:100%;height:auto;border:1px solid var(--edge);border-radius:3px}
+.captures a{display:block;border-radius:3px}
+.captures a:hover img{border-color:var(--accent)}
+.captures a:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+.captures .capture-hint{color:var(--accent);white-space:nowrap}
 .captures figcaption{margin-top:8px;font:600 11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
   letter-spacing:.11em;text-transform:uppercase;color:var(--dim)}
 .cta,.next a{min-height:44px}
@@ -588,12 +592,12 @@ function projectPage(project, siblings) {
       `<div class="captures">${shots
         .map(
           (item) =>
-            `<figure><img src="${esc(item.src)}" width="${esc(item.width ?? 1280)}" height="${esc(item.height ?? 757)}" loading="lazy" alt="${esc(item.alt ?? item.title)}">` +
+            `<figure><a href="${esc(item.src)}" target="_blank" rel="noopener noreferrer" aria-label="Open full-size capture: ${esc(item.title)}"><img src="${esc(item.src)}" width="${esc(item.width ?? 1280)}" height="${esc(item.height ?? 757)}" loading="lazy" decoding="async" alt="${esc(item.alt ?? item.title)}"></a>` +
             `<figcaption>${esc(item.title)} — ${
               item.state === "PROMOTED_RUNTIME_GAMEPLAY"
                 ? (project.demoUrl ? "real runtime capture / shipped browser build" : "in-engine runtime capture / Godot 4")
                 : esc(item.state).toLowerCase()
-            }</figcaption></figure>`,
+            } <span class="capture-hint" aria-hidden="true">/ OPEN FULL-SIZE ↗</span></figcaption></figure>`,
         )
         .join("")}</div>`,
     );
