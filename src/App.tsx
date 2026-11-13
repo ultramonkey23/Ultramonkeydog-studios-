@@ -132,7 +132,6 @@ export default function App() {
             Ghengis Mon
           </a>
           <a href="#worlds">Games</a>
-          <a href="/play">Play now</a>
           <a href="#studio-sound">Music &amp; audio</a>
           <a href="/follow">Follow</a>
           <a href="#cody">The human</a>
@@ -166,9 +165,6 @@ export default function App() {
               </a>
               <a href="#worlds" className="cover-text-link">
                 Explore the worlds <ArrowDown size={18} />
-              </a>
-              <a href="/play" className="cover-text-link">
-                Play what's live <ArrowUpRight size={18} />
               </a>
             </div>
             <p className="studio-cover__note">
