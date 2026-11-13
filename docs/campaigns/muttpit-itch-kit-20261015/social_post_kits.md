@@ -1,8 +1,10 @@
 # MUTTPIT manual post kits + tagged link kit — 2026-10-15
+> **RETIRED CAMPAIGN MATERIAL — 2026-11-13 creator correction:** These October post drafts are preserved as historical options, not instructions to publish. MUTTPIT is a completed one-shot proof, not a flagship or ongoing acquisition priority. Ghengis Mon is nearing release and retains the spotlight. Do not post these drafts, push MUTTPIT heavily, or infer permission from their readiness; any renewed project-specific campaign needs Cody's explicit go.
+
 
 > Per `templates/PUBLIC_MANUAL_POST_KIT_TEMPLATE.md`: open kit → choose platform → copy caption → attach prepared media → post manually. No automation. Each caption is written for its platform, not duplicated verbatim everywhere.
 
-## 1. POST ME FIRST
+## 1. Archived first-post proposal (retired; do not post by default)
 
 - **What happened:** MUTTPIT — a free browser auto-battler with deterministic, auditable fights — is now fully presented with real runtime captures and, once the itch kit is published, on itch.io.
 - **Why a stranger might care:** "Bite Order is the build" + fights that keep receipts is a genuinely unusual design promise, and it's playable in one click with no account.
