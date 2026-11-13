@@ -540,6 +540,8 @@ function projectPage(project, siblings) {
   const accent = doorway?.accent ?? ACCENTS[project.accentColor] ?? "#f2b74c";
   const visual = project.publicVisual;
   const shots = (visual.evidence ?? []).filter((item) => item.src);
+  // State-bearing source copy belongs before images when the captures are from an early build.
+  const earlyCaptureNotice = shots.length > 0 && visual.mediaState === "EARLY_BUILD";
   const heroShot =
     shots.find((item) => item.state === "PROMOTED_RUNTIME_GAMEPLAY") ?? shots[0];
 
@@ -585,6 +587,7 @@ function projectPage(project, siblings) {
   }
 
   if (shots.length) {
+    if (earlyCaptureNotice) parts.push(`<p class="limit">${esc(visual.note)}</p>`);
     parts.push(
       `<h2>${project.demoUrl ? "From the shipped build" : "Captured evidence"}</h2>`,
     );
@@ -632,7 +635,7 @@ function projectPage(project, siblings) {
   if (doorway && project.systemsUnderTheHood?.length) parts.push(`</details>`);
   parts.push(`<h2>What has actually been proven</h2>`);
   parts.push(`<p><strong>Current state:</strong> ${esc(project.status)}</p>`);
-  parts.push(`<p>${esc(visual.note)}</p>`);
+  if (!earlyCaptureNotice) parts.push(`<p>${esc(visual.note)}</p>`);
   if (project.expandedDetails)
     parts.push(`<p>${esc(project.expandedDetails)}</p>`);
   if (doorway && visual.evidence?.length) parts.push(`<details class="proof-record"><summary>Read the evidence and its limits</summary>`);
