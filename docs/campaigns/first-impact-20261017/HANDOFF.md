@@ -1,10 +1,12 @@
 # FIRST IMPACT CAMPAIGN — HANDOFF (written 2026-10-18, session close)
+> **HISTORICAL HANDOFF ONLY — 2026-11-13 creator correction:** The 2026-10-18 successor prompt below is not a current assignment and must not be reused as live marketing authority. In particular, MUTTPIT's one-shot public availability does not authorize foreground promotion, new campaigns, or a homepage change. Ghengis Mon is approaching release and remains the current studio focus. Recover current owner truth and fresh creator direction before carrying any old campaign task forward.
+
 
 Successor: you are finishing the Ultramonkeydog Studios FIRST IMPACT campaign.
 Cody Haring owns IP + final artistic authority. Everything below is verified
 state from the outgoing session — trust it, but re-verify cheaply before building on it.
 
-## 0. THE HANDOFF PROMPT (paste to the next agent)
+## 0. Archived handoff prompt (historical only; do not paste as current direction)
 
 > You are finishing the ULTRAMONKEYDOG STUDIOS "FIRST IMPACT" campaign (studio
 > arrival video + Ghengis Mon arrival video + branding + distribution prep).
