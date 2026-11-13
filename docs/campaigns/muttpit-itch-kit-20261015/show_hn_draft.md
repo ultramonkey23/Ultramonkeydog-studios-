@@ -1,4 +1,6 @@
-# Show HN — draft (one attempt, timing is Cody's call)
+# Show HN — historical draft (retired, not a standing submission)
+> **ARCHIVED DRAFT — creator correction 2026-11-13:** The earlier Show HN proposal is no longer an active campaign candidate. MUTTPIT was a one-shot proof; do not elevate it into continuing promotion. Ghengis Mon retains studio priority as it approaches release. This text is preserved only for historical context unless Cody explicitly requests a new MUTTPIT campaign.
+
 
 Per the 2026-10-07 activation note: try-first surface must be excellent before submitting. The studio site now carries real runtime captures, a direct no-signup play link, and a project record with proof ceilings — the material is ready. Timing and energy belong to Cody.
 
