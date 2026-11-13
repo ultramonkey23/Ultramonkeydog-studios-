@@ -12,6 +12,14 @@ Public studio website for **Ultramonkeydog Studios**.
 
 The Itch.io profile is an established public distribution surface and should be treated as a real release/storefront destination rather than a future placeholder. Individual products should only be linked there once their own release gates are satisfied.
 
+## Creator-directed showcase focus (November 13, 2026)
+
+Ghengis Mon is approaching release and retains the Studios front-door emphasis. Its public claims and release state must be checked against the current BroodRiot project owner and actual proof before any new promotion.
+
+MUTTPIT was a small one-shot game and demonstration. Keep its existing accurate playable link and historical project record, but do not treat its availability or the October itch/social/Show HN kits as orders to prioritize, heavily promote, re-launch, or reposition it as a flagship. Those kits are archived proposals, not approved campaigns. New MUTTPIT-specific publicity requires Cody's fresh explicit authorization.
+
+This is a correction to marketing priority, not a judgment against the game's quality or a request to remove it.
+
 ## Public boundary
 
 This repository is a public presentation consumer—not the owner of private studio infrastructure or project decision engines.
