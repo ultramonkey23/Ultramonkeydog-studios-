@@ -1,8 +1,10 @@
 # MUTTPIT itch.io Launch Kit — prepared 2026-10-15
+> **SUPERSEDED — CREATOR CORRECTION 2026-11-13:** This is an archived October publishing kit, NOT an active launch handoff, current priority, or approval to post. MUTTPIT was a small one-shot game/Lab proof, not a flagship or major campaign. Ghengis Mon is approaching release and keeps the Studios spotlight. Preserve the prepared assets and copy as historical material. Do not publish, re-promote, run an acquisition campaign, or elevate MUTTPIT in the front door from this kit without fresh project-specific creator authorization.
 
-> **Role:** execution-ready publishing handoff. Not a marketing authority.
+
+> **Role:** preserved historical publishing proposal; no longer an execution-ready handoff.
 > **Current-direction owner:** Google Drive `05 — Independent Public Visibility, Founder Reveal & Marketing Activation Owner v2` (not reachable from the Lab node that prepared this).
-> **Status:** PREPARED. Publishing an itch.io project page is an external publication on Cody's account and is held for his go.
+> **Status:** RETIRED / HISTORICAL. Publishing an itch.io page or promoting MUTTPIT requires a new explicit creator decision; older proposed launch timing is withdrawn.
 
 ## Why this exists
 
@@ -22,7 +24,7 @@
 
 All prepared images derive from real browser captures of the shipped build (`public/assets/muttpit/*/capture.png`). Nothing is concept art passed off as gameplay.
 
-## Publish steps (≈15 minutes, manual, on itch.io)
+## Archived publish procedure (not an active task)
 
 1. itch.io → Dashboard → **Create new project**.
 2. Title: `MUTTPIT`. Project URL: `muttpit`. Classification: **Games → Strategy → Auto Battler** (tags in `itch_page_copy.md`).
