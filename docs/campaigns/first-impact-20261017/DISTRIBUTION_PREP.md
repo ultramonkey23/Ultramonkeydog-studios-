@@ -1,4 +1,6 @@
 # FIRST IMPACT — Distribution Prep (16:9 Cinema Focus)
+> **SUPERSEDED DISTRIBUTION DRAFT — 2026-11-13 creator correction:** The October MUTTPIT-led calls to action below are not approved current copy. MUTTPIT is a small one-shot game, not the promotional priority; Ghengis Mon is approaching release and keeps the spotlight. Do not post or reuse this old copy deck without fresh creator direction and current project proof. Historical file/provenance details are retained unchanged.
+
 
 Status: **prepared only. Nothing in this packet has been uploaded, scheduled, published, or submitted.**
 
@@ -26,7 +28,7 @@ Per Cody's artistic direction (2026-10-18), the FIRST IMPACT campaign concentrat
 
 ---
 
-## 3. Copy Deck (Draft — Not Yet Posted)
+## 3. Historical copy deck (not posted; MUTTPIT promotion emphasis retired)
 
 ### Video A: Studio Arrival ("The Door Is Open")
 
@@ -98,7 +100,7 @@ https://ultramonkeydog-studios.vercel.app/
 
 ---
 
-## 4. Pre-Publish Checklist
+## 4. Archived pre-publish checklist (not current instructions)
 
 1. **Title Selection:** `GHENGIS MON` is the primary public game title; `BROOD RIOT · WAR OF FIVE CONTINENTS` is the subtitle.
 2. **Account Selection:** Cody selects destination channels (YouTube, X, Discord, Reddit, Press).
