@@ -12,6 +12,7 @@ import {
   FileWarning,
   Gamepad2,
   Layers3,
+  Music,
   Play,
   Scale,
   Sparkles,
@@ -52,6 +53,7 @@ const styleTheme: Record<
   "box-o-battles": { accent: "#e94b39", signal: "#ffc447", secondary: "#3f7cff", pop: "#b66ee8", structure: "#f6e4b6", icon: Scale },
   "muttpit": { accent: "#c9772f", signal: "#f2b74c", secondary: "#b489ff", pop: "#b7d94a", structure: "#e9d9b0", icon: Gamepad2 },
   "ghengis-mon": { accent: "#f2b74c", signal: "#e65100", secondary: "#9c27b0", pop: "#ffd700", structure: "#f5e6c8", icon: Swords },
+  fretfang: { accent: "#ff5d5d", signal: "#ffb45c", secondary: "#c98cff", pop: "#7fd8ff", structure: "#f0dcb2", icon: Music },
   voidwalking: { accent: "#f54b72", signal: "#73efff", secondary: "#542c88", pop: "#ffbd4a", structure: "#ffe08a", icon: Play },
 };
 

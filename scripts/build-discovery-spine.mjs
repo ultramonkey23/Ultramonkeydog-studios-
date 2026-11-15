@@ -29,6 +29,11 @@ const ORIGIN = "https://ultramonkeydog-studios.vercel.app";
 const OG_IMAGE = `${ORIGIN}/assets/studio-share-v3.png`;
 const CONTACT = "haringcody@gmail.com";
 const ITCH = "https://monkeydog23.itch.io/";
+const GITHUB_PROFILE = "https://github.com/ultramonkey23";
+const SITE_VERIFICATION =
+  process.env.VITE_GOOGLE_SITE_VERIFICATION ||
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+  "";
 
 /** Load src/data.ts without duplicating it: bundle to a temp ESM file and import. */
 async function loadProjectData() {
@@ -165,6 +170,30 @@ function page({
   jsonLd = "",
 }) {
   const url = `${ORIGIN}/${slug}`;
+  // Dispatch pages are dated articles: give them Article structured data so
+  // search engines can render headline, date and author as rich results.
+  const dispatchDate = slug.startsWith("dispatches/")
+    ? DISPATCHES.find(([dispatchSlug]) => `dispatches/${dispatchSlug}` === slug)?.[2]
+    : undefined;
+  const structuredData =
+    jsonLd ||
+    (dispatchDate
+      ? JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: title,
+          description,
+          url,
+          datePublished: dispatchDate,
+          author: { "@type": "Person", name: "Cody Haring" },
+          publisher: {
+            "@type": "Organization",
+            name: "Ultramonkeydog Studios",
+            url: `${ORIGIN}/`,
+          },
+          mainEntityOfPage: url,
+        })
+      : "");
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -173,9 +202,14 @@ function page({
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <meta name="author" content="Cody Haring">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+${SITE_VERIFICATION ? `<meta name="google-site-verification" content="${esc(SITE_VERIFICATION)}">` : ""}
 <link rel="canonical" href="${url}">
 <link rel="alternate" type="application/rss+xml" title="Ultramonkeydog Studios Dispatches" href="/feed.xml">
 <link rel="icon" href="/assets/studio-mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preload" href="/assets/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ultramonkeydog Studios">
 <meta property="og:url" content="${url}">
@@ -191,7 +225,7 @@ function page({
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${esc(ogImage)}">
 <meta name="theme-color" content="#060608">
-${jsonLd ? `<script type="application/ld+json">${jsonLd}</script>` : ""}
+${structuredData ? `<script type="application/ld+json">${structuredData}</script>` : ""}
 <script defer src="/_vercel/insights/script.js"></script>
 ${stylesheet ? `<link rel="stylesheet" href="${esc(stylesheet)}">` : ""}
 <style>:root{--accent:${accent}}
@@ -825,30 +859,45 @@ function pressPage(projects) {
 
 function sitemap(projects) {
   const today = new Date().toISOString().slice(0, 10);
+  // Dispatch pages are dated records: their lastmod is the dispatch date the
+  // archive owns, not the day a build happened to run.
+  const dispatchDate = Object.fromEntries(
+    DISPATCHES.map(([slug, , date]) => [slug, date]),
+  );
+  const dispatchPriority = {
+    "victory-should-open-the-market": "0.9",
+    "a-monster-should-not-borrow-a-human-skeleton": "0.9",
+    "before-the-first-frame-there-was-a-song": "0.9",
+    "the-first-second-has-teeth": "0.9",
+    "silhouette-before-surface-editor-copy": "0.8",
+    "keep-the-strange-in-your-feed": "0.9",
+    "silhouette-before-surface": "0.9",
+    "pick-your-strange": "0.9",
+    "a-level-up-should-change-the-question": "0.9",
+    "a-monster-should-survive-as-a-shadow": "0.9",
+    "the-machine-stays-private": "0.9",
+    "the-pit-keeps-receipts": "0.8",
+  };
   const entries = [
-    { loc: `${ORIGIN}/`, priority: "1.0" },
-    { loc: `${ORIGIN}/play`, priority: "0.9" },
-    { loc: `${ORIGIN}/press`, priority: "0.7" },
-    { loc: `${ORIGIN}/follow`, priority: "0.8" },
-    { loc: `${ORIGIN}/dispatches/victory-should-open-the-market`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches/a-monster-should-not-borrow-a-human-skeleton`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches/before-the-first-frame-there-was-a-song`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches/the-first-second-has-teeth`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches/silhouette-before-surface-editor-copy`, priority: "0.8" },
-    { loc: `${ORIGIN}/dispatches/keep-the-strange-in-your-feed`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches/silhouette-before-surface`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches`, priority: "0.8" },
-    { loc: `${ORIGIN}/dispatches/pick-your-strange`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches/a-level-up-should-change-the-question`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches/a-monster-should-survive-as-a-shadow`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches/the-machine-stays-private`, priority: "0.9" },
-    { loc: `${ORIGIN}/dispatches/the-pit-keeps-receipts`, priority: "0.8" },
+    { loc: `${ORIGIN}/`, priority: "1.0", changefreq: "weekly", lastmod: today },
+    { loc: `${ORIGIN}/play`, priority: "0.9", changefreq: "weekly", lastmod: today },
+    { loc: `${ORIGIN}/press`, priority: "0.7", changefreq: "monthly", lastmod: today },
+    { loc: `${ORIGIN}/follow`, priority: "0.8", changefreq: "monthly", lastmod: today },
+    { loc: `${ORIGIN}/dispatches`, priority: "0.8", changefreq: "weekly", lastmod: today },
+    ...Object.entries(dispatchPriority).map(([slug, priority]) => ({
+      loc: `${ORIGIN}/dispatches/${slug}`,
+      priority,
+      changefreq: "monthly",
+      lastmod: dispatchDate[slug] ?? today,
+    })),
     ...projects
       .slice()
       .sort((a, b) => actionTier(a).rank - actionTier(b).rank)
       .map((project) => ({
         loc: `${ORIGIN}/${project.id}`,
         priority: actionTier(project).priority,
+        changefreq: "weekly",
+        lastmod: today,
       })),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -856,11 +905,314 @@ function sitemap(projects) {
 ${entries
   .map(
     (entry) =>
-      `  <url>\n    <loc>${entry.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${entry.priority}</priority>\n  </url>`,
+      `  <url>\n    <loc>${entry.loc}</loc>\n    <lastmod>${entry.lastmod}</lastmod>\n    <changefreq>${entry.changefreq}</changefreq>\n    <priority>${entry.priority}</priority>\n  </url>`,
   )
   .join("\n")}
 </urlset>
 `;
+}
+
+/**
+ * Static front-door payload.
+ *
+ * The React front door at "/" renders its copy client-side, so a non-JS
+ * crawler sees an empty document. This payload is the same public claim set
+ * (src/data.ts + the front door's own presentation copy) emitted as plain
+ * HTML inside #root. On hydration createRoot().render() replaces the
+ * container wholesale, so the interactive front door is untouched.
+ */
+function homeStaticBody(projects) {
+  const byId = Object.fromEntries(projects.map((project) => [project.id, project]));
+  const flagship = ["savage-crown", "what-we-fed", "saga-anxious-fluff", "ghengis-mon"]
+    .map((id) => byId[id])
+    .filter(Boolean);
+  const rest = projects.filter(
+    (project) => !FLAGSHIP_DOORWAYS[project.id] && project.id !== "muttpit" && project.id !== "bone-league",
+  );
+  const playable = projects.filter((project) => project.demoUrl);
+
+  const flagshipCards = flagship
+    .map((project) => {
+      const doorway = FLAGSHIP_DOORWAYS[project.id];
+      return `<article class="sfd-world">
+        <p class="sfd-lane">${doorway.number} / ${esc(doorway.lane)}</p>
+        <h3>${esc(project.title)}</h3>
+        <p class="sfd-hook">${esc(doorway.hook)}</p>
+        <p>${esc(doorway.direction)}</p>
+        <p><a href="/${project.id}">Enter ${esc(project.title)}</a></p>
+      </article>`;
+    })
+    .join("\n");
+
+  const restCards = rest
+    .map(
+      (project) => `<article class="sfd-project">
+        <h3><a href="/${project.id}">${esc(project.title)}</a></h3>
+        <p>${esc(project.description)}</p>
+        <p class="sfd-state">${esc(project.status)}</p>
+      </article>`,
+    )
+    .join("\n");
+
+  const playableCards = playable
+    .map(
+      (project) => `<li><a href="${esc(project.demoUrl)}">${esc(project.demoLabel ?? "Play it")} — ${esc(project.title)}</a></li>`,
+    )
+    .join("\n");
+
+  return `<div class="sfd">
+<style>
+.sfd{max-width:920px;margin:0 auto;padding:24px 20px 64px;color:#e9e3d6;background:#060608;
+  font:16px/1.6 ui-sans-serif,system-ui,"Segoe UI",Helvetica,Arial,sans-serif}
+.sfd a{color:#f2b74c}.sfd-nav{display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;
+  padding-bottom:14px;border-bottom:1px solid #241f2e}
+.sfd-nav strong{letter-spacing:.04em}.sfd-nav a{text-decoration:none}
+.sfd section{margin:38px 0}.sfd h1{font-size:clamp(2rem,6vw,3rem);line-height:1.05;margin:.2em 0}
+.sfd h2{font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:#9b93a6;margin:0 0 14px}
+.sfd h3{margin:0 0 6px}.sfd-hook{color:#f2b74c;font-weight:700}
+.sfd-lane{font:700 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;color:#9b93a6}
+.sfd-state{font:600 11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;
+  text-transform:uppercase;color:#9b93a6}
+.sfd-worlds{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.sfd-world,.sfd-project{border:1px solid #241f2e;border-radius:3px;padding:16px;background:#0b0a10}
+.sfd ul{padding-left:1.1em}.sfd footer{margin-top:48px;padding-top:18px;border-top:1px solid #241f2e;
+  color:#9b93a6;font-size:.86rem}
+</style>
+<header class="sfd-nav">
+  <strong>Ultramonkeydog Studios</strong>
+  <nav aria-label="Primary navigation">
+    <a href="/ghengis-mon">GHENGIS MON</a>
+    <a href="/play">Play</a>
+    <a href="/dispatches">Dispatches</a>
+    <a href="/press">Press</a>
+    <a href="/follow">Follow</a>
+  </nav>
+</header>
+<main id="main">
+  <section aria-label="Studio introduction">
+    <p class="sfd-lane">Independent art. Strange software. Human direction.</p>
+    <h1>We make weird things that bite back.</h1>
+    <p>Games, creature worlds, sound and unusual systems. Created and directed by Cody Haring.</p>
+    <p>Creature RPGs, living warbands, original music, animation, and tools. Some projects are playable; the bigger worlds are still taking shape.</p>
+    <p><a href="/ghengis-mon">Explore Ghengis Mon</a> &middot; <a href="#worlds">Explore the worlds</a> &middot; <a href="/play">Play something weird</a></p>
+  </section>
+  <section aria-label="Current studio focus">
+    <h2>Creature warfare &middot; In development</h2>
+    <h3>GHENGIS MON. Recruit. Devour. Evolve.</h3>
+    <p>Hatch your General, build a warband, and fight through a world that remembers the battles. Recruit a creature, devour a rival species, or evolve something nobody expected.</p>
+    <p><a href="/ghengis-mon">Explore GHENGIS MON</a> &middot; <a href="/dispatches/victory-should-open-the-market">Victory should open the market</a></p>
+    <ul>
+      <li><a href="/what-we-fed">WHAT WE FED</a> — Bond with a creature. Or eat it. Live with the choice.</li>
+      <li><a href="/savage-crown">SAVAGE CROWN</a> — Mutation, generated life and a body that changes with the run.</li>
+      <li><a href="/voidwalking">THE MONKEYDOG / VOIDWALKING</a> — The film is finished. The public music-video upload is separate.</li>
+    </ul>
+  </section>
+  <section id="worlds" aria-label="Flagship worlds">
+    <h2>The work.</h2>
+    <p>Four flagship worlds. Different strange. Every one of them is still being made — the records below say exactly what exists and what does not.</p>
+    <div class="sfd-worlds">
+${flagshipCards}
+    </div>
+  </section>
+  <section aria-label="More studio projects">
+    <h2>Other frequencies.</h2>
+    <div class="sfd-worlds">
+${restCards}
+    </div>
+  </section>
+  <section aria-label="Playable browser prototypes">
+    <h2>Play something weird.</h2>
+    <p>Playable portfolio proof that runs in a browser tab right now — no install, no account. The flagship worlds remain in development.</p>
+    <ul>
+${playableCards}
+    </ul>
+    <p><a href="/play">Everything playable</a> &middot; <a href="/dispatches">Read the studio dispatches</a> &middot; <a href="/follow">Follow by RSS</a></p>
+  </section>
+  <section aria-label="Press and contact">
+    <h2>One human director. Work you can inspect.</h2>
+    <p>Cody Haring is a self-taught creator and the founder of Ultramonkeydog Studios. Concepts, system design, criticism, integration and the final decision to ship stay human.</p>
+    <p><a href="/press">Press kit and reusable bio</a> &middot; <a href="mailto:${CONTACT}">${CONTACT}</a></p>
+  </section>
+</main>
+<footer>
+  <p>Ultramonkeydog Studios — creator-owned, directed by Cody Haring.</p>
+  <p><a href="/press">Press kit</a> &middot; <a href="/follow">Follow the studio</a> &middot; <a href="${esc(ITCH)}">itch.io</a> &middot; <a href="${esc(GITHUB_PROFILE)}">GitHub</a> &middot; <a href="/feed.xml">RSS</a></p>
+</footer>
+</div>`;
+}
+
+/** Home-page structured data: Organization + every showcased project. */
+function homeJsonLd(projects) {
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${ORIGIN}/#organization`,
+        name: "Ultramonkeydog Studios",
+        url: `${ORIGIN}/`,
+        description:
+          "Creator-owned independent studio for systems-heavy games, creature worlds, audio experiments and unusual software. Created and directed by Cody Haring.",
+        founder: { "@type": "Person", name: "Cody Haring" },
+        sameAs: [
+          "https://www.youtube.com/channel/UC83dR856mxiUy1JUDPqsU3w",
+          "https://www.tiktok.com/@supermonkeydog",
+          ITCH,
+          GITHUB_PROFILE,
+        ],
+      },
+      {
+        "@type": "ItemList",
+        name: "Ultramonkeydog Studios projects",
+        itemListElement: projects.map((project, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": project.demoUrl ? "VideoGame" : "CreativeWork",
+            name: project.title,
+            description: project.description,
+            url: `${ORIGIN}/${project.id}`,
+            genre: project.tags,
+            author: { "@id": `${ORIGIN}/#organization` },
+            ...(project.demoUrl
+              ? { applicationCategory: "Game", operatingSystem: "Web Browser" }
+              : {}),
+          },
+        })),
+      },
+    ],
+  };
+  return JSON.stringify(graph);
+}
+
+/** llms.txt — the dense machine-readable front door (llmstxt.org). */
+function llmsTxt(projects) {
+  const byId = Object.fromEntries(projects.map((project) => [project.id, project]));
+  const playable = projects.filter((project) => project.demoUrl);
+  const line = (project) =>
+    `- [${project.title}](${ORIGIN}/${project.id}): ${project.description}`;
+  return `# Ultramonkeydog Studios
+
+> Strange games, deep systems, and unusual software from a creator-owned studio, created and directed by Cody Haring. Creature games with real causal systems, original music and animation, and honest project records that say what is proven and what is not.
+
+Ultramonkeydog Studios builds creature RPGs, warfare roguelites, browser auto-battlers, original music films and the studio's own production tools. Playable browser prototypes run free at ${ORIGIN}/play. Each project page separates current evidence from unfinished work.
+
+Key facts:
+
+- Creator-owned and human-directed; AI assists production under Cody Haring's direction and final authority.
+- Playable browser prototypes need no install or account.
+- Project records carry proof states and explicit limitations, not release hype.
+
+## Playable in the browser right now
+
+${playable.map(line).join("\n")}
+
+## Flagship and in-development games
+
+${["ghengis-mon", "what-we-fed", "savage-crown", "saga-anxious-fluff", "fretfang"].map((id) => (byId[id] ? line(byId[id]) : "")).filter(Boolean).join("\n")}
+
+## Music and film
+
+${byId["voidwalking"] ? line(byId["voidwalking"]) : ""}
+
+## Studio
+
+- [Press kit](${ORIGIN}/press): Founder bio, reusable studio description, official links and asset requests.
+- [Follow the studio](${ORIGIN}/follow): YouTube, TikTok, itch.io and a direct RSS feed with no signup.
+- [Studio dispatches](${ORIGIN}/dispatches): Design essays on creature systems, growth, and human direction.
+- [Play hub](${ORIGIN}/play): Everything playable in a browser tab right now.
+
+## External
+
+- [itch.io](${ITCH}): Projects and playable releases when available.
+- [GitHub](${GITHUB_PROFILE}): Public source and studio repositories.
+
+## Optional
+
+- [RSS feed](${ORIGIN}/feed.xml): Machine-readable studio dispatches.
+- [sitemap.xml](${ORIGIN}/sitemap.xml): Every public route on this site.
+`;
+}
+
+/** llms-full.txt — the same claims in full, for models that want everything. */
+function llmsFullTxt(projects) {
+  const projectSections = projects
+    .map((project) => {
+      const lines = [`### ${project.title}`, "", project.description, "", `Status: ${project.status}.`];
+      if (project.demoUrl) lines.push("", `Play it: ${project.demoUrl}`);
+      if (project.systemsUnderTheHood?.length) {
+        lines.push("", "Systems:");
+        for (const system of project.systemsUnderTheHood) lines.push(`- ${system}`);
+      }
+      lines.push("", `Project record: ${ORIGIN}/${project.id}`);
+      return lines.join("\n");
+    })
+    .join("\n\n");
+  return `# Ultramonkeydog Studios — full site summary
+
+Ultramonkeydog Studios is Cody Haring's creator-owned independent studio for systems-heavy games, creature worlds, audio experiments and unusual software. Its signature is transformation with consequences: growth changes identity, actions and world response, and every public claim stops where the evidence stops. Playable browser prototypes run free at ${ORIGIN}/play with no install or account.
+
+Contact: ${CONTACT}
+Press kit: ${ORIGIN}/press
+Follow: ${ORIGIN}/follow (YouTube, TikTok, itch.io, RSS)
+Dispatches: ${ORIGIN}/dispatches
+
+## Projects
+
+${projectSections}
+
+## Boundaries
+
+In-development projects are records, not release announcements. Playable builds are portfolio proof, not studio release claims. State labels on this site are copied from the studio's project record, including the parts that are not finished.
+`;
+}
+
+/**
+ * Close the CSR blind spot on "/": inject the static front-door claim set and
+ * the Organization/ItemList structured data into the built index.html.
+ */
+function injectHomeSeo(projects) {
+  const indexPath = path.join(DIST, "index.html");
+  let html = fs.readFileSync(indexPath, "utf8");
+  if (!html.includes('<div id="root"></div>')) {
+    throw new Error("discovery-spine: dist/index.html lost its #root mount; refusing to inject");
+  }
+  html = html.replace(
+    '<div id="root"></div>',
+    `<div id="root">${homeStaticBody(projects)}</div>`,
+  );
+  if (SITE_VERIFICATION && !html.includes("google-site-verification")) {
+    html = html.replace(
+      "<title>",
+      `<meta name="google-site-verification" content="${esc(SITE_VERIFICATION)}">\n    <title>`,
+    );
+  }
+  html = html.replace(
+    "</head>",
+    `  <script type="application/ld+json">${homeJsonLd(projects)}</script>\n  </head>`,
+  );
+  fs.writeFileSync(indexPath, html, "utf8");
+}
+
+function notFoundPage() {
+  return page({
+    slug: "404",
+    title: "Page not found — Ultramonkeydog Studios",
+    description: "This URL is not part of the public studio record. The front door, playable work and project records are one click away.",
+    accent: "#f2b74c",
+    crumbHref: "/",
+    crumbLabel: "Studio",
+    body: `<p class="tier">404 / NOT A PUBLIC RECORD</p>
+<h1>Nothing lives at this address.</h1>
+<p class="lede">The page you asked for is not part of the public studio record. It may have moved, or it never existed.</p>
+<p><a class="cta" href="/">Back to the front door</a><a class="cta cta--ghost" href="/play">Play something weird</a></p>
+<h2>Public doorways</h2>
+<ul class="next"><li><a href="/ghengis-mon">GHENGIS MON</a></li><li><a href="/dispatches">Studio dispatches</a></li><li><a href="/press">Press kit</a></li><li><a href="/follow">Follow the studio</a></li></ul>`,
+  })
+    .replace(
+      'content="index, follow, max-image-preview:large, max-snippet:-1"',
+      'content="noindex"',
+    );
 }
 
 function writePage(slug, html) {
@@ -934,6 +1286,19 @@ async function main() {
     writePage(project.id, projectPage(project, PROJECTS_DATA));
     written.push(`/${project.id}`);
   }
+
+  injectHomeSeo(PROJECTS_DATA);
+  written.push("/");
+  fs.writeFileSync(path.join(DIST, "llms.txt"), llmsTxt(PROJECTS_DATA), "utf8");
+  fs.writeFileSync(
+    path.join(DIST, "llms-full.txt"),
+    llmsFullTxt(PROJECTS_DATA),
+    "utf8",
+  );
+  written.push("/llms.txt", "/llms-full.txt");
+
+  fs.writeFileSync(path.join(DIST, "404.html"), notFoundPage(), "utf8");
+  written.push("/404.html");
 
   fs.writeFileSync(
     path.join(DIST, "sitemap.xml"),
