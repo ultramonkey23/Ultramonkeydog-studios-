@@ -185,6 +185,7 @@ function page({
           description,
           url,
           datePublished: dispatchDate,
+          dateModified: dispatchDate,
           author: { "@type": "Person", name: "Cody Haring" },
           publisher: {
             "@type": "Organization",
@@ -194,6 +195,37 @@ function page({
           mainEntityOfPage: url,
         })
       : "");
+  // Every route carries its breadcrumb trail as structured data so search
+  // engines can render the site hierarchy under the result.
+  const crumbItems = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Ultramonkeydog Studios",
+      item: `${ORIGIN}/`,
+    },
+  ];
+  if (slug !== "404" && crumbHref && crumbHref !== "/") {
+    crumbItems.push({
+      "@type": "ListItem",
+      position: crumbItems.length + 1,
+      name: crumbLabel,
+      item: crumbHref.startsWith("/") ? `${ORIGIN}${crumbHref}` : crumbHref,
+    });
+  }
+  if (slug !== "404") {
+    crumbItems.push({
+      "@type": "ListItem",
+      position: crumbItems.length + 1,
+      name: title,
+      item: url,
+    });
+  }
+  const breadcrumbLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbItems,
+  });
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -226,6 +258,7 @@ ${SITE_VERIFICATION ? `<meta name="google-site-verification" content="${esc(SITE
 <meta name="twitter:image" content="${esc(ogImage)}">
 <meta name="theme-color" content="#060608">
 ${structuredData ? `<script type="application/ld+json">${structuredData}</script>` : ""}
+<script type="application/ld+json">${breadcrumbLd}</script>
 <script defer src="/_vercel/insights/script.js"></script>
 ${stylesheet ? `<link rel="stylesheet" href="${esc(stylesheet)}">` : ""}
 <style>:root{--accent:${accent}}

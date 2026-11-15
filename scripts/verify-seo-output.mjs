@@ -114,8 +114,17 @@ for (const rel of routePages) {
 const dispatchPages = routePages.filter((rel) => rel.startsWith("dispatches/") && rel !== "dispatches/index.html");
 for (const rel of dispatchPages) {
   const blocks = jsonLdBlocks(read(rel));
-  check(`route /${rel.replace(/\/index\.html$/, "")}: Article JSON-LD`, blocks.some((block) => block?.["@type"] === "Article"));
+  const article = blocks.find((block) => block?.["@type"] === "Article");
+  check(`route /${rel.replace(/\/index\.html$/, "")}: Article JSON-LD`, Boolean(article));
+  check(`route /${rel.replace(/\/index\.html$/, "")}: Article dates`, Boolean(article?.datePublished && article?.dateModified));
 }
+
+// --- every route carries a BreadcrumbList --------------------------------
+// The home document is the trail root and needs none.
+const missingBreadcrumbs = routePages
+  .filter((rel) => rel !== "index.html")
+  .filter((rel) => !jsonLdBlocks(read(rel)).some((block) => block?.["@type"] === "BreadcrumbList"));
+check("routes: BreadcrumbList JSON-LD everywhere", missingBreadcrumbs.length === 0, missingBreadcrumbs.join(","));
 
 // --- supporting files ----------------------------------------------------
 check("404.html: exists, noindexed", fs.existsSync(path.join(DIST, "404.html")) && read("404.html").includes("noindex"));
