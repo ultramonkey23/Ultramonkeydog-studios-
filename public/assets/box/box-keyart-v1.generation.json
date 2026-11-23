@@ -1,0 +1,167 @@
+{
+  "schema": "lab_comfy_generation_provenance_v1",
+  "generated_at_utc": "2026-11-23T21:20:20Z",
+  "prompt_id": "aa27c7b4-fa28-4d37-bce7-d07c49eaf9d1",
+  "server": {
+    "host": "100.116.64.113",
+    "port": 8000,
+    "url": "http://100.116.64.113:8000",
+    "kind": "CLOUD",
+    "auth": "none"
+  },
+  "workflow": {
+    "path": "/data/data/com.termux/files/home/quig-vault/comfy_workflows/anim_forge_flux2_klein4b_fp8_t2i_api.json",
+    "sha256": "98859ab1a29ec17004ee3948d0c5dd1e61d01135c351767bb93ea7235d206189",
+    "capability": "TEXT_TO_IMAGE"
+  },
+  "prompt": "Cinematic editorial key art for Box o' Battles: two original rival armored combatants collide in a ruined black-stone arena at night, left fighter is a sleek scarlet energy duelist with a narrow glowing blade, right fighter is a towering gilded dark warlord with a heavy mace, both as full readable silhouettes, sparks and shattered stone suspended between them, dynamic diagonal clash, ink-heavy anime action illustration, sharp black linework, bold cel-shaded planes, restrained crimson and antique gold on near-black, dramatic value structure, richly textured armor materials, clean central collision, generous negative space for website title, no text, letters, logos, numerals, watermark, no collage, no copied characters. High-energy sketchy manga anime style, dramatic dynamic action pose, extreme foreshortening, bold ink contour cuts, speed lines, high-contrast rim lighting, vivid particle sparks, stepped cel shading, masterpiece.",
+  "negative_prompt": null,
+  "prompt_standard": {
+    "profile": "FLUX2_POSITIVE_FIRST",
+    "negative_terms": 0,
+    "drawing_layers": [
+      "linework",
+      "value",
+      "composition",
+      "material"
+    ],
+    "authorial_order": {
+      "standard": "LOCAL_VISUAL_PROMPT_STANDARD_20261030",
+      "sections": [
+        "costume",
+        "finish_grammar"
+      ],
+      "missing_sections": [
+        "frame_assertion",
+        "identity",
+        "silhouette",
+        "action_causality",
+        "composition_lens"
+      ],
+      "verdict": "AUTHORIAL_ORDER_THIN",
+      "detail": "add frame assertion, identity, silhouette, costume, action, composition and finish sections"
+    },
+    "review_question_evidence": [
+      {
+        "id": "silhouette_geometry",
+        "question": "Does the picture prove the stated body geometry in silhouette and three-quarter form, not merely through a chest-forward camera?",
+        "evidence": "prompt_thin",
+        "prompt_hits": []
+      },
+      {
+        "id": "readable_occupation_action",
+        "question": "Can the character's occupation and immediate action be read without the caption?",
+        "evidence": "prompt_thin",
+        "prompt_hits": []
+      },
+      {
+        "id": "engineered_costume",
+        "question": "Is the costume engineered around the body and character, rather than generic fantasy or generic lingerie?",
+        "evidence": "supported",
+        "prompt_hits": [
+          "armor"
+        ]
+      },
+      {
+        "id": "deliberate_finish",
+        "question": "Does the finish contain deliberate ink/gesture energy, rather than smooth stock commercial anime polish?",
+        "evidence": "supported",
+        "prompt_hits": [
+          "ink",
+          "contour"
+        ]
+      },
+      {
+        "id": "hypothesis_distinct",
+        "question": "Is this hypothesis genuinely different from the other candidates in face, silhouette, fashion, acting or world relationship?",
+        "evidence": "OUTPUT_ONLY"
+      },
+      {
+        "id": "output_derived_correction",
+        "question": "Did a real output establish the next correction, or is the prompt only accumulating defensive vocabulary?",
+        "evidence": "OUTPUT_ONLY"
+      }
+    ],
+    "warnings": [
+      "AUTHORIAL_ORDER_THIN: author sections missing: frame_assertion, identity, silhouette, action_causality, composition_lens"
+    ]
+  },
+  "style": "manga_action",
+  "prompt_source": "INLINE_--prompt",
+  "prompt_consumed_by_workflow": true,
+  "injected_nodes": [
+    "67"
+  ],
+  "injected_negative_nodes": [],
+  "image_input_nodes": [],
+  "video_input_nodes": [],
+  "semantic_references": [],
+  "dimension_nodes": [
+    "68.width",
+    "68.height"
+  ],
+  "dimensions": {
+    "width": 1536,
+    "height": 864
+  },
+  "batch_adjustments": [
+    "68.batch_size=3"
+  ],
+  "batch_size": 3,
+  "sampler_adjustments": [
+    "70.steps=12",
+    "70.cfg=1.0"
+  ],
+  "reseeded": [
+    "70.seed=222822759869543"
+  ],
+  "identity": {
+    "capability": "TEXT_TO_IMAGE",
+    "seeds": {
+      "70.seed": 222822759869543
+    },
+    "models": {
+      "62.clip_name": "qwen_3_4b_fp8_mixed.safetensors",
+      "63.vae_name": "flux2-vae.safetensors",
+      "66.unet_name": "flux-2-klein-4b-fp8.safetensors"
+    },
+    "samplers": {
+      "70.sampler_name": "res_multistep",
+      "70.scheduler": "simple",
+      "70.steps": 12,
+      "70.cfg": 1.0,
+      "70.denoise": 1
+    },
+    "references": {}
+  },
+  "model_licenses": {
+    "flux-2-klein-4b-fp8.safetensors": {
+      "spdx": "Apache-2.0",
+      "source": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4b-fp8",
+      "verified_on": "2026-10-21"
+    },
+    "flux2-vae.safetensors": {
+      "spdx": "UNKNOWN_REQUIRES_REVIEW",
+      "source": null,
+      "verified_on": null
+    },
+    "qwen_3_4b_fp8_mixed.safetensors": {
+      "spdx": "UNKNOWN_REQUIRES_REVIEW",
+      "source": null,
+      "verified_on": null
+    }
+  },
+  "images": [
+    "public/assets/box/box-keyart-v1_0.png"
+  ],
+  "mirrored_images": [],
+  "profile": {
+    "wall_seconds": 105.6
+  },
+  "selection": {
+    "selected_image": "box-keyart-v1_0.png",
+    "selection_status": "PROMOTED_FOR_STUDIOS_CASEFILE_PENDING_CREATOR_VISUAL_REVIEW",
+    "rejected_drafts_removed": true,
+    "note": "The desktop ComfyUI generation completed locally; automated visual selection did not return a verdict, so this plate remains creator-review-pending."
+  }
+}

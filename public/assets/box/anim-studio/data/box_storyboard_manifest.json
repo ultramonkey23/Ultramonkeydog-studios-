@@ -1,0 +1,155 @@
+{
+  "format": "anim-studio-box-provenance.v1",
+  "source_file_at_import": "/data/data/com.termux/files/usr/tmp/box-vader-sauron-storyboard.json",
+  "source_storyboard_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+  "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+  "source_verdict_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:f477e59bddba",
+  "source_packet_status": "CANDIDATE_PRESENTATION_NOT_CANON",
+  "authority": "IMPORT_IS_NOT_PUBLICATION_OR_CREATOR_APPROVAL",
+  "crosswalk": {
+    "SB001": {
+      "studio_shot_id": "s001",
+      "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:01",
+      "route_id": "SAURON:mace:VS:VADER",
+      "evidence_ids": [
+        "SAURON-S-001",
+        "SAURON-S-002",
+        "SAURON-S-003",
+        "SAURON-S-004",
+        "SAURON-S-005",
+        "VADER-V-001",
+        "VADER-V-002",
+        "VADER-V-003",
+        "VADER-V-004",
+        "VADER-V-005",
+        "VADER-V-006"
+      ]
+    },
+    "SB002": {
+      "studio_shot_id": "s002",
+      "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:02",
+      "route_id": "SAURON:mace:VS:VADER",
+      "evidence_ids": [
+        "SAURON-S-001",
+        "SAURON-S-002",
+        "SAURON-S-003",
+        "SAURON-S-004",
+        "SAURON-S-005",
+        "VADER-V-001",
+        "VADER-V-002",
+        "VADER-V-003",
+        "VADER-V-004",
+        "VADER-V-005",
+        "VADER-V-006"
+      ]
+    },
+    "SB003": {
+      "studio_shot_id": "s003",
+      "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:03",
+      "route_id": "SAURON:mace:VS:VADER",
+      "evidence_ids": [
+        "SAURON-S-001",
+        "SAURON-S-002",
+        "SAURON-S-003",
+        "SAURON-S-004",
+        "SAURON-S-005",
+        "VADER-V-001",
+        "VADER-V-002",
+        "VADER-V-003",
+        "VADER-V-004",
+        "VADER-V-005",
+        "VADER-V-006"
+      ]
+    },
+    "SB004": {
+      "studio_shot_id": "s004",
+      "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:04",
+      "route_id": "SAURON:mace:VS:VADER",
+      "evidence_ids": [
+        "SAURON-S-001",
+        "SAURON-S-002",
+        "SAURON-S-003",
+        "SAURON-S-004",
+        "SAURON-S-005",
+        "VADER-V-001",
+        "VADER-V-002",
+        "VADER-V-003",
+        "VADER-V-004",
+        "VADER-V-005",
+        "VADER-V-006"
+      ]
+    },
+    "SB005": {
+      "studio_shot_id": "s005",
+      "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:05",
+      "route_id": "SAURON:mace:VS:VADER",
+      "evidence_ids": [
+        "SAURON-S-001",
+        "SAURON-S-002",
+        "SAURON-S-003",
+        "SAURON-S-004",
+        "SAURON-S-005",
+        "VADER-V-001",
+        "VADER-V-002",
+        "VADER-V-003",
+        "VADER-V-004",
+        "VADER-V-005",
+        "VADER-V-006"
+      ]
+    },
+    "SB006": {
+      "studio_shot_id": "s006",
+      "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:05",
+      "route_id": "SAURON:mace:VS:VADER",
+      "evidence_ids": [
+        "SAURON-S-001",
+        "SAURON-S-002",
+        "SAURON-S-003",
+        "SAURON-S-004",
+        "SAURON-S-005",
+        "VADER-V-001",
+        "VADER-V-002",
+        "VADER-V-003",
+        "VADER-V-004",
+        "VADER-V-005",
+        "VADER-V-006"
+      ]
+    },
+    "SB007": {
+      "studio_shot_id": "s007",
+      "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:05",
+      "route_id": "SAURON:mace:VS:VADER",
+      "evidence_ids": [
+        "SAURON-S-001",
+        "SAURON-S-002",
+        "SAURON-S-003",
+        "SAURON-S-004",
+        "SAURON-S-005",
+        "VADER-V-001",
+        "VADER-V-002",
+        "VADER-V-003",
+        "VADER-V-004",
+        "VADER-V-005",
+        "VADER-V-006"
+      ]
+    },
+    "SB008": {
+      "studio_shot_id": "s008",
+      "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:06",
+      "route_id": "SAURON:mace:VS:VADER",
+      "evidence_ids": [
+        "SAURON-S-001",
+        "SAURON-S-002",
+        "SAURON-S-003",
+        "SAURON-S-004",
+        "SAURON-S-005",
+        "VADER-V-001",
+        "VADER-V-002",
+        "VADER-V-003",
+        "VADER-V-004",
+        "VADER-V-005",
+        "VADER-V-006"
+      ]
+    }
+  }
+}

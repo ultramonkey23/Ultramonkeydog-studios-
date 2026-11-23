@@ -1,0 +1,718 @@
+{
+  "schema": "lab_animation_spec_v1",
+  "title": "Box o' Battles: Vader vs Sauron",
+  "version": "v1",
+  "archetype": "cinematic_film",
+  "timeline": {
+    "kind": "narrative"
+  },
+  "duration_seconds": 10.25,
+  "output": {
+    "width": 1280,
+    "height": 720,
+    "fps": 24
+  },
+  "work_dir": "work/v1",
+  "plate": {
+    "steps": 25,
+    "width": 1280,
+    "height": 720,
+    "port": 8001
+  },
+  "style": "manga_action",
+  "cast": {
+    "fighter_1": {
+      "name": "Darth Vader",
+      "identity": "Darth Vader — exact continuity/version: DARTH-VADER-LIVE-ACTION-CANON-STANDARD. Live-action canon Vader with standard armor, lightsaber and Force abilities; no external fleet or allies.. Keep character design and anatomy consistent; obtain character sheets and creator approval before generating frames."
+    },
+    "fighter_2": {
+      "name": "Sauron",
+      "identity": "Sauron — exact continuity/version: SAURON-PJ-LAST-ALLIANCE-RINGED-ARMORED. Peter Jackson Last Alliance Sauron in armored body with the One Ring; no Mount Doom environmental shortcut.. Keep character design and anatomy consistent; obtain character sheets and creator approval before generating frames."
+    }
+  },
+  "sections": [
+    {
+      "name": "opening",
+      "start_s": 0.0,
+      "fight": true,
+      "shots": [
+        {
+          "p": "extreme wide. Sauron — Mace of Sauron against Darth Vader — Force Precognition and Guard. Sauron opens by establishing access to the route: Use Mace of Sauron for body_destruction against Darth Vader. The matchup's first real threat is established without deciding the outcome. Establish why the winner can impose the matchup immediately.. Defender response: The indexed defense leads this contest; its specific on-screen answer is conditional, not guaranteed.. Direction: Read the action and consequence as one continuous, causal exchange.. No invented action or injury.",
+          "s": 1.75,
+          "cam": "glide",
+          "cast": [
+            "fighter_1",
+            "fighter_2"
+          ],
+          "motion": "camera",
+          "fight": true,
+          "strikes": 0,
+          "fx": [],
+          "no_split": true,
+          "camera_move": "establish size, distance and readable silhouettes",
+          "keyseq": null,
+          "storyboard": {
+            "source": "box-o-battles",
+            "shot_id": "SB001",
+            "phase": "opening",
+            "role": "setup",
+            "shot_type": "extreme_wide",
+            "source_handoff_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+            "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:01",
+            "source_cinematic_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43-AUTO-01",
+            "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+            "source_route_id": "SAURON:mace:VS:VADER",
+            "source_step": "access",
+            "evidence_ids": [
+              "SAURON-S-001",
+              "SAURON-S-002",
+              "SAURON-S-003",
+              "SAURON-S-004",
+              "SAURON-S-005",
+              "VADER-V-001",
+              "VADER-V-002",
+              "VADER-V-003",
+              "VADER-V-004",
+              "VADER-V-005",
+              "VADER-V-006"
+            ],
+            "route_gate_state": "OPEN",
+            "support_state": "Plausibly Supported",
+            "state_change": "ACCESS_WINDOW_CONTESTED",
+            "visual_policy": {
+              "anime_devices_allowed": [
+                "silhouette",
+                "anticipation_hold",
+                "speed_lines",
+                "smear_frame",
+                "hard_cut",
+                "recoil_timing"
+              ],
+              "brutality_level": "low",
+              "environment_destruction": "NO_NEW_DAMAGE_UNLESS_SOURCE_TEXT_EXPLICIT",
+              "forbidden": [
+                "invented blood",
+                "invented fractures",
+                "invented new power",
+                "invented weapon",
+                "unsupported lethal contact",
+                "physically quantified feat from ordinal score"
+              ],
+              "injury_specificity": "NO_NEW_INJURY",
+              "mechanical_contact_supported": false,
+              "terminal_depiction_conditional": false
+            },
+            "transition": "match_on_action",
+            "brutality_level": "low",
+            "impact_hold_frames": 0,
+            "camera_purpose": "establish size, distance and readable silhouettes",
+            "motion_intent": "Read the action and consequence as one continuous, causal exchange.",
+            "production_truth": "UNREVIEWED_THEORETICAL_VISUALIZATION"
+          }
+        }
+      ]
+    },
+    {
+      "name": "engagement",
+      "start_s": 1.75,
+      "fight": true,
+      "shots": [
+        {
+          "p": "tight insert. Sauron — Mace of Sauron against Darth Vader — Force Precognition and Guard. Sauron presses the supported route, but Darth Vader blocks and survives the first conversion attempt. The winning route is delayed rather than reversed into a new win condition. Show the loser can resist or interrupt the first conversion without inventing a winning route.. Defender response: The indexed defense leads this contest; its specific on-screen answer is conditional, not guaranteed.. Direction: Read the action and consequence as one continuous, causal exchange.. No invented action or injury.",
+          "s": 1.25,
+          "cam": "saccade",
+          "cast": [
+            "fighter_1",
+            "fighter_2"
+          ],
+          "motion": "keyseq",
+          "fight": true,
+          "strikes": 0,
+          "fx": [],
+          "no_split": true,
+          "camera_move": "reveal a supported combat fact",
+          "keyseq": {
+            "count": 3,
+            "keys": [
+              "Anticipation: Sauron presses the supported route, but Darth Vader blocks and survives the first conversion attempt. Keep body mass, line of attack and screen direction visible.",
+              "Route contest/response, not a guaranteed landed hit: Sauron presses the supported route, but Darth Vader blocks and survives the first conversion attempt. Defender answer: The indexed defense leads this contest; its specific on-screen answer is conditional, not guaranteed.",
+              "Recoil/continuity: The winning route is delayed rather than reversed into a new win condition. Show the loser can resist or interrupt the first conversion without inventing a winning route. Preserve the scored state: CONTACT_AND_COMPATIBILITY_CONTESTED."
+            ]
+          },
+          "storyboard": {
+            "source": "box-o-battles",
+            "shot_id": "SB002",
+            "phase": "engagement",
+            "role": "reveal",
+            "shot_type": "tight_insert",
+            "source_handoff_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+            "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:02",
+            "source_cinematic_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43-AUTO-02",
+            "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+            "source_route_id": "SAURON:mace:VS:VADER",
+            "source_step": "interaction",
+            "evidence_ids": [
+              "SAURON-S-001",
+              "SAURON-S-002",
+              "SAURON-S-003",
+              "SAURON-S-004",
+              "SAURON-S-005",
+              "VADER-V-001",
+              "VADER-V-002",
+              "VADER-V-003",
+              "VADER-V-004",
+              "VADER-V-005",
+              "VADER-V-006"
+            ],
+            "route_gate_state": "OPEN",
+            "support_state": "Plausibly Supported",
+            "state_change": "CONTACT_AND_COMPATIBILITY_CONTESTED",
+            "visual_policy": {
+              "anime_devices_allowed": [
+                "silhouette",
+                "anticipation_hold",
+                "speed_lines",
+                "smear_frame",
+                "hard_cut",
+                "recoil_timing"
+              ],
+              "brutality_level": "medium",
+              "environment_destruction": "NO_NEW_DAMAGE_UNLESS_SOURCE_TEXT_EXPLICIT",
+              "forbidden": [
+                "invented blood",
+                "invented fractures",
+                "invented new power",
+                "invented weapon",
+                "unsupported lethal contact",
+                "physically quantified feat from ordinal score"
+              ],
+              "injury_specificity": "NO_NEW_INJURY",
+              "mechanical_contact_supported": false,
+              "terminal_depiction_conditional": false
+            },
+            "transition": "match_on_action",
+            "brutality_level": "medium",
+            "impact_hold_frames": 0,
+            "camera_purpose": "reveal a supported combat fact",
+            "motion_intent": "Read the action and consequence as one continuous, causal exchange.",
+            "production_truth": "UNREVIEWED_THEORETICAL_VISUALIZATION"
+          }
+        }
+      ]
+    },
+    {
+      "name": "escalation",
+      "start_s": 3.0,
+      "fight": true,
+      "shots": [
+        {
+          "p": "tracking medium. Sauron — Mace of Sauron against Darth Vader — Force Precognition and Guard. Sauron presses the supported route: Use Mace of Sauron for body_destruction against Darth Vader. The pressure advances the matchup without yet becoming a permanent finish. Convert the structural edge into accumulating damage or control.. Defender response: The indexed offense leads this contest, but contact and lasting defeat still require the route gates.. Direction: Read the action and consequence as one continuous, causal exchange.. No invented action or injury.",
+          "s": 1.25,
+          "cam": "stalk_burst",
+          "cast": [
+            "fighter_1",
+            "fighter_2"
+          ],
+          "motion": "keyseq",
+          "fight": true,
+          "strikes": 0,
+          "fx": [],
+          "no_split": true,
+          "camera_move": "follow entry and pressure without losing contact geometry",
+          "keyseq": {
+            "count": 3,
+            "keys": [
+              "Anticipation: Sauron presses the supported route: Use Mace of Sauron for body_destruction against Darth Vader. Keep body mass, line of attack and screen direction visible.",
+              "Route contest/response, not a guaranteed landed hit: Sauron presses the supported route: Use Mace of Sauron for body_destruction against Darth Vader. Defender answer: The indexed offense leads this contest, but contact and lasting defeat still require the route gates.",
+              "Recoil/continuity: The pressure advances the matchup without yet becoming a permanent finish. Convert the structural edge into accumulating damage or control. Preserve the scored state: DEFENSE_AND_DAMAGE_CONTESTED."
+            ]
+          },
+          "storyboard": {
+            "source": "box-o-battles",
+            "shot_id": "SB003",
+            "phase": "escalation",
+            "role": "pressure",
+            "shot_type": "tracking_medium",
+            "source_handoff_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+            "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:03",
+            "source_cinematic_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43-AUTO-03",
+            "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+            "source_route_id": "SAURON:mace:VS:VADER",
+            "source_step": "effect",
+            "evidence_ids": [
+              "SAURON-S-001",
+              "SAURON-S-002",
+              "SAURON-S-003",
+              "SAURON-S-004",
+              "SAURON-S-005",
+              "VADER-V-001",
+              "VADER-V-002",
+              "VADER-V-003",
+              "VADER-V-004",
+              "VADER-V-005",
+              "VADER-V-006"
+            ],
+            "route_gate_state": "OPEN",
+            "support_state": "Plausibly Supported",
+            "state_change": "DEFENSE_AND_DAMAGE_CONTESTED",
+            "visual_policy": {
+              "anime_devices_allowed": [
+                "silhouette",
+                "anticipation_hold",
+                "speed_lines",
+                "smear_frame",
+                "hard_cut",
+                "recoil_timing"
+              ],
+              "brutality_level": "medium",
+              "environment_destruction": "NO_NEW_DAMAGE_UNLESS_SOURCE_TEXT_EXPLICIT",
+              "forbidden": [
+                "invented blood",
+                "invented fractures",
+                "invented new power",
+                "invented weapon",
+                "unsupported lethal contact",
+                "physically quantified feat from ordinal score"
+              ],
+              "injury_specificity": "NO_NEW_INJURY",
+              "mechanical_contact_supported": true,
+              "terminal_depiction_conditional": false
+            },
+            "transition": "match_on_action",
+            "brutality_level": "medium",
+            "impact_hold_frames": 0,
+            "camera_purpose": "follow entry and pressure without losing contact geometry",
+            "motion_intent": "Read the action and consequence as one continuous, causal exchange.",
+            "production_truth": "UNREVIEWED_THEORETICAL_VISUALIZATION"
+          }
+        }
+      ]
+    },
+    {
+      "name": "reversal",
+      "start_s": 4.25,
+      "fight": true,
+      "shots": [
+        {
+          "p": "macro impact. Sauron — Mace of Sauron against Darth Vader — Force Precognition and Guard. Sauron tries to finish the fight by converting the route: Use Mace of Sauron for body_destruction against Darth Vader. Darth Vader survives and withstands the finishing attempt, so the route fails to become permanent. Show the winner's first terminal conversion failing against attrition before control is reasserted.. Defender response: The indexed offense leads this contest, but contact and lasting defeat still require the route gates.. Direction: Read the action and consequence as one continuous, causal exchange.. No invented action or injury.",
+          "s": 1.5,
+          "cam": "crash_zoom",
+          "cast": [
+            "fighter_1",
+            "fighter_2"
+          ],
+          "motion": "keyseq",
+          "fight": true,
+          "strikes": 0,
+          "fx": [],
+          "no_split": true,
+          "camera_move": "hold on the attempted finish and demonstrate why it fails",
+          "keyseq": {
+            "count": 3,
+            "keys": [
+              "Anticipation: Sauron tries to finish the fight by converting the route: Use Mace of Sauron for body_destruction against Darth Vader. Keep body mass, line of attack and screen direction visible.",
+              "Route contest/response, not a guaranteed landed hit: Sauron tries to finish the fight by converting the route: Use Mace of Sauron for body_destruction against Darth Vader. Defender answer: The indexed offense leads this contest, but contact and lasting defeat still require the route gates.",
+              "Recoil/continuity: Darth Vader survives and withstands the finishing attempt, so the route fails to become permanent. Show the winner's first terminal conversion failing against attrition before control is reasserted. Preserve the scored state: FINISHER_CHECK_FAILED."
+            ]
+          },
+          "storyboard": {
+            "source": "box-o-battles",
+            "shot_id": "SB004",
+            "phase": "reversal",
+            "role": "failed_finish",
+            "shot_type": "macro_impact",
+            "source_handoff_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+            "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:04",
+            "source_cinematic_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43-AUTO-04",
+            "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+            "source_route_id": "SAURON:mace:VS:VADER",
+            "source_step": "effect",
+            "evidence_ids": [
+              "SAURON-S-001",
+              "SAURON-S-002",
+              "SAURON-S-003",
+              "SAURON-S-004",
+              "SAURON-S-005",
+              "VADER-V-001",
+              "VADER-V-002",
+              "VADER-V-003",
+              "VADER-V-004",
+              "VADER-V-005",
+              "VADER-V-006"
+            ],
+            "route_gate_state": "OPEN",
+            "support_state": "Plausibly Supported",
+            "state_change": "FINISHER_CHECK_FAILED",
+            "visual_policy": {
+              "anime_devices_allowed": [
+                "silhouette",
+                "anticipation_hold",
+                "speed_lines",
+                "smear_frame",
+                "hard_cut",
+                "recoil_timing"
+              ],
+              "brutality_level": "medium",
+              "environment_destruction": "NO_NEW_DAMAGE_UNLESS_SOURCE_TEXT_EXPLICIT",
+              "forbidden": [
+                "invented blood",
+                "invented fractures",
+                "invented new power",
+                "invented weapon",
+                "unsupported lethal contact",
+                "physically quantified feat from ordinal score"
+              ],
+              "injury_specificity": "NO_NEW_INJURY",
+              "mechanical_contact_supported": true,
+              "terminal_depiction_conditional": false
+            },
+            "transition": "match_on_action",
+            "brutality_level": "medium",
+            "impact_hold_frames": 0,
+            "camera_purpose": "hold on the attempted finish and demonstrate why it fails",
+            "motion_intent": "Read the action and consequence as one continuous, causal exchange.",
+            "production_truth": "UNREVIEWED_THEORETICAL_VISUALIZATION"
+          }
+        }
+      ]
+    },
+    {
+      "name": "climax",
+      "start_s": 5.75,
+      "fight": true,
+      "shots": [
+        {
+          "p": "tight insert. Sauron — Mace of Sauron against Darth Vader — Force Precognition and Guard. Sauron forces the decisive exchange and converts the winning route: Use Mace of Sauron for body_destruction against Darth Vader. The earlier resistance breaks and the route reaches its permanent-defeat step. Pay off the winner's main route without artificial parity.. Defender response: No comparable numerical contest is evidenced here; use the named route basis and limits.. Direction: Anticipation: stage the attempted action with readable body orientation.. No invented action or injury.",
+          "s": 0.75,
+          "cam": "saccade",
+          "cast": [
+            "fighter_1",
+            "fighter_2"
+          ],
+          "motion": "keyseq",
+          "fight": true,
+          "strikes": 0,
+          "fx": [],
+          "no_split": true,
+          "camera_move": "make the decisive route interaction physically legible",
+          "keyseq": {
+            "count": 3,
+            "keys": [
+              "Anticipation: Sauron forces the decisive exchange and converts the winning route: Use Mace of Sauron for body_destruction against Darth Vader. Keep body mass, line of attack and screen direction visible.",
+              "Route contest/response, not a guaranteed landed hit: Sauron forces the decisive exchange and converts the winning route: Use Mace of Sauron for body_destruction against Darth Vader. Defender answer: No comparable numerical contest is evidenced here; use the named route basis and limits.",
+              "Recoil/continuity: The earlier resistance breaks and the route reaches its permanent-defeat step. Pay off the winner's main route without artificial parity. Preserve the scored state: THEORETICAL_TERMINAL_CONVERSION."
+            ]
+          },
+          "storyboard": {
+            "source": "box-o-battles",
+            "shot_id": "SB005",
+            "phase": "climax",
+            "role": "climax",
+            "shot_type": "tight_insert",
+            "source_handoff_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+            "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:05",
+            "source_cinematic_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43-AUTO-05",
+            "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+            "source_route_id": "SAURON:mace:VS:VADER",
+            "source_step": "permanence",
+            "evidence_ids": [
+              "SAURON-S-001",
+              "SAURON-S-002",
+              "SAURON-S-003",
+              "SAURON-S-004",
+              "SAURON-S-005",
+              "VADER-V-001",
+              "VADER-V-002",
+              "VADER-V-003",
+              "VADER-V-004",
+              "VADER-V-005",
+              "VADER-V-006"
+            ],
+            "route_gate_state": "OPEN",
+            "support_state": "Plausibly Supported",
+            "state_change": "THEORETICAL_TERMINAL_CONVERSION",
+            "visual_policy": {
+              "anime_devices_allowed": [
+                "silhouette",
+                "anticipation_hold",
+                "speed_lines",
+                "smear_frame",
+                "hard_cut",
+                "recoil_timing"
+              ],
+              "brutality_level": "medium",
+              "environment_destruction": "NO_NEW_DAMAGE_UNLESS_SOURCE_TEXT_EXPLICIT",
+              "forbidden": [
+                "invented blood",
+                "invented fractures",
+                "invented new power",
+                "invented weapon",
+                "unsupported lethal contact",
+                "physically quantified feat from ordinal score"
+              ],
+              "injury_specificity": "NO_NEW_INJURY",
+              "mechanical_contact_supported": true,
+              "terminal_depiction_conditional": true
+            },
+            "transition": "held_anticipation",
+            "brutality_level": "medium",
+            "impact_hold_frames": 0,
+            "camera_purpose": "make the decisive route interaction physically legible",
+            "motion_intent": "Anticipation: stage the attempted action with readable body orientation.",
+            "production_truth": "UNREVIEWED_THEORETICAL_VISUALIZATION"
+          }
+        },
+        {
+          "p": "locked contact. Sauron — Mace of Sauron against Darth Vader — Force Precognition and Guard. Sauron forces the decisive exchange and converts the winning route: Use Mace of Sauron for body_destruction against Darth Vader. The earlier resistance breaks and the route reaches its permanent-defeat step. Pay off the winner's main route without artificial parity.. Defender response: No comparable numerical contest is evidenced here; use the named route basis and limits.. Direction: Contact/interaction: stage ONLY the scored route interaction, without inventing a new hit.. No invented action or injury.",
+          "s": 0.75,
+          "cam": "crash_zoom",
+          "cast": [
+            "fighter_1",
+            "fighter_2"
+          ],
+          "motion": "keyseq",
+          "fight": true,
+          "strikes": 0,
+          "fx": [],
+          "no_split": true,
+          "camera_move": "make the decisive route interaction physically legible",
+          "keyseq": {
+            "count": 3,
+            "keys": [
+              "Anticipation: Sauron forces the decisive exchange and converts the winning route: Use Mace of Sauron for body_destruction against Darth Vader. Keep body mass, line of attack and screen direction visible.",
+              "Route contest/response, not a guaranteed landed hit: Sauron forces the decisive exchange and converts the winning route: Use Mace of Sauron for body_destruction against Darth Vader. Defender answer: No comparable numerical contest is evidenced here; use the named route basis and limits.",
+              "Recoil/continuity: The earlier resistance breaks and the route reaches its permanent-defeat step. Pay off the winner's main route without artificial parity. Preserve the scored state: THEORETICAL_TERMINAL_CONVERSION."
+            ]
+          },
+          "storyboard": {
+            "source": "box-o-battles",
+            "shot_id": "SB006",
+            "phase": "climax",
+            "role": "climax",
+            "shot_type": "locked_contact",
+            "source_handoff_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+            "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:05",
+            "source_cinematic_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43-AUTO-05",
+            "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+            "source_route_id": "SAURON:mace:VS:VADER",
+            "source_step": "permanence",
+            "evidence_ids": [
+              "SAURON-S-001",
+              "SAURON-S-002",
+              "SAURON-S-003",
+              "SAURON-S-004",
+              "SAURON-S-005",
+              "VADER-V-001",
+              "VADER-V-002",
+              "VADER-V-003",
+              "VADER-V-004",
+              "VADER-V-005",
+              "VADER-V-006"
+            ],
+            "route_gate_state": "OPEN",
+            "support_state": "Plausibly Supported",
+            "state_change": "THEORETICAL_TERMINAL_CONVERSION",
+            "visual_policy": {
+              "anime_devices_allowed": [
+                "silhouette",
+                "anticipation_hold",
+                "speed_lines",
+                "smear_frame",
+                "hard_cut",
+                "recoil_timing"
+              ],
+              "brutality_level": "medium",
+              "environment_destruction": "NO_NEW_DAMAGE_UNLESS_SOURCE_TEXT_EXPLICIT",
+              "forbidden": [
+                "invented blood",
+                "invented fractures",
+                "invented new power",
+                "invented weapon",
+                "unsupported lethal contact",
+                "physically quantified feat from ordinal score"
+              ],
+              "injury_specificity": "NO_NEW_INJURY",
+              "mechanical_contact_supported": true,
+              "terminal_depiction_conditional": true
+            },
+            "transition": "impact_cut",
+            "brutality_level": "medium",
+            "impact_hold_frames": 2,
+            "camera_purpose": "make the decisive route interaction physically legible",
+            "motion_intent": "Contact/interaction: stage ONLY the scored route interaction, without inventing a new hit.",
+            "production_truth": "UNREVIEWED_THEORETICAL_VISUALIZATION"
+          }
+        },
+        {
+          "p": "wide aftermath. Sauron — Mace of Sauron against Darth Vader — Force Precognition and Guard. Sauron forces the decisive exchange and converts the winning route: Use Mace of Sauron for body_destruction against Darth Vader. The earlier resistance breaks and the route reaches its permanent-defeat step. Pay off the winner's main route without artificial parity.. Defender response: No comparable numerical contest is evidenced here; use the named route basis and limits.. Direction: Reaction: preserve the exact theoretical consequence; do not append extra injury.. No invented action or injury.",
+          "s": 1.0,
+          "cam": "glide",
+          "cast": [
+            "fighter_1",
+            "fighter_2"
+          ],
+          "motion": "camera",
+          "fight": true,
+          "strikes": 0,
+          "fx": [],
+          "no_split": true,
+          "camera_move": "make the decisive route interaction physically legible",
+          "keyseq": null,
+          "storyboard": {
+            "source": "box-o-battles",
+            "shot_id": "SB007",
+            "phase": "climax",
+            "role": "climax",
+            "shot_type": "wide_aftermath",
+            "source_handoff_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+            "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:05",
+            "source_cinematic_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43-AUTO-05",
+            "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+            "source_route_id": "SAURON:mace:VS:VADER",
+            "source_step": "permanence",
+            "evidence_ids": [
+              "SAURON-S-001",
+              "SAURON-S-002",
+              "SAURON-S-003",
+              "SAURON-S-004",
+              "SAURON-S-005",
+              "VADER-V-001",
+              "VADER-V-002",
+              "VADER-V-003",
+              "VADER-V-004",
+              "VADER-V-005",
+              "VADER-V-006"
+            ],
+            "route_gate_state": "OPEN",
+            "support_state": "Plausibly Supported",
+            "state_change": "THEORETICAL_TERMINAL_CONVERSION",
+            "visual_policy": {
+              "anime_devices_allowed": [
+                "silhouette",
+                "anticipation_hold",
+                "speed_lines",
+                "smear_frame",
+                "hard_cut",
+                "recoil_timing"
+              ],
+              "brutality_level": "medium",
+              "environment_destruction": "NO_NEW_DAMAGE_UNLESS_SOURCE_TEXT_EXPLICIT",
+              "forbidden": [
+                "invented blood",
+                "invented fractures",
+                "invented new power",
+                "invented weapon",
+                "unsupported lethal contact",
+                "physically quantified feat from ordinal score"
+              ],
+              "injury_specificity": "NO_NEW_INJURY",
+              "mechanical_contact_supported": true,
+              "terminal_depiction_conditional": true
+            },
+            "transition": "aftermath_hold",
+            "brutality_level": "medium",
+            "impact_hold_frames": 0,
+            "camera_purpose": "make the decisive route interaction physically legible",
+            "motion_intent": "Reaction: preserve the exact theoretical consequence; do not append extra injury.",
+            "production_truth": "UNREVIEWED_THEORETICAL_VISUALIZATION"
+          }
+        }
+      ]
+    },
+    {
+      "name": "resolution",
+      "start_s": 8.25,
+      "fight": true,
+      "shots": [
+        {
+          "p": "wide aftermath. Sauron — Mace of Sauron against Darth Vader — Force Precognition and Guard. Sauron ends the exchange after the winning route has converted. Darth Vader can no longer restore the fight before the scenario's terminal condition applies. Release pressure and make the final state legible.. Defender response: No comparable numerical contest is evidenced here; use the named route basis and limits.. Direction: Read the action and consequence as one continuous, causal exchange.. No invented action or injury.",
+          "s": 2.0,
+          "cam": "glide",
+          "cast": [
+            "fighter_1",
+            "fighter_2"
+          ],
+          "motion": "camera",
+          "fight": true,
+          "strikes": 0,
+          "fx": [],
+          "no_split": true,
+          "camera_move": "confirm the theoretical final state without additional attacks",
+          "keyseq": null,
+          "storyboard": {
+            "source": "box-o-battles",
+            "shot_id": "SB008",
+            "phase": "resolution",
+            "role": "resolution",
+            "shot_type": "wide_aftermath",
+            "source_handoff_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+            "source_scene_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:SCENE:06",
+            "source_cinematic_beat_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43-AUTO-06",
+            "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+            "source_route_id": "SAURON:mace:VS:VADER",
+            "source_step": "permanence",
+            "evidence_ids": [
+              "SAURON-S-001",
+              "SAURON-S-002",
+              "SAURON-S-003",
+              "SAURON-S-004",
+              "SAURON-S-005",
+              "VADER-V-001",
+              "VADER-V-002",
+              "VADER-V-003",
+              "VADER-V-004",
+              "VADER-V-005",
+              "VADER-V-006"
+            ],
+            "route_gate_state": "OPEN",
+            "support_state": "Plausibly Supported",
+            "state_change": "THEORETICAL_FINAL_STATE_CONFIRMED",
+            "visual_policy": {
+              "anime_devices_allowed": [
+                "silhouette",
+                "anticipation_hold",
+                "speed_lines",
+                "smear_frame",
+                "hard_cut",
+                "recoil_timing"
+              ],
+              "brutality_level": "low",
+              "environment_destruction": "NO_NEW_DAMAGE_UNLESS_SOURCE_TEXT_EXPLICIT",
+              "forbidden": [
+                "invented blood",
+                "invented fractures",
+                "invented new power",
+                "invented weapon",
+                "unsupported lethal contact",
+                "physically quantified feat from ordinal score"
+              ],
+              "injury_specificity": "NO_NEW_INJURY",
+              "mechanical_contact_supported": true,
+              "terminal_depiction_conditional": true
+            },
+            "transition": "match_on_action",
+            "brutality_level": "low",
+            "impact_hold_frames": 0,
+            "camera_purpose": "confirm the theoretical final state without additional attacks",
+            "motion_intent": "Read the action and consequence as one continuous, causal exchange.",
+            "production_truth": "UNREVIEWED_THEORETICAL_VISUALIZATION"
+          }
+        }
+      ]
+    }
+  ],
+  "camera_engine": "mesh",
+  "motion_strategy": "hybrid",
+  "impact": false,
+  "use_lexicon": false,
+  "source_storyboard": {
+    "battle_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43",
+    "product": "box-o-battles",
+    "source_math_fingerprint": "f477e59bddbadf48092faab670c730abc93eba96706f69079633229ef3b3b8fa",
+    "source_theatre_fingerprint": "931e711d0d2293b1838d4d5edcf1f7c7064a42fcba9ce7e0e605b11cb1ef9d5b",
+    "source_verdict_id": "GENERIC-VADER-VS-SAURON:4db6aa581a43:f477e59bddba",
+    "handoff_fingerprint": "82b931bb70ead4de96ab09f035120cf71f231f0fb676dcdcbceb3aa846d1ce7a",
+    "status": "UNREVIEWED_SHOT_PROPOSAL_REQUIRES_CREATOR_APPROVAL",
+    "needs_cast_approval": true
+  }
+}

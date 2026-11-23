@@ -265,23 +265,26 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div id="box-promise" className="cover-box-front__promise" aria-label="What Box o Battles gives you">
-            <article>
-              <span>01</span>
-              <h3>Choose the fight.</h3>
-              <p>Start with fighters and settings already prepared for a fair comparison.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>See the turning point.</h3>
-              <p>Find the move, weakness, or distance that changes the outcome.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Make your own call.</h3>
-              <p>The answer shows its reasoning, so you can challenge it instead of taking it on faith.</p>
-            </article>
-          </div>
+          <aside id="box-promise" className="cover-box-casefile" aria-label="Box o Battles archive fight, Darth Vader versus Movie Sauron">
+            <img className="cover-box-casefile__art" src="/assets/box/box-keyart-v1_0.png" alt="" aria-hidden="true" />
+            <div className="cover-box-casefile__mast">
+              <span>ARCHIVE FIGHT</span><strong>BOX #003</strong><span>THE RING FALLS</span>
+            </div>
+            <div className="cover-box-casefile__fighters">
+              <div className="cover-box-casefile__fighter cover-box-casefile__fighter--vader">
+                <small>60 METRES · RED LINE</small><strong>DARTH<br />VADER</strong><em>THE CUT</em>
+              </div>
+              <div className="cover-box-casefile__versus" aria-hidden="true">VS</div>
+              <div className="cover-box-casefile__fighter cover-box-casefile__fighter--sauron">
+                <small>RING-BEARER · BLACK STONE</small><strong>MOVIE<br />SAURON</strong><em>THE RETURN</em>
+              </div>
+            </div>
+            <p className="cover-box-casefile__ruling">The body falls. The Ring remains. A fight can have more than one ending.</p>
+            <div className="cover-box-casefile__footer">
+              <span>MAKE YOUR CALL. THEN SEE THE PATH THAT HOLDS.</span>
+              <button type="button" className="cover-box-casefile__button" onClick={() => setShowBox(true)}>Open the fight room <ArrowUpRight size={16} /></button>
+            </div>
+          </aside>
           {showBox && (
             <div id="box-arena" className="cover-box-front__arena">
               <Suspense fallback={<p className="cover-box-front__loading">Opening the fight room…</p>}>

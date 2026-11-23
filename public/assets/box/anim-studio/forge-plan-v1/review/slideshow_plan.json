@@ -1,0 +1,30 @@
+{
+  "schema": "anim_slideshow_v1",
+  "measured": false,
+  "shots": 8,
+  "still_shots": 2,
+  "still_seconds": 2.75,
+  "runs": [],
+  "worst": [],
+  "life": {
+    "s001": 0.0,
+    "s002": 1.0,
+    "s003": 1.0,
+    "s004": 1.0,
+    "s005": 1.0,
+    "s006": 1.0,
+    "s007": 0.0,
+    "s008": 1.0
+  },
+  "guard": {
+    "runs_before": 1,
+    "runs_after": [],
+    "promoted": [
+      {
+        "shot": "s008",
+        "fix": "acted-hold",
+        "subject": "wide aftermath. Sauron \u2014 Mace of Sauron against Darth Vader \u2014 Force Precognition"
+      }
+    ]
+  }
+}
