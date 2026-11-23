@@ -1093,3 +1093,92 @@
   .cover-nav nav { justify-content: flex-start; gap: 3px 15px; }
   .cover-nav nav a { font-size: 12px; min-height: 44px; }
 }
+
+
+.cover-box-front {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  gap: 6%;
+  padding: 82px 7%;
+  border-top: 5px solid #d98c46;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(217, 140, 70, 0.22), transparent 33%),
+    linear-gradient(135deg, #351812, #14100f 60%, #152022);
+  color: #f2e0c4;
+  scroll-margin-top: 24px;
+}
+.cover-box-front__copy .cover-kicker { color: #f0b66f; }
+.cover-box-front h2 {
+  margin-top: 18px;
+  font: 900 clamp(46px, 6.4vw, 92px) / 0.86 "Barlow Condensed", Impact, sans-serif;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+.cover-box-front h2 em {
+  font-family: Georgia, serif;
+  font-size: 0.74em;
+  font-weight: 400;
+  text-transform: none;
+  color: #e7a878;
+}
+.cover-box-front__copy > p:not(.cover-kicker) {
+  max-width: 590px;
+  margin-top: 26px !important;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #e0c8ae;
+}
+.cover-box-front__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: 27px;
+}
+.cover-box-front__actions .cover-action,
+.cover-box-front__actions .cover-text-link { margin-top: 0; }
+.cover-box-front__promise {
+  display: grid;
+  align-content: center;
+  gap: 1px;
+  background: rgba(10, 9, 8, 0.36);
+  border: 1px solid rgba(242, 224, 196, 0.22);
+}
+.cover-box-front__promise article {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 0 15px;
+  padding: 25px 25px 23px;
+  border-left: 4px solid transparent;
+  background: rgba(7, 7, 7, 0.4);
+}
+.cover-box-front__promise article:nth-child(1) { border-left-color: #e7a878; }
+.cover-box-front__promise article:nth-child(2) { border-left-color: #dfb954; }
+.cover-box-front__promise article:nth-child(3) { border-left-color: #a9d84f; }
+.cover-box-front__promise span {
+  grid-row: span 2;
+  color: #e6a86f;
+  font: 700 18px/1 "Courier New", monospace;
+}
+.cover-box-front__promise h3 { font: 700 24px/1.08 Georgia, serif; }
+.cover-box-front__promise p {
+  margin-top: 9px !important;
+  color: #cdbba4;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.cover-box-front__arena {
+  grid-column: 1 / -1;
+  margin-top: 18px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(242, 224, 196, 0.25);
+}
+.cover-box-front__loading {
+  padding: 28px;
+  border: 1px solid rgba(242, 224, 196, 0.25);
+  color: #e0c8ae;
+}
+@media (max-width: 760px) {
+  .cover-box-front { grid-template-columns: 1fr; gap: 34px; padding: 58px 6%; }
+  .cover-box-front__promise article { padding: 20px; }
+}

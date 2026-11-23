@@ -1,6 +1,6 @@
 /** @license SPDX-License-Identifier: Apache-2.0 */
 import { lazy, Suspense, useState } from "react";
-import { ArrowDown, ArrowUpRight, Check, Copy } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, Copy, Swords } from "lucide-react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { PROJECTS_DATA } from "./data";
 import type { Project } from "./types";
@@ -132,6 +132,7 @@ export default function App() {
             Ghengis Mon
           </a>
           <a href="#worlds">Games</a>
+          <a href="#box-o-battles">Box o&rsquo; Battles</a>
           <a href="#studio-sound">Music &amp; audio</a>
           <a href="/follow">Follow</a>
           <a href="#cody">The human</a>
@@ -165,6 +166,9 @@ export default function App() {
               </a>
               <a href="#worlds" className="cover-text-link">
                 Explore the worlds <ArrowDown size={18} />
+              </a>
+              <a href="#box-o-battles" className="cover-text-link">
+                Pick a fight <Swords size={18} />
               </a>
             </div>
             <p className="studio-cover__note">
@@ -233,6 +237,58 @@ export default function App() {
               <small>VOIDWALKING is finished. The public music-video upload is separate.</small>
             </a>
           </div>
+        </section>
+        <section id="box-o-battles" className="cover-box-front" aria-labelledby="box-title">
+          <div className="cover-box-front__copy">
+            <p className="cover-kicker">An interactive fight room</p>
+            <h2 id="box-title">
+              Who wins when<br />
+              <em>the rules matter?</em>
+            </h2>
+            <p>
+              Pick two fighters, choose where they meet, and see the case for the call. Box o&rsquo; Battles is built for
+              the arguments you actually want to have: not just who hits harder, but whether either side can make its
+              best move stick.
+            </p>
+            <div className="cover-box-front__actions">
+              <button
+                type="button"
+                className="cover-action"
+                onClick={() => setShowBox((v) => !v)}
+                aria-expanded={showBox}
+                aria-controls="box-arena"
+              >
+                {showBox ? "Close the fight room" : "Enter Box o’ Battles"} <ArrowUpRight size={18} />
+              </button>
+              <a className="cover-text-link" href="#box-promise">
+                How a matchup works <ArrowDown size={18} />
+              </a>
+            </div>
+          </div>
+          <div id="box-promise" className="cover-box-front__promise" aria-label="What Box o Battles gives you">
+            <article>
+              <span>01</span>
+              <h3>Choose the fight.</h3>
+              <p>Start with fighters and settings already prepared for a fair comparison.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>See the turning point.</h3>
+              <p>Find the move, weakness, or distance that changes the outcome.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Make your own call.</h3>
+              <p>The answer shows its reasoning, so you can challenge it instead of taking it on faith.</p>
+            </article>
+          </div>
+          {showBox && (
+            <div id="box-arena" className="cover-box-front__arena">
+              <Suspense fallback={<p className="cover-box-front__loading">Opening the fight room…</p>}>
+                <BoxArena />
+              </Suspense>
+            </div>
+          )}
         </section>
         <section id="grow-teeth" className="cover-manifesto" aria-labelledby="campaign-title">
           <p className="cover-kicker">What connects the work</p>
@@ -341,33 +397,18 @@ export default function App() {
                   {fretfang.status}
                 </p>
               </article>
-              <article id="box-o-battles">
-                <span className="cover-kicker">The Box</span>
-                <h3>A fight is only as good as its argument.</h3>
+              <article>
+                <span className="cover-kicker">Interactive fight room</span>
+                <h3>Box o&rsquo; Battles</h3>
                 <p>
-                  Box o’ Battles presents version-locked matchup candidates and
-                  their evidence boundaries. A precomputed result is not a canon
-                  probability.
+                  Choose the fighters, choose the setting, then follow the reason a matchup swings one way or the other.
                 </p>
-                <button
-                  className="cover-text-link"
-                  onClick={() => setShowBox((v) => !v)}
-                  aria-expanded={showBox}
-                  aria-controls="box-preview"
-                >
-                  {showBox ? "Close" : "Open"} the matchup matrix{" "}
-                  <ArrowUpRight size={18} />
-                </button>
+                <a className="cover-text-link" href="#box-o-battles">
+                  Go to the fight room <ArrowUpRight size={18} />
+                </a>
               </article>
             </div>
           </div>
-          {showBox && (
-            <div id="box-preview" className="cover-box">
-              <Suspense fallback={<p>Loading the owner’s matchup record…</p>}>
-                <BoxArena />
-              </Suspense>
-            </div>
-          )}
         </section>
         <section
           id="cody"

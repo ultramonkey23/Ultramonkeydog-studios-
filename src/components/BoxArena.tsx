@@ -240,8 +240,7 @@ function BattleFlow({ routes, roster }: { routes: Route[]; roster: Fighter[] }) 
   return (
     <figure className="mt-5 rounded-xl border border-white/10 bg-black/25 p-4 sm:p-5">
       <figcaption className="font-mono text-[9px] font-black uppercase leading-4 tracking-[0.14em] text-zinc-500">
-        Battle flow · mirrored conversion spines — owner route data, not a fight
-        simulation or canon choreography
+        How each fighter tries to win · mirrored conversion spines that explain the call, not a fight simulation or an official story scene
       </figcaption>
       <div className="mt-4 space-y-2">
         {lanes.map((route) => {
@@ -504,7 +503,7 @@ export default function BoxArena() {
       </header>
 
       <div className="mt-5 flex flex-col gap-3 lg:flex-row lg:items-stretch">
-        <Picker label="Combatant A" roster={matrix.roster} value={a} exclude={b} onChange={setA} />
+        <Picker label="First fighter" roster={matrix.roster} value={a} exclude={b} onChange={setA} />
         <div className="flex items-center justify-center lg:px-2">
           <button
             type="button"
@@ -515,7 +514,7 @@ export default function BoxArena() {
             <Swords size={22} />
           </button>
         </div>
-        <Picker label="Combatant B" roster={matrix.roster} value={b} exclude={a} onChange={setB} />
+        <Picker label="Second fighter" roster={matrix.roster} value={b} exclude={a} onChange={setB} />
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
@@ -551,14 +550,14 @@ export default function BoxArena() {
       {calibration && (
         <section className="mt-5 rounded-xl border border-blue-400/25 bg-blue-400/5 p-4">
           <p className="font-mono text-[9px] font-black uppercase tracking-[0.14em] text-blue-200">
-            Reviewed replay calibration · {calibration.arena_id.replaceAll("_", " ")}
+            How often this approach agrees with earlier calls · {calibration.arena_id.replaceAll("_", " ")}
           </p>
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-zinc-300">
             <span>
               <b className="text-teal-300">
                 {calibration.agreements}/{calibration.measured_pairs}
               </b>{" "}
-              winner agreements
+              same winner
             </span>
             <span>
               <b className="text-red-300">{calibration.reversals}</b> reversal{calibration.reversals === 1 ? "" : "s"}
@@ -567,11 +566,11 @@ export default function BoxArena() {
               <b className="text-amber-300">
                 {calibration.margin_matches}/{calibration.measured_pairs}
               </b>{" "}
-              margin matches
+              same kind of win
             </span>
           </div>
           <p className="mt-3 text-xs leading-5 text-zinc-400">
-            <strong className="text-blue-100">Evidence reliability and replay consistency — never win probability.</strong>{" "}
+            <strong className="text-blue-100">This checks whether the reasoning holds up against past calls. It does not make a winner certain.</strong>{" "}
             {calibration.caveat}
           </p>
         </section>
@@ -581,18 +580,18 @@ export default function BoxArena() {
       {comicCardLineage && (
         <section className="mt-5 rounded-xl border border-violet-400/25 bg-violet-400/5 p-4">
           <p className="font-mono text-[9px] font-black uppercase tracking-[0.14em] text-violet-200">
-            BOB-0003 card and replay lineage
+            A past fight, revisited
           </p>
           <p className="mt-2 text-xs leading-5 text-zinc-300">{comicCardLineage.relationship}</p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
             <div className="rounded border border-white/10 bg-black/25 p-3">
-              <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-500">Historical Comic HUD</p>
+              <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-500">Original call</p>
               <p className="mt-1 font-mono text-xs text-zinc-300">
                 {comicCardLineage.card.status} · {comicCardLineage.card.math_spine_version ?? "unknown math"}
               </p>
             </div>
             <div className="rounded border border-white/10 bg-black/25 p-3">
-              <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-500">Current owner replay</p>
+              <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-500">Latest revisit</p>
               <p className="mt-1 font-mono text-xs text-zinc-300">
                 {comicCardLineage.current_request.status} · {comicCardLineage.current_request.winner ?? "no winner"}
                 {comicCardLineage.current_request.margin ? ` · ${comicCardLineage.current_request.margin}` : ""}
@@ -613,16 +612,15 @@ export default function BoxArena() {
               {resolved.win_outlook.label}
             </p>
             <p className="mt-1 font-mono text-[9px] font-black uppercase tracking-[0.14em] text-zinc-500">
-              Compiled candidate — not a reviewed verdict
+              A reasoned matchup, not an official story answer
             </p>
             <p className="mt-1 font-mono text-[9px] font-black uppercase tracking-[0.12em] text-zinc-600">
-              Key visual: capture_required — AI-assisted studio illustration
-              pending, not a runtime capture
+              Battle art is still in the works. The result below is the part ready to test today. capture_required · not a runtime capture.
             </p>
             <h4 className="mt-3 font-display text-3xl font-black uppercase text-white sm:text-5xl">{resolved.winner}</h4>
             {outlookWinner && (
               <p className="mt-1 font-display text-2xl font-black uppercase text-amber-200 sm:text-3xl">
-                Win probability {(outlookWinner.probability * 100).toFixed(1)}%
+                Chance to win {(outlookWinner.probability * 100).toFixed(1)}%
               </p>
             )}
             {outlook && outlookWinner && outlookOther && (
