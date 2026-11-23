@@ -26,6 +26,7 @@ import { AlertTriangle, Loader2, Swords } from "lucide-react";
  */
 
 const MATRIX_URL = "/box/matchup-matrix.v0.2.json";
+const BUNDLE_URL = "/box/public-bundle.v0.1.json";
 
 type Step = { step: string; support_state: string; effective_strength: number };
 type Route = {
@@ -98,6 +99,23 @@ type Matrix = {
   /** Small reviewed sample: reliability/replay evidence, never a win probability. */
   calibration?: Calibration;
 };
+
+
+type ComicCardLineage = {
+  card: { status: string; math_spine_version: string | null; input_fingerprint: string | null };
+  current_request: {
+    available: boolean;
+    status: string;
+    request_id?: string;
+    math_spine_version?: string;
+    input_fingerprint?: string;
+    winner?: string;
+    margin?: string;
+    calibration?: string;
+  };
+  relationship: string;
+};
+type PublicBundle = { comic_card_lineage?: ComicCardLineage };
 
 const MARGIN_TONE: Record<string, string> = {
   decisive: "text-red-300",
@@ -338,6 +356,7 @@ function RouteCard({ route }: { route: Route }) {
 
 export default function BoxArena() {
   const [matrix, setMatrix] = useState<Matrix | null>(null);
+  const [publicBundle, setPublicBundle] = useState<PublicBundle | null>(null);
   const [loadError, setLoadError] = useState("");
   const [a, setA] = useState("frieren");
   const [b, setB] = useState("sauron");
@@ -353,6 +372,16 @@ export default function BoxArena() {
       .catch((cause) => {
         if (!cancelled) setLoadError(cause instanceof Error ? cause.message : "could not load the matrix");
       });
+
+    fetch(BUNDLE_URL)
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error(String(response.status)))))
+      .then((data: PublicBundle) => {
+        if (!cancelled) setPublicBundle(data);
+      })
+      .catch(() => {
+        if (!cancelled) setPublicBundle(null);
+      });
+
     return () => {
       cancelled = true;
     };
@@ -385,6 +414,7 @@ export default function BoxArena() {
 
   const reviewed = matrix?.reviewed?.[pairKey(a, b)] ?? null;
   const calibration = matrix?.calibration ?? null;
+  const comicCardLineage = publicBundle?.comic_card_lineage ?? null;
 
   /**
    * The matrix already calibrated fresh winners against reviewed winners using the
@@ -544,6 +574,34 @@ export default function BoxArena() {
             <strong className="text-blue-100">Evidence reliability and replay consistency — never win probability.</strong>{" "}
             {calibration.caveat}
           </p>
+        </section>
+      )}
+
+
+      {comicCardLineage && (
+        <section className="mt-5 rounded-xl border border-violet-400/25 bg-violet-400/5 p-4">
+          <p className="font-mono text-[9px] font-black uppercase tracking-[0.14em] text-violet-200">
+            BOB-0003 card and replay lineage
+          </p>
+          <p className="mt-2 text-xs leading-5 text-zinc-300">{comicCardLineage.relationship}</p>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            <div className="rounded border border-white/10 bg-black/25 p-3">
+              <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-500">Historical Comic HUD</p>
+              <p className="mt-1 font-mono text-xs text-zinc-300">
+                {comicCardLineage.card.status} · {comicCardLineage.card.math_spine_version ?? "unknown math"}
+              </p>
+            </div>
+            <div className="rounded border border-white/10 bg-black/25 p-3">
+              <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-zinc-500">Current owner replay</p>
+              <p className="mt-1 font-mono text-xs text-zinc-300">
+                {comicCardLineage.current_request.status} · {comicCardLineage.current_request.winner ?? "no winner"}
+                {comicCardLineage.current_request.margin ? ` · ${comicCardLineage.current_request.margin}` : ""}
+              </p>
+              <p className="mt-1 text-[11px] leading-4 text-zinc-500">
+                {comicCardLineage.current_request.math_spine_version ?? "No replay metadata"} · {comicCardLineage.current_request.calibration ?? "uncalibrated"}
+              </p>
+            </div>
+          </div>
         </section>
       )}
 
